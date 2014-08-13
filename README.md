@@ -4,9 +4,12 @@ Spree + Angular.js frontend
 
 ## Installing
 
-Add `sprangular` to your Gemfile
+Add `sprangular` and rails-assets source to your Gemfile
 
-`gem 'sprangular'`
+```
+source 'https://rails-assets.org'
+gem 'sprangular'
+```
 
 Mount the engine in your `config/routes.rb`
 
