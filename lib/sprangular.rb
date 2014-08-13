@@ -1,5 +1,5 @@
-require "sprangular/engine"
 require 'slim'
+require "sprangular/engine"
 
 module Sprangular
 end
