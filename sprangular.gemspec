@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.1.4"
   s.add_dependency "spree_core"
   s.add_dependency "spree_api"
+  s.add_dependency "slim"
 
   s.add_development_dependency "sqlite3"
 end
