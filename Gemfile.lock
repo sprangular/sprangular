@@ -2,13 +2,22 @@ PATH
   remote: .
   specs:
     sprangular (0.0.1)
+      angularjs-rails
+      coffee-rails
+      jquery-rails
       rails (~> 4.1.4)
-      slim
+      rails-assets-angular-bootstrap
+      rails-assets-angular-ui-router
+      rails-assets-jasmine-sinon
+      rails-assets-sinon
+      rails-assets-underscore
+      slim-rails
       spree_api
       spree_core
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.4)
       actionpack (= 4.1.4)
@@ -49,14 +58,23 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
+    angularjs-rails (1.2.21)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.7.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    execjs (2.0.2)
     faker (1.4.2)
       i18n (~> 0.5)
     highline (1.6.21)
@@ -96,6 +114,18 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.4)
       sprockets-rails (~> 2.0)
+    rails-assets-angular (1.2.22)
+    rails-assets-angular-bootstrap (0.11.0)
+      rails-assets-angular (>= 1)
+    rails-assets-angular-ui-router (0.2.10)
+      rails-assets-angular (>= 1.0.8)
+    rails-assets-jasmine (2.0.1)
+    rails-assets-jasmine-sinon (0.4.0)
+      rails-assets-jasmine (~> 2.0.0)
+      rails-assets-sinonjs (>= 1.7.1)
+    rails-assets-sinon (1.10.3)
+    rails-assets-sinonjs (1.10.2)
+    rails-assets-underscore (1.6.0)
     railties (4.1.4)
       actionpack (= 4.1.4)
       activesupport (= 4.1.4)
@@ -124,9 +154,14 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
-    slim (2.0.2)
+    slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
+    slim-rails (2.1.5)
+      actionpack (>= 3.0, < 4.2)
+      activesupport (>= 3.0, < 4.2)
+      railties (>= 3.0, < 4.2)
+      slim (~> 2.0)
     spree_api (0.40.0)
       spree_core (= 0.40.0)
     spree_core (0.40.0)
@@ -156,7 +191,7 @@ GEM
     sqlite3 (1.3.9)
     state_machine (1.2.0)
     stringex (2.5.2)
-    temple (0.6.7)
+    temple (0.6.8)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)

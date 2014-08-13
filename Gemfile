@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+source "https://rails-assets.org"
 
 # Declare your gem's dependencies in sprangular.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
