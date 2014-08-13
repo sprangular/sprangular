@@ -1,0 +1,15 @@
+.f-wrp ng-open="signingUp"
+  form name='SignupForm' ng-submit="submit()"
+
+    input.f-input ng-model="signup.email" placeholder='Email' required=true
+    p.error ng-bind="signup.errors.email"
+
+    input.f-input ng-model="signup.password" placeholder='Password' type='password' required=true
+    p.error ng-bind="signup.errors.password"
+
+    input.f-input ng-model="signup.password_confirmation" placeholder='Password Again' type='password' required=true
+    p.error ng-bind="signup.errors.password_confirmation"
+
+    button.b--full.b-cta--full.b--green.b-cta type='submit' Sign up
+    div.c-center
+      a ng-click="toggleSigninUp()" Cancel

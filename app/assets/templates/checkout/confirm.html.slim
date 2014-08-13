@@ -1,0 +1,11 @@
+h3 Summary of your order
+
+p Subtotal: {{order.item_total | currency}}
+p Tax: {{order.tax_total | currency}}
+p Total: {{order.total | currency}}
+
+pre {{order}}
+
+hr
+
+a ng-click="advance()" Place order

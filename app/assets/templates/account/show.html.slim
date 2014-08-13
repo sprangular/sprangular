@@ -1,0 +1,20 @@
+div ng-show="account.fetched"
+  h1 My account
+
+  .well
+    div ng-hide="editing"
+      dl
+        dt Email
+        dd {{account.email}}
+
+        dt Password
+        dd •••••••
+
+      a.btn.btn-primary ng-click="edit()" Edit
+
+    div ng-show="editing"
+      div ng-include="'account/edit.html'"
+
+  div ng-include="'credit_cards/index.html'" ng-controller="WalletCtrl"
+
+  div ng-include="'orders/index.html'" ng-controller="OrdersListCtrl"

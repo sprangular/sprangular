@@ -1,0 +1,16 @@
+form name='AccountForm' ng-submit="save()"
+  div
+    input ng-model="formData.email" placeholder='email' required=true
+    p.error ng-bind="formData.errors.email"
+
+  p Leave the password blank if you do not want to change it.
+  div
+    input ng-model="formData.password" placeholder='password' type='password'
+    p.error ng-bind="formData.errors.password"
+
+  div
+    input ng-model="formData.password_confirmation" placeholder='password again' type='password'
+    p.error ng-bind="formData.errors.password_confirmation"
+
+  button.btn.btn-primary type='submit' Update
+  a ng-click="stopEdit()" Cancel

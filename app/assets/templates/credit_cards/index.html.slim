@@ -1,0 +1,12 @@
+h2 Credit Cards
+
+.well ng-repeat="card in wallet.cards"
+  span {{card.name}}
+  br
+  span
+    | {{card.ccName}} &nbsp;
+    code •••• •••• •••• {{card.lastDigits}}
+  br
+  span {{card.month}} / {{card.year}}
+  br
+  a.btn.btn-mini.btn-primary ng-click="delete(card)" ng-confirm-click="Are you sure?" Delete

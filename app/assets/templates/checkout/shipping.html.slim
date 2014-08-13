@@ -1,0 +1,39 @@
+h3 Where do we ship
+
+ul ng-repeat="address in addresses"
+  li ng-class="{ active:address == selectedAddress }"
+    | {{ address }}
+    br
+    a ng-click="useAddress(address)" Use this address
+
+a ng-hide="addingNewAddress" ng-click="enterNewAddress()" Enter new address
+
+div ng-show="addingNewAddress"
+  strong New address
+  form name='AddressForm' ng-submit="addNewAddress()"
+    input ng-model="newAddress.firstname" placeholder="firstname"
+    br
+    input ng-model="newAddress.lastname" placeholder="lastname"
+    br
+    input ng-model="newAddress.address" placeholder="address"
+    br
+    input ng-model="newAddress.city" placeholder="city"
+    br
+    input ng-model="newAddress.phone" placeholder="phone"
+    br
+    input ng-model="newAddress.zipcode" placeholder="zipcode"
+    br
+    select ng-model="newAddress.stateId" ng-options="state.id as state.name for state in states"
+      option value=''
+        | -- Choose a state --
+    button type='submit' Submit
+
+hr
+
+div
+  strong Selected Address
+  | {{ selectedAddress }}
+
+hr
+
+a ng-click="advance()" Advance

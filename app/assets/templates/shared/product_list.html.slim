@@ -1,0 +1,21 @@
+.g-cont--nrw
+  ul.pro-list.l--naked
+    li.row.l-el.g-mar--both.g-mar--8 ng-repeat='product in catalog.products' ng-class-odd="'l-el--odd'" ng-class-even="'l-el--even'"
+      .l-el-a.col-sm-6.g-mar--top.g-mar--6
+        .pro-title
+          a.c-h1.c-upper.c-bold ng-href='{{product.permalink}}' {{product.name}}
+        p.pro-desc.g-mar--bottom.g-mar--6 {{product.description}}
+        .pro-cta ng-show="product.hasVariants"
+          .pro-var.g-mar--bottom.g-mar--2
+            a ng-repeat="variant in product.variants" ng-click="selectVariant(variant)" class="b-cir" ng-class="{'is-selected': isSelected(variant)}" style="background-color: {{variant.css_color}};"
+          a.b-cta--add.b--line ng-click="addToCart(product.variants[0], 1)"
+            .b-el--a Add to cart
+            .b-el--b ${{product.variants[0].price | number: 0}}
+        .pro-cta ng-hide="product.hasVariants"
+          a.b-cta--add.b--line ng-click="addToCart(product.variants[0], 1)"
+            .b-el--a Add to cart
+            .b-el--b ${{product.variants[0].price | number: 0}}
+        div.g-clearboth.g-clearfix
+          a.b-cta.b-cta--more.b--gray.b--full ng-href='{{product.permalink}}' Learn More
+      .l-el-b.col-sm-6
+        img.c-full ng-src="{{product.image_large}}"

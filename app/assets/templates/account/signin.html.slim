@@ -1,0 +1,31 @@
+a.p-signin-close ng-click="toggleSignin()"
+  svg.i-ico--2.i-ui--close
+    use xlink:href="#i-ui--close"
+
+.p-sign-flash ng-show="account.flash.length > 0"
+  p {{account.flash}}
+
+.p-sign-up ng-show="signingUp"
+  div ng-include="'account/signup.html'" ng-controller="SignupCtrl"
+
+.p-sign-in ng-hide="signingUp"
+  div ng-hide="askForEmail"
+    .f-wrp
+      form name='SigninForm' ng-submit="login()"
+        input.f-input ng-model="signin.email" type="email" placeholder="Email"
+        input.f-input ng-model="signin.password" type="password" placeholder="Password"
+        p.f-error ng-bind="signinError"
+        button.b--full.b-cta--full.b--black.b-cta type='submit' Log in
+      div.c-center
+        a ng-click="forgotPassword()" Forgot your password?
+    #fb-root
+    a.b--full.b-cta--full.b--fbook.b-cta ng-click="connectWithFacebook()" Connect with Facebook
+    a.b--full.b-cta--full.b--green.b-cta ng-click="toggleSigninUp()" Create account
+  div ng-show="askForEmail"
+    p We really need your email address... Please!!!
+    .f-wrp
+      form name='EmailForm' ng-submit="connectWithFacebook()"
+        input.f-input ng-model="facebookEmail" type="email" placeholder="Email"
+        button.b--full.b-cta--full.b--fbook.b-cta type='submit' Continue
+        div.c-center
+          a ng-click="cancelEmailAsking()" Cancel

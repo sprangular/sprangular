@@ -1,0 +1,22 @@
+.g-cont--short
+  .col-sm-5.c-left
+    ul.l--naked.l--hori--pushRight.p-head-nav.g-clear
+      li.l-el
+        a ng-href="/#!/products" Shop
+      li.l-el
+        a ng-href="/#!" g.IRL
+      li.l-el
+        a ng-href="/#!" About
+      li.l-el
+        a ng-href="/#!" ITG
+  .col-sm-5.c-right.p-head-admin
+    ul.l--hori--pushLeft.l--naked
+      li.l-el.p-head-account
+        a ng-click="goToMyAccount()" My Account
+        a ng-show="account.isLogged" ng-click="logout()" &nbsp; | Log out
+        a ng-hide="account.isLogged" ng-click="login()" &nbsp; | Sign in
+      li.l-el.p-head-cart
+        a ng-click="toggleCart()"
+          span.p-head-cart-qty {{cart.totalQuantity()}}
+          svg.i-ui--cart
+            use xlink:href="#i-ui--cart"
