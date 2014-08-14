@@ -9,7 +9,10 @@ ul.nav.navbar-nav.navbar-right
     a(ng-click="login()") Sign in
 
   li.cart
-    a(ng-click="toggleCart()")
+    a.dropdown-toggle(ng-click="toggleCart()" id="cart-dropdown" data-toggle="dropdown")
       span.glyphicon.glyphicon-shopping-cart
       span.cart-qty
         | {{cart.totalQuantity()}}
+
+    .cart.dropdown-menu(role="menu" aria-labelledby="cart-dropdown" ng-include="'assets/cart/cart.html'" ng-controller="CartCtrl")
+
