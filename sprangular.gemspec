@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency 'rails', '~> 4.1.4'
-  s.add_dependency 'spree_core'
-  s.add_dependency 'spree_api'
+  s.add_dependency 'spree_core', '~> 2.3.1'
+  s.add_dependency 'spree_api', '~> 2.3.1'
   s.add_dependency 'slim-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
