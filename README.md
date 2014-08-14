@@ -35,11 +35,25 @@ In `application.css`:
 
 Copy the template to your `app/assets/templates` directory. The host app's version always takes presidence.
 
-### Controllers
+### Controllers/Resources
 
-Create a `app/assets/javascripts/sprangular/controller` directory, and copy the gem version of the controller. The host app's version always takes presidence.
+Create a `app/assets/javascripts/sprangular/controllers` or `resources` directory, and copy the gem version of the script. The host app's version always takes presidence.
 
 ## Adding
+
+### Routes
+
+Create a `app/assets/javascripts/sprangular/customRoutes.coffee` and add the route. For example:
+
+```
+
+Sprangular.config ['$routeProvider', ($routeProvider) ->
+
+  $routeProvider
+    .when '/about',
+      template: '<h1>#1 Internet Site</h1>'
+```
+
 
 ## Development
 
