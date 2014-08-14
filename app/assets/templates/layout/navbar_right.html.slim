@@ -1,0 +1,15 @@
+ul.nav.navbar-nav.navbar-right
+  li.my-account
+    a(ng-click="goToMyAccount()") My Account
+
+  li.log-out(ng-show="account.isLogged")
+    a(ng-click="logout()") Log out
+
+  li.sign-in(ng-hide="account.isLogged")
+    a(ng-click="login()") Sign in
+
+  li.cart
+    a(ng-click="toggleCart()")
+      span.glyphicon.glyphicon-shopping-cart
+      span.cart-qty
+        | {{cart.totalQuantity()}}
