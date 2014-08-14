@@ -256,4 +256,5 @@ PLATFORMS
 DEPENDENCIES
   rspec-rails
   sprangular!
+  spree_sample
   sqlite3
