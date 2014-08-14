@@ -15,6 +15,19 @@ Mount the engine in your `config/routes.rb`
 
 `mount Sprangular::Engine => "/"`
 
+Add `sprangular` to your asset pipeline.
+
+In `application.js`:
+
+```
+//= require sprangular
+```
+
+In `application.css`:
+
+```
+//= require bootstrap
+```
 
 ## Overriding
 
