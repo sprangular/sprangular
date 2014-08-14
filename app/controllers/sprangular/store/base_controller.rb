@@ -1,4 +1,4 @@
-class Sprangular::Store::BaseController < Sprangular::ApplicationController
+class Sprangular::Store::BaseController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
