@@ -1,9 +1,8 @@
-Sprangular.controller 'ProductListCtrl', ($scope, Status, Catalog, Cart) ->
+Sprangular.controller 'ProductListCtrl', ($scope, Status, products, Cart) ->
 
   Status.pageTitle = 'Product List page'
-  Status.bodyClass = "p-list"
 
-  $scope.catalog = Catalog
+  $scope.products = products
 
   $scope.addToCart = (variant, qty) ->
     Cart.addVariant variant, qty

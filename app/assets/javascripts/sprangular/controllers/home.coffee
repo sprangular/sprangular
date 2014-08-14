@@ -1,6 +1,6 @@
-Sprangular.controller 'HomeCtrl', ($scope, Status, Catalog, Cart) ->
+Sprangular.controller 'HomeCtrl', ($scope, Status, products, Cart) ->
 
-  Catalog.fetch().then (catalog) ->
-    Status.pageTitle = "Homepage"
-    Status.bodyClass = "p-home"
-    window.prerenderReady = true
+  $scope.products = products
+
+  $scope.addToCart = (variant, qty) ->
+    Cart.addVariant variant, qty

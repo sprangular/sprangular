@@ -4,6 +4,9 @@ Sprangular.config ($routeProvider) ->
     .when '/',
       controller: 'HomeCtrl'
       templateUrl: 'home/index.html'
+      resolve:
+        products: (Catalog) ->
+          Catalog.products()
 
     .when '/account',
       controller: 'AccountCtrl'
@@ -12,10 +15,16 @@ Sprangular.config ($routeProvider) ->
     .when '/products',
       controller: 'ProductListCtrl'
       templateUrl: 'products/index.html'
+      resolve:
+        products: (Catalog) ->
+          Catalog.products()
 
     .when '/products/:id',
       controller: 'ProductCtrl'
       templateUrl: 'products/show.html'
+      resolve:
+        product: (Catalog, $route) ->
+          Catalog.find($route.current.params.id)
 
     .when '/sign-in',
       controller: 'SigninCtrl'
