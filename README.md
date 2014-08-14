@@ -15,6 +15,12 @@ Mount the engine in your `config/routes.rb`
 
 `mount Sprangular::Engine => "/"`
 
+Mount Spree in your `config/routes.rb`
+`mount Spree::Core::Engine, :at => '/spree'`
+
+The admin is now accessible at http://localhost:3000/spree/admin
+
+
 Add `sprangular` to your asset pipeline.
 
 In `application.js`:
