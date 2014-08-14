@@ -21,6 +21,15 @@ Mount the engine in your `config/routes.rb`
 ### Views
 ### Controllers
 
+## Development
+
+This gem contains a dummy spree app in the `spec/dummy` folder. You can use that to test out changes when modifying this gem. Just bootstrap the database and start the server:
+
+```
+cd spec/dummy
+rake db:reset AUTO_ACCEPT=1 && rake spree_sample:load
+rails server
+```
 
 ## License
 
