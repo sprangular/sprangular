@@ -17,7 +17,7 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
       .drw-wrp.p-signin.g-cont--sqr
         .p-signin-view(ui-view="signin")
 
-      #main(ui-view="main")
+      #main.container-fluid(ui-view="main")
 
     footer(ng-include="'assets/layout/footer.html'" ng-controller="FooterCtrl")
 
