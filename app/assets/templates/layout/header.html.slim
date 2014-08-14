@@ -17,6 +17,7 @@
         a ng-hide="account.isLogged" ng-click="login()" &nbsp; | Sign in
       li.l-el.p-head-cart
         a ng-click="toggleCart()"
-          span.p-head-cart-qty {{cart.totalQuantity()}}
+          span.p-head-cart-qty
+            | {{cart.totalQuantity()}}
           svg.i-ui--cart
             use xlink:href="#i-ui--cart"

@@ -4,7 +4,8 @@
       .l-el-a.col-sm-6.g-mar--top.g-mar--6
         .pro-title
           a.c-h1.c-upper.c-bold ng-href='{{product.permalink}}' {{product.name}}
-        p.pro-desc.g-mar--bottom.g-mar--6 {{product.description}}
+        p.pro-desc.g-mar--bottom.g-mar--6
+          | {{product.description}}
         .pro-cta ng-show="product.hasVariants"
           .pro-var.g-mar--bottom.g-mar--2
             a ng-repeat="variant in product.variants" ng-click="selectVariant(variant)" class="b-cir" ng-class="{'is-selected': isSelected(variant)}" style="background-color: {{variant.css_color}};"
