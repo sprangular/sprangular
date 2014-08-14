@@ -1,47 +1,23 @@
-Sprangular.service 'Catalog', ($http, $q, _, Product) ->
-
-  fetchDefer = $q.defer()
+Sprangular.service 'Catalog', ($http, $q, _) ->
 
   service =
-    products: []
-    variants: []
+    products: (page=1) ->
+      @getPaged('/products', page)
 
-    init: ->
-      catalog = this
-      $http.get '/products.json'
-        .success (data) ->
-          catalog.products = (catalog._populateSingle(product) for product in data.products)
-          catalog.variants = []
-          for product in service.products
-            catalog.variants = catalog.variants.concat product.variants
-          fetchDefer.resolve catalog
-        .error (data) ->
-          fetchDefer.resolve service
+    taxon: (path,page=1) ->
+      @getPaged("/products/?category=#{path}", page)
 
-    fetch: ->
-      return fetchDefer.promise
+    find: (id) ->
+      @get("/products/#{id}")
 
-    # query = {id: ...} or {slug: ...}
-    findProduct: (query) ->
-      _.where(@products, query)[0]
+    get: (path) ->
+      $http.get(path, class: Sprangular.Product)
 
-    findVariant: (query) ->
-      _.where(@variants, query)[0]
+    getPaged: (path, page=1) ->
+      $http.get(path, params: {per_page: 40, page: page})
+           .then (response) ->
+             list = Sprangular.extend(response.data?.products || [], Sprangular.Product)
+             list.isLastPage = list.length < 40
+             list
 
-    _populateSingle: (data) ->
-      Product.load data
-
-    # query = {id: ...} or {slug: ...}
-    findSibling: (delta, query) ->
-      currentEl = @findProduct(query)
-      currentPos = _.indexOf(@products, currentEl)
-      productsLgt = @products.length - 1
-      deltaPos = currentPos + delta
-      siblingPos = switch
-        when deltaPos > productsLgt then 0
-        when deltaPos < 0 then productsLgt
-        else deltaPos
-      url = @products[siblingPos]
-
-  service.init()
   service
