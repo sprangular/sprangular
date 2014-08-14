@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutShippingCtrl', ($scope, $location, Account, Cart, Checkout, Product, Address, _) ->
+Sprangular.controller 'CheckoutShippingCtrl', ($scope, $location, Account, Cart, Checkout, Address, _) ->
 
   $scope.addresses = null
   $scope.newAddress = null

@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, Account, Cart, Checkout, Product) ->
+Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, Account, Cart, Checkout) ->
 
   $scope.advance = ->
     Checkout.confirm().then (content) ->
