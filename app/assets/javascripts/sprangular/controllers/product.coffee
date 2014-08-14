@@ -3,10 +3,6 @@ Sprangular.controller 'ProductCtrl', ($scope, $stateParams, Status, Catalog, Car
   Catalog.fetch().then (catalog) ->
     query = { slug: $stateParams.id }
     $scope.product = catalog.findProduct query
-    if $stateParams.id isnt "glossier-phase-i"
-      $scope.callout =
-        product: catalog.findProduct { slug: "glossier-phase-i" }
-        variant: catalog.findProduct({ slug: "glossier-phase-i" }).variants[0]
     $scope.selected =
       product: $scope.product.variants[0]
       quantity: 1
