@@ -16,7 +16,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
 
     init: ->
       @fetched = false
-      $http.get '/store/account'
+      $http.get '/account'
         .success (data) ->
           service.populateAccount(data)
           fetchDefer.resolve service
@@ -29,7 +29,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
     reload: ->
       deferred = $q.defer()
       @fetched = false
-      $http.get '/store/account'
+      $http.get '/account'
         .success (data) ->
           service.populateAccount(data)
           Cart.reload()
@@ -84,7 +84,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.post '/store/account', $.param params
+      $http.post '/account', $.param params
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
@@ -97,7 +97,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.post '/store/passwords', $.param params
+      $http.post '/passwords', $.param params
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
@@ -110,7 +110,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.put '/store/passwords/'+data.reset_password_token, $.param params
+      $http.put '/passwords/'+data.reset_password_token, $.param params
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
@@ -123,7 +123,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.put '/store/account', $.param params
+      $http.put '/account', $.param params
         .success (data) ->
           service.reload().then (data) ->
             service.flash = 'Account updated'

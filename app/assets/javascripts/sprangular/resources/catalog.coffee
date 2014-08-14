@@ -8,7 +8,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Product) ->
 
     init: ->
       catalog = this
-      $http.get '/store/products.json'
+      $http.get '/products.json'
         .success (data) ->
           catalog.products = (catalog._populateSingle(product) for product in data.products)
           catalog.variants = []

@@ -1,4 +1,4 @@
-class Sprangular::Store::PasswordsController < Sprangular::Store::BaseController
+class Sprangular::PasswordsController < Sprangular::BaseController
 
   def create
     user = Spree::User.find_or_initialize_by(email: params[:spree_user][:email])

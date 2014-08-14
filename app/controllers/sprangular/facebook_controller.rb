@@ -1,4 +1,4 @@
-class Sprangular::Store::FacebookController < Sprangular::Store::BaseController
+class Sprangular::FacebookController < Sprangular::BaseController
 
   def fetch
     access_token = params['accessToken']

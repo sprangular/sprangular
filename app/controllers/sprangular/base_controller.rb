@@ -1,4 +1,4 @@
-class Sprangular::Store::BaseController < Spree::BaseController
+class Sprangular::BaseController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -11,15 +11,15 @@ class Sprangular::Store::BaseController < Spree::BaseController
 
   def invalid_resource!(resource)
     @resource = resource
-    render "sprangular/store/errors/invalid", status: 422
+    render "sprangular/errors/invalid", status: 422
   end
 
   def unauthorized
-    render "sprangular/store/errors/unauthorized", status: 401
+    render "sprangular/errors/unauthorized", status: 401
   end
 
   def not_found
-    render "sprangular/store/errors/not_found", status: 404
+    render "sprangular/errors/not_found", status: 404
   end
 
 protected

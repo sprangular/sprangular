@@ -1,4 +1,4 @@
-class Sprangular::Store::CartsController < Sprangular::Store::BaseController
+class Sprangular::CartsController < Sprangular::BaseController
 
   def show
     @order = current_order

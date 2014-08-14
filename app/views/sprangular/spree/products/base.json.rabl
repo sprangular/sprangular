@@ -3,11 +3,11 @@ attributes *product_attributes
 node(:has_variants) { |p| p.has_variants? }
 
 child master: :master do
-  extends "/store/spree/variants/base"
+  extends "/sprangular/spree/variants/base"
 end
 
 child variants: :variants do
-  extends "/store/spree/variants/base"
+  extends "/sprangular/spree/variants/base"
 end
 
 child option_types: :option_types do

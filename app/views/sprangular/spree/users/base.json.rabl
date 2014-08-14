@@ -5,13 +5,13 @@ child completed_orders: :orders do
 end
 
 child shipping_address: :shipping_address do
-  extends '/store/spree/addresses/base'
+  extends '/sprangular/spree/addresses/base'
 end
 
 child billing_address: :billing_address do
-  extends '/store/spree/addresses/base'
+  extends '/sprangular/spree/addresses/base'
 end
 
 child payment_sources: :payment_sources do
-  extends '/store/spree/credit_cards/base'
+  extends '/sprangular/spree/credit_cards/base'
 end

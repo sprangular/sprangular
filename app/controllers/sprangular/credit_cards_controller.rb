@@ -1,4 +1,4 @@
-class Sprangular::Store::CreditCardsController < Sprangular::Store::BaseController
+class Sprangular::CreditCardsController < Sprangular::BaseController
   before_filter :check_authorization
 
   def destroy

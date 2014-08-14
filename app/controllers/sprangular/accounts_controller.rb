@@ -1,4 +1,4 @@
-class Sprangular::Store::AccountsController < Sprangular::Store::BaseController
+class Sprangular::AccountsController < Sprangular::BaseController
   before_filter :check_authorization, except: :create
 
   def create
