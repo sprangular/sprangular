@@ -8,6 +8,7 @@ require 'angularjs-rails'
 require 'rails-assets-underscore'
 require 'rails-assets-angular-ui-router'
 require 'rails-assets-angular-bootstrap'
+require 'bootstrap-sass'
 require "sprangular/engine"
 
 module Sprangular

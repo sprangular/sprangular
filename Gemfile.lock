@@ -26,7 +26,9 @@ PATH
   specs:
     sprangular (0.0.1)
       angularjs-rails
+      bootstrap-sass
       coffee-rails
+      jquery-rails
       jquery-rails
       rails (~> 4.1.4)
       rails-assets-angular-bootstrap
@@ -91,6 +93,8 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt (3.1.7)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.2.2)
     cancan (1.6.10)
     climate_control (0.0.3)
