@@ -1,8 +1,8 @@
 module Sprangular
   class Engine < ::Rails::Engine
     initializer "sprangular.assets.configure" do |app|
-      app.assets.register_mime_type 'text/html', '.html'
-      app.assets.register_engine '.slim', Slim::Template
+      Rails.application.assets.register_mime_type 'text/html', '.html'
+      Rails.application.assets.register_engine '.slim', Slim::Template
     end
   end
 end
