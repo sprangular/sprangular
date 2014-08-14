@@ -1,28 +1,36 @@
-/ Side Navigation
-.n-wrp
-  .n--band--left
-    a.n-el ng-href="{{prev.permalink}}" {{prev.name}}
-  .n--band--right
-    a.n-el ng-href="{{next.permalink}}" {{next.name}}
+.navigation
+  .left
+    a(ng-href="{{prev.permalink}}")
+      span.glyphicon.glyphicon-chevron-left
+      | {{prev.name}}
 
-/ Hero Section
-.g-cont--nrw.h-wrp
+  .right
+    a(ng-href="{{next.permalink}}")
+      | {{next.name}}
+      span.glyphicon.glyphicon-chevron-right
+
+.product-details
   .row
-    .col-sm-6.g-bleed--over
-      .si-wrp.c-h1--alt.h-title.c-upper.c-bold ng-stricon="product.name"
-        h1.si-move.c-h1--alt.h-title.c-upper
-          | {{product.name}}
-      p.h-desc
+    .col-sm-6
+      h1
+        | {{product.name}}
+
+      p.desc
         | {{product.description}}
-      .h-var
-        a ng-repeat="variant in product.variants" ng-show="product.hasVariants" ng-click="selectVariant(variant)" class="b-cir" ng-class="{'is-selected': isSelected(variant)}" style="background-color: {{variant.css_color}};"
-      .b-wrp--add
-        .f-count--black
-          a.f-el--minus ng-click="updateQuantity(-1)" -
-          input.f-el--num name="f-count-qty" type="number" min="1" max="999" maxlength="3" ng-model="selected.quantity" value="{{selected.quantity}}"
-          a.f-el--plus ng-click="updateQuantity(1)" +
-        a.b-cta--add.b--line ng-click="addToCart(selected.product, selected.quantity)"
-          .b-el--a Add to cart
-          .b-el--b ${{selected.product.price * selected.quantity  | number: 0}}
-    .col-sm-6.g-bleed--left.g-bleed--1
-      img.c-full ng-src="{{product.image_large}}"
+
+      .variants
+        a(ng-repeat="variant in product.variants" ng-show="product.hasVariants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
+
+      .add-wrap
+        .quantity
+          a.minus(ng-click="updateQuantity(-1)") -
+          input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="selected.quantity" value="{{selected.quantity}}")
+          a.plus(ng-click="updateQuantity(1)") +
+
+        a.add-to-cart(ng-click="addToCart(selected.product, selected.quantity)")
+          span.caption Add to cart
+          span.price
+            | {{selected.product.price * selected.quantity  | number: 0 | currency}}
+
+    .image-wrap
+      img(ng-src="{{product.image_large}}")
