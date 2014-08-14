@@ -3,10 +3,11 @@ a.p-signin-close ng-click="toggleSignin()"
     use xlink:href="#i-ui--close"
 
 .p-sign-flash ng-show="account.flash.length > 0"
-  p {{account.flash}}
+  p
+   | {{account.flash}}
 
 .p-sign-up ng-show="signingUp"
-  div ng-include="'account/signup.html'" ng-controller="SignupCtrl"
+  div ng-include="'assets/account/signup.html'" ng-controller="SignupCtrl"
 
 .p-sign-in ng-hide="signingUp"
   div ng-hide="askForEmail"
