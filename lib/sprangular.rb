@@ -1,6 +1,7 @@
 require 'spree_core'
 require 'spree_api'
 require 'slim'
+require 'rabl'
 require 'jquery-rails'
 require 'angularjs-rails'
 require 'rails-assets-underscore'
