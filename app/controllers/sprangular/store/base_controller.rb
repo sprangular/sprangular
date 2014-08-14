@@ -11,15 +11,15 @@ class Sprangular::Store::BaseController < Spree::BaseController
 
   def invalid_resource!(resource)
     @resource = resource
-    render "store/errors/invalid", status: 422
+    render "sprangular/store/errors/invalid", status: 422
   end
 
   def unauthorized
-    render "store/errors/unauthorized", status: 401
+    render "sprangular/store/errors/unauthorized", status: 401
   end
 
   def not_found
-    render "store/errors/not_found", status: 404
+    render "sprangular/store/errors/not_found", status: 404
   end
 
 protected
