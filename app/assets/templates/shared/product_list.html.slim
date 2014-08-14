@@ -1,22 +1,26 @@
-.g-cont--nrw
-  ul.pro-list.l--naked
-    li.row.l-el.g-mar--both.g-mar--8 ng-repeat='product in catalog.products' ng-class-odd="'l-el--odd'" ng-class-even="'l-el--even'"
-      .l-el-a.col-sm-6.g-mar--top.g-mar--6
-        .pro-title
-          a.c-h1.c-upper.c-bold ng-href='{{product.permalink}}' {{product.name}}
-        p.pro-desc.g-mar--bottom.g-mar--6
-          | {{product.description}}
-        .pro-cta ng-show="product.hasVariants"
-          .pro-var.g-mar--bottom.g-mar--2
-            a ng-repeat="variant in product.variants" ng-click="selectVariant(variant)" class="b-cir" ng-class="{'is-selected': isSelected(variant)}" style="background-color: {{variant.css_color}};"
-          a.b-cta--add.b--line ng-click="addToCart(product.variants[0], 1)"
-            .b-el--a Add to cart
-            .b-el--b ${{product.variants[0].price | number: 0}}
-        .pro-cta ng-hide="product.hasVariants"
-          a.b-cta--add.b--line ng-click="addToCart(product.variants[0], 1)"
-            .b-el--a Add to cart
-            .b-el--b ${{product.variants[0].price | number: 0}}
-        div.g-clearboth.g-clearfix
-          a.b-cta.b-cta--more.b--gray.b--full ng-href='{{product.permalink}}' Learn More
-      .l-el-b.col-sm-6
-        img.c-full ng-src="{{product.image_large}}"
+.product-listing
+  .col-lg-4.col-sm-6.col-xs-12(ng-repeat='product in catalog.products' ng-class-odd="'odd'" ng-class-even="'even'")
+    a(ng-href='/#!/products/{{product.permalink}}')
+      img.full(ng-src="{{product.image_large}}")
+
+    .title
+      a(ng-href='/#!/{{product.permalink}}') {{product.name}}
+
+    p.desc
+      | {{product.description}}
+
+    .with-variants(ng-show="product.hasVariants")
+      .variants
+        a(ng-repeat="variant in product.variants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
+          | {{variant.options_text}}
+
+      a.btn.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
+        .caption Add to cart
+        .price
+          | {{product.variants[0].price | number: 0 | currency}}
+
+    .without-variants(ng-hide="product.hasVariants")
+      a.btn.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
+        .caption Add to cart
+        .price
+          | {{product.variants[0].price | number: 0 | currency}}
