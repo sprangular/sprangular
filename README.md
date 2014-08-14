@@ -47,7 +47,7 @@ Create a `app/assets/javascripts/sprangular/customRoutes.coffee` and add the rou
 
 ```
 
-Sprangular.config ['$routeProvider', ($routeProvider) ->
+Sprangular.config ($routeProvider) ->
 
   $routeProvider
     .when '/about',
