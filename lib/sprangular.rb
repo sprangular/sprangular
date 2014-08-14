@@ -1,3 +1,5 @@
+require 'spree_core'
+require 'spree_api'
 require 'slim'
 require 'jquery-rails'
 require 'angularjs-rails'
