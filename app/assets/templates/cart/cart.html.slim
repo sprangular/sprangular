@@ -1,39 +1,44 @@
-a.p-cart-close ng-click="toggleCart()"
-  svg.i-ico--2.i-ui--close
-    use xlink:href="#i-ui--close"
-.p-cart-count.c-center
-  svg.i-ui--cart
-    use xlink:href="#i-ui--cart"
-  p ng-show="isEmpty()" Cart is empty
-  p ng-hide="isEmpty()" {{cart.totalQuantity()}} Item(s) in Your Bag
-div ng-hide="isEmpty()"
-  ul.p-cart-list.l--naked
-    li.row.p-cart-el ng-repeat='item in cart.items'
-      .col-sm-3.p-cart-img
-        <img ng-src="{{item.variant.image_url}}"/>
-      .col-sm-6
-        p.p-cart-name.c-upper.c-bold
+a.close(ng-click="toggleCart()")
+  span.glyphicon.glyphicon-remove-sign
+
+.status
+  p(ng-show="isEmpty()") Cart is empty
+  p(ng-hide="isEmpty()") {{cart.totalQuantity()}} Item(s) in Your Cart
+
+div(ng-hide="isEmpty()")
+  ul.details
+    li.row.line(ng-repeat='item in cart.items')
+      .col-sm-3.image
+        img(ng-src="{{item.variant.image_url}}")
+
+      .col-sm-6.details
+        p.name
           | {{item.variant.product.name}} {{item.variant.name}}
-        .f-count--black
-          a.f-el--minus ng-click="decrementItem(item)" -
-          input.f-el--num name="f-count-qty" type="number" min="1" max="999" maxlength="3" ng-model="item.quantity" value="{{item.quantity}}"
-          a.f-el--plus ng-click="incrementItem(item)" +
-      .col-sm-2
+
+        .quantity
+          a.minus(ng-click="decrementItem(item)") -
+          input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="item.quantity" value="{{item.quantity}}")
+          a.plus(ng-click="incrementItem(item)") +
+
+      .col-sm-2.price
         span
           | {{item.price * item.quantity | currency}}
-      .col-sm-1
-        a ng-click="removeItem(item)"
-          svg.i-ico--1
-            use xlink:href="#i-ui--close"
-    li.row.p-cart-total
-      .col-sm-3
-        p.c-center.c-bold Total
+
+      .col-sm-1.actions
+        a(ng-click="removeItem(item)")
+          span.glyphicon.glyphicon-remove
+
+    li.row.total
+      .col-sm-3.caption
+        p Total
+
       .col-sm-6
-      .col-sm-2
-        p.c-center.c-bold
+      .col-sm-2.amount
+        p
           | {{cart.totalPrice | currency}}
-      .col-sm-1
-        a ng-click="empty()"
-          svg.i-ico--1
-            use xlink:href="#i-ui--close"
-  a.b--full.b--black.b-cta.c-bold.c-center ng-href="/#!/checkout" Checkout
+
+      .col-sm-1.actions
+        a.btn.btn-link(ng-click="empty()")
+          Empty cart
+
+  a.btn(ng-href="/#!/checkout") Checkout
