@@ -32,7 +32,14 @@ In `application.css`:
 ## Overriding
 
 ### Views
+
+Copy the template to your `app/assets/templates` directory. The host app's version always takes presidence.
+
 ### Controllers
+
+Create a `app/assets/javascripts/sprangular/controller` directory, and copy the gem version of the controller. The host app's version always takes presidence.
+
+## Adding
 
 ## Development
 
