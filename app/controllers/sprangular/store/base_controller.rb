@@ -30,4 +30,9 @@ protected
     unauthorized unless @user
   end
 
+  def current_currency
+    Spree::Config[:currency]
+  end
+  helper_method :current_currency
+
 end
