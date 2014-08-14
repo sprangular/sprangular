@@ -2,6 +2,6 @@ Sprangular.service "Status", ->
 
   status =
 
-    pageTitle: "Sprangular - Default"
+    pageTitle: "Home"
     bodyClass: "p-default"
     bodyState: ""

@@ -1,10 +1,9 @@
-Sprangular.controller "HeaderCtrl", ($scope, $state, $stateParams, Cart, Account, Catalog, Status) ->
+Sprangular.controller "HeaderCtrl", ($scope, $state, $stateParams, Cart, Account, Catalog, Env, Status) ->
 
   $scope.cart = Cart
   $scope.catalog = Catalog
   $scope.account = Account
-
-  $scope.logoUrl = "Sprangular"
+  $scope.env = Env
 
   $scope.toggleCart = ->
     Status.bodyState = if Status.bodyState is "is-drw--open is-cart--open" then "" else "is-drw--open is-cart--open"

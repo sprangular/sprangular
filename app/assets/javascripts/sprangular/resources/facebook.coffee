@@ -1,4 +1,4 @@
-Sprangular.service 'Facebook', ($q, $http) ->
+Sprangular.service 'Facebook', ($q, $http, Env) ->
 
   accessToken = null
 
@@ -24,7 +24,7 @@ Sprangular.service 'Facebook', ($q, $http) ->
 
     init: ->
       FB.init
-        appId: FACEBOOK_APP_ID # App ID
+        appId: Env.config.facebook_app_id # App ID
         channelUrl: "//localhost:3000/channel.html" # Channel File
         status: false # check login status
         cookie: false # enable cookies to allow the server to access the session
