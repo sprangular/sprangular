@@ -5,6 +5,10 @@ class Sprangular::Store::BaseController < Sprangular::ApplicationController
 
   respond_to :json
 
+  layout false
+
+  helper Spree::Api::ApiHelpers
+
   def invalid_resource!(resource)
     @resource = resource
     render "store/errors/invalid", status: 422
