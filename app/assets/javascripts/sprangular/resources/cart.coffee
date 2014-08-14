@@ -1,4 +1,4 @@
-Sprangular.service "Cart", ($q, $http, Catalog, _) ->
+Sprangular.service "Cart", ($q, $http, _) ->
 
   fetchDefer = $q.defer()
 
@@ -18,10 +18,10 @@ Sprangular.service "Cart", ($q, $http, Catalog, _) ->
           cartItems = data.line_items
           service.number = data.number
           service.totalPrice = data.total
-          Catalog.fetch().then (catalog) ->
-            for item in cartItems
-              variant = catalog.findVariant { id: item.variant_id }
-              service.items.push variant: variant, quantity: item.quantity, price: item.price
+          for item in cartItems
+            # variant = catalog.findVariant { id: item.variant_id }
+            service.items.push variant: variant, quantity: item.quantity, price: item.price
+
           fetchDefer.resolve service
         .error (error) ->
 
