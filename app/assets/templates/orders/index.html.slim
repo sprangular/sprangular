@@ -3,16 +3,20 @@ h2 Orders History
 div ng-repeat="order in account.orders"
   dl
     dt Number
-    dd {{order.number}}
+    dd
+      | {{order.number}}
 
     dt Ordered on
-    dd {{order.completed_at | date}}
+    dd
+      | {{order.completed_at | date}}
 
     dt Amount
-    dd {{order.total | currency}}
+    dd
+      | {{order.total | currency}}
 
     dt Shipment Status
-    dd {{order.shipment_state}}
+    dd
+      | {{order.shipment_state}}
 
   a.btn.btn-primary.btn-small ng-click="showOrderDetails(order)" See details
 

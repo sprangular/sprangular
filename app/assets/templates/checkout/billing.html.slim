@@ -3,7 +3,8 @@ h3 Who is paying
 input type="checkbox" ng-model="useShippingAddress" Use shipping address
 
 div ng-show="useShippingAddress"
-  p {{ shippingAddress }}
+  p
+    | {{ shippingAddress }}
 
 div ng-hide="useShippingAddress"
   ul ng-repeat="address in addresses"

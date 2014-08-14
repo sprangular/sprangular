@@ -5,7 +5,8 @@ div ng-show="account.fetched"
     div ng-hide="editing"
       dl
         dt Email
-        dd {{account.email}}
+        dd
+          | {{account.email}}
 
         dt Password
         dd •••••••

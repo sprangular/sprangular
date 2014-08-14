@@ -34,7 +34,8 @@ div ng-show="wallet.loaded"
         | /
         input ng-model="newCreditCard.year"
 
-      p {{ newCreditCard.error }}
+      p
+        | {{ newCreditCard.error }}
 
       button type='submit' Apply
 
