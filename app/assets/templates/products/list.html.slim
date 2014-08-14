@@ -1,7 +1,7 @@
 .product-listing
-  .col-lg-4.col-sm-6.col-xs-12(ng-repeat='product in catalog.products' ng-class-odd="'odd'" ng-class-even="'even'")
+  .col-lg-4.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'")
     a(ng-href='{{product.permalink}}')
-      img.full(ng-src="{{product.image_large}}")
+      img.full(ng-src="{{product.image.large}}")
 
     .title
       a(ng-href='{{product.permalink}}') {{product.name}}
