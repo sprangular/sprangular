@@ -5,7 +5,7 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
     meta name="fragment" content="!"
     meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 
-    script var PAYMENT_METHODS = #{ [].to_json };
+    script var PAYMENT_METHODS = #{ raw payment_methods.to_json };
 
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
