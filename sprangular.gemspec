@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'slim-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'angularjs-rails'
   s.add_dependency 'rails-assets-angular-ui-router'
   s.add_dependency 'rails-assets-angular-bootstrap'
@@ -33,4 +34,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "spree_sample"
+  s.add_development_dependency "spree_auth_devise"
 end

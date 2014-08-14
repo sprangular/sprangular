@@ -1,3 +1,26 @@
+GIT
+  remote: git://github.com/rails/sass-rails.git
+  revision: 57ec3397ff99655890895df29a7bf3f683410256
+  specs:
+    sass-rails (5.0.0.dev)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2)
+      sprockets (~> 2.12)
+      sprockets-rails (~> 2.0)
+
+GIT
+  remote: git://github.com/spree/spree_auth_devise.git
+  revision: d003e495fd83c41ef8378f67e21d947908a03e1f
+  branch: 2-3-stable
+  specs:
+    spree_auth_devise (2.2.0)
+      cancan (~> 1.6.10)
+      devise (~> 3.2.3)
+      devise-encryptable (= 0.1.2)
+      json
+      multi_json
+      spree_core (~> 2.3.0)
+
 PATH
   remote: .
   specs:
@@ -11,6 +34,7 @@ PATH
       rails-assets-jasmine-sinon
       rails-assets-sinon
       rails-assets-underscore
+      sass-rails
       slim-rails
       spree_api (~> 2.3.1)
       spree_core (~> 2.3.1)
@@ -66,6 +90,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    bcrypt (3.1.7)
     builder (3.2.2)
     cancan (1.6.10)
     climate_control (0.0.3)
@@ -84,6 +109,14 @@ GEM
       colorize (>= 0.5.8)
       nokogiri (~> 1.6.0)
       rails (>= 3.1)
+    devise (3.2.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    devise-encryptable (0.1.2)
+      devise (>= 2.1.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
@@ -119,6 +152,7 @@ GEM
     multi_xml (0.5.5)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    orm_adapter (0.5.0)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -184,6 +218,7 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.3)
+    sass (3.3.14)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -249,12 +284,16 @@ GEM
       activesupport (>= 3.2)
       railties (>= 3.2)
       tzinfo
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rspec-rails
+  sass-rails!
   sprangular!
+  spree_auth_devise!
   spree_sample
   sqlite3
