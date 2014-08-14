@@ -1,8 +1,5 @@
-Sprangular.controller 'SigninCtrl', ($scope, $state, Account, Facebook, Status) ->
+Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Status) ->
 
-  # Open Drawer !!! Refactor
-  if $state.is "gateKeeper"
-    Status.bodyState = "is-drw--open is-signin--open"
   $scope.toggleSignin = ->
     Status.bodyState = if Status.bodyState is "is-drw--open is-signin--open" then "" else "is-drw--open is-signin--open"
 
@@ -39,7 +36,7 @@ Sprangular.controller 'SigninCtrl', ($scope, $state, Account, Facebook, Status) 
         $scope.signinError = error
 
   $scope.forgotPassword = ->
-    $state.go 'forgotPassword'
+    $location.path '/forgot-password'
 
   $scope.toggleSigninUp = ->
     $scope.signingUp = !$scope.signingUp
@@ -63,9 +60,3 @@ Sprangular.controller 'SigninCtrl', ($scope, $state, Account, Facebook, Status) 
   $scope.accountLoaded = (accountContent) ->
     $scope.loading = false
     $scope.signingUp = false
-    if $scope.account.isLogged and $state.params.nextState
-      Status.bodyState = ""
-      $state.go $state.params.nextState,
-        id: $state.params.productId,
-        location: true
-        notify: true

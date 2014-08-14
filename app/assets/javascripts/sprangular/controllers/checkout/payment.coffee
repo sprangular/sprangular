@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutPaymentCtrl', ($scope, $state, Account, Wallet, Checkout) ->
+Sprangular.controller 'CheckoutPaymentCtrl', ($scope, $location, Account, Wallet, Checkout) ->
   $scope.wallet = null
   $scope.selectedCard = null
   $scope.newCreditCard = {}
@@ -40,4 +40,4 @@ Sprangular.controller 'CheckoutPaymentCtrl', ($scope, $state, Account, Wallet, C
     Checkout.setPayment($scope.selectedCard, $scope.paymentMethod.id).then (content) ->
       Checkout.fetchContent().then (content) ->
         $scope.refreshContent()
-        $state.go('checkout.confirm')
+        $location.path('/checkout/confirm')

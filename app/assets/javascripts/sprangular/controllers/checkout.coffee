@@ -1,14 +1,4 @@
-Sprangular.controller 'CheckoutCtrl', ($window, $scope, $rootScope, $state, Status, Account, Cart, Checkout) ->
-
-  # $rootScope.$on '$stateChangeStart', (event, toState, fromState) ->
-  #   console.log event.name
-  #   console.log "-- $state.includes", $state.includes('checkout')
-  #   console.log "-- toState", toState.name
-
-  # $rootScope.$on '$stateChangeSuccess', (event, toState, fromState) ->
-  #   console.log event.name
-  #   console.log "-- $state.includes", $state.includes('checkout')
-  #   console.log "-- fromState", fromState.name
+Sprangular.controller 'CheckoutCtrl', ($window, $scope, $rootScope, $location, Status, Account, Cart, Checkout) ->
 
   $scope.isLogged = false
 
@@ -21,11 +11,7 @@ Sprangular.controller 'CheckoutCtrl', ($window, $scope, $rootScope, $state, Stat
           $scope.routerInit()
       else
         $window.scrollTo(0,0)
-        $state.go 'gateKeeper',
-          nextState: 'checkout'
-        ,
-          location: false
-          notify: true
+        $location.path '/sign-in'
 
   $scope.refreshContent = ->
     Checkout.fetchContent().then (content) ->
@@ -48,17 +34,17 @@ Sprangular.controller 'CheckoutCtrl', ($window, $scope, $rootScope, $state, Stat
 
     switch $scope.order.state
       when 'address'
-        $state.go 'checkout.shipping', params
+        $location.path '/checkout/shipping', params
       when 'delivery'
         if $scope.order.bill_address == null
-          $state.go 'checkout.billing', params
+          $location.path '/checkout/billing', params
         else
-          $state.go 'checkout.delivery', params
+          $location.path '/checkout/delivery', params
       when 'payment'
-        $state.go 'checkout.payment', params
+        $location.path '/checkout/payment', params
       when 'confirm'
-        $state.go 'checkout.confirm', params
+        $location.path '/checkout/confirm', params
       when 'complete'
-        $state.go 'checkout.complete', params
+        $location.path '/checkout/complete', params
       else
-        $state.go 'checkout', params
+        $location.path '/checkout', params

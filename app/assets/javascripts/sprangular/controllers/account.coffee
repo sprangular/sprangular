@@ -1,4 +1,4 @@
-Sprangular.controller 'AccountCtrl', ($scope, $state, $stateParams, Status, Account) ->
+Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account) ->
 
   formData = { email: '', password: '', password_confirmation: '', errors: {} }
 
@@ -7,11 +7,7 @@ Sprangular.controller 'AccountCtrl', ($scope, $state, $stateParams, Status, Acco
   $scope.formData = formData
 
   Account.fetch().then (account) ->
-    if !account.isLogged
-      $state.go 'gateKeeper',
-        nextState: 'account'
-      ,
-        location: false
+    $location.path('/') unless account.isLogged
 
   $scope.edit = ->
     formData.email = Account.email
@@ -25,11 +21,7 @@ Sprangular.controller 'AccountCtrl', ($scope, $state, $stateParams, Status, Acco
     Account.save(formData)
       .then (content) ->
         $scope.editing = false
-        if !Account.isLogged
-          $state.go 'gateKeeper',
-            nextState: 'account'
-          ,
-            location: false
+        $location.path('/') if !Account.isLogged
       , (errors) ->
         console.log errors
         formData.errors = errors

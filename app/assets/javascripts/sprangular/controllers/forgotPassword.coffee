@@ -1,11 +1,5 @@
-Sprangular.controller 'ForgotPasswordCtrl', ($scope, $state, Account, Status) ->
+Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Status) ->
   request = { email: '', errors: {} }
-
-  # Open Drawer !!! Refactor
-  if $state.is "forgotPassword"
-    Status.bodyState = "is-drw--open is-signin--open"
-  $scope.toggleSignin = ->
-    Status.bodyState = if Status.bodyState is "is-drw--open is-signin--open" then "" else "is-drw--open is-signin--open"
 
   $scope.request = request
   $scope.requestSent = false
@@ -22,6 +16,4 @@ Sprangular.controller 'ForgotPasswordCtrl', ($scope, $state, Account, Status) ->
         request.errors = errors
 
   $scope.cancel = ->
-    $scope.toggleSignin()
-    $state.go 'home'
-
+    $location.path '/'

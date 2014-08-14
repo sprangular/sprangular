@@ -32,7 +32,6 @@ PATH
       jquery-rails
       rails (~> 4.1.4)
       rails-assets-angular-bootstrap
-      rails-assets-angular-ui-router
       rails-assets-jasmine-sinon
       rails-assets-sinon
       rails-assets-underscore
@@ -93,7 +92,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt (3.1.7)
-    bootstrap-sass (3.1.1.0)
+    bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
     cancan (1.6.10)
@@ -185,8 +184,6 @@ GEM
     rails-assets-angular (1.2.22)
     rails-assets-angular-bootstrap (0.11.0)
       rails-assets-angular (>= 1)
-    rails-assets-angular-ui-router (0.2.10)
-      rails-assets-angular (>= 1.0.8)
     rails-assets-jasmine (2.0.1)
     rails-assets-jasmine-sinon (0.4.0)
       rails-assets-jasmine (~> 2.0.0)

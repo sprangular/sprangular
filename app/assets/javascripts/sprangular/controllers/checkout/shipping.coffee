@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutShippingCtrl', ($scope, $state, Account, Cart, Checkout, Product, Address, _) ->
+Sprangular.controller 'CheckoutShippingCtrl', ($scope, $location, Account, Cart, Checkout, Product, Address, _) ->
 
   $scope.addresses = null
   $scope.newAddress = null
@@ -42,4 +42,4 @@ Sprangular.controller 'CheckoutShippingCtrl', ($scope, $state, Account, Cart, Ch
       Checkout.fetchContent().then (content) ->
         console.log 'Checkout.fetchContent().then (content) ->', content
         $scope.refreshContent()
-        $state.go 'checkout.billing'
+        $location.path '/checkout/billing'

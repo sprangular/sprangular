@@ -1,4 +1,4 @@
-Sprangular.controller "GlobalCtrl", ($scope, $state, Status, Env) ->
+Sprangular.controller "GlobalCtrl", ($scope, Status, Env) ->
 
   $scope.status = Status
   $scope.env = Env

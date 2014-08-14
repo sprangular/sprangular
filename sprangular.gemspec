@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'angularjs-rails'
   s.add_dependency 'bootstrap-sass'
-  s.add_dependency 'rails-assets-angular-ui-router'
   s.add_dependency 'rails-assets-angular-bootstrap'
   s.add_dependency 'rails-assets-underscore'
   s.add_dependency 'rails-assets-jasmine-sinon'

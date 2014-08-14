@@ -1,7 +1,7 @@
-Sprangular.controller 'ProductCtrl', ($scope, $stateParams, Status, Catalog, Cart) ->
+Sprangular.controller 'ProductCtrl', ($scope, $routeParams, Status, Catalog, Cart) ->
 
   Catalog.fetch().then (catalog) ->
-    query = { slug: $stateParams.id }
+    query = { slug: $routeParams.id }
     $scope.product = catalog.findProduct query
     $scope.selected =
       product: $scope.product.variants[0]

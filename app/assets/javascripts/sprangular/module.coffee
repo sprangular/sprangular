@@ -1,5 +1,5 @@
 # Main Module
-window.Sprangular = angular.module "Sprangular", ['ui.router', 'ui.bootstrap', 'ngRoute', 'ngResource', 'underscore', 'ngSanitize', 'rawFilter']
+window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ngResource', 'underscore', 'ngSanitize', 'rawFilter']
   .run ->
     if PAYMENT_METHODS.stripe
       Stripe.setPublishableKey PAYMENT_METHODS.stripe.publishable_key

@@ -1,4 +1,4 @@
-Sprangular.controller 'HomeCtrl', ($scope, $stateParams, Status, Catalog, Cart) ->
+Sprangular.controller 'HomeCtrl', ($scope, Status, Catalog, Cart) ->
 
   Catalog.fetch().then (catalog) ->
     Status.pageTitle = "Homepage"

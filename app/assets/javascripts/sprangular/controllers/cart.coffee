@@ -1,4 +1,4 @@
-Sprangular.controller "CartCtrl", ($scope, $state, Cart, Status) ->
+Sprangular.controller "CartCtrl", ($scope, Cart, Status) ->
 
   $scope.cart = Cart
   $scope.status = Status

@@ -1,4 +1,4 @@
-Sprangular.controller 'SignupCtrl', ($scope, $state, Account) ->
+Sprangular.controller 'SignupCtrl', ($scope, Account) ->
   signup = { email: '', password: '', password_confirmation: '', errors: {} }
 
   $scope.signup = signup

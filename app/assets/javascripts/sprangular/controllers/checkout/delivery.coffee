@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutDeliveryCtrl', ($scope, $state, Account, Cart, Checkout, Shipment) ->
+Sprangular.controller 'CheckoutDeliveryCtrl', ($scope, $location, Account, Cart, Checkout, Shipment) ->
   $scope.shipment = null
   $scope.selectedRate = null
 
@@ -18,4 +18,4 @@ Sprangular.controller 'CheckoutDeliveryCtrl', ($scope, $state, Account, Cart, Ch
     Checkout.setDelivery($scope.shipment, $scope.selectedRate).then (content) ->
       Checkout.fetchContent().then (content) ->
         $scope.refreshContent()
-        $state.go('checkout.payment')
+        $location.path('/checkout/payment')

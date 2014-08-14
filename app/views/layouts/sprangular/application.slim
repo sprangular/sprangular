@@ -14,10 +14,7 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
     #wrap
       header(ng-include="'assets/layout/header.html'" ng-controller="HeaderCtrl")
 
-      .drw-wrp.p-signin.g-cont--sqr
-        .p-signin-view(ui-view="signin")
-
-      #main.container-fluid(ui-view="main")
+      #main.container-fluid(ng-view)
 
     footer(ng-include="'assets/layout/footer.html'" ng-controller="FooterCtrl")
 

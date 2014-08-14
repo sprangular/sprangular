@@ -1,6 +1,6 @@
-Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $state, Account, Cart, Checkout, Product) ->
+Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, Account, Cart, Checkout, Product) ->
 
   $scope.advance = ->
     Checkout.confirm().then (content) ->
       Checkout.fetchContent().then (content) ->
-        $state.go('checkout.complete')
+        $location.path('/checkout/complete')
