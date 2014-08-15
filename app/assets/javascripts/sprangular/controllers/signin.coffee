@@ -1,4 +1,4 @@
-Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Status) ->
+Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash, Status) ->
 
   # signin = { email: 'user@example.com', password: '1234' }
   signin = {}
@@ -57,3 +57,5 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Statu
   $scope.accountLoaded = (accountContent) ->
     $scope.loading = false
     $scope.signingUp = false
+    Flash.success("Successfully signed in!")
+    $location.path("/")
