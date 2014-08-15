@@ -5,7 +5,8 @@ Sprangular::Engine.routes.draw do
     scope defaults: {format: :json} do
       post 'facebook/fetch'
 
-      resources :products
+      resources :taxonomies, only: :index
+      resources :products, only: %i(index show)
       resource :cart do
         post :add_variant
         put :update_variant
