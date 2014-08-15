@@ -22,7 +22,7 @@ Sprangular.extend = (instance, type) ->
       newInstance
 
 # Default Headers
-window.Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locationProvider) ->
+Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locationProvider) ->
   $httpProvider.defaults.headers.common['Accept'] = 'application/json'
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
   $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -31,3 +31,20 @@ window.Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, 
     .html5Mode false
     .hashPrefix '!'
 ]
+
+Sprangular.run ($rootScope, $location, Account, Cart, Flash) ->
+
+  $rootScope.$on '$routeChangeStart', (event, next, current) ->
+    requirements = next.requires || {}
+
+    if requirements.user && !Account.isLogged
+      Flash.error('Please sign in or register to continue.')
+      $location.path('/sign-in')
+
+    else if requirements.guest && Account.isLogged
+      Flash.error("Sorry, that page is only available when you're signed out.")
+      $location.path('/')
+
+    else if requirements.cart && Cart.items.length == 0
+      Flash.error('Sorry, there are no items in your cart.')
+      $location.path('/')
