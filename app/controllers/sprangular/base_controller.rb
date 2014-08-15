@@ -1,5 +1,6 @@
 class Sprangular::BaseController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
+  include Sprangular::Csrf
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
@@ -8,10 +9,6 @@ class Sprangular::BaseController < Spree::BaseController
   layout false
 
   helper Spree::Api::ApiHelpers
-
-  protect_from_forgery
-
-  after_filter :set_csrf_cookie
 
   def invalid_resource!(resource)
     @resource = resource
@@ -27,14 +24,6 @@ class Sprangular::BaseController < Spree::BaseController
   end
 
 protected
-
-  def set_csrf_cookie
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
-
-  def verified_request?
-    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-  end
 
   def check_authorization
     @user = current_spree_user
