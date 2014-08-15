@@ -7,9 +7,6 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Acco
   $scope.account = Account
   $scope.env = Env
 
-  $scope.toggleCart = ->
-    Status.bodyState = if Status.bodyState is "is-drw--open is-cart--open" then "" else "is-drw--open is-cart--open"
-
   $scope.goToMyAccount = ->
     $location.path '/account'
 

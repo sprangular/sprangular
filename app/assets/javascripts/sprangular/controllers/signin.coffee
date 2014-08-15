@@ -1,8 +1,5 @@
 Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Status) ->
 
-  $scope.toggleSignin = ->
-    Status.bodyState = if Status.bodyState is "is-drw--open is-signin--open" then "" else "is-drw--open is-signin--open"
-
   # signin = { email: 'user@example.com', password: '1234' }
   signin = {}
 

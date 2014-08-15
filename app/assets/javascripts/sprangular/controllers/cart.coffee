@@ -20,6 +20,3 @@ Sprangular.controller "CartCtrl", ($scope, Cart, Status) ->
 
   $scope.reload = ->
     Cart.reload()
-
-  $scope.toggleCart = ->
-    Status.bodyState = if Status.bodyState is "is-drw--open is-cart--open" then "" else "is-drw--open is-cart--open"
