@@ -1,10 +1,10 @@
-Sprangular.factory "Address", ($q, $http, _) ->
+Sprangular.factory "Address", ($q, $http, _, Env) ->
 
   class Sprangular.Address
 
     constructor: (attributes = {}) ->
       @setAttributes attributes
-      @countryId = Sprangular.Address.countryId
+      @countryId = Env.config.default_country_id
 
     setAttributes: (attributes = {}) ->
       angular.extend this, attributes
