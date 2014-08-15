@@ -43,6 +43,7 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'account/reset_password.html'
 
     .when '/checkout',
+      requires: {user: true, cart: true}
       controller: 'CheckoutCtrl'
       templateUrl: 'checkout/index.html'
 
