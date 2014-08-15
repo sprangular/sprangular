@@ -11,25 +11,25 @@ source 'https://rails-assets.org'
 gem 'sprangular'
 ```
 
-Mount the engine in your `config/routes.rb`
+Mount the Sprangular and Spree engines in your `config/routes.rb`
 
-`mount Sprangular::Engine => "/"`
-
-Mount Spree in your `config/routes.rb`
-`mount Spree::Core::Engine, :at => '/spree'`
+```
+mount Sprangular::Engine  => '/'
+mount Spree::Core::Engine => '/spree'
+```
 
 The admin is now accessible at http://localhost:3000/spree/admin
 
 
 Add `sprangular` to your asset pipeline.
 
-In `application.js`:
+In `application.js`, add sprangular:
 
 ```
 //= require sprangular
 ```
 
-In `application.css`:
+In `application.css`, add bootstrap (optional):
 
 ```
 //= require bootstrap
