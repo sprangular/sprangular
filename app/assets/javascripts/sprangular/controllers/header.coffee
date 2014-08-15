@@ -2,6 +2,8 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Acco
 
   $scope.cart = Cart
   $scope.catalog = Catalog
+  Catalog.taxonomies().then (taxonomies) ->
+    $scope.taxonomies = taxonomies
   $scope.account = Account
   $scope.env = Env
 
