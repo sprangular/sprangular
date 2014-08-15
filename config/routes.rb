@@ -15,6 +15,7 @@ Sprangular::Engine.routes.draw do
       resource :account
       resources :passwords
       resources :credit_cards
+      resources :countries, only: :index
     end
   end
 end
