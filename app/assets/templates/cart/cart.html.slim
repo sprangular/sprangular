@@ -9,11 +9,11 @@ div(ng-hide="isEmpty()")
   ul.details
     li.row.line(ng-repeat='item in cart.items')
       .col-sm-3.image
-        img(ng-src="{{item.variant.image_url}}")
+        img(ng-src="{{item.variant.image.mini}}")
 
       .col-sm-6.details
         p.name
-          | {{item.variant.product.name}} {{item.variant.name}}
+          | {{item.variant.product.name}} {{item.variant.options_text}}
 
         .quantity
           a.minus(ng-click="decrementItem(item)") -
