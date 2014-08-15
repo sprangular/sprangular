@@ -1,4 +1,4 @@
-Sprangular.controller 'SignupCtrl', ($scope, Account) ->
+Sprangular.controller 'SignupCtrl', ($scope, Account, Status) ->
   signup = { email: '', password: '', password_confirmation: '', errors: {} }
 
   $scope.signup = signup
@@ -13,6 +13,11 @@ Sprangular.controller 'SignupCtrl', ($scope, Account) ->
         signup.password = ''
         signup.password_confirmation = ''
         $scope.accountLoaded content
+
+        Flash.success("Successfully signed up!")
+        $location.path(Status.requestedPath || "/")
+        Status.requestedPath = null
+
       , (errors) ->
         console.log errors
         signup.errors = errors

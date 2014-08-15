@@ -57,5 +57,8 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash
   $scope.accountLoaded = (accountContent) ->
     $scope.loading = false
     $scope.signingUp = false
-    Flash.success("Successfully signed in!")
-    $location.path("/")
+
+    if Account.isLogged
+      Flash.success("Successfully signed in!")
+      $location.path(Status.requestedPath || "/")
+      Status.requestedPath = null
