@@ -1,21 +1,15 @@
-Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
+Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
 
   fetchDefer = $q.defer()
 
   service =
 
     fetched: false
-    account: {}
     isLogged: false
-    email: null
-    wallet: null
-    orders: []
-    shippingAddresses: []
-    billingAddresses: []
-    flash: null
 
     init: ->
-      @fetched = false
+      @clear()
+
       $http.get '/account'
         .success (data) ->
           service.populateAccount(data)
@@ -55,6 +49,16 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       for address in @account.billing_addresses
         @billingAddresses.push Address.load(address)
 
+    clear: ->
+      @fetched = false
+      @account = {}
+      @isLogged = false
+      @email = null
+      @wallet = null
+      @orders = []
+      @shippingAddresses = []
+      @billingAddresses = []
+
     login: (data) ->
       deferred = $q.defer()
       params =
@@ -74,6 +78,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       $http.get '/spree/logout'
         .success (data) ->
           service.isLogged = false
+          service.clear()
           Cart.reload()
           deferred.resolve service
         .error (error) ->
@@ -126,7 +131,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart) ->
       $http.put '/account', $.param params
         .success (data) ->
           service.reload().then (data) ->
-            service.flash = 'Account updated'
+            Flash.success 'Account updated'
             deferred.resolve service
         .error (response) ->
           deferred.reject response.errors
