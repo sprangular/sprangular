@@ -32,19 +32,23 @@ Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locati
     .hashPrefix '!'
 ]
 
-Sprangular.run ($rootScope, $location, Account, Cart, Flash) ->
+Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}
 
     if requirements.user && !Account.isLogged
+      Status.requestedPath = next.$$route.originalPath
       Flash.error('Please sign in or register to continue.')
       $location.path('/sign-in')
+      event.preventDefault()
 
     else if requirements.guest && Account.isLogged
       Flash.error("Sorry, that page is only available when you're signed out.")
       $location.path('/')
+      event.preventDefault()
 
     else if requirements.cart && Cart.items.length == 0
       Flash.error('Sorry, there are no items in your cart.')
       $location.path('/')
+      event.preventDefault()
