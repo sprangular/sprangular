@@ -10,7 +10,7 @@ ul.nav.navbar-nav
         | {{taxonomy.name}}
 
       li(ng-repeat="taxon in taxonomy.root.taxons")
-        a
+        a(href="/#!/t/{{taxon.permalink}}")
           | {{taxon.name}}
 
       li.divider(ng-repeat-end)
