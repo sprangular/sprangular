@@ -17,8 +17,9 @@
           input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="selected.quantity" value="{{selected.quantity}}")
           a.plus(ng-click="updateQuantity(1)") +
 
-        a.add-to-cart(ng-click="addToCart(selected.product, selected.quantity)")
+        a.btn.btn-primary.add-to-cart(ng-click="addToCart(selected.product, selected.quantity)")
           span.caption Add to cart
+          | &nbsp;
           span.price
             | {{selected.product.price * selected.quantity  | number: 0 | currency}}
 

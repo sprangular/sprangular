@@ -3,7 +3,7 @@
     a(ng-href='{{product.permalink}}')
       img.full(ng-src="{{product.image.large}}")
 
-    .title
+    h2.title
       a(ng-href='{{product.permalink}}') {{product.name}}
 
     p.desc
@@ -14,13 +14,13 @@
         a(ng-repeat="variant in product.variants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
           | {{variant.options_text}}
 
-      a.btn.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
+      a.btn.btn-primary.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
         .caption Add to cart
         .price
           | {{product.variants[0].price | number: 0 | currency}}
 
     .without-variants(ng-hide="product.hasVariants")
-      a.btn.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
+      a.btn.btn-primary.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
         .caption Add to cart
         .price
           | {{product.variants[0].price | number: 0 | currency}}
