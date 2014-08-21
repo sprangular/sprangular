@@ -11,6 +11,9 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
     = stylesheet_link_tag "application", media: "all"
 
   body(ng-class="status.bodyClass")
+    #loading(ng-show="status.loading")
+      | Loading, please wait ...
+
     #wrap
       header(ng-include="'assets/layout/header.html'" ng-controller="HeaderCtrl")
 
