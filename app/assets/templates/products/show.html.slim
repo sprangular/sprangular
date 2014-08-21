@@ -1,11 +1,9 @@
 .product-details
   .row
     .col-sm-6
-      h1
-        | {{product.name}}
+      h1(ng-bind="product.name")
 
-      p.desc
-        | {{product.description}}
+      p.desc(ng-bind="product.description")
 
       .variants
         a(ng-repeat="variant in product.variants" ng-show="product.hasVariants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
@@ -23,5 +21,12 @@
           span.price
             | {{selected.product.price * selected.quantity  | number: 0 | currency}}
 
-    .image-wrap
+      .product-properties(ng-show="product.product_properties.length > 0")
+        h2 Specifications
+
+        dl
+          dt(ng-repeat-start="property in product.product_properties" ng-bind="property.property_name")
+          dd(ng-repeat-end ng-bind="property.value")
+
+    .image.col-sm-6
       img(ng-src="{{product.image.large}}")
