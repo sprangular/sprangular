@@ -14,7 +14,7 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
     #wrap
       header(ng-include="'assets/layout/header.html'" ng-controller="HeaderCtrl")
 
-      #main.container-fluid(ng-view)
+      #main.container-fluid(ng-view autoscroll="true")
 
     footer(ng-include="'assets/layout/footer.html'" ng-controller="FooterCtrl")
 
