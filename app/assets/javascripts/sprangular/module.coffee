@@ -36,6 +36,7 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}
+    Status.routeChanging = true
 
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath
@@ -52,3 +53,9 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
       Flash.error('Sorry, there are no items in your cart.')
       $location.path('/')
       event.preventDefault()
+
+  $rootScope.$on '$routeChangeSuccess', ->
+    Status.routeChanging = false
+
+  $rootScope.$on '$routeChangeError', ->
+    Status.routeChanging = false
