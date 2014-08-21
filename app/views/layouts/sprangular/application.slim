@@ -12,6 +12,7 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
 
   body(ng-class="status.bodyClass")
     ng-include(src="'assets/layout/loading.html'" ng-show="status.isLoading()")
+    ng-include(src="'assets/layout/flash.html'" ng-show="flash.hasMessages()")
 
     #wrap
       header(ng-include="'assets/layout/header.html'" ng-controller="HeaderCtrl")
