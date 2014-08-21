@@ -4,17 +4,17 @@ Sprangular.config ($provide, $httpProvider) ->
 
   $provide.factory 'loadingInterceptor', ($q, Status) ->
     request: (config) ->
-      Status.loading = true
+      Status.httpLoading = true
 
       config
 
     response: (response) ->
-      Status.loading = false
+      Status.httpLoading = false
 
       response
 
     responseError: (rejection) ->
-      Status.loading = false
+      Status.httpLoading = false
 
       $q.reject(rejection)
 
