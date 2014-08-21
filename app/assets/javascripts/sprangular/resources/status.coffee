@@ -5,3 +5,4 @@ Sprangular.service "Status", ->
     pageTitle: "Home"
     bodyClass: "default"
     requestedPath: null
+    loading: false
