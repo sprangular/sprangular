@@ -1,10 +1,10 @@
 Sprangular.factory 'Flash', ($timeout) ->
-  flashes: []
+  messages: []
 
   add: (type, message) ->
-    flash = type: type, message: message
+    flash = type: type, text: message
 
-    @flashes.push(flash)
+    @messages.push(flash)
     @timeout(flash)
 
   timeout: (flash) ->
@@ -16,4 +16,7 @@ Sprangular.factory 'Flash', ($timeout) ->
   error:   (message) -> @add('error',   message)
 
   remove: (flash) ->
-    @flashes = @flashes.filter (x) -> x != flash
+    @messages = @messages.filter (x) -> x != flash
+
+  hasMessages: () ->
+    @messages.length > 0
