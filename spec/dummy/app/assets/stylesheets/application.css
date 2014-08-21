@@ -11,5 +11,6 @@
  * file per style scope.
  *
  *= require bootstrap
+ *= require sprangular
  *= require_self
  */

@@ -29,10 +29,11 @@ In `application.js`, add sprangular:
 //= require sprangular
 ```
 
-In `application.css`, add bootstrap (optional):
+In `application.css`, add bootstrap and sprangular (both optional):
 
 ```
 //= require bootstrap
+//= require sprangular
 ```
 
 ## Overriding
