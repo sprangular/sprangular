@@ -17,6 +17,7 @@ Sprangular.config ($routeProvider) ->
       controller: 'ProductListCtrl'
       templateUrl: 'products/index.html'
       resolve:
+        taxon: -> null
         products: (Catalog) ->
           Catalog.products()
 
@@ -26,6 +27,15 @@ Sprangular.config ($routeProvider) ->
       resolve:
         product: (Catalog, $route) ->
           Catalog.find($route.current.params.id)
+
+    .when '/t/:path*',
+      controller: 'ProductListCtrl'
+      templateUrl: 'products/index.html'
+      resolve:
+        taxon: (Catalog, $route) ->
+          Catalog.taxon($route.current.params.path)
+        products: (Catalog, $route) ->
+          Catalog.productsByTaxon($route.current.params.path)
 
     .when '/sign-in',
       requires: {guest: true}

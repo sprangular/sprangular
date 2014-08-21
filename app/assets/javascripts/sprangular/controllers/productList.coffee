@@ -1,6 +1,10 @@
-Sprangular.controller 'ProductListCtrl', ($scope, Status, products, Cart) ->
+Sprangular.controller 'ProductListCtrl', ($scope, Status, taxon, products, Cart) ->
+  $scope.status = Status
 
-  Status.pageTitle = 'Product List page'
+  if taxon
+    Status.pageTitle = taxon.pretty_name
+  else
+    Status.pageTitle = 'Products'
 
   $scope.products = products
 
