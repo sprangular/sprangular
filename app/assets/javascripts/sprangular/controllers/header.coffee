@@ -1,4 +1,4 @@
-Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Account, Catalog, Env, Status) ->
+Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Account, Catalog, Env, Flash, Status) ->
 
   $scope.cart = Cart
   $scope.catalog = Catalog
@@ -13,6 +13,7 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Acco
   $scope.logout = ->
     Account.logout()
       .then (content) ->
+        Flash.success "Successfully logged out"
         $location.path '/'
 
   $scope.login = ->
