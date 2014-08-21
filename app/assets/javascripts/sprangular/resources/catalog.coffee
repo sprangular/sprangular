@@ -2,11 +2,16 @@ Sprangular.service 'Catalog', ($http, $q, _) ->
   products: (page=1) ->
     @getPaged('/products', page)
 
-  taxon: (path,page=1) ->
-    @getPaged("/products/?category=#{path}", page)
+  productsByTaxon: (path,page=1) ->
+    @getPaged("/products", params: {q: {taxons_permalink_eq: path}})
 
   taxonomies: ->
     $http.get("/taxonomies")
+      .then (response) ->
+        response.data
+
+  taxon: (path) ->
+    $http.get("/taxons/#{path}")
       .then (response) ->
         response.data
 
