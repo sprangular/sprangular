@@ -1,7 +1,6 @@
 Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, Env, Flash, Status) ->
 
   $scope.cart = Cart
-  $scope.catalog = Catalog
   Catalog.taxonomies().then (taxonomies) ->
     $scope.taxonomies = taxonomies
   $scope.account = Account
@@ -23,3 +22,6 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, 
   $scope.doSearch = ->
     $location.search('search', $scope.search.text)
     $location.path "/products"
+
+  $scope.getProducts = (search) ->
+    Catalog.products(search)
