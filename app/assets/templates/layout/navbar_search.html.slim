@@ -1,0 +1,7 @@
+.col-sm-3.col-md-3
+  form.navbar-form(role="search" ng-submit="search()")
+    .input-group
+      input.form-control(type="text" placeholder="Search" ng-model="search.text")
+
+      .input-group-addon
+        span.glyphicon.glyphicon-search(ng-click="search()")

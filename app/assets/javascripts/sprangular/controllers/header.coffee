@@ -6,6 +6,7 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Acco
     $scope.taxonomies = taxonomies
   $scope.account = Account
   $scope.env = Env
+  $scope.search = {}
 
   $scope.goToMyAccount = ->
     $location.path '/account'
@@ -18,3 +19,6 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Acco
 
   $scope.login = ->
     $location.path '/sign-in'
+
+  $scope.search = ->
+    $location.path "/products/s=#{$scope.search.text}"
