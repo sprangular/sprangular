@@ -2,7 +2,7 @@ Sprangular::Engine.routes.draw do
   scope module: 'sprangular' do
     root to: 'home#index'
 
-    scope defaults: {format: :json} do
+    scope '/api', defaults: {format: :json} do
       post 'facebook/fetch'
 
       resources :taxonomies, only: :index
