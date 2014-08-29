@@ -19,7 +19,7 @@ Sprangular.config ($routeProvider) ->
       resolve:
         taxon: -> null
         products: (Catalog, $route) ->
-          Catalog.products(1, $route.current.params.search)
+          Catalog.products($route.current.params.search, 1)
 
     .when '/products/:id',
       controller: 'ProductCtrl'

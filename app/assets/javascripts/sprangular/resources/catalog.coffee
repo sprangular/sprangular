@@ -1,9 +1,9 @@
 Sprangular.service 'Catalog', ($http, $q, _) ->
-  products: (page=1, search=null) ->
-    @getPaged('/products', page, search)
+  products: (search=null, page=1) ->
+    @getPaged(page, search: search)
 
-  productsByTaxon: (path,page=1) ->
-    @getPaged("/products", params: {q: {taxons_permalink_eq: path}})
+  productsByTaxon: (path, page=1) ->
+    @getPaged(page, taxon: path)
 
   taxonomies: ->
     $http.get("/taxonomies")
@@ -18,8 +18,8 @@ Sprangular.service 'Catalog', ($http, $q, _) ->
   find: (id) ->
     $http.get("/products/#{id}", class: Sprangular.Product)
 
-  getPaged: (path, page=1, search=null) ->
-    $http.get(path, params: {per_page: 40, page: page, "q[name_or_description_cont]": search})
+  getPaged: (page=1, params={}) ->
+    $http.get("/products", params: {per_page: 40, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
          .then (response) ->
            list = Sprangular.extend(response.data?.products || [], Sprangular.Product)
            list.isLastPage = list.length < 40
