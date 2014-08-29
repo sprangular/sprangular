@@ -10,7 +10,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
     init: ->
       @clear()
 
-      $http.get '/account'
+      $http.get '/api/account'
         .success (data) ->
           service.populateAccount(data)
           fetchDefer.resolve service
@@ -23,7 +23,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
     reload: ->
       deferred = $q.defer()
       @fetched = false
-      $http.get '/account'
+      $http.get '/api/account'
         .success (data) ->
           service.populateAccount(data)
           Cart.reload()
@@ -89,7 +89,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.post '/account', $.param params
+      $http.post '/api/account', $.param params
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
@@ -102,7 +102,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.post '/passwords', $.param params
+      $http.post '/api/passwords', $.param params
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
@@ -115,7 +115,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.put '/passwords/'+data.reset_password_token, $.param params
+      $http.put '/api/passwords/'+data.reset_password_token, $.param params
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
@@ -128,7 +128,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
       deferred = $q.defer()
       params =
         spree_user: data
-      $http.put '/account', $.param params
+      $http.put '/api/account', $.param params
         .success (data) ->
           service.reload().then (data) ->
             Flash.success 'Account updated'

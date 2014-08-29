@@ -41,7 +41,7 @@ Sprangular.service 'Wallet', ($q, $http, CreditCard, StripeService) ->
     delete: (card) ->
       deferred = $q.defer()
       cards = @cards
-      $http.delete("/credit_cards/#{card.id}")
+      $http.delete("/api/credit_cards/#{card.id}")
         .success (data) ->
           i = cards.indexOf card
           cards.splice(i, 1) unless i is -1

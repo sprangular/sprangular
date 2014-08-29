@@ -35,5 +35,5 @@ Sprangular.factory "Address", ($q, $http, _, Env) ->
         countryId: address.country_id
 
     this.getCountryList = ->
-      $http.get('/countries', cache: true)
+      $http.get('/api/countries', cache: true)
            .then (response) -> response.data

@@ -76,7 +76,7 @@ Sprangular.service 'Facebook', ($q, $http, Env) ->
 
     fetchUser: (deferred, email) ->
       accessToken.email = email
-      $http.post("/facebook/fetch", $.param(accessToken))
+      $http.post("/api/facebook/fetch", $.param(accessToken))
         .success (data) ->
           deferred.resolve data
         .error (data, status) ->

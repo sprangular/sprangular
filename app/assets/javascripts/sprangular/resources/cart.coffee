@@ -13,7 +13,7 @@ Sprangular.service "Cart", ($q, $http, _) ->
       @items.length = 0
 
       # Fetch cart content
-      $http.get '/cart.json'
+      $http.get '/api/cart.json'
         .success (data) ->
           cartItems = data.line_items
           service.number = data.number
@@ -35,7 +35,7 @@ Sprangular.service "Cart", ($q, $http, _) ->
       @items.reduce ((total, item) -> total + item.quantity), 0
 
     empty: ->
-      $http.delete '/cart'
+      $http.delete '/api/cart'
         .success (data) ->
           service.items.length = 0
           service.totalPrice = 0
@@ -52,7 +52,7 @@ Sprangular.service "Cart", ($q, $http, _) ->
       else
         @items.push variant: variant, quantity: quantity, price: variant.price
         params = $.param variant_id: variant.id, quantity: quantity
-        $http.post '/cart/add_variant', params
+        $http.post '/api/cart/add_variant', params
           .success (data) ->
             service.number = data.number
             service.totalPrice = data.total
@@ -76,7 +76,7 @@ Sprangular.service "Cart", ($q, $http, _) ->
 
     _updateItemQuantity: (id, quantity) ->
       params = $.param variant_id: id, quantity: quantity
-      $http.put '/cart/update_variant', params
+      $http.put '/api/cart/update_variant', params
         .success (data) ->
           service.totalPrice = data.total
           fetchDefer.resolve service
