@@ -35,11 +35,5 @@ Sprangular.factory "Address", ($q, $http, _, Env) ->
         countryId: address.country_id
 
     this.getCountryList = ->
-      country = [] #<%= Spree::Country.find_by_iso3('USA').to_json %>
-
-    this.getStatesList = ->
-      states = [] #<%= Spree::Country.find_by_iso3('USA').states.order('name').map { |s| { name: s.name, id: s.id } }.to_json %>
-
-    this.countryId = null #<%= Spree::Country.find_by_iso3('USA').id %>
-
-
+      $http.get('/countries', cache: true)
+           .then (response) -> response.data
