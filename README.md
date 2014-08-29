@@ -61,6 +61,9 @@ Sprangular.config ($routeProvider) ->
       template: '<h1>#1 Internet Site</h1>'
 ```
 
+## Existing Stores
+
+Sprangular configures Rack::Rewrite to provide a 301 redirect for your existing URLs. URLs like `/products` become `/#!/products`
 
 ## Development
 
