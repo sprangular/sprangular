@@ -21,4 +21,5 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, $routeParams, Cart, Acco
     $location.path '/sign-in'
 
   $scope.search = ->
-    $location.path "/products/s=#{$scope.search.text}"
+    $location.search('search', $scope.search.text)
+    $location.path "/products"
