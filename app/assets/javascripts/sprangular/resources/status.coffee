@@ -1,4 +1,4 @@
-Sprangular.service "Status", ->
+Sprangular.service "Status", ($rootScope) ->
 
   status =
 
@@ -10,3 +10,9 @@ Sprangular.service "Status", ->
 
     isLoading: ->
       @httpLoading || @routeChanging
+
+  $rootScope.$watch (-> status.isLoading()), (loading) ->
+    event = if loading then 'start' else 'end'
+    $rootScope.$broadcast("loading.#{event}")
+
+  status

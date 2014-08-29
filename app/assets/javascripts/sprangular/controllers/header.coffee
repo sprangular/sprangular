@@ -13,6 +13,7 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, 
   $scope.logout = ->
     Account.logout()
       .then (content) ->
+        $scope.$emit('account.logout')
         Flash.success "Successfully logged out"
         $location.path '/'
 
