@@ -18,8 +18,8 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'products/index.html'
       resolve:
         taxon: -> null
-        products: (Catalog) ->
-          Catalog.products()
+        products: (Catalog, $route) ->
+          Catalog.products(1, $route.current.params.search)
 
     .when '/products/:id',
       controller: 'ProductCtrl'
