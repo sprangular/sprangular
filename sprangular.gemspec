@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'angularjs-rails'
   s.add_dependency 'bootstrap-sass', '~> 3.1.1'
   s.add_dependency 'rails-assets-angular-bootstrap'
+  s.add_dependency 'rails-assets-angular-strap'
   s.add_dependency 'rails-assets-underscore'
   s.add_dependency 'rails-assets-jasmine-sinon'
   s.add_dependency 'rails-assets-sinon'
