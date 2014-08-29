@@ -8,8 +8,8 @@ module Sprangular
     initializer "sprangular.add_middleware" do |app|
       app.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
         r301 '/products',         '/#!/products'
-        r301 %r{/products/(.+)}, '/#!/products/$1'
-        r301 %r{/t/(.+)},         '/#!/t/$1'
+        r301 %r{^/products/(.+)$}, '/#!/products/$1'
+        r301 %r{^/t/(.+)$},         '/#!/t/$1'
         r301 '/sign_in',          '/#!/sign-in'
         r301 '/cart',             '/#!/cart'
         r301 '/account',          '/#!/account'
