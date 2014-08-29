@@ -8,6 +8,7 @@ require 'angularjs-rails'
 require 'rails-assets-underscore'
 require 'rails-assets-angular-bootstrap'
 require 'rails-assets-angular-strap'
+require 'rack/rewrite'
 require 'bootstrap-sass'
 require "sprangular/engine"
 
