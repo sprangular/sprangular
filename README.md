@@ -36,6 +36,23 @@ In `application.css`, add bootstrap and sprangular (both optional):
 //= require sprangular
 ```
 
+## Events
+
+The following events are emitted
+
+- cart.add
+- cart.empty
+- account.login
+- account.logout
+- loading.start
+- loading.end
+
+```coffeescript
+# show modal when item added to cart
+$scope.$on 'cart.add', ->
+  $scope.showModal = true
+```
+
 ## Overriding
 
 ### Views
