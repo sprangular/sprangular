@@ -9,5 +9,5 @@ Sprangular.controller 'ProductListCtrl', ($scope, Status, taxon, products, Cart)
   $scope.products = products
 
   $scope.addToCart = (variant, qty) ->
-    Cart.addVariant variant, qty
-    $scope.$emit('cart.add', {variant: variant, qty: qty})
+    Cart.addVariant(variant, qty)
+      .success -> $scope.$emit('cart.add', {variant: variant, qty: qty})

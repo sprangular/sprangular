@@ -11,8 +11,9 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
     $scope.selected.quantity = val
 
   $scope.addToCart = (variant, qty) ->
-    Cart.addVariant variant, qty
-    $scope.$emit('cart.add', {variant: variant, qty: qty})
+    Cart.addVariant(variant, qty)
+      .success ->
+        $scope.$emit('cart.add', {variant: variant, qty: qty})
 
   $scope.updateQuantity = (delta) ->
     $scope.selected.quantity += delta unless ($scope.selected.quantity + delta) == 0
