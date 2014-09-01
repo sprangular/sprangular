@@ -5,3 +5,13 @@ body {
 .navbar-brand img {
   max-height: 25px;
 }
+
+.btn.add-to-cart {
+  span {
+    display: inline-block;
+  }
+  .caption {
+    margin-right: 5px;
+    font-weight: bold;
+  }
+}
