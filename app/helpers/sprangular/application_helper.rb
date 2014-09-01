@@ -24,7 +24,7 @@ module Sprangular
       {env: Rails.env,
         config: {
           site_name: config.site_name,
-          logo:      config.logo,
+          logo:      asset_path(config.logo),
           default_country_id: config.default_country_id,
           facebook_app_id: ENV['FACEBOOK_APP_ID']
         },
