@@ -1,5 +1,6 @@
 Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.product = product
+  $scope.adding = false
   $scope.selected =
     product: product.variants[0]
     image: product.variants[0].images[0]
@@ -11,8 +12,10 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
     $scope.selected.quantity = val
 
   $scope.addToCart = (variant, qty) ->
+    $scope.adding = true
     Cart.addVariant(variant, qty)
       .success ->
+        $scope.adding = false
         $scope.$emit('cart.add', {variant: variant, qty: qty})
 
   $scope.updateQuantity = (delta) ->
@@ -23,6 +26,9 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
 
   $scope.isSelected = (variant) ->
     variant.id is $scope.selected.product.id
+
+  $scope.inCart = ->
+    Cart.findVariant($scope.selected.product.id).length > 0
 
   $scope.changeImage = (image) ->
     $scope.selected.image = image

@@ -5,7 +5,7 @@
 
       p.desc(ng-bind="product.description")
 
-      .variants
+      .variants.row
         a(ng-repeat="variant in product.variants" ng-show="product.hasVariants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
           | {{variant.options_text}}
 
@@ -15,11 +15,16 @@
           input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="selected.quantity" value="{{selected.quantity}}")
           a.plus(ng-click="updateQuantity(1)") +
 
-        a.btn.btn-primary.btn-lg.add-to-cart(ng-click="addToCart(selected.product, selected.quantity)")
-          span.caption Add to cart
-          | &nbsp;
-          span.price
-            | {{selected.product.price * selected.quantity  | number: 0 | currency}}
+        a.btn.btn-primary.btn-lg.add-to-cart(ng-click="addToCart(selected.product, selected.quantity)" ng-disabled="adding")
+          span(ng-show="adding") Adding ...
+
+          span(ng-hide="adding")
+            span.caption
+              span(ng-hide="inCart()") Add to cart
+              span(ng-show="inCart() && selected.quantity <= 1") Add another
+              span(ng-show="inCart() && selected.quantity > 1") Add {{selected.quantity}} more
+            span.price
+              | {{selected.product.price * selected.quantity  | number: 0 | currency}}
 
       .product-properties(ng-show="product.product_properties.length > 0")
         h2 Specifications
