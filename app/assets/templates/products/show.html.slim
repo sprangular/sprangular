@@ -28,10 +28,4 @@
           dt(ng-repeat-start="property in product.product_properties" ng-bind="property.property_name")
           dd(ng-repeat-end ng-bind="property.value")
 
-    .images.col-sm-6
-      .main.row
-        .col-sm-12
-          img.img-responsive(ng-src="{{selected.image.large}}")
-      .thumbs.row
-        .col-sm-3(ng-repeat='image in selected.product.images' ng-click="changeImage(image)")
-          img.img-thumbnail.img-responsive(ng-src="{{image.large}}")
+    ng-include(src="'products/gallery.html'")

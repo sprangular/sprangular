@@ -1,0 +1,7 @@
+.gallery.col-sm-6
+  .image.row
+    .col-sm-12
+      img.img-responsive(ng-src="{{selected.image.large}}")
+  .thumbs.row
+    .col-sm-3(ng-repeat='image in selected.product.images' ng-click="changeImage(image)")
+      img.img-thumbnail.img-responsive(ng-src="{{image.large}}")
