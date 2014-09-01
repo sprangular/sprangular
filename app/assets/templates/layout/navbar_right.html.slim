@@ -9,6 +9,6 @@ ul.nav.navbar-nav.navbar-right
     a(ng-click="login()") Sign in
 
   li.cart
-    a(id="cart-link" data-template="cart/cart.html" title="Cart" data-trigger="hover" data-container="header" bs-popover)
+    a(id="cart-link" data-template="cart/cart.html" data-container="header" data-placement="bottom right" bs-popover)
       span.glyphicon.glyphicon-shopping-cart
       span.cart-qty(ng-bind="cart.totalQuantity()")
