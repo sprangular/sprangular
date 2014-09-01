@@ -16,4 +16,5 @@
 //= require angular-resource
 //= require angular-route
 //= require angular-sanitize
+//= require angular-animate
 //= require sprangular/app
