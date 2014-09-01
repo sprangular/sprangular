@@ -2,6 +2,7 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.product = product
   $scope.selected =
     product: product.variants[0]
+    image: product.variants[0].images[0]
     quantity: 1
 
   Status.pageTitle = $scope.product.name
@@ -21,3 +22,6 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
 
   $scope.isSelected = (variant) ->
     variant.id is $scope.selected.product.id
+
+  $scope.changeImage = (image) ->
+    $scope.selected.image = image
