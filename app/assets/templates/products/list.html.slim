@@ -16,12 +16,12 @@
           | {{variant.options_text}}
 
       a.btn.btn-primary.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
-        .caption Add to cart
-        .price
+        span.caption Add to cart
+        span.price
           | {{product.variants[0].price | number: 0 | currency}}
 
     .without-variants(ng-hide="product.hasVariants")
       a.btn.btn-primary.add-to-cart(ng-click="addToCart(product.variants[0], 1)")
-        .caption Add to cart
-        .price
+        span.caption Add to cart
+        span.price
           | {{product.variants[0].price | number: 0 | currency}}
