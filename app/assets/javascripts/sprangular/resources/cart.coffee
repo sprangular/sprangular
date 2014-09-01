@@ -64,7 +64,7 @@ Sprangular.service "Cart", ($q, $http, _) ->
     removeItem: (item) ->
       i = @items.indexOf item
       @items.splice(i, 1) unless i is -1
-      @_updateItemQuantity item.variant.id, 0
+      @updateItemQuantity item.variant.id, 0
 
     changeItemQuantity: (item, delta) ->
       oldQuantity = item.quantity
@@ -72,9 +72,9 @@ Sprangular.service "Cart", ($q, $http, _) ->
       item.quantity = 0 if item.quantity < 0
 
       if item.quantity != oldQuantity
-        @_updateItemQuantity item.variant.id, item.quantity
+        @updateItemQuantity item.variant.id, item.quantity
 
-    _updateItemQuantity: (id, quantity) ->
+    updateItemQuantity: (id, quantity) ->
       params = $.param variant_id: id, quantity: quantity
       $http.put '/api/cart/update_variant', params
         .success (data) ->
