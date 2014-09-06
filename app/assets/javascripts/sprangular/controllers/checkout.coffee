@@ -3,15 +3,14 @@ Sprangular.controller 'CheckoutCtrl', ($window, $scope, $rootScope, $location, S
   $scope.isLogged = false
 
   Cart.fetch().then (cart) ->
-    Account.init().then (account) ->
-      if account.isLogged
-        Checkout.init cart.number
-        Checkout.fetchContent().then (content) ->
-          $scope.order = content.order
-          $scope.routerInit()
-      else
-        $window.scrollTo(0,0)
-        $location.path '/sign-in'
+    if Account.isLogged
+      Checkout.init cart.number
+      Checkout.fetchContent().then (content) ->
+        $scope.order = content.order
+        $scope.routerInit()
+    else
+      $window.scrollTo(0,0)
+      $location.path '/sign-in'
 
   $scope.refreshContent = ->
     Checkout.fetchContent().then (content) ->

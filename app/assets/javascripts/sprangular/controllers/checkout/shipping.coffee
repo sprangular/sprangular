@@ -7,23 +7,22 @@ Sprangular.controller 'CheckoutShippingCtrl', ($scope, $location, Account, Cart,
   $scope.addingNewAddress= false
 
   Checkout.fetchContent().then (content) ->
-    Account.init().then (account) ->
-      $scope.addresses = account.shippingAddresses
-      if content.order.ship_address
-        console.log content.order.ship_address
-        orderShippingAddress = Address.load content.order.ship_address
-        for item in $scope.addresses
-          if orderShippingAddress.equals(item)
-            $scope.selectedAddress = item
-        if $scope.selectedAddress == null
-          $scope.addingNewAddress = true
-          $scope.newAddress = orderShippingAddress
-          $scope.selectedAddress = $scope.newAddress
+    $scope.addresses = Account.shippingAddresses
+    if content.order.ship_address
+      console.log content.order.ship_address
+      orderShippingAddress = Address.load content.order.ship_address
+      for item in $scope.addresses
+        if orderShippingAddress.equals(item)
+          $scope.selectedAddress = item
+      if $scope.selectedAddress == null
+        $scope.addingNewAddress = true
+        $scope.newAddress = orderShippingAddress
+        $scope.selectedAddress = $scope.newAddress
+    else
+      if $scope.addresses.length > 0
+        $scope.selectedAddress = $scope.addresses[0]
       else
-        if $scope.addresses.length > 0
-          $scope.selectedAddress = $scope.addresses[0]
-        else
-          $scope.enterNewAddress()
+        $scope.enterNewAddress()
 
   $scope.useAddress = (address) ->
     $scope.selectedAddress = address

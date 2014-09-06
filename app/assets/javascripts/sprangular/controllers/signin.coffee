@@ -7,9 +7,6 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash
 
   $scope.facebookEmail = null
 
-  # Get properties
-  Account.init()
-
   $scope.$watch ->
     Account.email
   , (newVal) ->

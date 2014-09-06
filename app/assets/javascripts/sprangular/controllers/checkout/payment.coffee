@@ -1,21 +1,19 @@
 Sprangular.controller 'CheckoutPaymentCtrl', ($scope, $location, Account, Wallet, Checkout) ->
-  $scope.wallet = null
   $scope.selectedCard = null
   $scope.newCreditCard = {}
   $scope.addingNewCard = false
   $scope.paymentMethod = PAYMENT_METHODS['stripe']
+  $scope.wallet = Account.wallet
 
-  Account.init().then (account) ->
-    $scope.wallet = account.wallet
-    Checkout.fetchContent().then (content) ->
-      if content.order.payments and content.order.payments.length > 0
-        payment = _.where(content.order.payments, {state: 'checkout'})[0]
-        if payment
-          sourceId = payment.source.id
-          $scope.selectedCard = $scope.wallet.findCardForSource sourceId
-      $scope.selectedCard ||= $scope.wallet.cards[0]
-      if !$scope.selectedCard
-        $scope.enterNewCard()
+  Checkout.fetchContent().then (content) ->
+    if content.order.payments and content.order.payments.length > 0
+      payment = _.where(content.order.payments, {state: 'checkout'})[0]
+      if payment
+        sourceId = payment.source.id
+        $scope.selectedCard = $scope.wallet.findCardForSource sourceId
+    $scope.selectedCard ||= $scope.wallet.cards[0]
+    if !$scope.selectedCard
+      $scope.enterNewCard()
 
   $scope.useCard = (card) ->
     $scope.selectedCard = card
