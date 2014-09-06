@@ -1,7 +1,7 @@
 Sprangular.service "Status", ($rootScope) ->
 
   status =
-
+    initialized: false
     pageTitle: "Home"
     bodyClass: "default"
     requestedPath: null
