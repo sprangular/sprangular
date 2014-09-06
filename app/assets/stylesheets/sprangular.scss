@@ -6,6 +6,10 @@ body {
   max-height: 25px;
 }
 
+a {
+  cursor: pointer;
+}
+
 .btn.add-to-cart {
   span {
     display: inline-block;
@@ -13,5 +17,11 @@ body {
   .caption {
     margin-right: 5px;
     font-weight: bold;
+  }
+}
+
+#signin {
+  nav a {
+    display: block;
   }
 }
