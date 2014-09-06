@@ -6,7 +6,7 @@ Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, A
   $scope.editing = false
   $scope.formData = formData
 
-  Account.fetch().then (account) ->
+  Account.init().then (account) ->
     $location.path('/') unless account.isLogged
 
   $scope.edit = ->

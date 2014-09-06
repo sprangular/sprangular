@@ -2,7 +2,7 @@ Sprangular.controller 'CheckoutDeliveryCtrl', ($scope, $location, Account, Cart,
   $scope.shipment = null
   $scope.selectedRate = null
 
-  Account.fetch().then (account) ->
+  Account.init().then (account) ->
     Checkout.fetchContent().then (content) ->
       $scope.shipment = Shipment
       if content.order.shipments and content.order.shipments.length > 0

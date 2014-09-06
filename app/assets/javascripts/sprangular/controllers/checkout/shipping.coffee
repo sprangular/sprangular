@@ -7,7 +7,7 @@ Sprangular.controller 'CheckoutShippingCtrl', ($scope, $location, Account, Cart,
   $scope.addingNewAddress= false
 
   Checkout.fetchContent().then (content) ->
-    Account.fetch().then (account) ->
+    Account.init().then (account) ->
       $scope.addresses = account.shippingAddresses
       if content.order.ship_address
         console.log content.order.ship_address

@@ -3,7 +3,7 @@ Sprangular.controller 'CheckoutCtrl', ($window, $scope, $rootScope, $location, S
   $scope.isLogged = false
 
   Cart.fetch().then (cart) ->
-    Account.fetch().then (account) ->
+    Account.init().then (account) ->
       if account.isLogged
         Checkout.init cart.number
         Checkout.fetchContent().then (content) ->

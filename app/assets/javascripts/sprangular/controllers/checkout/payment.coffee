@@ -5,7 +5,7 @@ Sprangular.controller 'CheckoutPaymentCtrl', ($scope, $location, Account, Wallet
   $scope.addingNewCard = false
   $scope.paymentMethod = PAYMENT_METHODS['stripe']
 
-  Account.fetch().then (account) ->
+  Account.init().then (account) ->
     $scope.wallet = account.wallet
     Checkout.fetchContent().then (content) ->
       if content.order.payments and content.order.payments.length > 0

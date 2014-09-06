@@ -9,7 +9,7 @@ Sprangular.controller 'CheckoutBillingCtrl', ($scope, $location, Account, Cart, 
   $scope.shippingAddress = null
 
   Checkout.fetchContent().then (content) ->
-    Account.fetch().then (account) ->
+    Account.init().then (account) ->
       $scope.addresses = account.billingAddresses
       $scope.shippingAddress = Address.load content.order.ship_address
       if content.order.bill_address

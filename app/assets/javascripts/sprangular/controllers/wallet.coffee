@@ -2,7 +2,7 @@ Sprangular.controller 'WalletCtrl', ($scope, Account) ->
 
   $scope.wallet = null
 
-  Account.fetch().then (account) ->
+  Account.init().then (account) ->
     $scope.wallet = account.wallet
 
   $scope.delete = (card) ->
