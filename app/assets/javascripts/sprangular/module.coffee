@@ -60,5 +60,6 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
   $rootScope.$on '$routeChangeError', ->
     Status.routeChanging = false
 
-  Account.init().then ->
-    Status.initialized = true
+  Account.init()
+    .success -> Status.initialized = true
+    .error -> Status.initialized = true
