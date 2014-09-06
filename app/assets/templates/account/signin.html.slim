@@ -12,7 +12,9 @@
           input.form-control(name="password" ng-model="user.password" type="password")
 
         .pull-right
-          button.btn.btn-primary.btn-lg(type='submit') Sign in
+          button.btn.btn-primary.btn-lg(type='submit' ng-disabled="signingIn")
+            span(ng-hide="signingIn") Sign in
+            span(ng-show="signingIn") Loading...
 
       nav
         a(href="/#!/forgot-password") Forgot your password?

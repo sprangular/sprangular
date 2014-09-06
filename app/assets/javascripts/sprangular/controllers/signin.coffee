@@ -4,15 +4,11 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash
   $scope.askForEmail = false
 
   $scope.user = {}
-  $scope.signinError = null
 
   $scope.facebookEmail = null
 
-  $scope.account = Account
-
   # Get properties
-  Account.init().then (content) ->
-    $scope.loaded()
+  Account.init()
 
   $scope.$watch ->
     Account.email
@@ -20,23 +16,24 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash
     $scope.user.email = newVal if newVal
 
   $scope.login = ->
-    $scope.signinError = null
-    Account.login($scope.user)
-      .then (content) ->
-        $scope.loaded()
-        $location.path(Status.requestedPath || '/')
-      , (error) ->
-        $scope.signinError = error
+    $scope.signingIn = true
 
-  $scope.toggleSigninUp = ->
-    $scope.signingUp = !$scope.signingUp
+    Account.login($scope.user)
+      .success (content) ->
+        $scope.signingIn = false
+        $scope.$emit('account.login', Account)
+
+        $location.path(Status.requestedPath || "/")
+        Status.requestedPath = null
+
+      .error ->
+        $scope.signingIn = false
 
   $scope.connectWithFacebook = ->
     Facebook.login($scope.facebookEmail)
       .then (content) ->
         Account.reload()
           .then (content) ->
-            $scope.loaded()
             $scope.askForEmail = false
       , (error) ->
         if error.status == 404
@@ -45,13 +42,3 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash
   $scope.cancelEmailAsking = ->
     $scope.askForEmail = false
     $scope.facebookEmail = null
-
-  $scope.loaded = ->
-    $scope.signingUp = false
-
-    if Account.isLogged
-      $scope.$emit('account.login', Account)
-
-      Flash.success("Successfully signed in!")
-      $location.path(Status.requestedPath || "/")
-      Status.requestedPath = null
