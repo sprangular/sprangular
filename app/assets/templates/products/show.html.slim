@@ -1,4 +1,4 @@
-.product-details
+#product-details.container
   .row
     .col-sm-6
       h1(ng-bind="product.name")
@@ -19,6 +19,7 @@
           span(ng-show="adding") Adding ...
 
           span(ng-hide="adding")
+            span.glyphicon.glyphicon-plus
             span.caption
               span(ng-hide="inCart()") Add to cart
               span(ng-show="inCart() && selected.quantity <= 1") Add another
