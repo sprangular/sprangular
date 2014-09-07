@@ -1,3 +1,5 @@
-h1(ng-bind="status.pageTitle")
+h1(ng-bind="pageTitle")
 
-div ng-include="'products/list.html'"
+div(ng-include="'products/list.html'"
+  infinite-scroll='loadNextPage()'
+  infinite-scroll-disabled='loadingComplete || fetching')
