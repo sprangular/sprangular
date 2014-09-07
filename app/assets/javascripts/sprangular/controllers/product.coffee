@@ -28,7 +28,7 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
     variant.id is $scope.selected.product.id
 
   $scope.inCart = ->
-    Cart.findVariant($scope.selected.product.id).length > 0
+    Cart.hasVariant($scope.selected.product)
 
   $scope.changeImage = (image) ->
     $scope.selected.image = image

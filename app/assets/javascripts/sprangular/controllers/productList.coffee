@@ -25,6 +25,9 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
       $scope.products = $scope.products.concat(newPage)
       $scope.loadingComplete = newPage.isLastPage
 
+  $scope.inCart = (variant) ->
+    Cart.hasVariant(variant)
+
   $scope.addToCart = (variant, qty) ->
     Cart.addVariant(variant, qty)
       .success -> $scope.$emit('cart.add', {variant: variant, qty: qty})

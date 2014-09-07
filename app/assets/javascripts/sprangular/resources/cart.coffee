@@ -61,6 +61,9 @@ Sprangular.service "Cart", ($q, $http, _) ->
     findVariant: (variantId) ->
       item for item in @items when item.variant.id is variantId
 
+    hasVariant: (variant) ->
+      variant && @findVariant(variant.id).length > 0
+
     removeItem: (item) ->
       i = @items.indexOf item
       @items.splice(i, 1) unless i is -1
