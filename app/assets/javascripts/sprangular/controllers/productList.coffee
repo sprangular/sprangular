@@ -10,6 +10,7 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
   $scope.page = 1
   $scope.loadingComplete = false
   $scope.fetching = false
+  $scope.adding = {}
 
   $scope.loadNextPage = ->
     $scope.fetching = true
@@ -29,5 +30,9 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
     Cart.hasVariant(variant)
 
   $scope.addToCart = (variant, qty) ->
+    $scope.adding[variant.id] = true
+
     Cart.addVariant(variant, qty)
-      .success -> $scope.$emit('cart.add', {variant: variant, qty: qty})
+      .success ->
+        $scope.$emit('cart.add', {variant: variant, qty: qty})
+        $scope.adding[variant.id] = false
