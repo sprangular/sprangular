@@ -14,12 +14,16 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
   $scope.loadNextPage = ->
     $scope.fetching = true
 
-    Catalog.products($routeParams.search, $scope.page+1)
-      .then (newPage) ->
-        $scope.page++
-        $scope.fetching = false
-        $scope.products = $scope.products.concat(newPage)
-        $scope.loadingComplete = newPage.isLastPage
+    load = if taxon
+      Catalog.productsByTaxon(taxon.permalink, $scope.page+1)
+    else
+      Catalog.products($routeParams.search, $scope.page+1)
+
+    load.then (newPage) ->
+      $scope.page++
+      $scope.fetching = false
+      $scope.products = $scope.products.concat(newPage)
+      $scope.loadingComplete = newPage.isLastPage
 
   $scope.addToCart = (variant, qty) ->
     Cart.addVariant(variant, qty)
