@@ -1,1 +1,3 @@
-div(ng-include="'products/list.html'")
+div(ng-include="'products/list.html'"
+  infinite-scroll='loadNextPage()'
+  infinite-scroll-disabled='loadingComplete || fetching')
