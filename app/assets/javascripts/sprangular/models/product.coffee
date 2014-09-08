@@ -19,4 +19,18 @@ class Sprangular.Product
       @master = Sprangular.extend(@master, Sprangular.Variant)
       @variants = [@master]
 
-    _.each @variants, (variant) -> variant.product = this
+    self = @
+    @options = {}
+
+    _.each @option_types, (type) ->
+      self.options[type.id] = {type: type, values: {}}
+
+    _.each @variants, (variant) ->
+      variant.product = self
+
+      _.each variant.option_values, (value) ->
+        type = _.find(self.option_types, (type) -> type.id == value.option_type_id )
+        option = self.options[type.id]
+
+        option.values[value.id] = {value: value, variants: []} unless option.values[value.id]
+        option.values[value.id].variants.push(variant)
