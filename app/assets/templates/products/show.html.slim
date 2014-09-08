@@ -5,7 +5,10 @@
 
       p.desc(ng-bind="product.description")
 
-      .variants.row
+      .options(ng-show="product.hasVariants")
+        .option(ng-repeat="type in product.option_types")
+          h3(ng-bind="type.presentation")
+
         a(ng-repeat="variant in product.variants" ng-show="product.hasVariants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
           | {{variant.options_text}}
 
