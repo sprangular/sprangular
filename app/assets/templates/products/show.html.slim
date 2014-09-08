@@ -31,11 +31,7 @@
             span.price
               | {{selected.product.price * selected.quantity  | number: 0 | currency}}
 
-      .product-properties(ng-show="product.product_properties.length > 0")
-        h2 Specifications
 
-        dl
-          dt(ng-repeat-start="property in product.product_properties" ng-bind="property.property_name")
-          dd(ng-repeat-end ng-bind="property.value")
+      ng-include(src="'products/properties.html'")
 
     ng-include(src="'products/gallery.html'")

@@ -1,0 +1,6 @@
+.product-properties(ng-show="product.product_properties.length > 0")
+  h2 Specifications
+
+  dl
+    dt(ng-repeat-start="property in product.product_properties" ng-bind="property.property_name")
+    dd(ng-repeat-end ng-bind="property.value")
