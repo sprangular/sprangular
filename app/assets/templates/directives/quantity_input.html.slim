@@ -1,4 +1,11 @@
 .quantity-input
-  a.btn.btn-default.btn-sm.minus(ng-click="update(-1)") -
-  input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="quantity" value="{{quantity}}")
-  a.btn.btn-default.btn-sm.plus(ng-click="update(1)") +
+  .input-group
+    .input-group-addon
+      a.btn.btn-xs.minus(ng-click="update(-1)")
+        span.glyphicon.glyphicon-minus
+
+    input.form-control(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="quantity" value="{{quantity}}")
+
+    .input-group-addon
+      a.btn.btn-xs.plus(ng-click="update(1)")
+        span.glyphicon.glyphicon-plus
