@@ -2,33 +2,50 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.product = product
   $scope.adding = false
   $scope.selected =
-    product: product.variants[0]
-    image: product.variants[0].images[0]
+    image: product.master.images[0]
     quantity: 1
+    variant: null
+    values: {}
+
+  if !product.hasVariants
+    $scope.selected.variant = product.master
 
   Status.pageTitle = $scope.product.name
+
+  $scope.isValueSelected = (value) ->
+    $scope.selected.values[value.option_type_id]?.id == value.id
+
+  $scope.isValueAvailable = (value) ->
+    product.availableValues(_.values($scope.selected.values))
+
+  $scope.selectValue = (value) ->
+    selected = $scope.selected
+    selected.values[value.option_type_id] = value
+    selected.variant = product.variantForValues(_.values(selected.values))
 
   $scope.changeQuantity = (val) ->
     $scope.selected.quantity = val
 
-  $scope.addToCart = (variant, qty) ->
+  $scope.addToCart = ->
+    selected = $scope.selected
     $scope.adding = true
-    Cart.addVariant(variant, qty)
+
+    Cart.addVariant(selected.variant, selected.quantity)
       .success ->
         $scope.adding = false
-        $scope.$emit('cart.add', {variant: variant, qty: qty})
+        $scope.$emit('cart.add', {variant: selected.variant, qty: selected.quantity})
 
   $scope.updateQuantity = (delta) ->
     $scope.selected.quantity += delta unless ($scope.selected.quantity + delta) == 0
 
   $scope.selectVariant = (variant) ->
-    $scope.selected.product = variant
+    $scope.selected.variant = variant
 
   $scope.isSelected = (variant) ->
-    variant.id is $scope.selected.product.id
+    variant.id is $scope.selected.variant.id
 
   $scope.inCart = ->
-    Cart.hasVariant($scope.selected.product)
+    Cart.hasVariant($scope.selected.variant)
 
   $scope.changeImage = (image) ->
     $scope.selected.image = image
