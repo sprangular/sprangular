@@ -1,10 +1,9 @@
-.options
-  .option(ng-repeat="option in product.options" class="{{option.type.name}}")
-    h3(ng-bind="option.type.presentation")
+.option(ng-repeat="option in product.options" class="{{option.type.name}}")
+  h3(ng-bind="option.type.presentation")
 
-    .values.btn-group.btn-group-lg
-      button.btn.btn-default(ng-repeat="item in option.values"
-             ng-class="{'btn-success': isValueSelected(item.value)}"
-             ng-disabled="!isValueAvailable(item.value)"
-             ng-click="selectValue(item.value)"
-             ng-bind="item.value.presentation")
+  .values.btn-group.btn-group-lg
+    button.btn.btn-default(ng-repeat="item in option.values"
+           ng-class="{'btn-success': isValueSelected(item.value)}"
+           ng-disabled="!isValueAvailable(item.value)"
+           ng-click="selectValue(item.value)"
+           ng-bind="item.value.presentation")

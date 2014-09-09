@@ -1,11 +1,13 @@
 #product-details.container
   .row
     .col-sm-6.col-xs-12
-      h1(ng-bind="product.name")
+      section.details
+        h1(ng-bind="product.name")
 
-      p.desc(ng-bind="product.description")
+        p.desc(ng-bind="product.description")
 
-      ng-include(src="'products/options.html'" ng-show='product.hasVariants')
+      section.options
+        ng-include(src="'products/options.html'" ng-show='product.hasVariants')
 
       section.add
         quantity-input(quantity="selected.quantity")
@@ -17,4 +19,5 @@
       ng-include(src="'products/properties.html'")
 
     .col-sm-6.col-xs-12
-      ng-include(src="'products/gallery.html'")
+      section.gallery
+        ng-include(src="'products/gallery.html'")
