@@ -19,10 +19,7 @@
           p.name
             | {{item.variant.product.name}} {{item.variant.options_text}}
 
-          .quantity
-            a.minus(ng-click="decrementItem(item)") -
-            input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="item.quantity" value="{{item.quantity}}")
-            a.plus(ng-click="incrementItem(item)") +
+          quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
 
         .col-sm-2.price
           span

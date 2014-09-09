@@ -13,11 +13,5 @@ Sprangular.controller "CartCtrl", ($scope, Cart, Status) ->
     Cart.empty()
     $scope.$emit('cart.empty', Cart)
 
-  $scope.incrementItem = (item) ->
-    Cart.changeItemQuantity item, +1
-
-  $scope.decrementItem = (item) ->
-    Cart.changeItemQuantity item, -1
-
   $scope.reload = ->
     Cart.reload()
