@@ -1,4 +1,4 @@
 .quantity-input
-  a.minus(ng-click="updateQuantity(-1)") -
+  a.btn.btn-default.btn-sm.minus(ng-click="update(-1)") -
   input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="quantity" value="{{quantity}}")
-  a.plus(ng-click="updateQuantity(1)") +
+  a.btn.btn-default.btn-sm.plus(ng-click="update(1)") +

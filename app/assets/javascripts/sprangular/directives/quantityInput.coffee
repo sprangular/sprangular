@@ -5,8 +5,11 @@ Sprangular.directive 'quantityInput', ->
   templateUrl: 'directives/quantity_input.html'
   scope:
     quantity: '='
+    change: '&'
+
   controller: ($scope) ->
+    $scope.$watch 'quantity', (oldValue, newValue)->
+      $scope.change() if oldValue != newValue
 
-    $scope.updateQuantity = (delta) ->
+    $scope.update = (delta) ->
       $scope.quantity += delta unless ($scope.quantity + delta) == 0
-
