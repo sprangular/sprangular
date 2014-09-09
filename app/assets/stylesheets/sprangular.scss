@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 body {
   padding: 70px 0 0 0;
 }
@@ -28,4 +30,49 @@ a {
 
 #initializing {
   text-align: center;
+}
+
+footer {
+  background: $gray;
+  color: $gray-light;
+  padding: 10px 5px 5px;
+
+  a {
+    color: $gray-light;
+    font-weight: bold;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .dynamo {
+    .level1, .level2, .level3 {
+      text-align: center;
+    }
+    span {
+      display: inline-block;
+      padding: 0px 6px;
+      font-weight: bolder;
+    }
+  }
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
 }

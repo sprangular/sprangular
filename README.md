@@ -29,10 +29,9 @@ In `application.js`, add sprangular:
 //= require sprangular
 ```
 
-In `application.css`, add bootstrap and sprangular (both optional):
+In `application.css`, add sprangular (optional):
 
 ```
-//= require bootstrap
 //= require sprangular
 ```
 
