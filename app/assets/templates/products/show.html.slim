@@ -7,13 +7,10 @@
 
       ng-include(src="'products/options.html'" ng-show='product.hasVariants')
 
-      .add-wrap
-        .quantity
-          a.minus(ng-click="updateQuantity(-1)") -
-          input(name="qty" type="number" min="1" max="999" maxlength="3" ng-model="selected.quantity" value="{{selected.quantity}}")
-          a.plus(ng-click="updateQuantity(1)") +
+      section.add
+        quantity-input(quantity="selected.quantity")
 
-        a.btn.btn-primary.btn-lg.add-to-cart(ng-click="addToCart()" ng-disabled="adding")
+        a.btn.btn-primary.btn-lg.add-to-cart(ng-click="addToCart()" ng-disabled="adding || !selected.variant")
           span(ng-show="adding") Adding ...
 
           span(ng-hide="adding")
@@ -24,7 +21,6 @@
               span(ng-show="inCart() && selected.quantity > 1") Add {{selected.quantity}} more
             span.price
               | {{(selected.variant || product).price * selected.quantity  | number: 0 | currency}}
-
 
       ng-include(src="'products/properties.html'")
 
