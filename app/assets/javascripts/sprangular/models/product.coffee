@@ -34,3 +34,22 @@ class Sprangular.Product
 
         option.values[value.id] = {value: value, variants: []} unless option.values[value.id]
         option.values[value.id].variants.push(variant)
+
+  variantForValues: (selectedValues) ->
+    _.find @variants, (variant) ->
+      variant.option_values.length == selectedValues.length && _.all selectedValues, (selected) ->
+        _.find variant.option_values, (value) -> value.id == selected.id
+
+  availableValues: (selectedValues) ->
+    self = @
+
+    if selectedValues.length == 0
+      _.map self.options, (option) -> option.values
+    else
+      matchingVariants = _.filter self.variants, (variant) ->
+        _.all selectedValues, (selected) ->
+          _.find variant.option_values, (value) -> value.id == selected.id
+
+      values = _.map matchingVariants, (variant) -> variant.option_values
+      values = _.flatten(values)
+      _.unique(values)
