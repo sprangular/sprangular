@@ -6,8 +6,8 @@
 
         p.desc(ng-bind="product.description")
 
-      section.options
-        ng-include(src="'products/options.html'" ng-show='product.hasVariants')
+      section.options(ng-show='product.hasVariants')
+        ng-include(src="'products/options.html'")
 
       section.add
         quantity-input(quantity="selected.quantity")
