@@ -9,13 +9,16 @@
       section.options(ng-show='product.hasVariants')
         ng-include(src="'products/options.html'")
 
-      section.add
-        quantity-input(quantity="selected.quantity")
-
-        add-to-cart-button(product="product"
-                           variant="selected.variant"
-                           quantity="selected.quantity"
-                           class="{'btn-lg': true}")
+      section.add.row
+        .col-sm-12
+          h4 Quantity
+        .col-sm-4
+          quantity-input(quantity="selected.quantity")
+        .col-sm-8
+          add-to-cart-button(product="product"
+                             variant="selected.variant"
+                             quantity="selected.quantity"
+                             class="{'btn-lg': true, 'btn-block': true}")
 
       ng-include(src="'products/properties.html'")
 
