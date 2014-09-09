@@ -2,7 +2,7 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.product = product
   $scope.adding = false
   $scope.selected =
-    image: product.master.images[0]
+    image: product.variants[0].images[0]
     quantity: 1
     variant: null
     values: {}
@@ -11,6 +11,9 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
     $scope.selected.variant = product.master
 
   Status.pageTitle = $scope.product.name
+
+  $scope.$watch 'selected.variant', (variant) ->
+    $scope.selected.image = variant.images[0]
 
   $scope.isValueSelected = (value) ->
     $scope.selected.values[value.option_type_id]?.id == value.id
@@ -26,23 +29,11 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.changeQuantity = (val) ->
     $scope.selected.quantity = val
 
-  $scope.addToCart = ->
-    selected = $scope.selected
-    $scope.adding = true
-
-    Cart.addVariant(selected.variant, selected.quantity)
-      .success ->
-        $scope.adding = false
-        $scope.$emit('cart.add', {variant: selected.variant, qty: selected.quantity})
-
   $scope.selectVariant = (variant) ->
     $scope.selected.variant = variant
 
   $scope.isSelected = (variant) ->
     variant.id is $scope.selected.variant.id
-
-  $scope.inCart = ->
-    Cart.hasVariant($scope.selected.variant)
 
   $scope.changeImage = (image) ->
     $scope.selected.image = image
