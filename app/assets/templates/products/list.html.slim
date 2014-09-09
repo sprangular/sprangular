@@ -11,29 +11,13 @@
       | {{product.description}}
 
     .with-variants(ng-show="product.hasVariants")
-      .variants
-        a(ng-repeat="variant in product.variants" ng-click="selectVariant(variant)" ng-class="{'is-selected': isSelected(variant)}")
-          | {{variant.options_text}}
+      ul.variants
+        li(ng-repeat="variant in product.variants")
+          a(ng-click="selectVariant(variant)"
+            ng-class="{'is-selected': isSelected(variant)}"
+            ng-bind="variant.options_text")
 
-      a.btn.btn-primary.add-to-cart(ng-click="addToCart(product.master, 1)" ng-disabled="adding[product.master.id]")
-        span(ng-show="adding[product.variant.id]") Adding ...
-
-        span(ng-hide="adding[product.variant.id]")
-          span.glyphicon.glyphicon-plus
-          span.caption
-            span(ng-hide="inCart(product.variant)") Add to cart
-            span(ng-show="inCart(product.variant)") Add another
-          span.price
-            | {{product.variants[0].price | number: 0 | currency}}
+      add-to-cart-button(product="product" variant="selectedVariants[product.id]" quantity=1)
 
     .without-variants(ng-hide="product.hasVariants")
-      a.btn.btn-primary.add-to-cart(ng-click="addToCart(product.master, 1)" ng-disabled="adding[product.master.id]")
-        span(ng-show="adding[product.master.id]") Adding ...
-
-        span(ng-hide="adding[product.master.id]")
-          span.glyphicon.glyphicon-plus
-          span.caption
-            span(ng-hide="inCart(product.master)") Add to cart
-            span(ng-show="inCart(product.master)") Add another
-          span.price
-            | {{product.master.price | number: 0 | currency}}
+      add-to-cart-button(product="product" variant="product.master" quantity=1)
