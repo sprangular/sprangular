@@ -1,4 +1,4 @@
-a.btn.btn-primary.btn-lg.add-to-cart(ng-click="addToCart()" ng-disabled="adding || !variant")
+a.btn.btn-primary.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disabled="adding || !variant")
   span(ng-show="adding") Adding ...
 
   span(ng-hide="adding")

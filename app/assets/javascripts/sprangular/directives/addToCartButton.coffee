@@ -7,6 +7,7 @@ Sprangular.directive 'addToCartButton', ->
     variant: '='
     quantity: '='
     product: '='
+    class: '='
 
   controller: ($scope, Cart) ->
     $scope.adding = false
