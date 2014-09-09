@@ -1,48 +1,65 @@
-#cart-dropdown.clearfix.well(ng-controller='CartCtrl')
-  h4 My Cart
+#cart-dropdown.container.well(ng-controller='CartCtrl')
+  .row
+    .col-lg-12
+      h4 My Cart
 
-  .empty(ng-show="isEmpty()")
-    p Your cart is empty
-    a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
+  .empty.row(ng-show="isEmpty()")
+    .col-lg-12
+      p Your cart is empty
+      a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
 
-  .with-items(ng-hide="isEmpty()")
-    p
-      | {{cart.totalQuantity()}} item(s) in your cart
+  .with-items.row(ng-hide="isEmpty()")
+    .row
+      .col-lg-12
+        p
+          | {{cart.totalQuantity()}} item(s) in your cart
 
-    ul.details
-      li.row.line(ng-repeat='item in cart.items')
-        .col-sm-3.image
-          a(href="#!/products/{{item.variant.product.slug}}")
-            img(ng-src="{{item.variant.image.mini}}")
+    .row
+      .col-lg-12
+        table.table.table-striped
+          tr
+            th Image
+            th Name
+            th(width="15%") Quantity
+            th Price
+            th
 
-        .col-sm-6.details
-          p.name
-            | {{item.variant.product.name}} {{item.variant.options_text}}
+          tr.item(ng-repeat='item in cart.items')
+            td.image
+              a(href="#!/products/{{item.variant.product.slug}}")
+                img(ng-src="{{item.variant.image.mini}}")
 
-          quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
+            td.name
+              p
+                a(href="#!/products/{{item.variant.product.slug}}")
+                  | {{item.variant.product.name}}
+              p
+                | {{item.variant.options_text}}
 
-        .col-sm-2.price
-          span
-            | {{item.price * item.quantity | currency}}
+            td.quantity
+              quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
 
-        .col-sm-1.actions
-          a(ng-click="removeItem(item)")
-            span.glyphicon.glyphicon-remove
+            td.price
+              span
+                | {{item.price * item.quantity | currency}}
 
-      li.row.total
-        .col-sm-3.caption
-          p Total
+            td.actions
+              a(ng-click="removeItem(item)")
+                span.glyphicon.glyphicon-remove
 
-        .col-sm-6
-        .col-sm-2.amount
-          p
-            | {{cart.totalPrice | currency}}
+          tr.total
+            td Total
+            td(colspan=3)
+              | {{cart.totalPrice | currency}}
+            td
 
-    .pull-left
-      a.btn.btn-link(ng-click="empty()")
-        | Empty cart
+    .row
+      .col-lg-12
+        .pull-left
+          a.btn.btn-link(ng-click="empty()")
+            | Empty cart
 
-    .pull-right
-      a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
-        | Checkout
-        span.glyphicon.glyphicon-chevron-right
+        .pull-right
+          a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
+            | Checkout
+            span.glyphicon.glyphicon-chevron-right
