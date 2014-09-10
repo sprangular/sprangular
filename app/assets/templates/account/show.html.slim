@@ -13,7 +13,10 @@ div ng-show="account.fetched"
 
       .clearfix
         .pull-right
-          a.btn.btn-primary.btn-lg(ng-click="edit()") Edit
+          a.btn.btn-primary.btn-lg(ng-click="edit()")
+            span.glyphicon.glyphicon-edit
+            | &nbsp;
+            | Edit
 
     div ng-show="editing"
       div ng-include="'account/edit.html'"
