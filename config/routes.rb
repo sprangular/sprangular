@@ -11,6 +11,7 @@ Sprangular::Engine.routes.draw do
       resource :cart do
         post :add_variant
         put :update_variant
+        put :change_variant
         delete :remove_variant
       end
       resource :account

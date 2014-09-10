@@ -37,6 +37,27 @@ class Sprangular::CartsController < Sprangular::BaseController
     render 'show'
   end
 
+  def change_variant
+    old_variant_id = params[:old_variant_id].to_i
+    new_variant_id = params[:new_variant_id].to_i
+
+    @order = current_order(create_order_if_necessary: true)
+
+    existing = @order.line_items.detect { |li| li.variant_id == new_variant_id }
+    old = @order.line_items.detect { |li| li.variant_id == old_variant_id }
+
+    if existing
+      existing.update(variant_id: new_variant_id, quantity: existing.quantity + old.quantity)
+      old.destroy
+    else
+      old.update(variant_id: new_variant_id)
+    end
+
+    @order.reload
+
+    render 'show'
+  end
+
   def destroy
     if @order = current_order
       @order.empty!
