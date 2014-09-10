@@ -1,15 +1,30 @@
-.f-wrp ng-open="signingUp"
-  form name='SignupForm' ng-submit="submit()"
+#signup.container
+  .row
+    .well.col-lg-8.col-lg-offset-2.col-xs-12
+      h1 Sign up
 
-    input.f-input ng-model="signup.email" placeholder='Email' required=true
-    p.error ng-bind="signup.errors.email"
+      form(name='signupForm' role="form" ng-submit="submit()" novalidate)
 
-    input.f-input ng-model="signup.password" placeholder='Password' type='password' required=true
-    p.error ng-bind="signup.errors.password"
+        .form-group
+          label(for="email") Email
+          input.form-control(name="email" ng-model="user.email" required autofocus)
+          p.error(ng-bind="user.errors.email[0]")
 
-    input.f-input ng-model="signup.password_confirmation" placeholder='Password Again' type='password' required=true
-    p.error ng-bind="signup.errors.password_confirmation"
+        .form-group
+          label(for="password") Password
+          input.form-control(name="password" ng-model="user.password" type='password' required)
+          p.error ng-bind="user.errors.password[0]"
 
-    button.b--full.b-cta--full.b--green.b-cta type='submit' Sign up
-    div.c-center
-      a ng-click="toggleSigninUp()" Cancel
+        .form-group
+          label(for="password-confirmation") Confirm Password
+          input.form-control(name="password-confirmation" ng-model="user.password_confirmation" type='password' required)
+          p.error(ng-bind="user.errors.password_confirmation[0]")
+
+        .pull-right
+          button.btn.btn-lg.btn-primary(type='submit' ng-disabled="signingUp")
+            span(ng-hide="signingUp") Sign up
+            span(ng-show="signingup") Loading...
+
+        nav
+          a(href="/#!/sign-in") Sign in
+          a(ng-click="connectWithFacebook()") Connect with Facebook
