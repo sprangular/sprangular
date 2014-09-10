@@ -22,3 +22,10 @@ Sprangular.directive 'variantSelection', ->
     $scope.selectValue = (value) ->
       $scope.values[value.option_type_id] = value
       $scope.variant = $scope.product.variantForValues(_.values($scope.values))
+
+  link: (scope, element, attrs) ->
+    scope.values = {}
+
+    if scope.variant
+      for value in scope.variant.option_values
+        scope.values[value.option_type_id] = value
