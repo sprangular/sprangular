@@ -10,9 +10,11 @@ Sprangular.service 'Wallet', ($q, $http, CreditCard, StripeService) ->
 
     # Load credit cards from account
     load: (account) ->
-      @cards.length = 0
+      @cards = []
+
       for paymentSource in account.payment_sources
         @cards.push CreditCard.load(paymentSource)
+
       @loaded = true
 
     findCardForSource: (sourceId) ->
@@ -39,13 +41,8 @@ Sprangular.service 'Wallet', ($q, $http, CreditCard, StripeService) ->
           errorCallback(error)
 
     delete: (card) ->
-      deferred = $q.defer()
       cards = @cards
       $http.delete("/api/credit_cards/#{card.id}")
         .success (data) ->
           i = cards.indexOf card
           cards.splice(i, 1) unless i is -1
-          deferred.resolve Wallet
-        .error (error) ->
-          deferred.reject error
-
