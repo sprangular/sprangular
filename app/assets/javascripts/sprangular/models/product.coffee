@@ -53,3 +53,6 @@ class Sprangular.Product
       values = _.map matchingVariants, (variant) -> variant.option_values
       values = _.flatten(values)
       _.unique(values)
+
+  findVariant: (variant_id) ->
+    _.find @variants, (variant) -> variant.id == variant_id
