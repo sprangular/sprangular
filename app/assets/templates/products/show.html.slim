@@ -7,7 +7,7 @@
         p.desc(ng-bind="product.description")
 
       section.options(ng-show='product.hasVariants')
-        variant-selection(product="product" variant="selected.variant")
+        variant-selection(product="product" variant="selected.variant" class="{'btn-group-lg': true}")
 
       section.add.row
         .col-sm-12
