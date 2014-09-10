@@ -1,26 +1,19 @@
 Sprangular.controller 'SignupCtrl', ($scope, Account, Status) ->
-  signup = { email: '', password: '', password_confirmation: '', errors: {} }
 
-  $scope.signup = signup
-  $scope.showFacebookConnect = false
+  $scope.user = { email: '', password: '', password_confirmation: '', errors: {} }
+  $scope.signingUp = false
 
   $scope.submit = ->
-    signup.errors = {}
-    $scope.showFacebookConnect = false
-    Account.signup(signup)
-      .then (content) ->
-        signup.email = ''
-        signup.password = ''
-        signup.password_confirmation = ''
-        $scope.accountLoaded content
+    $scope.user.errors = {}
+    $scope.signingUp = true
 
+    Account.signup($scope.user)
+      .success (content) ->
+        $scope.signingUp = false
         Flash.success("Successfully signed up!")
         $location.path(Status.requestedPath || "/")
         Status.requestedPath = null
 
-      , (errors) ->
-        console.log errors
-        signup.errors = errors
-        if /Facebook/.test errors.email
-          $scope.showFacebookConnect = true
-
+      .error (data) ->
+        $scope.signingUp = false
+        $scope.user.errors = data.errors
