@@ -39,4 +39,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "spree_sample"
   s.add_development_dependency "spree_auth_devise"
+  s.add_development_dependency "pry"
 end
