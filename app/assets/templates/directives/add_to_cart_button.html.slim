@@ -3,11 +3,11 @@ a.btn.btn-primary.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disable
 
   span(ng-hide="adding")
     span(ng-hide='variant || !product.hasVariants')
-      span.glyphicon.glyphicon-plus
-      span.caption Choose option
+      span.caption Select option
 
     span(ng-show='variant || !product.hasVariants')
       span.glyphicon.glyphicon-plus
+      | &nbsp;
       span.caption
         span(ng-hide="inCart()") Add to cart
         span(ng-show="inCart() && quantity <= 1") Add another
