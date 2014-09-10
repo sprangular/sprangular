@@ -2,7 +2,7 @@
   .row
     .well.col-lg-8.col-lg-offset-2.col-xs-12
       h1 Sign in
-      form(name='signinForm' role="form" ng-submit="login()")
+      form(name='signinForm' role="form" ng-submit="login()" novalidate)
         .form-group
           label(for="email") Email
           input.form-control(name="email" ng-model="user.email" type="email" autofocus)
@@ -19,7 +19,7 @@
       nav
         a(href="/#!/forgot-password") Forgot your password?
         a(ng-click="connectWithFacebook()") Connect with Facebook
-        a(ng-click="toggleSigninUp()") Create account
+        a(href="/#!/sign-up") Create account
 
       #fb-root
 
