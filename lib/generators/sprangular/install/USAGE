@@ -1,0 +1,10 @@
+Description:
+    Installs sprangular
+
+Example:
+    rails generate sprangular:install
+
+    This will update:
+        config/routes.rb
+        application.css
+        application.js

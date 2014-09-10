@@ -4,36 +4,20 @@ Spree + Angular.js frontend
 
 ## Installing
 
-Add `sprangular` and rails-assets source to your Gemfile
+Add `sprangular` and rails-assets source to your Gemfile and `bundle`
 
 ```
 source 'https://rails-assets.org'
 gem 'sprangular'
 ```
 
-Mount the Sprangular and Spree engines in your `config/routes.rb`
+Then install sprangular:
 
 ```
-mount Sprangular::Engine  => '/'
-mount Spree::Core::Engine => '/spree'
+rails generate sprangular:install
 ```
 
 The admin is now accessible at http://localhost:3000/spree/admin
-
-
-Add `sprangular` to your asset pipeline.
-
-In `application.js`, add sprangular:
-
-```
-//= require sprangular
-```
-
-In `application.css`, add sprangular (optional):
-
-```
-//= require sprangular
-```
 
 ## Events
 
