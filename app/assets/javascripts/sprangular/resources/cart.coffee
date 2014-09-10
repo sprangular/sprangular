@@ -75,6 +75,11 @@ Sprangular.service "Cart", ($q, $http, _, Catalog) ->
       $http.put '/api/cart/update_variant', params
         .success(@load)
 
+    changeVariant: (oldVariant, newVariant) ->
+      params = $.param(old_variant_id: oldVariant.id, new_variant_id: newVariant.id)
+
+      $http.put '/api/cart/change_variant', params
+        .success(@load)
 
   service.reload()
   service
