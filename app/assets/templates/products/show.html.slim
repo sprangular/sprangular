@@ -7,7 +7,7 @@
         p.desc(ng-bind="product.description")
 
       section.options(ng-show='product.hasVariants')
-        ng-include(src="'products/options.html'")
+        variant-selection(product="product" variant="selected.variant")
 
       section.add.row
         .col-sm-12
