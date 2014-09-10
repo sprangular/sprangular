@@ -33,8 +33,9 @@
               p
                 a(href="#!/products/{{item.variant.product.slug}}")
                   | {{item.variant.product.name}}
-              p
-                | {{item.variant.options_text}}
+
+                section.options(ng-show='item.variant.product.hasVariants')
+                  variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
 
             td.quantity
               quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
