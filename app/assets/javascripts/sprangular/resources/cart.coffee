@@ -1,32 +1,27 @@
-Sprangular.service "Cart", ($q, $http, _) ->
-
-  fetchDefer = $q.defer()
+Sprangular.service "Cart", ($q, $http, _, Catalog) ->
 
   service =
 
-    items: [] # [{variant: Z, quantity: N, price: P}]
-    number: null
-    totalPrice: null
+    clear: ->
+      @items = []
+      @number = null
+      @totalPrice = 0
 
-    init: ->
-      # Remove items from local cart (so we don't loose the data binding)
-      @items.length = 0
+    reload: ->
+      service.clear()
 
-      # Fetch cart content
       $http.get '/api/cart.json'
-        .success (data) ->
-          cartItems = data.line_items
-          service.number = data.number
-          service.totalPrice = data.total
-          for item in cartItems
-            # variant = catalog.findVariant { id: item.variant_id }
-            service.items.push variant: variant, quantity: item.quantity, price: item.price
+        .success(@load)
 
-          fetchDefer.resolve service
-        .error (error) ->
+    load: (data) ->
+      service.clear()
+      service.number = data.number
+      service.totalPrice = data.total
 
-    fetch: ->
-      return fetchDefer.promise
+      for item in data.line_items
+        variant = Sprangular.extend(item.variant, Sprangular.Variant)
+
+        service.items.push(variant: variant, quantity: item.quantity, price: item.price)
 
     isEmpty: ->
       @items.length == 0
@@ -36,27 +31,20 @@ Sprangular.service "Cart", ($q, $http, _) ->
 
     empty: ->
       $http.delete '/api/cart'
-        .success (data) ->
-          service.items.length = 0
-          service.totalPrice = 0
-
-    reload: ->
-      service.init()
+        .success(@load)
 
     addVariant: (variant, quantity) ->
-      # Check if we need to Add or Update
-      foundProducts = @findVariant variant.id
+      foundProducts = @findVariant(variant.id)
 
       if foundProducts.length > 0
-        @changeItemQuantity foundProducts[0], quantity
+        @changeItemQuantity(foundProducts[0], quantity)
       else
-        @items.push variant: variant, quantity: quantity, price: variant.price
-        params = $.param variant_id: variant.id, quantity: quantity
+        @items.push(variant: variant, quantity: quantity, price: variant.price)
+
+        params = $.param(variant_id: variant.id, quantity: quantity)
+
         $http.post '/api/cart/add_variant', params
-          .success (data) ->
-            service.number = data.number
-            service.totalPrice = data.total
-            fetchDefer.resolve service
+          .success(@load)
 
     findVariant: (variantId) ->
       item for item in @items when item.variant.id is variantId
@@ -75,14 +63,14 @@ Sprangular.service "Cart", ($q, $http, _) ->
       item.quantity = 0 if item.quantity < 0
 
       if item.quantity != oldQuantity
-        @updateItemQuantity item.variant.id, item.quantity
+        @updateItemQuantity(item.variant.id, item.quantity)
 
     updateItemQuantity: (id, quantity) ->
-      params = $.param variant_id: id, quantity: quantity
-      $http.put '/api/cart/update_variant', params
-        .success (data) ->
-          service.totalPrice = data.total
-          fetchDefer.resolve service
+      params = $.param(variant_id: id, quantity: quantity)
 
-  service.init()
+      $http.put '/api/cart/update_variant', params
+        .success(@load)
+
+
+  service.reload()
   service
