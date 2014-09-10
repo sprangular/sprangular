@@ -42,6 +42,11 @@ Sprangular.config ($routeProvider) ->
       controller: 'SigninCtrl'
       templateUrl: 'account/signin.html'
 
+    .when '/sign-up',
+      requires: {guest: true}
+      controller: 'SignupCtrl'
+      templateUrl: 'account/signup.html'
+
     .when '/forgot-password',
       requires: {guest: true}
       controller: 'ForgotPasswordCtrl'
