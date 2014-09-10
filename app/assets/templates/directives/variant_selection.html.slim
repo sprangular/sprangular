@@ -1,8 +1,8 @@
 .option.row(ng-repeat="option in product.options" class="{{option.type.name}}")
   .col-lg-12
-    h3(ng-bind="option.type.presentation")
+    h4(ng-bind="option.type.presentation")
 
-    .values.btn-group.btn-group-lg
+    .values.btn-group(ng-class="class")
       button.btn.btn-default(ng-repeat="item in option.values"
              ng-class="{'btn-success': isValueSelected(item.value)}"
              ng-disabled="!isValueAvailable(item.value)"
