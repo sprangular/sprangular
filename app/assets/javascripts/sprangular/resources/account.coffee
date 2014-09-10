@@ -72,7 +72,8 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
     signup: (data) ->
       params =
         spree_user: data
-      $http.post '/api/account', $.param params
+
+      $http.post('/api/account', $.param(params))
         .success (data) ->
           service.reload().then (data) ->
             Cart.reload()
