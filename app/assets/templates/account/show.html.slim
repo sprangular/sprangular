@@ -1,5 +1,5 @@
 div ng-show="account.fetched"
-  h1 My account
+  h1 My Account
 
   .well
     div ng-hide="editing"
@@ -11,7 +11,9 @@ div ng-show="account.fetched"
         dt Password
         dd •••••••
 
-      a.btn.btn-primary ng-click="edit()" Edit
+      .clearfix
+        .pull-right
+          a.btn.btn-primary.btn-lg(ng-click="edit()") Edit
 
     div ng-show="editing"
       div ng-include="'account/edit.html'"
