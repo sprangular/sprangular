@@ -18,8 +18,12 @@ Sprangular.service "Cart", ($q, $http, _, Catalog) ->
       service.number = data.number
       service.totalPrice = data.total
 
+      products = Sprangular.extend(data.products, Sprangular.Product)
+
       for item in data.line_items
-        variant = Sprangular.extend(item.variant, Sprangular.Variant)
+        for product in products
+          variant = product.findVariant(item.variant_id)
+          break if variant
 
         service.items.push(variant: variant, quantity: item.quantity, price: item.price)
 
