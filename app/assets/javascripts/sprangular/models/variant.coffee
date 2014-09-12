@@ -9,3 +9,6 @@ class Sprangular.Variant
       extra: image.extra_url
 
     @image = @images[0]
+
+  isAvailable: ->
+    !@track_inventory || @in_stock
