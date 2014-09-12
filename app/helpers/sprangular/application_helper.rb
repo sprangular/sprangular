@@ -31,5 +31,15 @@ module Sprangular
         templates: templates
       }
     end
+
+    def cached_templates
+      root = Sprangular::Engine.root
+
+      Dir[root + "app/assets/templates/layout/**"].inject({}) do |hash, path|
+        asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
+        hash[asset_path] = Tilt.new(path).render.html_safe
+        hash
+      end
+    end
   end
 end
