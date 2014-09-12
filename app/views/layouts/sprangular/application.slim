@@ -10,6 +10,8 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
 
+    = render 'sprangular/shared/templates'
+
   body(ng-class="status.bodyClass")
     #initializing(ng-hide='status.initialized' ng-cloak)
       ng-include(src="'assets/layout/initializing.html'")
