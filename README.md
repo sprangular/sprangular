@@ -60,10 +60,9 @@ Create a `app/assets/javascripts/sprangular/controllers` or `resources` director
 
 ### Routes
 
-Create a `app/assets/javascripts/sprangular/customRoutes.coffee` and add the route. For example:
+Edit your `app/assets/javascripts/sprangular/extraRoutes.coffee` and add the route. For example:
 
 ```
-
 Sprangular.config ($routeProvider) ->
 
   $routeProvider
