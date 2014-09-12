@@ -1,4 +1,4 @@
-#product-details.container
+#product-details.container(ng-class="{'sold-out': !product.isAvailable() }")
   .row
     .col-sm-6.col-xs-12
       section.details
@@ -15,7 +15,9 @@
         .col-sm-4
           quantity-input(quantity="selected.quantity")
         .col-sm-8
-          add-to-cart-button(product="product"
+          p.sold-out(ng-if="selected.variant && !selected.variant.isAvailable()") This item is sold out
+          add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"
+                             product="product"
                              variant="selected.variant"
                              quantity="selected.quantity"
                              class="{'btn-lg': true, 'btn-block': true}")
