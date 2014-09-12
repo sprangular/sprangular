@@ -11,4 +11,4 @@ ul.nav.navbar-nav.navbar-right
   li.cart
     a(id="cart-link" data-template="cart/cart.html" data-container="header" data-placement="bottom-right" bs-popover)
       span.glyphicon.glyphicon-shopping-cart
-      span.cart-qty(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
+      span.cart-qty.badge.(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
