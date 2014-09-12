@@ -1,6 +1,6 @@
 module Sprangular
   class Engine < ::Rails::Engine
-    config.cached_paths = %w(layout directives products)
+    config.cached_paths = %w(layout directives products home)
 
     initializer "sprangular.assets.configure" do |app|
       Rails.application.assets.register_mime_type 'text/html', '.html'
