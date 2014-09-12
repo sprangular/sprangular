@@ -5,10 +5,9 @@
         img.img-responsive.full(ng-src="{{product.image.large}}")
 
     h2.title
-      a(ng-href='{{product.permalink}}') {{product.name}}
+      a(ng-href='{{product.permalink}}' ng-bind="product.name")
 
-    p.desc
-      | {{product.description}}
+    p.desc(ng-bind='product.description')
 
     .with-variants(ng-show="product.hasVariants")
       ul.variants
