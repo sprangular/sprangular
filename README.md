@@ -1,6 +1,6 @@
 # Sprangular
 
-Spree + Angular.js frontend
+Spree + Angular.js + Bootstrap
 
 ## Installing
 
