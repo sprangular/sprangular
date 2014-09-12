@@ -13,4 +13,5 @@
 //= require jquery
 //= require bootstrap
 //= require sprangular
+//= require sprangular/extraRoutes
 //= require_tree .
