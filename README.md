@@ -36,6 +36,16 @@ $scope.$on 'cart.add', ->
   $scope.showModal = true
 ```
 
+### Caching templates
+
+By default templates are fetched on-demand. Templates in `app/assets/templates/layout` are pre-generated and cached in the layout for increased speed.
+You can add additional templates to be pre-cached, by setting `config.cached_paths`
+
+```
+# config/intiailzers/sprangular.rb
+Sprangular::Engine.config.cached_paths += %w(products)
+```
+
 ## Overriding
 
 ### Views

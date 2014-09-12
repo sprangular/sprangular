@@ -1,5 +1,7 @@
 module Sprangular
   class Engine < ::Rails::Engine
+    config.cached_paths = ['layout']
+
     initializer "sprangular.assets.configure" do |app|
       Rails.application.assets.register_mime_type 'text/html', '.html'
       Rails.application.assets.register_engine '.slim', Slim::Template

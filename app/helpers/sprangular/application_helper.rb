@@ -33,9 +33,15 @@ module Sprangular
     end
 
     def cached_templates
+      Sprangular::Engine.config.cached_paths.inject({}) do |files, dir|
+        cached_templates_for_dir(files, dir)
+      end
+    end
+
+    def cached_templates_for_dir(files, dir)
       root = Sprangular::Engine.root
 
-      files = Dir[root + "app/assets/templates/layout/**"].inject({}) do |hash, path|
+      files = Dir[root + "app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
         asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
         local_path = 'app/assets/templates/' + asset_path
 
@@ -44,7 +50,7 @@ module Sprangular
         hash
       end
 
-      Dir["app/assets/templates/layout/**"].inject(files) do |hash, path|
+      Dir["app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
         asset_path = asset_path path.gsub("/app/assets/templates/", "")
 
         hash[asset_path] = Tilt.new(path).render.html_safe
