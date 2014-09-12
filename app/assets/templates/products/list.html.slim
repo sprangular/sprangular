@@ -17,9 +17,9 @@
             ng-class="{'is-selected': isSelected(variant)}"
             ng-bind="variant.options_text")
 
-      p.sold-out(ng-if="!selectedVariants[product].isAvailable()") This item is sold out
+      p.sold-out(ng-if="selectedVariants[product] && !selectedVariants[product].isAvailable()") This item is sold out
 
-      add-to-cart-button(ng-if="selectedVariants[product].isAvailable()"
+      add-to-cart-button(ng-if="!selectedVariants[product] || selectedVariants[product].isAvailable()"
                          product="product"
                          variant="selectedVariants[product.id]"
                          quantity=1)
