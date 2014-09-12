@@ -39,9 +39,7 @@ module Sprangular
         asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
         local_path = 'app/assets/templates/' + asset_path
 
-        if !File.exists?(local_path)
-          hash[asset_path] = Tilt.new(path).render.html_safe
-        end
+        hash[asset_path] = Tilt.new(path).render.html_safe if !File.exists?(local_path)
 
         hash
       end
