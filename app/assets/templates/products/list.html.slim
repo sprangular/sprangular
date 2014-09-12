@@ -1,5 +1,5 @@
 .product-listing
-  .col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'")
+  .col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable() }")
     .col-lg-12
       a(ng-href='{{product.permalink}}')
         img.img-responsive.full(ng-src="{{product.image.large}}")
@@ -17,7 +17,17 @@
             ng-class="{'is-selected': isSelected(variant)}"
             ng-bind="variant.options_text")
 
-      add-to-cart-button(product="product" variant="selectedVariants[product.id]" quantity=1)
+      p.sold-out(ng-if="!selectedVariants[product].isAvailable()") This item is sold out
+
+      add-to-cart-button(ng-if="selectedVariants[product].isAvailable()"
+                         product="product"
+                         variant="selectedVariants[product.id]"
+                         quantity=1)
 
     .without-variants(ng-hide="product.hasVariants")
-      add-to-cart-button(product="product" variant="product.master" quantity=1)
+      p.sold-out(ng-if="!product.isAvailable()") This item is sold out
+
+      add-to-cart-button(ng-if="product.isAvailable()"
+                         product="product"
+                         variant="product.master"
+                         quantity=1)
