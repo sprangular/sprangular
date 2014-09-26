@@ -1,23 +1,27 @@
 h2 Order History
 
-div ng-repeat="order in account.orders"
-  dl
-    dt Number
-    dd
-      | {{order.number}}
+#order-history
+  .not-found(ng-if='account.orders.length == 0')
+    p No orders on file
 
-    dt Ordered on
-    dd
-      | {{order.completed_at | date}}
+  .order(ng-repeat="order in account.orders")
+    dl
+      dt Number
+      dd
+        | {{order.number}}
 
-    dt Amount
-    dd
-      | {{order.total | currency}}
+      dt Ordered on
+      dd
+        | {{order.completed_at | date}}
 
-    dt Shipment Status
-    dd
-      | {{order.shipment_state}}
+      dt Amount
+      dd
+        | {{order.total | currency}}
 
-  a.btn.btn-primary.btn-small ng-click="showOrderDetails(order)" See details
+      dt Shipment Status
+      dd
+        | {{order.shipment_state}}
 
-  hr
+    a.btn.btn-primary.btn-small ng-click="showOrderDetails(order)" See details
+
+    hr
