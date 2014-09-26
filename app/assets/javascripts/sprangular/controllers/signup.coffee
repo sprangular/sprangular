@@ -1,4 +1,4 @@
-Sprangular.controller 'SignupCtrl', ($scope, Account, Status, Flash) ->
+Sprangular.controller 'SignupCtrl', ($scope, $location, Account, Status, Flash) ->
 
   $scope.user = { email: '', password: '', password_confirmation: '', errors: {} }
   $scope.signingUp = false
