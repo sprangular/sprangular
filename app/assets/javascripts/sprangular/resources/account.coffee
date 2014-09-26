@@ -1,4 +1,4 @@
-Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
+Sprangular.service "Account", ($http, _, $q, Wallet, Cart, Flash) ->
 
   service =
 
@@ -27,28 +27,19 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Address, Cart, Flash) ->
           service.isLogged = false
 
     populateAccount: (data) ->
-      @account = data
+      @user = Sprangular.extend(data, Sprangular.User)
+
       @isLogged = true
       @email = data.email
       @wallet = Wallet
-      @wallet.load(@account)
-      @shippingAddresses.length = 0
-      @billingAddresses.length = 0
-      @orders = data.orders
-      for address in @account.shipping_addresses
-        @shippingAddresses.push Address.load(address)
-      for address in @account.billing_addresses
-        @billingAddresses.push Address.load(address)
+      @wallet.load(@user)
 
     clear: ->
       @fetched = false
-      @account = {}
+      @user = {}
       @isLogged = false
       @email = null
       @wallet = null
-      @orders = []
-      @shippingAddresses = []
-      @billingAddresses = []
 
     login: (data) ->
       params =
