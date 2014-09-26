@@ -1,10 +1,10 @@
 h2 Order History
 
 #order-history
-  .not-found(ng-if='account.orders.length == 0')
+  .not-found(ng-if='user.orders.length == 0')
     p No orders on file
 
-  .order(ng-repeat="order in account.orders")
+  .order(ng-repeat="order in user.orders")
     dl
       dt Number
       dd
