@@ -1,0 +1,10 @@
+h2 Addresses
+
+#addresses
+  .not-found(ng-if='user.addresses.length == 0')
+    p No addresses on file
+
+  .address(ng-repeat="address in user.addresses")
+    dl
+
+    hr

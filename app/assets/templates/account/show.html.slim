@@ -1,4 +1,4 @@
-div ng-show="account.fetched"
+#account
   h1 My Account
 
   .well
@@ -6,7 +6,7 @@ div ng-show="account.fetched"
       dl
         dt Email
         dd
-          | {{account.email}}
+          | {{user.email}}
 
         dt Password
         dd •••••••
@@ -22,5 +22,7 @@ div ng-show="account.fetched"
       div ng-include="'account/edit.html'"
 
   div ng-include="'credit_cards/index.html'" ng-controller="WalletCtrl"
+
+  div ng-include="'addresses/index.html'" ng-controller="AddressListCtrl"
 
   div ng-include="'orders/index.html'" ng-controller="OrdersListCtrl"
