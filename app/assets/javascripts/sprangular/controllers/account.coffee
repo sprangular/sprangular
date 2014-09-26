@@ -1,13 +1,12 @@
-Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account) ->
+Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account, user) ->
 
-  user = { email: '', password: '', password_confirmation: '', errors: {} }
+  user.password = ''
+  user.password_confirmation = ''
 
-  $scope.account = Account
   $scope.editing = false
   $scope.user = user
 
   $scope.edit = ->
-    user.email = Account.email
     $scope.editing = true
 
   $scope.stopEdit = ->
@@ -21,5 +20,4 @@ Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, A
         $scope.editing = false
         $location.path('/') if !Account.isLogged
       , (errors) ->
-        console.log errors
         user.errors = errors
