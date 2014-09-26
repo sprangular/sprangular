@@ -58,7 +58,7 @@ class Sprangular.Product
     _.find @variants, (variant) -> variant.id == variant_id
 
   isAvailable: ->
-    if @master
-      @master.isAvailable()
-    else
+    if @hasVariants
       _.any @variants, (variant) -> variant.isAvailable()
+    else
+      @master.isAvailable()
