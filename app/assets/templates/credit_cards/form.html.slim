@@ -10,7 +10,7 @@ form.credit-card(novalidate)
     .col-md-4
       .form-group
         label(for='month') Month
-        input.form-control(type='number' name='month' min=1 max=12 ng-model='creditCard.month')
+        select.form-control(name='month' ng-options='m.index as (m.index + " - " + m.name) for m in months' ng-model='creditCard.month')
 
     .col-md-4
       .form-group
