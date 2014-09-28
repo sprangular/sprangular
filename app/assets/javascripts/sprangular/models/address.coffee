@@ -1,3 +1,5 @@
+'use strict'
+
 class Sprangular.Address
   init: ->
     @stateId = @state_id
