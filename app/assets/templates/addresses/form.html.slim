@@ -11,9 +11,8 @@ form.address(novalidate)
         input.form-control(type='text' name='last-name' ng-model='address.lastname')
 
   .form-group
-    label(for='street') Street
-    input.form-control(type='text' name='street' ng-model='address.address1')
-    input.form-control(type='text' name='street2' ng-model='address.address2')
+    label(for='street') Address
+    textarea.form-control(type='text' name='address' ng-model='address.address1' rows=2)
 
   .form-group
     label(for='city') City
