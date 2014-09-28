@@ -23,12 +23,12 @@ form.address(novalidate)
     .col-md-5
       .form-group
         label(for='country') Country
-        select.form-control(name='country' ng-model='address.countryId')
+        select.form-control(name='country' ng-options='c.id as c.name for c in countries' ng-model='address.countryId')
 
     .col-md-5
       .form-group
         label(for='state') State
-        select.form-control(name='state' ng-model='address.stateId')
+        select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId')
 
     .col-md-2
       .form-group
