@@ -68,6 +68,8 @@ Sprangular.config ($routeProvider) ->
       requires: {user: true, cart: true}
       controller: 'CheckoutDetailsCtrl'
       templateUrl: 'checkout/details.html'
+      resolve:
+        countries: (Geography) -> Geography.getCountryList()
 
     .when '/checkout/confirm',
       requires: {user: true, cart: true}

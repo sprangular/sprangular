@@ -9,13 +9,13 @@
         h2(ng-show='order.shipToBillAddress') Billing & Shipping Address
         h2(ng-hide='order.shipToBillAddress') Billing Address
 
-        address-form(address='order.billingAddress')
+        address-form(address='order.billingAddress' countries='countries')
 
         label
           input(type='checkbox' ng-model='order.shipToBillAddress')
           | &nbsp;Ship to billing address
 
-      section#shipping-address(ng-hide='order.shipToBillAddress')
+      section#shipping-address(ng-hide='order.shipToBillAddress' countries='countries')
         h2 Shipping Address
 
         address-form(address='order.shippingAddress')

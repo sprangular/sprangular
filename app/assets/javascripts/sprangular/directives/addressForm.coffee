@@ -3,11 +3,9 @@ Sprangular.directive 'addressForm', ->
   templateUrl: 'addresses/form.html'
   scope:
     address: '='
-  controller: ($scope, Geography) ->
+    countries: '='
+  controller: ($scope) ->
     $scope.selectedCountry = null
-
-    Geography.getCountryList().then (countries) ->
-      $scope.countries = countries
 
     $scope.$watch (-> $scope.address.countryId), (newCountryId) ->
       return unless newCountryId
