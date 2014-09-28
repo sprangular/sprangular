@@ -3,3 +3,4 @@ Sprangular.directive 'addressForm', ->
   templateUrl: 'addresses/form.html'
   scope:
     address: '='
+  controller: ($scope) ->

@@ -1,2 +1,6 @@
 Sprangular.controller 'CheckoutDetailsCtrl', ($scope, $location, Account, Cart, Checkout) ->
-  $scope.sameBillingShippingAddress = true
+  $scope.order =
+    creditCard: new Sprangular.CreditCard
+    billingAddress: new Sprangular.Address
+    shippingAddress: new Sprangular.Address
+    sameBillingShippingAddress: true

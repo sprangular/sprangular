@@ -3,34 +3,34 @@ form.address(novalidate)
     .col-md-6
       .form-group
         label(for='first-name') First Name
-        input.form-control(type='text' name='first-name' model='address.first_name')
+        input.form-control(type='text' name='first-name' ng-model='address.firstname')
 
     .col-md-6
       .form-group
         label(for='last-name') Last Name
-        input.form-control(type='text' name='last-name' model='address.last_name')
+        input.form-control(type='text' name='last-name' ng-model='address.lastname')
 
   .form-group
     label(for='street') Street
-    input.form-control(type='text' name='street' model='address.address1')
-    input.form-control(type='text' name='street2' model='address.address2')
+    input.form-control(type='text' name='street' ng-model='address.address1')
+    input.form-control(type='text' name='street2' ng-model='address.address2')
 
   .form-group
     label(for='city') City
-    input.form-control(type='text' name='city' model='address.city')
+    input.form-control(type='text' name='city' ng-model='address.city')
 
   .row
     .col-md-5
       .form-group
         label(for='country') Country
-        select.form-control(name='country')
+        select.form-control(name='country' ng-model='address.countryId')
 
     .col-md-5
       .form-group
         label(for='state') State
-        select.form-control(name='state')
+        select.form-control(name='state' ng-model='address.stateId')
 
     .col-md-2
       .form-group
         label(for='zip') Zip
-        input.form-control(type='text' name='zip' model='address.zip')
+        input.form-control(type='text' name='zip' ng-model='address.zipcode')

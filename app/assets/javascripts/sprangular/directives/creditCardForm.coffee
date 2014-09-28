@@ -3,3 +3,4 @@ Sprangular.directive 'creditCardForm', ->
   templateUrl: 'credit_cards/form.html'
   scope:
     creditCard: '='
+  controller: ($scope) ->

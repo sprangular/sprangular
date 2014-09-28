@@ -2,7 +2,7 @@ form.credit-card(novalidate)
   .form-group
     label(for='number') Number
     .input-group
-      input.form-control(type='text' name='number' model='creditCard.number')
+      input.form-control(type='text' name='number' ng-model='creditCard.number')
       .input-group-addon
         span.glyphicon.glyphicon-credit-card
 
@@ -10,14 +10,14 @@ form.credit-card(novalidate)
     .col-md-4
       .form-group
         label(for='month') Month
-        input.form-control(type='number' name='month' min=1 max=12 model='creditCard.month')
+        input.form-control(type='number' name='month' min=1 max=12 ng-model='creditCard.month')
 
     .col-md-4
       .form-group
         label(for='year') Year
-        input.form-control(type='number' name='year' min=Date.today.year max=(Date.today.year+20) model='creditCard.year')
+        input.form-control(type='number' name='year' min=Date.today.year max=(Date.today.year+20) ng-model='creditCard.year')
 
     .col-md-4
       .form-group
         label(for='cvv') CVV
-        input.form-control(type='number' name='cvv' min=1 max=9999 model='creditCard.cvv')
+        input.form-control(type='number' name='cvv' min=1 max=9999 ng-model='creditCard.cvv')
