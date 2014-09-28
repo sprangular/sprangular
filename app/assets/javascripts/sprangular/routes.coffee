@@ -62,28 +62,12 @@ Sprangular.config ($routeProvider) ->
 
     .when '/checkout',
       requires: {user: true, cart: true}
-      controller: 'CheckoutCtrl'
-      templateUrl: 'checkout/index.html'
+      redirectTo: '/checkout/details'
 
-    .when '/checkout/shipping',
+    .when '/checkout/details',
       requires: {user: true, cart: true}
-      controller: 'CheckoutShippingCtrl'
-      templateUrl: 'checkout/shipping.html'
-
-    .when '/checkout/billing',
-      requires: {user: true, cart: true}
-      controller: 'CheckoutBillingCtrl'
-      templateUrl: 'checkout/billing.html'
-
-    .when '/checkout/delivery',
-      requires: {user: true, cart: true}
-      controller: 'CheckoutDeliveryCtrl'
-      templateUrl: 'checkout/delivery.html'
-
-    .when '/checkout/payment',
-      requires: {user: true, cart: true}
-      controller: 'CheckoutPaymentCtrl'
-      templateUrl: 'checkout/payment.html'
+      controller: 'CheckoutDetailsCtrl'
+      templateUrl: 'checkout/details.html'
 
     .when '/checkout/confirm',
       requires: {user: true, cart: true}
