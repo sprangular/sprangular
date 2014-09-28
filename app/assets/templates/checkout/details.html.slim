@@ -9,12 +9,16 @@
         h2(ng-show='sameBillingShippingAddress') Address
         h2(ng-hide='sameBillingShippingAddress') Billing Address
 
+        address-form
+
         label
           input(type='checkbox' ng-model='sameBillingShippingAddress')
           | &nbsp;Same address for billing & shipping
 
       section#shipping-address(ng-hide='sameBillingShippingAddress')
         h2 Shipping Address
+
+        address-form
 
       section#delivery
         h2 Delivery Options
