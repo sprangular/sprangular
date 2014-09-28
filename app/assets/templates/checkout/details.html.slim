@@ -4,7 +4,7 @@
       h1 Checkout
 
   .row
-    .col-lg-12
+    .col-md-8
       section#billing-address
         h2(ng-show='order.shipToBillAddress') Billing & Shipping Address
         h2(ng-hide='order.shipToBillAddress') Billing Address
@@ -28,5 +28,6 @@
 
         credit-card-form(credit-card='order.creditCard')
 
-      section#payment
-        h2 Coupon
+    .col-md-4
+      .well
+        h2 Summary
