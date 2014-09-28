@@ -78,4 +78,5 @@ Sprangular.config ($routeProvider) ->
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
 
-    .otherwise '/'
+    .otherwise
+      templateUrl: '404.html'
