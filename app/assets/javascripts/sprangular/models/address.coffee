@@ -8,7 +8,8 @@ class Sprangular.Address
   serialize: ->
     firstname: @firstname
     lastname: @lastname
-    address1: @address
+    address1: @address1
+    address2: @address2
     city: @city
     phone: @phone
     zipcode: @zipcode
