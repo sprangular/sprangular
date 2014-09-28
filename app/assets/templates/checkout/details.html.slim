@@ -31,3 +31,20 @@
     .col-md-4
       .well
         h2 Summary
+
+        dl
+          dt Sub-total
+          dd
+            | {{order.subTotal | currency}}
+
+          dt Shipping
+          dd
+            | {{order.shippingTotal | currency}}
+
+          dt Tax
+          dd
+            | {{order.taxTotal | currency}}
+
+          dt Total
+          dd
+            | {{order.total | currency}}
