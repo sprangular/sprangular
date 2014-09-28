@@ -1,7 +1,10 @@
 form.credit-card(novalidate)
   .form-group
     label(for='number') Number
-    input.form-control(type='text' name='number' model='creditCard.number')
+    .input-group
+      input.form-control(type='text' name='number' model='creditCard.number')
+      .input-group-addon
+        span.glyphicon.glyphicon-credit-card
 
   .row
     .col-md-4
