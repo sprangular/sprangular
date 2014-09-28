@@ -3,4 +3,4 @@ Sprangular.controller 'CheckoutDetailsCtrl', ($scope, $location, Account, Cart, 
     creditCard: new Sprangular.CreditCard
     billingAddress: new Sprangular.Address
     shippingAddress: new Sprangular.Address
-    sameBillingShippingAddress: true
+    shipToBillAddress: true
