@@ -15,7 +15,7 @@ form.credit-card(novalidate)
     .col-md-4
       .form-group
         label(for='year') Year
-        input.form-control(type='number' name='year' min=Date.today.year max=(Date.today.year+20) ng-model='creditCard.year')
+        select.form-control(name='year' ng-options='year for year in years' ng-model='creditCard.year')
 
     .col-md-4
       .form-group

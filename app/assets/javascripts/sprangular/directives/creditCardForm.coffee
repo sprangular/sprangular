@@ -18,3 +18,6 @@ Sprangular.directive 'creditCardForm', ->
       {index: 11, name: 'November'},
       {index: 12, name: 'December'}
     ]
+
+    currentYear = (new Date).getFullYear()
+    $scope.years = [currentYear .. currentYear+15]
