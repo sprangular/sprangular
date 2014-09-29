@@ -1,4 +1,4 @@
-Sprangular.service 'Wallet', ($q, $http, CreditCard, StripeService) ->
+Sprangular.service 'Wallet', ($q, $http, StripeService) ->
 
   Wallet =
 
@@ -6,14 +6,17 @@ Sprangular.service 'Wallet', ($q, $http, CreditCard, StripeService) ->
     loaded: false
 
     newCard: (attributes) ->
-      new CreditCard(attributes)
+      new Sprangular.CreditCard(attributes)
 
     # Load credit cards from account
     load: (account) ->
       @cards = []
 
       for paymentSource in account.payment_sources
-        @cards.push CreditCard.load(paymentSource)
+        card = new Sprangular.CreditCard
+        card.init(paymentSource)
+
+        @cards.push(card)
 
       @loaded = true
 
