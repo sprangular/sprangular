@@ -14,6 +14,9 @@ class Sprangular.Address
     @stateId = @state_id
     @countryId = @country_id
 
+  fullName: ->
+    "#{@firstname} #{@lastname}"
+
   serialize: ->
     firstname: @firstname
     lastname: @lastname
