@@ -3,3 +3,4 @@ Sprangular.controller 'CheckoutDetailsCtrl', ($scope, $location, countries, Acco
   $scope.order = new Sprangular.Order
 
   $scope.submit = ->
+    $location.path('/checkout/confirm')
