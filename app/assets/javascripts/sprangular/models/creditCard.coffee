@@ -1,7 +1,7 @@
 'use strict'
 
 class Sprangular.CreditCard
-  this.TYPES =
+  this.TYPE_NAMES =
     master: 'MasterCard'
     visa: 'Visa'
     amex: 'American Express'
@@ -32,11 +32,18 @@ class Sprangular.CreditCard
     not (@token and @token.length > 0)
 
   determineType: ->
-    @type = switch @number[0]
-      when '4'
-        'Visa'
-      when '5'
-        'Master Card'
+    @type = if @number.match /^3[47]/
+              'amex'
+            else if @number.match /^4/
+              'visa'
+            else if @number.match /^5[1-5]/
+              'master'
+            else if @number.match /^6(5|011)/
+              'discover'
+            else if @number.match /^3(0[0-5]|36|38)/
+              'dinersclub'
+            else if @number.match /^(2131|1800|35)/
+              'jcb'
 
   serialize: ->
     name: @name
