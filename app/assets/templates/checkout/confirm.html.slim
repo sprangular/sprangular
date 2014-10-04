@@ -1,12 +1,22 @@
-h3 Summary of your order
+#checkout-confirm.container
+  .row
+    .col-md-12
+      h1 Confirm
 
-p Subtotal: {{order.item_total | currency}}
-p Tax: {{order.tax_total | currency}}
-p Total: {{order.total | currency}}
+  .row
+    .col-md-12
+      /! items and total
 
-pre
-  | {{order}}
+  .row
+    .col-md-6.address.billing
+      h2 Billing Address
 
-hr
+    .col-md-6.address.shipping
+      h2 Shipping Address
 
-a ng-click="advance()" Place order
+  .row
+    .col-md-12
+      h2 Payment Details
+
+  .row
+    a.btn.btn-primary.btn-block(ng-click="complete()") Place order
