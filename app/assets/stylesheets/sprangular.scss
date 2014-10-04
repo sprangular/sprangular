@@ -61,13 +61,15 @@ footer {
 
 /* Sticky footer styles
 -------------------------------------------------- */
+$footer-height: 80px;
+
 html {
   position: relative;
   min-height: 100%;
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: $footer-height;
 }
 
 footer {
@@ -75,5 +77,5 @@ footer {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 80px;
+  height: $footer-height;
 }
