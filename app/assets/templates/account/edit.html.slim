@@ -15,6 +15,11 @@ form(name='accountForm' ng-submit="save()" novalidate)
     input.form-control(name="password_confirmation" ng-model="user.password_confirmation" type='password')
     p.error(ng-bind="user.errors.password_confirmation[0]")
 
+  .form-group
+    label
+      input.form-control(ng-model="user.one_click_enabled" type='checkbox')
+      | Allow 1-click checkout
+
   .clearfix
     .pull-left
       a.btn.btn-link(ng-click="stopEdit()") Cancel
