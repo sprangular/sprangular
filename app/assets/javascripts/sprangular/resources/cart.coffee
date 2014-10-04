@@ -1,22 +1,19 @@
-Sprangular.service "Cart", ($q, $http, _, Catalog) ->
+Sprangular.service "Cart", ($http) ->
 
   service =
-
-    clear: ->
-      @items = []
-      @number = null
-      @totalPrice = 0
+    current: new Sprangular.Order
 
     reload: ->
-      service.clear()
+      service.current.clear()
 
       $http.get '/api/cart.json'
         .success(@load)
 
     load: (data) ->
-      service.clear()
-      service.number = data.number
-      service.totalPrice = data.total
+      order = service.current
+      order.clear()
+      order.number = data.number
+      order.total = data.total
 
       products = Sprangular.extend(data.products, Sprangular.Product)
 
@@ -25,36 +22,24 @@ Sprangular.service "Cart", ($q, $http, _, Catalog) ->
           variant = product.findVariant(item.variant_id)
           break if variant
 
-        service.items.push(variant: variant, quantity: item.quantity, price: item.price)
-
-    isEmpty: ->
-      @items.length == 0
-
-    totalQuantity: ->
-      @items.reduce ((total, item) -> total + item.quantity), 0
+        order.items.push(variant: variant, quantity: item.quantity, price: item.price)
 
     empty: ->
       $http.delete '/api/cart'
         .success(@load)
 
     addVariant: (variant, quantity) ->
-      foundProducts = @findVariant(variant.id)
+      foundProducts = @current.findVariant(variant.id)
 
       if foundProducts.length > 0
         @changeItemQuantity(foundProducts[0], quantity)
       else
-        @items.push(variant: variant, quantity: quantity, price: variant.price)
+        @current.items.push(variant: variant, quantity: quantity, price: variant.price)
 
         params = $.param(variant_id: variant.id, quantity: quantity)
 
         $http.post '/api/cart/add_variant', params
           .success(@load)
-
-    findVariant: (variantId) ->
-      item for item in @items when item.variant.id is variantId
-
-    hasVariant: (variant) ->
-      variant && @findVariant(variant.id).length > 0
 
     removeItem: (item) ->
       i = @items.indexOf item
@@ -80,6 +65,11 @@ Sprangular.service "Cart", ($q, $http, _, Catalog) ->
 
       $http.put '/api/cart/change_variant', params
         .success(@load)
+
+    totalQuantity: -> @current.totalQuantity()
+    findVariant: (variantId) -> @current.findVariant(variantId)
+    hasVariant: (variant) -> @current.hasVariant(variant)
+    isEmpty: -> @current.isEmpty()
 
   service.reload()
   service

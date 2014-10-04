@@ -1,13 +1,13 @@
 Sprangular.controller "CartCtrl", ($scope, Cart, Status) ->
 
-  $scope.cart = Cart
+  $scope.cart = Cart.current
   $scope.status = Status
 
   $scope.removeItem = (item) ->
     Cart.removeItem item
 
   $scope.isEmpty = ->
-    Cart.isEmpty()
+    Cart.current.isEmpty()
 
   $scope.empty = ->
     Cart.empty()

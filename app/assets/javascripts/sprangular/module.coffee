@@ -49,7 +49,7 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
       $location.path('/')
       event.preventDefault()
 
-    else if requirements.cart && Cart.items.length == 0
+    else if requirements.cart && Cart.current.items.length == 0
       Flash.error('Sorry, there are no items in your cart.')
       $location.path('/')
       event.preventDefault()

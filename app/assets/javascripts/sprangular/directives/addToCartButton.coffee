@@ -13,7 +13,7 @@ Sprangular.directive 'addToCartButton', ->
     $scope.adding = false
 
     $scope.inCart = ->
-      Cart.hasVariant($scope.variant)
+      Cart.current.hasVariant($scope.variant)
 
     $scope.addToCart = ->
       $scope.adding = true
