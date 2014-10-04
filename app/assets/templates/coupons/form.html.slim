@@ -2,7 +2,9 @@ a(ng-show='!showCouponEntry && !order.couponCode' ng-click='showCouponEntry = tr
 a(ng-show='!showCouponEntry && order.couponCode' ng-click='showCouponEntry = true') Change coupon
 
 section#coupon-entry(ng-show='showCouponEntry')
-  form
-    input(ng-model='order.couponCode')
+  form.form-inline(role='form' ng-submit='showCouponEntry = false')
+    .form-group
+      label(for='coupon-code') Coupon Code
+      input.form-control(name='coupon-code' ng-model='order.couponCode')
 
-    button.btn(ng-click='showCouponEntry = false') Save
+    button.btn.btn-primary(type='submit') Save
