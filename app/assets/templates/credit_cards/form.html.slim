@@ -4,7 +4,11 @@ form.credit-card(novalidate)
     .input-group
       input.form-control(type='text' name='number' ng-model='creditCard.number')
       .input-group-addon
-        span.glyphicon.glyphicon-credit-card
+        i.fa.fa-credit-card(ng-show="!creditCard.type")
+        i.fa.fa-cc-visa(ng-show="creditCard.type == 'visa'")
+        i.fa.fa-cc-mastercard(ng-show="creditCard.type == 'master'")
+        i.fa.fa-cc-amex(ng-show="creditCard.type == 'amex'")
+        i.fa.fa-cc-discover(ng-show="creditCard.type == 'discover'")
 
   .row
     .col-md-4
