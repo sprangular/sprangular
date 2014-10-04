@@ -5,6 +5,7 @@
 //= require underscore
 //= require jquery
 //= require angular
+//= require validity
 
 //
 // Angular specific
