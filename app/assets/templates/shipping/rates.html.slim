@@ -1,0 +1,6 @@
+ul.list-unstyled
+  li(ng-repeat='shippingRate in rates')
+    label
+      input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate')
+      span
+        | &nbsp;{{shippingRate.name}} {{shippingRate.rate | currency}}
