@@ -55,4 +55,11 @@
           dd
             | {{order.total | currency}}
 
-        a Add a coupon
+        a(ng-show='!showCouponEntry && !order.couponCode' ng-click='showCouponEntry = true') Add a coupon
+        a(ng-show='!showCouponEntry && order.couponCode' ng-click='showCouponEntry = true') Change coupon
+
+        section#coupon-entry(ng-show='showCouponEntry')
+          form
+            input(ng-model='order.couponCode')
+
+            button.btn(ng-click='showCouponEntry = false') Save
