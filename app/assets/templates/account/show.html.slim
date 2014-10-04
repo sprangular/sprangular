@@ -11,6 +11,11 @@
         dt Password
         dd •••••••
 
+        dt One-click Checkout
+        dd
+          span(ng-if='user.oneClickEnabled') Enabled
+          span(ng-if='!user.oneClickEnabled') Disabled
+
       .clearfix
         .pull-right
           a.btn.btn-primary.btn-lg(ng-click="edit()")
