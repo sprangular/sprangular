@@ -1,6 +1,6 @@
 ul.list-unstyled
   li(ng-repeat='shippingRate in rates')
     label
-      input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate')
+      input(type='radio' ng-model='order.shipping_method_id' ng-value='shippingRate.shippingMethodId')
       span
-        | &nbsp;{{shippingRate.name}} {{shippingRate.rate | currency}}
+        | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency}}

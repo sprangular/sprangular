@@ -5,7 +5,7 @@ Sprangular.directive 'shippingRateSelection', ->
     order: '='
   controller: ($scope) ->
     $scope.rates = [
-      {id: 1, name: 'Standard', rate: 0},
-      {id: 2, name: '2 Day Air', rate: 10.45},
-      {id: 3, name: 'Next Day Air', rate: 29.20}
+      {shippingMethodId: 1, name: 'Standard', cost: 0},
+      {shippingMethodId: 2, name: '2 Day Air', cost: 10.45},
+      {shippingMethodId: 3, name: 'Next Day Air', cost: 29.20}
     ]
