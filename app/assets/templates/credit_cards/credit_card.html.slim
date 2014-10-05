@@ -1,0 +1,15 @@
+.card
+  span
+    | {{card.name}}
+  br
+
+  span
+    | {{card.ccName}} &nbsp;
+    code •••• •••• •••• {{card.lastDigits}}
+  br
+
+  span
+    | {{card.month}} / {{card.year}}
+  br
+
+  a.btn.btn-mini.btn-primary(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure?") Delete
