@@ -9,7 +9,37 @@
   .row
     .col-md-12
       h2 Summary
-      /! items and total
+
+      table.table.table-striped
+        tr
+          th Name
+          th(width="15%") Quantity
+          th Price
+
+        tr.item(ng-repeat='item in order.items')
+          td.name
+            | {{item.variant.product.name}}
+            span(ng-if='item.variant.product.hasVariants()')
+              | &nbsp;{{item.variant.options_text}}
+
+          td.quantity.number(ng-bind='item.quantity')
+          td.price.number(ng-bind='item.price * item.quantity | currency')
+
+        tr.item-total
+          td Sub-total
+          td.number(colspan=2 ng-bind='order.itemTotal | currency')
+
+        tr.shipping
+          td Shipping
+          td.number(colspan=2 ng-bind='order.shipTotal | currency')
+
+        tr.taxes
+          td Taxes
+          td.number(colspan=2 ng-bind='order.taxTotal | currency')
+
+        tr.total
+          td Total
+          td.number(colspan=2 ng-bind='order.total | currency')
 
   .row
     .col-md-6.address.billing
