@@ -1,15 +1,22 @@
 .card
-  span
-    | {{card.name}}
-  br
+  .col-md-2
+    i.fa.fa-5x.fa-credit-card(ng-show="!card.type")
+    i.fa.fa-5x.fa-cc-visa(ng-show="card.type == 'visa'")
+    i.fa.fa-5x.fa-cc-mastercard(ng-show="card.type == 'master'")
+    i.fa.fa-5x.fa-cc-amex(ng-show="card.type == 'amex'")
+    i.fa.fa-5x.fa-cc-discover(ng-show="card.type == 'discover'")
 
-  span
-    | {{card.ccName}} &nbsp;
-    code •••• •••• •••• {{card.lastDigits}}
-  br
+  .col-md-10
+    dl
+      dt Type
+      dd(ng-bind="typeName()")
 
-  span
-    | {{card.month}} / {{card.year}}
-  br
+      dt Number
+      dd
+        | •••• •••• •••• {{card.lastDigits}}
 
-  a.btn.btn-mini.btn-primary(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure?") Delete
+      dt Expiration
+      dd
+        | {{card.month}} / {{card.year}}
+
+    a.btn.btn-mini.btn-primary(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure?") Delete
