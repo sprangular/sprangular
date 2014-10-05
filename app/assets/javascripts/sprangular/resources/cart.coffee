@@ -4,8 +4,6 @@ Sprangular.service "Cart", ($http) ->
     current: new Sprangular.Order
 
     reload: ->
-      service.current.clear()
-
       $http.get '/api/cart.json'
         .success(@load)
 
@@ -27,12 +25,14 @@ Sprangular.service "Cart", ($http) ->
 
         order.items.push(variant: variant, quantity: item.quantity, price: item.price)
 
+      order
+
     empty: ->
       $http.delete '/api/cart'
         .success(@load)
 
     addVariant: (variant, quantity) ->
-      foundProducts = @current.findVariant(variant.id)
+      foundProducts = @findVariant(variant.id)
 
       if foundProducts.length > 0
         @changeItemQuantity(foundProducts[0], quantity)
@@ -45,8 +45,9 @@ Sprangular.service "Cart", ($http) ->
           .success(@load)
 
     removeItem: (item) ->
-      i = @items.indexOf item
-      @items.splice(i, 1) unless i is -1
+      order = service.current
+      i = order.items.indexOf item
+      order.items.splice(i, 1) unless i is -1
       @updateItemQuantity item.variant.id, 0
 
     changeItemQuantity: (item, delta) ->
@@ -74,5 +75,6 @@ Sprangular.service "Cart", ($http) ->
     hasVariant: (variant) -> @current.hasVariant(variant)
     isEmpty: -> @current.isEmpty()
 
+  service.clear()
   service.reload()
   service
