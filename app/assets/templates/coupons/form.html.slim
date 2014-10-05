@@ -4,7 +4,7 @@ a(ng-show='!showCouponEntry && order.couponCode' ng-click='showCouponEntry = tru
 section#coupon-entry(ng-show='showCouponEntry')
   form.form-inline(role='form' ng-submit='showCouponEntry = false')
     .form-group
-      label(for='coupon-code') Coupon Code
+      label.control-label(for='coupon-code') Coupon
       input.form-control(name='coupon-code' ng-model='order.couponCode')
 
     button.btn.btn-primary(type='submit') Save
