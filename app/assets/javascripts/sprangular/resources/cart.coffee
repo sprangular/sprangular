@@ -13,6 +13,9 @@ Sprangular.service "Cart", ($http) ->
       order = service.current
       order.clear()
       order.number = data.number
+      order.itemTotal = data.item_total
+      order.taxTotal = data.tax_total
+      order.shipTotal = data.ship_total
       order.total = data.total
 
       products = Sprangular.extend(data.products, Sprangular.Product)

@@ -41,11 +41,11 @@
         dl.dl-horizontal
           dt Sub-total
           dd
-            | {{order.subTotal | currency}}
+            | {{order.itemTotal | currency}}
 
           dt Shipping
           dd
-            | {{order.shippingTotal | currency}}
+            | {{order.shipTotal | currency}}
 
           dt Tax
           dd
