@@ -29,3 +29,9 @@ class Sprangular.Order
 
   hasVariant: (variant) ->
     variant && @findVariant(variant.id).length > 0
+
+  actualShippingAddress: ->
+    if @shipToBillAddress
+      @billingAddress
+    else
+      @shippingAddress
