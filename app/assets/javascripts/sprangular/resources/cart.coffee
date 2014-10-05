@@ -70,10 +70,11 @@ Sprangular.service "Cart", ($http) ->
       $http.put '/api/cart/change_variant', params
         .success(@load)
 
-    totalQuantity: -> @current.totalQuantity()
+    clear:                   -> @current.clear()
+    totalQuantity:           -> @current.totalQuantity()
     findVariant: (variantId) -> @current.findVariant(variantId)
-    hasVariant: (variant) -> @current.hasVariant(variant)
-    isEmpty: -> @current.isEmpty()
+    hasVariant: (variant)    -> @current.hasVariant(variant)
+    isEmpty:                 -> @current.isEmpty()
 
   service.clear()
   service.reload()
