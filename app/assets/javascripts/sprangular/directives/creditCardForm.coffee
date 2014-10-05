@@ -22,5 +22,6 @@ Sprangular.directive 'creditCardForm', ->
     currentYear = (new Date).getFullYear()
     $scope.years = [currentYear .. currentYear+15]
 
-    $scope.$watch 'creditCard.number', ->
+    $scope.$watch 'creditCard.number', (number) ->
+      $scope.creditCard.lastDigits = number.substr(-4)
       $scope.creditCard.determineType()
