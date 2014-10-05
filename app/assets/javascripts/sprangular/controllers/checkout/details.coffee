@@ -1,6 +1,6 @@
-Sprangular.controller 'CheckoutDetailsCtrl', ($scope, $location, countries, Account, Cart, Checkout) ->
+Sprangular.controller 'CheckoutDetailsCtrl', ($scope, $location, countries, order, Account, Cart, Checkout) ->
   $scope.countries = countries
-  $scope.order = new Sprangular.Order
+  $scope.order = order
 
   $scope.submit = ->
     $location.path('/checkout/confirm')
