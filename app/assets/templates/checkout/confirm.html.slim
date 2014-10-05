@@ -3,20 +3,43 @@
     .col-md-12
       h1 Confirm
 
+      .pull-right
+        a.btn.btn-primary.btn-lg(ng-click="complete()") Place Order
+
   .row
     .col-md-12
+      h2 Summary
       /! items and total
 
   .row
     .col-md-6.address.billing
       h2 Billing Address
 
+      dl
+        dt Name
+        dd(ng-bind='order.billingAddress.fullName()')
+
+        dt State/Province
+        dd(ng-bind='order.billingAddress.state.name')
+
+        dt Country
+        dd(ng-bind='order.billingAddress.country.name')
+
     .col-md-6.address.shipping
       h2 Shipping Address
 
+      dl
+        dt Name
+        dd(ng-bind='order.shippingAddress.fullName()')
+
+        dt State/Province
+        dd(ng-bind='order.shippingAddress.state.name')
+
+        dt Country
+        dd(ng-bind='order.shippingAddress.country.name')
   .row
     .col-md-12
       h2 Payment Details
 
   .row
-    a.btn.btn-primary.btn-block(ng-click="complete()") Place order
+    a.btn.btn-primary.btn-lg.btn-block(ng-click="complete()") Place Order
