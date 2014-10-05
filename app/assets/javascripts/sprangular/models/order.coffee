@@ -2,6 +2,8 @@
 
 class Sprangular.Order
   constructor: ->
+    @creditCard = new Sprangular.CreditCard
+
     @clear()
 
   init: ->
@@ -11,7 +13,6 @@ class Sprangular.Order
     @items = []
     @billingAddress = new Sprangular.Address
     @shippingAddress = new Sprangular.Address
-    @creditCard = new Sprangular.CreditCard
     @shipToBillAddress = true
     @itemTotal = 0
     @taxTotal = 0
