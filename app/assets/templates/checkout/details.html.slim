@@ -15,10 +15,10 @@
           input(type='checkbox' ng-model='order.shipToBillAddress')
           | &nbsp;Ship to billing address
 
-      section#shipping-address(ng-hide='order.shipToBillAddress' countries='countries')
+      section#shipping-address(ng-hide='order.shipToBillAddress')
         h2 Shipping Address
 
-        address-form(address='order.shippingAddress')
+        address-form(address='order.shippingAddress' countries='countries')
 
       section#delivery
         h2 Delivery Options
