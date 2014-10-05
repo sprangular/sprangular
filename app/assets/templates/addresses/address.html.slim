@@ -1,0 +1,25 @@
+.address
+  dl.dl-horizontal
+    dt Name
+    dd(ng-bind='address.fullName()')
+
+    dt Address
+    dd
+      | {{address.address1}}
+      br(ng-if='address.address2')
+      | {{address.address2}}
+
+    dt City
+    dd(ng-bind='address.city')
+
+    dt State/Province
+    dd(ng-bind='address.state.name')
+
+    dt Country
+    dd(ng-bind='address.country.name')
+
+    dt Zip Code
+    dd(ng-bind='address.zipcode')
+
+    dt Phone
+    dd(ng-bind='address.phone')

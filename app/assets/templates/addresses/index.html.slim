@@ -4,30 +4,6 @@ h2 Addresses
   .not-found(ng-if='user.addresses.length == 0')
     p No addresses on file
 
-  .address(ng-repeat="address in user.addresses")
-    dl.dl-horizontal
-      dt Name
-      dd(ng-bind='address.fullName()')
-
-      dt City
-      dd
-        | {{address.address1}}
-        br(ng-if='address.address2')
-        | {{address.address2}}
-
-      dt City
-      dd(ng-bind='address.city')
-
-      dt State/Province
-      dd(ng-bind='address.state.name')
-
-      dt Country
-      dd(ng-bind='address.country.name')
-
-      dt Zip Code
-      dd(ng-bind='address.zipcode')
-
-      dt Phone
-      dd(ng-bind='address.phone')
-
+  .found(ng-repeat="address in user.addresses")
+    address-view(address='address')
     hr

@@ -45,28 +45,13 @@
     .col-md-6.address.billing
       h2 Billing Address
 
-      dl
-        dt Name
-        dd(ng-bind='order.billingAddress.fullName()')
-
-        dt State/Province
-        dd(ng-bind='order.billingAddress.state.name')
-
-        dt Country
-        dd(ng-bind='order.billingAddress.country.name')
+      address-view(address='order.billingAddress')
 
     .col-md-6.address.shipping
       h2 Shipping Address
 
-      dl
-        dt Name
-        dd(ng-bind='order.shippingAddress.fullName()')
+      address-view(address='order.actualShippingAddress()')
 
-        dt State/Province
-        dd(ng-bind='order.shippingAddress.state.name')
-
-        dt Country
-        dd(ng-bind='order.shippingAddress.country.name')
   .row
     .col-md-12
       h2 Payment Details
