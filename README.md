@@ -2,6 +2,19 @@
 
 Spree + Angular.js + Bootstrap
 
+## Features Overview
+
+- Full Spree front-end
+- Single page checkout
+- 1-click checkout
+- Product listing with infinite scroll
+- Product search with auto-complete
+- Easy to override templates/controllers
+- Easy to add new routes/controllers/templates
+- Full Google Analytics support
+- Advanced variant selection
+- Cart dropdown/popover
+
 ## Installing
 
 Add `sprangular` and rails-assets source to your Gemfile and `bundle`
