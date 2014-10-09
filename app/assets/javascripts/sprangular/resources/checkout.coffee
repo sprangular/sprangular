@@ -25,7 +25,8 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         'state': 'complete'
 
-      card = Cart.current.creditCard
+      order = Cart.current
+      card = order.creditCard
 
       if card.id
         params['use_existing_card'] = 'yes'
@@ -38,7 +39,7 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
         params["payment_source[#{paymentMethodId}][month]"] = card.month
         params["payment_source[#{paymentMethodId}][year]"] = card.year
         params["payment_source[#{paymentMethodId}][last_digits]"] = card.lastDigits
-        params["payment_source[#{paymentMethodId}][name]"] = card.name
+        params["payment_source[#{paymentMethodId}][name]"] = order.billingAddress.fullName()
 
       @put(params)
 
