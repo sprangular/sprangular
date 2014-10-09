@@ -3,6 +3,7 @@
 //
 
 //= require underscore
+//= require underscore.string/lib/underscore.string
 //= require jquery
 //= require angular
 //= require validity
