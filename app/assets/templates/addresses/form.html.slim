@@ -1,39 +1,51 @@
 form.address(novalidate)
   .row
+    .col-md-12
+      p.error(ng-if='address.errors') Please correct the errors below:
+
+  .row
     .col-md-6
-      .form-group
-        label(for='first-name') First Name
+      .form-group(ng-class="{'has-error': address.errors.firstname}")
+        label.control-label(for='first-name') First Name
         input.form-control(type='text' name='first-name' ng-model='address.firstname' autofocus)
+        p.error(ng-bind='address.errors.firstname')
 
     .col-md-6
-      .form-group
-        label(for='last-name') Last Name
+      .form-group(ng-class="{'has-error': address.errors.lastname}")
+        label.control-label(for='last-name') Last Name
         input.form-control(type='text' name='last-name' ng-model='address.lastname')
+        p.error(ng-bind='address.errors.lastname')
 
-  .form-group
-    label(for='street') Address
+  .form-group(ng-class="{'has-error': address.errors.address1}")
+    label.control-label(for='street') Address
     textarea.form-control(type='text' name='address' ng-model='address.address1' rows=2)
+    p.error(ng-bind='address.errors.address1')
 
-  .form-group
-    label(for='city') City
+  .form-group(ng-class="{'has-error': address.errors.city}")
+    label.control-label(for='city') City
     input.form-control(type='text' name='city' ng-model='address.city')
+    p.error(ng-bind='address.errors.city')
 
   .row
     .col-md-5
-      .form-group
-        label(for='country') Country
+      .form-group(ng-class="{'has-error': address.errors.country}")
+        label.control-label(for='country') Country
         select.form-control(name='country' ng-options='c.id as c.name for c in countries' ng-model='address.countryId')
+        p.error(ng-bind='address.errors.country')
 
     .col-md-5
-      .form-group
-        label(for='state') State/Province
+      .form-group(ng-class="{'has-error': address.errors.state}")
+        label.control-label(for='state') State/Province
         select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId')
+        p.error(ng-bind='address.errors.state')
 
     .col-md-2
-      .form-group
-        label(for='zip') Zip
+      .form-group(ng-class="{'has-error': address.errors.zipcode}")
+        label.control-label(for='zip') Zip
         input.form-control(type='text' name='zip' ng-model='address.zipcode')
+        p.error(ng-bind='address.errors.zipcode')
 
-  .form-group
-    label(for='phone') Phone
+  .form-group(ng-class="{'has-error': address.errors.phone}")
+    label.control-label(for='phone') Phone
     input.form-control(type='tel' name='phone' ng-model='address.phone' placeholder='###-###-####')
+    p.error(ng-bind='address.errors.phone')
