@@ -1,72 +1,29 @@
-Sprangular.service "Checkout", ($q, $http, _, Account, Cart) ->
-
-  content =
-    order: [] # [{...}]
-    number: null
-
-  contentDefer = $q.defer()
+Sprangular.service "Checkout", ($http, _, Account, Cart) ->
 
   checkout =
+    update: ->
+      order = Cart.current
 
-    init: (number) ->
-      $http.get "/spree/api/orders/#{number}"
-        .success (data) ->
-          content.order = data
-          content.number = data.number
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404'
-
-    next: ->
-      $http.put "/spree/api/checkouts/#{content.number}/next"
-        .success (data) ->
-          content.order = data
-          content.number = data.number
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404', error
-
-    setShippingAddresses: (shippingAddress) ->
       params =
         order:
-          ship_address_attributes: shippingAddress.serialize()
-        state: 'address'
-      $http.put("/spree/api/checkouts/#{content.number}", $.param params)
-        .success (data) ->
-          content.order = data
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404', error
+          ship_address_attributes: order.actualShippingAddress().serialize()
+          bill_address_attributes: order.billingAddress.serialize()
+        state: 'confirm'
 
-    setBillingAddresses: (billingAddress) ->
+      if order.shippingMethod
+        params['order[shipments_attributes][][id]'] = order.shippingMethod.id
+
+      if order.shippingRate
+        params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
+
+      @put(params)
+
+    complete: ->
       params =
-        order:
-          bill_address_attributes: billingAddress.serialize()
-        state: 'address'
-      $http.put("/spree/api/checkouts/#{content.number}", $.param params)
-        .success (data) ->
-          content.order = data
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404', error
+        'order[payments_attributes][][payment_method_id]': 99
+        'state': 'complete'
 
-    setDelivery: (shipment, shippingRate) ->
-      params =
-        'order[shipments_attributes][][id]': shipment.id
-        'order[shipments_attributes][][selected_shipping_rate_id]': shippingRate.id
-        'state': 'delivery'
-
-      $http.put("/spree/api/checkouts/#{content.number}", $.param params)
-        .success (data) ->
-          content.order = data
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404', error
-
-    setPayment: (card, paymentMethodId) ->
-      params =
-        'order[payments_attributes][][payment_method_id]': paymentMethodId
-        'state': 'payment'
+      card = Cart.current.creditCard
 
       if card.id
         params['use_existing_card'] = 'yes'
@@ -81,23 +38,14 @@ Sprangular.service "Checkout", ($q, $http, _, Account, Cart) ->
         params["payment_source[#{paymentMethodId}][last_digits]"] = card.lastDigits
         params["payment_source[#{paymentMethodId}][name]"] = card.name
 
-      $http.put("/spree/api/checkouts/#{content.number}", $.param params)
-        .success (data) ->
-          content.order = data
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404', error
+      @put(params)
 
-    confirm: ->
-      $http.put("/spree/api/checkouts/#{content.number}")
-        .success (data) ->
-          content.order = data
-          Account.reload()
-          contentDefer.resolve content
-        .error (error) ->
-          console.log '404', error
+    put: (params) ->
+      params ||= {}
 
-    fetchContent: ->
-      return contentDefer.promise
+      $http.put("/spree/api/checkouts/#{Cart.current.number}", $.param(params))
+           .success(Cart.load)
+           .error (response) ->
+             Cart.error(response.errors)
 
   checkout
