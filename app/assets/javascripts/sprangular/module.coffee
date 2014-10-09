@@ -1,10 +1,10 @@
 # Main Module
 window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngAnimate', 'underscore', 'ngSanitize', 'rawFilter', 'mgcrea.ngStrap', 'infinite-scroll']
-  .run ->
-    if PAYMENT_METHODS.stripe
-      Stripe.setPublishableKey PAYMENT_METHODS.stripe.publishable_key
-    else
-      alert 'Stripe Payment Method is not configured in Spree...'
+  .run (Env) ->
+    paymentMethods = Env.config.payment_methods
+
+    if !paymentMethods.gateway
+      alert 'Gateway is not configured in Spree...'
 
 Sprangular.extend = (instance, type) ->
   return unless instance
