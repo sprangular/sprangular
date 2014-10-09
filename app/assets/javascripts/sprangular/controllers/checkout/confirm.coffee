@@ -7,6 +7,7 @@ Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, order, Account,
 
     Checkout.complete()
       .success ->
+        Cart.init()
         $location.path('/checkout/complete')
 
       .error ->
