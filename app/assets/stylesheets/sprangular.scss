@@ -59,6 +59,12 @@ footer {
   }
 }
 
+form {
+  p.error {
+    color: $brand-danger;
+  }
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 $footer-height: 80px;
