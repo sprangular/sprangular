@@ -20,8 +20,9 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
       @put(params)
 
     complete: ->
+      paymentMethodId = Env.config.payment_methods['gateway'].id
       params =
-        'order[payments_attributes][][payment_method_id]': 99
+        'order[payments_attributes][][payment_method_id]': paymentMethodId
         'state': 'complete'
 
       card = Cart.current.creditCard
