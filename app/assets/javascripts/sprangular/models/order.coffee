@@ -26,8 +26,9 @@ class Sprangular.Order
   isValid: ->
     @billingAddress.validate()
     @actualShippingAddress().validate()
+    @creditCard.validate()
 
-    @billingAddress.isValid() && @actualShippingAddress().isValid()
+    @billingAddress.isValid() && @actualShippingAddress().isValid() && (@creditCard.id || @creditCard.isValid())
 
   isInvalid: ->
     !@isValid()
