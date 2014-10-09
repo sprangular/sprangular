@@ -11,4 +11,4 @@ Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, order, Account,
         $location.path('/checkout/complete')
 
       .error ->
-        $scope.processing = false
+        $location.path('/checkout')
