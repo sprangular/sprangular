@@ -23,6 +23,15 @@ class Sprangular.Order
   isEmpty: ->
     @items.length == 0
 
+  isValid: ->
+    @billingAddress.validate()
+    @actualShippingAddress().validate()
+
+    @billingAddress.isValid() && @actualShippingAddress().isValid()
+
+  isInvalid: ->
+    !@isValid()
+
   totalQuantity: ->
     @items.reduce ((total, item) -> total + item.quantity), 0
 
