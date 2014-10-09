@@ -64,10 +64,10 @@ Sprangular.config ($routeProvider) ->
       requires: {user: true, cart: true}
       redirectTo: '/checkout/details'
 
-    .when '/checkout/details',
+    .when '/checkout',
       requires: {user: true, cart: true}
-      controller: 'CheckoutDetailsCtrl'
-      templateUrl: 'checkout/details.html'
+      controller: 'CheckoutCtrl'
+      templateUrl: 'checkout/index.html'
       resolve:
         countries: (Geography) -> Geography.getCountryList()
         order: (Cart) ->
