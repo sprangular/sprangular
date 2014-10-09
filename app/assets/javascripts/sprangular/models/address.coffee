@@ -19,6 +19,7 @@ class Sprangular.Address
     "#{@firstname} #{@lastname}"
 
   serialize: ->
+    id: @id
     firstname: @firstname
     lastname: @lastname
     address1: @address1
