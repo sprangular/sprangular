@@ -9,6 +9,12 @@ class Sprangular.CreditCard
     dinersclub: 'Diners Club'
     jcb: 'JCB'
 
+  Validity.define @,
+    number: 'required'
+    month: 'required'
+    year: 'required'
+    cvv: ['required', length: {greaterThan: 2, lessThan: 5}]
+
   constructor: ->
     @number = ''
     @name = null
