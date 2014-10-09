@@ -1,10 +1,26 @@
 #checkout-confirm.container
   .row
-    .col-md-12
+    .col-md-4
       h1 Confirm
 
-      .pull-right
-        a.btn.btn-primary.btn-lg(ng-click="complete()") Place Order
+    .pull-right
+      a.btn.btn-primary.btn-lg(ng-click="complete()") Place Order
+
+  .row
+    .col-lg-4.col-md-6.address.billing
+      h2 Billing Address
+
+      address-view(address='order.billingAddress')
+
+    .col-lg-4.col-md-6.address.shipping
+      h2 Shipping Address
+
+      address-view(address='order.actualShippingAddress()')
+
+    .col-lg-4.col-md-6.payment
+      h2 Payment
+
+      credit-card-view(card='order.creditCard')
 
   .row
     .col-md-12
@@ -42,21 +58,5 @@
           td.number(colspan=2 ng-bind='order.total | currency')
 
   .row
-    .col-md-6.address.billing
-      h2 Billing Address
-
-      address-view(address='order.billingAddress')
-
-    .col-md-6.address.shipping
-      h2 Shipping Address
-
-      address-view(address='order.actualShippingAddress()')
-
-  .row
     .col-md-12
-      h2 Payment Details
-
-      credit-card-view(card='order.creditCard')
-
-  .row
-    a.btn.btn-primary.btn-lg.btn-block(ng-click="complete()") Place Order
+      a.btn.btn-primary.btn-lg.btn-block(ng-click="complete()") Place Order
