@@ -1,10 +1,11 @@
-Sprangular.service "Checkout", ($http, _, Account, Cart) ->
+Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
 
   checkout =
     update: ->
       order = Cart.current
 
       params =
+        use_billing: order.shipToBillAddress
         order:
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
