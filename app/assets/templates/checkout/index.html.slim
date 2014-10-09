@@ -1,6 +1,6 @@
 #checkout-details.container
   .row
-    .col-lg-12
+    .col-md-12
       h1 Checkout
 
   .row
@@ -30,9 +30,12 @@
 
         credit-card-form(credit-card='order.creditCard')
 
-      button.btn.btn-primary.btn-block.btn-lg(ng-click='submit()')
-        span.caption Confirm
-        span.glyphicon.glyphicon-chevron-right
+      button.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
+        span(ng-if='!processing')
+          span.caption Confirm
+          span.glyphicon.glyphicon-chevron-right
+        span(ng-if='processing')
+          span.caption Loading...
 
     .col-md-4
       .well
