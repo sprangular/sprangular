@@ -4,7 +4,9 @@
       h1 Confirm
 
     .pull-right
-      a.btn.btn-primary.btn-lg(ng-click="complete()") Place Order
+      a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
+        span(ng-if='!processing') Place Order
+        span(ng-if='processing') Processing...
 
   .row
     .col-lg-4.col-md-6.address.billing
@@ -59,4 +61,6 @@
 
   .row
     .col-md-12
-      a.btn.btn-primary.btn-lg.btn-block(ng-click="complete()") Place Order
+      a.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
+        span(ng-if='!processing') Place Order
+        span(ng-if='processing') Processing...
