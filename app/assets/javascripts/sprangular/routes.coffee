@@ -62,10 +62,6 @@ Sprangular.config ($routeProvider) ->
 
     .when '/checkout',
       requires: {user: true, cart: true}
-      redirectTo: '/checkout/details'
-
-    .when '/checkout',
-      requires: {user: true, cart: true}
       controller: 'CheckoutCtrl'
       templateUrl: 'checkout/index.html'
       resolve:
