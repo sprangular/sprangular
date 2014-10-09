@@ -1,5 +1,5 @@
 form.credit-card(novalidate)
-  .form-group
+  .form-group(ng-class="{'has-error': creditCard.errors.number}")
     label(for='number') Number
     .input-group
       input.form-control(type='text' name='number' ng-model='creditCard.number')
@@ -10,18 +10,23 @@ form.credit-card(novalidate)
         i.fa.fa-cc-amex(ng-show="creditCard.type == 'amex'")
         i.fa.fa-cc-discover(ng-show="creditCard.type == 'discover'")
 
+    p.error(ng-bind='creditCard.errors.number')
+
   .row
     .col-md-4
-      .form-group
-        label(for='month') Month
+      .form-group(ng-class="{'has-error': creditCard.errors.month}")
+        label.control-label.control-label(for='month') Month
         select.form-control(name='month' ng-options='m.index as (m.index + " - " + m.name) for m in months' ng-model='creditCard.month')
+        p.error(ng-bind='creditCard.errors.month')
 
     .col-md-4
-      .form-group
-        label(for='year') Year
+      .form-group(ng-class="{'has-error': creditCard.errors.year}")
+        label.control-label(for='year') Year
         select.form-control(name='year' ng-options='year for year in years' ng-model='creditCard.year')
+        p.error(ng-bind='creditCard.errors.year')
 
     .col-md-4
-      .form-group
-        label(for='cvv') Verification Code
+      .form-group(ng-class="{'has-error': creditCard.errors.cvv}")
+        label.control-label(for='cvv') Verification Code
         input.form-control(type='number' name='cvv' min=1 max=9999 ng-model='creditCard.cvv')
+        p.error(ng-bind='creditCard.errors.cvv')
