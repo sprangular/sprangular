@@ -3,7 +3,7 @@ class Sprangular::CartsController < Sprangular::BaseController
   def show
     @order = current_order
     if @order
-      render 'show'
+      render 'spree/api/orders/show'
     else
       not_found
     end
@@ -15,7 +15,7 @@ class Sprangular::CartsController < Sprangular::BaseController
     if populator.populate(params[:variant_id], params[:quantity])
       current_order.ensure_updated_shipments
       @order = current_order
-      render 'show'
+      render 'spree/api/orders/show'
     else
       invalid_resource!(populator)
     end
@@ -34,7 +34,7 @@ class Sprangular::CartsController < Sprangular::BaseController
     data.merge!(id: line_item.id) if line_item
     @order.contents.update_cart(line_items_attributes: { '0' => data })
 
-    render 'show'
+    render 'spree/api/orders/show'
   end
 
   def change_variant
@@ -55,7 +55,7 @@ class Sprangular::CartsController < Sprangular::BaseController
 
     @order.reload
 
-    render 'show'
+    render 'spree/api/orders/show'
   end
 
   def destroy
@@ -63,10 +63,9 @@ class Sprangular::CartsController < Sprangular::BaseController
       @order.empty!
       @order.state ='cart'
       @order.save!
-      render 'show'
+      render 'spree/api/orders/show'
     else
       not_found
     end
   end
-
 end
