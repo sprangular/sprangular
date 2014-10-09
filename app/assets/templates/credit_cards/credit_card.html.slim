@@ -1,16 +1,13 @@
 .card
-  .col-md-2
+  .col-md-3
     i.fa.fa-5x.fa-credit-card(ng-show="!card.type")
     i.fa.fa-5x.fa-cc-visa(ng-show="card.type == 'visa'")
     i.fa.fa-5x.fa-cc-mastercard(ng-show="card.type == 'master'")
     i.fa.fa-5x.fa-cc-amex(ng-show="card.type == 'amex'")
     i.fa.fa-5x.fa-cc-discover(ng-show="card.type == 'discover'")
 
-  .col-md-10
+  .col-md-9
     dl
-      dt Type
-      dd(ng-bind="typeName()")
-
       dt Number
       dd
         | •••• •••• •••• {{card.lastDigits}}
