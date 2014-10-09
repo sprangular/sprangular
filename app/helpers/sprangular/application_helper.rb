@@ -26,7 +26,8 @@ module Sprangular
           site_name: config.site_name,
           logo:      asset_path(config.logo),
           default_country_id: config.default_country_id,
-          facebook_app_id: ENV['FACEBOOK_APP_ID']
+          facebook_app_id: ENV['FACEBOOK_APP_ID'],
+          payment_methods: payment_methods
         },
         templates: templates
       }
