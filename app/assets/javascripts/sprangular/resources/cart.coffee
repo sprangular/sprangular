@@ -8,7 +8,26 @@ Sprangular.service "Cart", ($http) ->
         .success(@load)
 
     errors: (errors) ->
-      service.current.errors = errors
+      order = service.current
+
+      order.errors = {}
+      order.billingAddress.errors = {}
+      order.shippingAddress.errors = {}
+      order.creditCard.errors = {}
+
+      for key, attrErrors of errors
+        parts = key.split('.')
+
+        object = parts[0]
+        attr = parts[1]
+
+        switch object
+          when 'ship_address'
+            order.shipingAddress.errors[attr] = attrErrors
+          when 'bill_address'
+            order.billingAddress.errors[attr] = attrErrors
+          else
+            order.errors[key] = attrErrors
 
     load: (data) ->
       order = service.current
