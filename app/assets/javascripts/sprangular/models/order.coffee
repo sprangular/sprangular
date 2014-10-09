@@ -18,6 +18,7 @@ class Sprangular.Order
     @taxTotal = 0
     @shipTotal = 0
     @total = 0
+    @errors = null
 
   isEmpty: ->
     @items.length == 0

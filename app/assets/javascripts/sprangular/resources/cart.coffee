@@ -7,6 +7,9 @@ Sprangular.service "Cart", ($http) ->
       $http.get '/api/cart.json'
         .success(@load)
 
+    errors: (errors) ->
+      service.current.errors = errors
+
     load: (data) ->
       order = service.current
       order.clear()
