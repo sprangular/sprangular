@@ -9,6 +9,7 @@ class Sprangular.Address
     stateId: 'required'
     countryId: ['required', {greaterThan: 0}]
     zipcode: 'required'
+    phone: 'required'
 
   init: ->
     @stateId = @state_id
