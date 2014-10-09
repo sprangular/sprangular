@@ -6,8 +6,8 @@ class Sprangular.Address
     lastname: 'required'
     address1: 'required'
     city: 'required'
-    stateId: 'required'
-    countryId: ['required', {greaterThan: 0}]
+    state: 'required'
+    country: 'required'
     zipcode: 'required'
     phone: 'required'
 
