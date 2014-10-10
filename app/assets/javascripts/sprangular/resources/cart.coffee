@@ -102,6 +102,14 @@ Sprangular.service "Cart", ($http) ->
       $http.put '/api/cart/change_variant', params
         .success(@load)
 
+    shippingRates: (options) ->
+      params =
+        country_id: options.countryId
+        state_id: options.stateId
+        zipcode: options.zipcode
+
+      $http.get('/api/shipping_rates', {params: params, class: Sprangular.ShippingRate})
+
     clear:                   -> @current.clear()
     totalQuantity:           -> @current.totalQuantity()
     findVariant: (variantId) -> @current.findVariant(variantId)

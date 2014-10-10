@@ -1,6 +1,8 @@
 object @order
 extends "spree/api/orders/order"
 
+attribute :use_billing
+
 if lookup_context.find_all("spree/api/orders/#{root_object.state}").present?
   extends "spree/api/orders/#{root_object.state}"
 end
