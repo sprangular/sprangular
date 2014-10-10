@@ -1,21 +1,41 @@
 class Sprangular::ShippingRatesController < Sprangular::BaseController
   def index
-    country_id = params[:country_id]
-    state_id = params[:state_id]
+    if params[:zipcode]
+      country_id, state_id = lookup_location(params[:zipcode])
+      zipcode = params[:zipcode]
+    else
+      country_id = params[:country_id] || Spree::Config.default_country_id
+      state_id = params[:state_id]
+      zipcode = ''
+    end
 
     if current_order.use_billing
-      update_address(current_order.bill_address ||= Spree::Address.new, country_id, state_id)
+      update_address(current_order.bill_address ||= Spree::Address.new, country_id, state_id, zipcode)
     else
-      update_address(current_order.ship_address ||= Spree::Address.new, country_id, state_id)
+      update_address(current_order.ship_address ||= Spree::Address.new, country_id, state_id, zipcode)
     end
 
     @shipping_rates = shipping_rates
   end
 
 private
-  def update_address(address, country_id, state_id)
-    current_order.ship_address.country_id = country_id
-    current_order.ship_address.state_id = state_id
+  def lookup_location(zip)
+    country_id, state_id = nil, nil
+    results = Geocoder.search(zip)
+
+    if results.present?
+      result = results.first
+      country_id = Spree::Country.where(iso: result.country_code).first!.id
+      state_id = Spree::State.where(abbr: result.state_code).first!.id
+    end
+
+    return country_id, state_id
+  end
+
+  def update_address(address, country_id, state_id, zipcode)
+    address.country_id = country_id
+    address.state_id = state_id
+    address.zipcode = zipcode
   end
 
   def shipping_rates
