@@ -58,7 +58,7 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Cart, Flash) ->
         .success (data) ->
           service.isLogged = false
           service.clear()
-          Cart.reload()
+          Cart.init()
 
     signup: (data) ->
       params =
