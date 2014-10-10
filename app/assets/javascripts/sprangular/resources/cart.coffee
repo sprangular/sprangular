@@ -33,20 +33,13 @@ Sprangular.service "Cart", ($http) ->
       order = service.current
       order.clear()
       order.number = data.number
-      order.itemTotal = data.item_total
-      order.taxTotal = data.tax_total
-      order.shipTotal = data.ship_total
-      order.total = data.total
-      order.shipToBillAddress = true
+      order.shipToBillAddress = data.use_billing
 
       if data.bill_address
         order.billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
 
       if data.ship_address
         order.shippingAddress = Sprangular.extend(data.ship_address, Sprangular.Address)
-
-      if order.shippingAddress && order.billingAddress && order.billingAddress.id != order.shippingAddress.id
-        order.shipToBillAddress = false
 
       products = Sprangular.extend(data.products, Sprangular.Product)
 
