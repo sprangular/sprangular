@@ -12,7 +12,7 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
         state: 'confirm'
 
       if order.shippingMethod
-        params['order[shipments_attributes][][id]'] = order.shippingMethod.id
+        params.order.shipping_method_id = order.shipping_method_id
 
       if order.shippingRate
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
