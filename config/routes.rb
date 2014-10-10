@@ -18,6 +18,7 @@ Sprangular::Engine.routes.draw do
       resources :passwords
       resources :credit_cards
       resources :countries, only: :index
+      resources :shipping_rates, only: :index
     end
   end
 end
