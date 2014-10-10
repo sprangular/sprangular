@@ -21,7 +21,14 @@
                              product="product"
                              variant="selected.variant"
                              quantity="selected.quantity"
-                             class="{'btn-lg': true, 'btn-block': true, 'btn-primary': true")
+                             class="{'btn-lg': true, 'btn-block': true, 'btn-primary': !hasVariant(), 'btn-default': hasVariant()}")
+
+      section.in-cart.row(ng-show='hasVariant()')
+        .col-md-12
+          p Item was added to your cart
+          a.btn.btn-success.btn-lg.btn-block(href='#!/checkout')
+            | Checkout
+            span.glyphicon.glyphicon-chevron-right
 
       ng-include(src="'products/properties.html'")
 
