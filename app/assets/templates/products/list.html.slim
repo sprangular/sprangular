@@ -21,7 +21,8 @@
       add-to-cart-button(ng-if="!selectedVariants[product] || selectedVariants[product].isAvailable()"
                          product="product"
                          variant="selectedVariants[product.id]"
-                         quantity=1)
+                         quantity=1
+                         class="{'btn-primary': true}")
 
     .without-variants(ng-hide="product.hasVariants")
       p.sold-out(ng-if="!product.isAvailable()") This item is sold out
@@ -29,4 +30,5 @@
       add-to-cart-button(ng-if="product.isAvailable()"
                          product="product"
                          variant="product.master"
-                         quantity=1)
+                         quantity=1
+                         class="{'btn-primary': true}")
