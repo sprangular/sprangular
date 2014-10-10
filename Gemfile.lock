@@ -29,6 +29,7 @@ PATH
       bootstrap-sass (~> 3.1.1)
       coffee-rails
       font-awesome-rails (~> 4.2)
+      geocoder
       jquery-rails
       jquery-rails
       rack-rewrite
@@ -134,6 +135,7 @@ GEM
       railties (>= 3.2, < 5.0)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
+    geocoder (1.1.9)
     highline (1.6.21)
     hike (1.2.3)
     httparty (0.13.1)
