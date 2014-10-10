@@ -48,11 +48,21 @@
               a(ng-click="removeItem(item)")
                 span.glyphicon.glyphicon-remove
 
+          tr.item-total
+            td Sub-total
+            td.number(colspan=3 ng-bind='cart.itemTotal | currency')
+
+          tr.shipping
+            td Shipping
+            td.number(colspan=3 ng-bind='cart.shipTotal | currency')
+
+          tr.taxes
+            td Taxes
+            td.number(colspan=3 ng-bind='cart.taxTotal | currency')
+
           tr.total
             td Total
-            td(colspan=3)
-              | {{cart.itemTotal | currency}}
-            td
+            td.number(colspan=3 ng-bind='cart.total | currency')
 
     .row
       .col-lg-12
