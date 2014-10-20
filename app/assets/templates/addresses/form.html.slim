@@ -1,7 +1,7 @@
 form.address(novalidate)
   .row
     .col-md-12
-      p.error(ng-if='address.errors') Please correct the errors below:
+      p.error(ng-if='address.errors && address.errors != {}') Please correct the errors below:
 
   .row
     .col-md-6
