@@ -3,6 +3,8 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Acco
   $scope.order = order
   $scope.processing = false
 
+  $scope.order.resetCreditCard()
+
   $scope.submit = ->
     $scope.processing = true
 

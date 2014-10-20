@@ -50,3 +50,6 @@ class Sprangular.Order
       @billingAddress
     else
       @shippingAddress
+
+  resetCreditCard: ->
+    @creditCard = new Sprangular.CreditCard
