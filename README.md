@@ -14,6 +14,7 @@ Spree + Angular.js + Bootstrap
 - Full Google Analytics support
 - Advanced variant selection
 - Cart dropdown/popover
+- Lookup shipping & tax by zip code
 
 ## Installing
 
