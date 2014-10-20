@@ -10,7 +10,7 @@ class Sprangular.CreditCard
     jcb: 'JCB'
 
   Validity.define @,
-    number: 'required'
+    number: ['required', '_validateCardFormat']
     month: 'required'
     year: 'required'
     cvv: ['required', length: {greaterThan: 2, lessThan: 5}]
@@ -58,3 +58,6 @@ class Sprangular.CreditCard
     year: @year
     token: @token
     cc_type: @type
+
+  _validateCardFormat: ->
+    'invalid card number' unless Sprangular.Luhn.isValid(@number)
