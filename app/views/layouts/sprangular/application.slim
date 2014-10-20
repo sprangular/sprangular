@@ -19,7 +19,7 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
       ng-include(src="'assets/layout/flash.html'" ng-show="flash.hasMessages()")
 
       #wrap
-        header(ng-include="'assets/layout/header.html'" ng-controller="HeaderCtrl" ng-cloak)
+        ng-include(src="'assets/layout/header.html'")
 
         #main.container-fluid(ng-view autoscroll="true" ng-cloak)
 
