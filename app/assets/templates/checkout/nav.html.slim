@@ -1,0 +1,9 @@
+nav.checkout-nav.text.hidden-xs
+  a.details(href="#/checkout" ng-class="{active: step == 'details'}") Details
+  a.confirm(href="#/checkout/confirm" ng-class="{active: step == 'confirm'}") Confirm
+  a.done(ng-class="{active: step == 'done'}") Done
+
+nav.checkout-nav.numbers.visible-xs
+  a.details(href="#/checkout" ng-class="{active: step == 'details'}") 1
+  a.confirm(href="#/checkout/confirm" ng-class="{active: step == 'confirm'}") 2
+  a.done(ng-class="{active: step == 'done'}") 3
