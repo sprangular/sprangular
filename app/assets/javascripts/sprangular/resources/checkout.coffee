@@ -5,8 +5,8 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
       order = Cart.current
 
       params =
-        use_billing: order.shipToBillAddress
         order:
+          use_billing: order.shipToBillAddress
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
         state: 'confirm'
