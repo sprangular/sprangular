@@ -1,9 +1,9 @@
-nav.checkout-nav.text.hidden-xs
-  a.details(href="#/checkout" ng-class="{active: step == 'details'}") Details
-  a.confirm(href="#/checkout/confirm" ng-class="{active: step == 'confirm'}") Confirm
-  a.done(ng-class="{active: step == 'done'}") Done
+nav.checkout-nav.text.hidden-xs(class="{{step}}")
+  a.details(href="#/checkout") Details
+  a.confirm(href="#/checkout/confirm") Confirm
+  a.done Done
 
-nav.checkout-nav.numbers.visible-xs
-  a.details(href="#/checkout" ng-class="{active: step == 'details'}") 1
-  a.confirm(href="#/checkout/confirm" ng-class="{active: step == 'confirm'}") 2
-  a.done(ng-class="{active: step == 'done'}") 3
+nav.checkout-nav.numbers.visible-xs(class="{{step}}")
+  a.details(href="#/checkout") 1
+  a.confirm(href="#/checkout/confirm") 2
+  a.done 3
