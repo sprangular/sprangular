@@ -36,3 +36,6 @@ Sprangular.directive 'shippingRateSelection', ->
                 order.shipping_method_id = results[0].shippingMethodId
 
               $scope.loading = false
+            .error ->
+              $scope.rates = []
+              $scope.loading = false
