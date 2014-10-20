@@ -32,4 +32,7 @@ Sprangular.directive 'shippingRateSelection', ->
 
               order.shipping_method_id = null unless _.find(results, (rate) -> rate.shippingMethodId == order.shipping_method_id)
 
+              if order.shipping_method_id == null && results.length > 0
+                order.shipping_method_id = results[0].shippingMethodId
+
               $scope.loading = false
