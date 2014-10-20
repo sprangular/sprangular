@@ -10,11 +10,12 @@
 
   .row
     .col-lg-4.col-md-6.address.billing
-      h2 Billing Address
+      h2(ng-hide='order.shipToBillAddress') Billing Address
+      h2(ng-show='order.shipToBillAddress') Billing & Shipping Address
 
       address-view(address='order.billingAddress')
 
-    .col-lg-4.col-md-6.address.shipping
+    .col-lg-4.col-md-6.address.shipping(ng-hide='order.shipToBillAddress')
       h2 Shipping Address
 
       address-view(address='order.actualShippingAddress()')
