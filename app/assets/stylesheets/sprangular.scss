@@ -89,3 +89,43 @@ footer {
   /* Set the fixed height of the footer here */
   height: $footer-height;
 }
+
+.checkout-nav {
+  .stripe {
+    background: $gray-lighter;
+    height: 6px;
+    position: absolute;
+    margin-top: 17px;
+    width: 90%;
+    z-index: -1;
+  }
+
+  nav a {
+    text-decoration: none;
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  span.caption {
+    display: block;
+    margin: 0px auto;
+  }
+
+  span.number {
+    display: inline-block;
+    color: $gray;
+    background: $gray-light;
+    padding: 10px 16px;
+    border-radius: 50%;
+    width: auto;
+  }
+}

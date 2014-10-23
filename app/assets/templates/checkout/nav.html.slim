@@ -1,9 +1,12 @@
-nav.checkout-nav.text.hidden-xs(class="{{step}}")
-  a.details(href="#/checkout") Details
-  a.confirm(href="#/checkout/confirm") Confirm
-  a.done Done
-
-nav.checkout-nav.numbers.visible-xs(class="{{step}}")
-  a.details(href="#/checkout") 1
-  a.confirm(href="#/checkout/confirm") 2
-  a.done 3
+.checkout-nav
+  .stripe
+  nav(class="{{step}}")
+    a.details(href="#/checkout")
+      span.number 1
+      span.caption Details
+    a.confirm(href="#/checkout/confirm")
+      span.number 2
+      span.caption Confirm
+    a.done
+      span.number 3
+      span.caption Done
