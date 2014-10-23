@@ -100,18 +100,40 @@ footer {
     z-index: -1;
   }
 
-  nav a {
-    text-decoration: none;
-    display: inline-block;
-    width: 33%;
-    text-align: center;
+  nav {
+    a {
+      text-decoration: none;
+      display: inline-block;
+      width: 33%;
+      text-align: center;
 
-    &:first-child {
-      text-align: left;
+      &:first-child {
+        text-align: left;
+      }
+
+      &:last-child {
+        text-align: right;
+      }
     }
 
-    &:last-child {
-      text-align: right;
+    &.details a.details, &.confirm a.confirm, &.done a.done {
+      .number {
+        background: $brand-info;
+      }
+    }
+
+    &.confirm {
+      a.details .number {
+        background: $brand-success;
+      }
+    }
+
+    &.done {
+      a.details, a.confirm {
+        .number {
+          background: $brand-success;
+        }
+      }
     }
   }
 
