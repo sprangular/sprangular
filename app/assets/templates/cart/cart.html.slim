@@ -7,6 +7,8 @@
           span.glyphicon.glyphicon-shopping-cart
           | &nbsp;
           | My Cart
+          | &nbsp;
+          span.badge(ng-bind='cart.totalQuantity()' ng-hide='isEmpty()')
       .aside-body
         .empty(ng-show="isEmpty()")
           p Your cart is empty
