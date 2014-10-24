@@ -35,6 +35,7 @@ PATH
       rack-rewrite
       rails (~> 4.1.4)
       rails-assets-angular-bootstrap
+      rails-assets-angular-motion
       rails-assets-angular-strap
       rails-assets-bootstrap-additions
       rails-assets-jasmine-sinon
