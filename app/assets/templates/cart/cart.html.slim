@@ -1,71 +1,75 @@
-#cart-aside(ng-controller='CartCtrl')
-  .empty(ng-show="isEmpty()")
-    p Your cart is empty
-    a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
+#cart-aside.aside(role="dialog" tabindex="-1" ng-controller='CartCtrl')
+  .aside-dialog
+    .aside-content
+      .aside-header
+        button.close(ng-click="$hide()" type="button") &times;
+        h4.aside-title
+          span.glyphicon.glyphicon-shopping-cart
+          | &nbsp;
+          | My Cart
+      .aside-body
+        .empty(ng-show="isEmpty()")
+          p Your cart is empty
+          a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
 
-  .with-items(ng-hide="isEmpty()")
-    p
-      | {{cart.totalQuantity()}} item(s) in your cart
+        .with-items(ng-hide="isEmpty()")
+          table.table.table-striped
+            tr
+              th(colspan=2) Item
+              th(width="15%") Quantity
+              th Price
+              th
 
-    table.table.table-striped
-      tr
-        th(colspan=2) Item
-        th(width="15%") Quantity
-        th Price
-        th
+            tr.item(ng-repeat='item in cart.items')
+              td.image
+                a(href="#!/products/{{item.variant.product.slug}}")
+                  img(ng-src="{{item.variant.image.mini}}")
 
-      tr.item(ng-repeat='item in cart.items')
-        td.image
-          a(href="#!/products/{{item.variant.product.slug}}")
-            img(ng-src="{{item.variant.image.mini}}")
+              td.name
+                p
+                  a(href="#!/products/{{item.variant.product.slug}}")
+                    | {{item.variant.product.name}}
 
-        td.name
-          p
-            a(href="#!/products/{{item.variant.product.slug}}")
-              | {{item.variant.product.name}}
+                  section.options(ng-show='item.variant.product.hasVariants')
+                    variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
 
-            section.options(ng-show='item.variant.product.hasVariants')
-              variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
+              td.quantity
+                quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
 
-        td.quantity
-          quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
+              td.price.number
+                span
+                  | {{item.price * item.quantity | currency}}
 
-        td.price.number
-          span
-            | {{item.price * item.quantity | currency}}
+              td.actions
+                a(ng-click="removeItem(item)")
+                  span.glyphicon.glyphicon-remove
 
-        td.actions
-          a(ng-click="removeItem(item)")
-            span.glyphicon.glyphicon-remove
+            tr.item-total
+              td(colspan=2) Sub-total
+              td.number(colspan=2 ng-bind='cart.itemTotal | currency')
+              td
 
-      tr.item-total
-        td(colspan=2) Sub-total
-        td.number(colspan=2 ng-bind='cart.itemTotal | currency')
-        td
+            tr.shipping
+              td(colspan=2) Shipping
+              td.number(colspan=2 ng-bind='cart.shipTotal | currency')
+              td
 
-      tr.shipping
-        td(colspan=2) Shipping
-        td.number(colspan=2 ng-bind='cart.shipTotal | currency')
-        td
+            tr.taxes
+              td(colspan=2) Taxes
+              td.number(colspan=2 ng-bind='cart.taxTotal | currency')
+              td
 
-      tr.taxes
-        td(colspan=2) Taxes
-        td.number(colspan=2 ng-bind='cart.taxTotal | currency')
-        td
+            tr.total
+              td(colspan=2) Total
+              td.number(colspan=2 ng-bind='cart.total | currency')
+              td
 
-      tr.total
-        td(colspan=2) Total
-        td.number(colspan=2 ng-bind='cart.total | currency')
-        td
+      .aside-footer.clearfix(ng-hide='isEmpty()')
+        .pull-left
+          a.btn.btn-link(ng-click="empty()")
+            | Empty cart
 
-    hr
-
-    .clearfix
-      .pull-left
-        a.btn.btn-link(ng-click="empty()")
-          | Empty cart
-
-      .pull-right
-        a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
-          | Checkout
-          span.glyphicon.glyphicon-chevron-right
+        .pull-right
+          a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
+            | Checkout
+            span.glyphicon.glyphicon-chevron-right
