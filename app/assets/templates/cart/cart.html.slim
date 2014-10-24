@@ -1,76 +1,66 @@
-#cart-dropdown.container.well(ng-controller='CartCtrl')
-  .row
-    .col-lg-12
-      h4 My Cart
-
+#cart-dropdown(ng-controller='CartCtrl')
   .empty.row(ng-show="isEmpty()")
-    .col-lg-12
-      p Your cart is empty
-      a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
+    p Your cart is empty
+    a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
 
   .with-items.row(ng-hide="isEmpty()")
-    .row
-      .col-lg-12
-        p
-          | {{cart.totalQuantity()}} item(s) in your cart
+    p
+      | {{cart.totalQuantity()}} item(s) in your cart
 
-    .row
-      .col-lg-12
-        table.table.table-striped
-          tr
-            th Image
-            th Name
-            th(width="15%") Quantity
-            th Price
-            th
+    table.table.table-striped
+      tr
+        th Image
+        th Name
+        th(width="15%") Quantity
+        th Price
+        th
 
-          tr.item(ng-repeat='item in cart.items')
-            td.image
-              a(href="#!/products/{{item.variant.product.slug}}")
-                img(ng-src="{{item.variant.image.mini}}")
+      tr.item(ng-repeat='item in cart.items')
+        td.image
+          a(href="#!/products/{{item.variant.product.slug}}")
+            img(ng-src="{{item.variant.image.mini}}")
 
-            td.name
-              p
-                a(href="#!/products/{{item.variant.product.slug}}")
-                  | {{item.variant.product.name}}
+        td.name
+          p
+            a(href="#!/products/{{item.variant.product.slug}}")
+              | {{item.variant.product.name}}
 
-                section.options(ng-show='item.variant.product.hasVariants')
-                  variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
+            section.options(ng-show='item.variant.product.hasVariants')
+              variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
 
-            td.quantity
-              quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
+        td.quantity
+          quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
 
-            td.price
-              span
-                | {{item.price * item.quantity | currency}}
+        td.price
+          span
+            | {{item.price * item.quantity | currency}}
 
-            td.actions
-              a(ng-click="removeItem(item)")
-                span.glyphicon.glyphicon-remove
+        td.actions
+          a(ng-click="removeItem(item)")
+            span.glyphicon.glyphicon-remove
 
-          tr.item-total
-            td Sub-total
-            td.number(colspan=3 ng-bind='cart.itemTotal | currency')
+      tr.item-total
+        td Sub-total
+        td.number(colspan=3 ng-bind='cart.itemTotal | currency')
 
-          tr.shipping
-            td Shipping
-            td.number(colspan=3 ng-bind='cart.shipTotal | currency')
+      tr.shipping
+        td Shipping
+        td.number(colspan=3 ng-bind='cart.shipTotal | currency')
 
-          tr.taxes
-            td Taxes
-            td.number(colspan=3 ng-bind='cart.taxTotal | currency')
+      tr.taxes
+        td Taxes
+        td.number(colspan=3 ng-bind='cart.taxTotal | currency')
 
-          tr.total
-            td Total
-            td.number(colspan=3 ng-bind='cart.total | currency')
+      tr.total
+        td Total
+        td.number(colspan=3 ng-bind='cart.total | currency')
 
-    .row
-      .col-lg-12
-        .pull-left
-          a.btn.btn-link(ng-click="empty()")
-            | Empty cart
+    .clearfix
+      .pull-left
+        a.btn.btn-link(ng-click="empty()")
+          | Empty cart
 
-        .pull-right
-          a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
-            | Checkout
-            span.glyphicon.glyphicon-chevron-right
+      .pull-right
+        a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
+          | Checkout
+          span.glyphicon.glyphicon-chevron-right
