@@ -1,9 +1,9 @@
-#cart-dropdown(ng-controller='CartCtrl')
-  .empty.row(ng-show="isEmpty()")
+#cart-aside(ng-controller='CartCtrl')
+  .empty(ng-show="isEmpty()")
     p Your cart is empty
     a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
 
-  .with-items.row(ng-hide="isEmpty()")
+  .with-items(ng-hide="isEmpty()")
     p
       | {{cart.totalQuantity()}} item(s) in your cart
 
