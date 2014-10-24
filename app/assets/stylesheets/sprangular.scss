@@ -169,6 +169,11 @@ footer {
   }
 }
 
+a.cart-link.visible-xs {
+  float: right;
+  padding: 15px;
+}
+
 @media (min-width: $screen-sm-min) {
   .aside {
     width: 50%;
