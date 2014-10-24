@@ -36,7 +36,7 @@ a {
 }
 
 .aside {
-  width: 50%;
+  width: 100%;
 }
 
 td {
@@ -166,5 +166,11 @@ footer {
     padding: 10px 16px;
     border-radius: 50%;
     width: auto;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .aside {
+    width: 50%;
   }
 }
