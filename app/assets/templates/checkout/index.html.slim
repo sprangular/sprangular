@@ -7,7 +7,7 @@
       h1 Checkout
 
   .row
-    .col-md-8
+    .col-md-8.col-xs-12
       section#billing-address
         h2(ng-show='order.shipToBillAddress') Billing & Shipping Address
         h2(ng-hide='order.shipToBillAddress') Billing Address
@@ -40,7 +40,7 @@
         span(ng-if='processing')
           span.caption Loading...
 
-    .col-md-4
+    .col-md-4.hidden-xs
       .well
         h2 Summary
 
