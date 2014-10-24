@@ -31,7 +31,7 @@
         td.quantity
           quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
 
-        td.price
+        td.price.number
           span
             | {{item.price * item.quantity | currency}}
 
@@ -42,18 +42,24 @@
       tr.item-total
         td Sub-total
         td.number(colspan=3 ng-bind='cart.itemTotal | currency')
+        td
 
       tr.shipping
         td Shipping
         td.number(colspan=3 ng-bind='cart.shipTotal | currency')
+        td
 
       tr.taxes
         td Taxes
         td.number(colspan=3 ng-bind='cart.taxTotal | currency')
+        td
 
       tr.total
         td Total
         td.number(colspan=3 ng-bind='cart.total | currency')
+        td
+
+    hr
 
     .clearfix
       .pull-left

@@ -39,6 +39,17 @@ a {
   width: 40%;
 }
 
+td {
+  &.number {
+    text-align: right;
+  }
+
+  .total & {
+    font-weight: bold;
+  }
+}
+
+
 footer {
   background: $gray;
   color: $gray-light;
