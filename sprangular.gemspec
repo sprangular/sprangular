@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'font-awesome-rails', '~> 4.2'
   s.add_dependency 'rails-assets-angular-bootstrap'
   s.add_dependency 'rails-assets-angular-strap'
+  s.add_dependency 'rails-assets-bootstrap-additions'
   s.add_dependency 'rails-assets-ngInfiniteScroll'
   s.add_dependency 'rails-assets-underscore'
   s.add_dependency 'rails-assets-underscore.string'
