@@ -136,12 +136,17 @@ footer {
     &.details a.details, &.confirm a.confirm, &.done a.done {
       .number {
         background: $brand-info;
+        color: $body-bg;
+      }
+      .caption {
+        color: $brand-info;
       }
     }
 
     &.confirm {
       a.details .number {
         background: $brand-success;
+        color: $body-bg;
       }
     }
 
@@ -149,6 +154,7 @@ footer {
       a.details, a.confirm {
         .number {
           background: $brand-success;
+          color: $body-bg;
         }
       }
     }
@@ -157,12 +163,13 @@ footer {
   span.caption {
     display: block;
     margin: 0px auto;
+    color: $gray;
   }
 
   span.number {
     display: inline-block;
-    color: $gray;
-    background: $gray-light;
+    color: $gray-light;
+    background: $gray-lighter;
     padding: 10px 16px;
     border-radius: 50%;
     width: auto;
