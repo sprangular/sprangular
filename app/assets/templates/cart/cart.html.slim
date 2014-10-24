@@ -9,8 +9,7 @@
 
     table.table.table-striped
       tr
-        th Image
-        th Name
+        th(colspan=2) Item
         th(width="15%") Quantity
         th Price
         th
@@ -40,23 +39,23 @@
             span.glyphicon.glyphicon-remove
 
       tr.item-total
-        td Sub-total
-        td.number(colspan=3 ng-bind='cart.itemTotal | currency')
+        td(colspan=2) Sub-total
+        td.number(colspan=2 ng-bind='cart.itemTotal | currency')
         td
 
       tr.shipping
-        td Shipping
-        td.number(colspan=3 ng-bind='cart.shipTotal | currency')
+        td(colspan=2) Shipping
+        td.number(colspan=2 ng-bind='cart.shipTotal | currency')
         td
 
       tr.taxes
-        td Taxes
-        td.number(colspan=3 ng-bind='cart.taxTotal | currency')
+        td(colspan=2) Taxes
+        td.number(colspan=2 ng-bind='cart.taxTotal | currency')
         td
 
       tr.total
-        td Total
-        td.number(colspan=3 ng-bind='cart.total | currency')
+        td(colspan=2) Total
+        td.number(colspan=2 ng-bind='cart.total | currency')
         td
 
     hr
