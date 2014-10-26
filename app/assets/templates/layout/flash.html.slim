@@ -3,5 +3,4 @@
     .col-lg-8.col-lg-offset-2.col-sm-10.col-sm-offset-1.col-xs-10.col-xs-offset-1.alert(class="alert-{{message.type}}" role="alert")
       button.close(data-dismiss="alert") ×
 
-      .text
-        p(ng-bind="message.text")
+      span.text(ng-bind="message.text")
