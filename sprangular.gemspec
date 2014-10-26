@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
-  s.add_dependency 'jquery-rails'
   s.add_dependency 'angularjs-rails'
   s.add_dependency 'rack-rewrite'
   s.add_dependency 'bootstrap-sass', '~> 3.1.1'
