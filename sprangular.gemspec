@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-ngInfiniteScroll'
   s.add_dependency 'rails-assets-underscore'
   s.add_dependency 'rails-assets-underscore.string'
+  s.add_dependency 'rails-assets-angularitics'
   s.add_dependency 'rails-assets-jasmine-sinon'
   s.add_dependency 'rails-assets-sinon'
 
