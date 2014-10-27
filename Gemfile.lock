@@ -31,7 +31,6 @@ PATH
       font-awesome-rails (~> 4.2)
       geocoder
       jquery-rails
-      jquery-rails
       rack-rewrite
       rails (~> 4.1.4)
       rails-assets-angular-bootstrap

@@ -22,7 +22,7 @@ Add `sprangular` and rails-assets source to your Gemfile and `bundle`
 
 ```
 source 'https://rails-assets.org'
-gem 'sprangular'
+gem 'sprangular', github: 'DynamoMTL/sprangular'
 ```
 
 Then install sprangular:
