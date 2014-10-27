@@ -14,4 +14,5 @@ gemspec
 # To use debugger
 # gem 'debugger'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-3-stable'
+gem 'spree_backend', github: 'spree/spree', branch: '2-3-stable'
 gem 'sass-rails', github: 'rails/sass-rails'
