@@ -18,11 +18,28 @@ Spree + Angular.js + Bootstrap
 
 ## Installing
 
-Add `sprangular` and rails-assets source to your Gemfile and `bundle`
+Add `spree`, `sprangular` and rails-assets source in your `Gemfile`. (notice we dont use the `spree` umbrella gem, because it contains the generic `spree_frontend`)
 
 ```
 source 'https://rails-assets.org'
+
+gem 'spree_core', '~> 2.4'
+gem 'spree_api', '~> 2.4'
+gem 'spree_backend', '~> 2.4'
 gem 'sprangular', github: 'DynamoMTL/sprangular'
+```
+
+Run bundler
+
+```
+bundle
+```
+
+
+Then install spree into your app
+
+```
+spree install --auto-accept
 ```
 
 Then install sprangular:
