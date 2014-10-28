@@ -7,8 +7,8 @@ require "sprangular/version"
 Gem::Specification.new do |s|
   s.name        = "sprangular"
   s.version     = Sprangular::VERSION
-  s.authors     = ["Simon Walsh", "Hugo", "Braden", "Josh Nussbaum"]
-  s.email       = ["simon@walsh.si", "hugo@godynamo.com", "braden@godynamo.com", "josh@godynamo.com"]
+  s.authors     = ["Simon Walsh", "Hugo Frappier", "Josh Nussbaum"]
+  s.email       = ["simon@walsh.si", "hugo@godynamo.com", "josh@godynamo.com"]
   s.homepage    = "http://www.godynamo.com"
   s.summary     = "Spree + Angular.js frontend"
   s.description = "Spree frontend using angular.js"
