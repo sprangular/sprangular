@@ -1,9 +1,10 @@
-Sprangular.controller "CartCtrl", ($scope, Cart, Status) ->
+Sprangular.controller "CartCtrl", ($scope, Cart, Status, Angularytics) ->
 
   $scope.cart = Cart.current
   $scope.status = Status
 
   $scope.removeItem = (item) ->
+    Angularytics.trackEvent("Cart", "Item removed", item.variant.product.name)
     Cart.removeItem item
 
   $scope.isEmpty = ->
@@ -11,6 +12,7 @@ Sprangular.controller "CartCtrl", ($scope, Cart, Status) ->
 
   $scope.empty = ->
     Cart.empty()
+    Angularytics.trackEvent("Cart", "Emptied")
     $scope.$emit('cart.empty', Cart)
 
   $scope.reload = ->
