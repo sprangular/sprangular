@@ -13,7 +13,7 @@ Sprangular.factory 'Flash', ($timeout) ->
 
   success: (message) -> @add('success', message)
   info:    (message) -> @add('info',    message)
-  error:   (message) -> @add('error',   message)
+  error:   (message) -> @add('danger',   message)
 
   remove: (flash) ->
     @messages = @messages.filter (x) -> x != flash
