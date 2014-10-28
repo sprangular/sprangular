@@ -5,7 +5,7 @@
 #= require ./module
 #= require ./routes
 #= require_tree ./controllers
-#= require_tree ./resources
+#= require_tree ./services
 #= require_tree ./directives
 #= require_tree ./interceptors
 #= require_tree ./helpers
