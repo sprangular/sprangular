@@ -11,7 +11,7 @@ Spree + Angular.js + Bootstrap
 - Product search with auto-complete
 - Easy to override templates/controllers
 - Easy to add new routes/controllers/templates
-- Full Google Analytics support
+- Full Google Analytics support via [Angularytics](https://github.com/mgonto/angularytics)
 - Advanced variant selection
 - Cart dropdown/popover
 - Lookup shipping & tax by zip code
