@@ -15,6 +15,7 @@ Spree + Angular.js + Bootstrap
 - Advanced variant selection
 - Cart dropdown/popover
 - Lookup shipping & tax by zip code
+- Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
 
 ## Installing
 
