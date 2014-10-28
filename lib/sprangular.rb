@@ -1,5 +1,6 @@
 require 'spree_core'
 require 'spree_api'
+require 'spree_backend'
 require 'spree_auth_devise'
 require 'geocoder'
 require 'slim'
