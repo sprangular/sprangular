@@ -4,7 +4,7 @@ Sprangular.config ($provide, $httpProvider) ->
 
   $provide.factory 'loadingInterceptor', ($q, Status) ->
     request: (config) ->
-      Status.httpLoading = true
+      Status.httpLoading = true unless config.ignoreLoadingIndicator
 
       config
 
