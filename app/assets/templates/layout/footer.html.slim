@@ -1,10 +1,14 @@
 footer.container-fluid(ng-controller="FooterCtrl")
   .row
-    .col-lg-12
+    .col-lg-2
       small
-        | Built with&nbsp;
+        | Powered by&nbsp;
         a(href="https://github.com/DynamoMTL/sprangular") Sprangular
 
+    .col-lg-4
+      ng-include(src="'layout/subscribe.html'")
+
+    .col-lg-6.clearfix
       a.dynamo.pull-right(href="http://godynamo.com/")
         .level1
           span.d D
