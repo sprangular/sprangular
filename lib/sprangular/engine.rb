@@ -8,7 +8,7 @@ module Sprangular
     end
 
     initializer "sprangular.add_middleware" do |app|
-      app.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+      app.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
         r301 '/products',         '/#!/products'
         r301 %r{^/products/(.+)$}, '/#!/products/$1'
         r301 %r{^/t/(.+)$},         '/#!/t/$1'
