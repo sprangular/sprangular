@@ -4,7 +4,7 @@ Sprangular.config ($provide, $httpProvider, Env) ->
 
   $provide.factory 'railsAssetsInterceptor', ->
     request: (config) ->
-      url = config.url.gsub(/^\/assets\//, '')
+      url = config.url.replace(/^\/assets\//, '')
 
       if assetUrl = Env.templates[url]
         config.url = assetUrl
