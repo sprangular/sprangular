@@ -7,6 +7,7 @@ require 'slim'
 require 'rabl'
 require 'jquery-rails'
 require 'angularjs-rails'
+require 'rails-assets-bootstrap-sass-official'
 require 'rails-assets-underscore'
 require 'rails-assets-underscore.string'
 require 'rails-assets-angular-bootstrap'
@@ -16,7 +17,6 @@ require 'rails-assets-bootstrap-additions'
 require 'rails-assets-ngInfiniteScroll'
 require 'rails-assets-angularytics'
 require 'rack/rewrite'
-require 'bootstrap-sass'
 require "sprangular/engine"
 
 module Sprangular
