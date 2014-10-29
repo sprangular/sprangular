@@ -49,9 +49,10 @@
           dd
             | {{order.itemTotal | currency}}
 
-          dt(ng-show='order.adjustmentTotal < 0') Adjustments
-          dd(ng-show='order.adjustmentTotal < 0')
-            | {{order.adjustmentTotal | currency}}
+          dt(ng-repeat-start="adjustment in order.adjustments")
+            | {{adjustment.label}}
+          dd(ng-repeat-end)
+            | {{adjustment.amount | currency}}
 
           dt Shipping
           dd

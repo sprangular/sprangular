@@ -51,6 +51,11 @@
               td.number(colspan=2 ng-bind='cart.itemTotal | currency')
               td
 
+            tr.adjustment(ng-repeat='adjustment in cart.adjustments')
+              td(colspan=2 ng-bind='adjustment.label')
+              td.number(colspan=2 ng-bind='adjustment.amount | currency')
+              td
+
             tr.shipping
               td(colspan=2) Shipping
               td.number(colspan=2 ng-bind='cart.shipTotal | currency')
