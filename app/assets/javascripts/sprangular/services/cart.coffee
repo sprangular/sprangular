@@ -36,6 +36,7 @@ Sprangular.service "Cart", ($http) ->
       order.itemTotal = Number(data.item_total)
       order.taxTotal = Number(data.tax_total)
       order.shipTotal = Number(data.ship_total)
+      order.adjustmentTotal = Number(data.adjustment_total)
       order.total = Number(data.total)
       order.shipToBillAddress = data.use_billing
 

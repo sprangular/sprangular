@@ -17,6 +17,7 @@ class Sprangular.Order
     @itemTotal = 0
     @taxTotal = 0
     @shipTotal = 0
+    @adjustmentTotal = 0
     @total = 0
     @errors = null
 
@@ -43,7 +44,7 @@ class Sprangular.Order
     variant && @findVariant(variant.id).length > 0
 
   updateTotals: ->
-    @total = @itemTotal + @taxTotal + @shipTotal
+    @total = @itemTotal + @adjustmentTotal + @taxTotal + @shipTotal
 
   actualShippingAddress: ->
     if @shipToBillAddress
