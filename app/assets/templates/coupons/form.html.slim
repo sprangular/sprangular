@@ -1,10 +1,21 @@
-a(ng-show='!showCouponEntry && !order.couponCode' ng-click='showCouponEntry = true') Add a coupon
-a(ng-show='!showCouponEntry && order.couponCode' ng-click='showCouponEntry = true') Change coupon
+section#coupon-selection
+  .add(ng-show='!showCouponEntry && !couponCode')
+    a(ng-click='showCouponEntry = true') Add a coupon
 
-section#coupon-entry(ng-show='showCouponEntry')
-  form.form-inline(role='form' ng-submit='showCouponEntry = false')
-    .form-group
-      label.control-label(for='coupon-code') Coupon
-      input.form-control(name='coupon-code' ng-model='order.couponCode')
+  .edit(ng-show='!showCouponEntry && couponCode')
+    span
+      | Coupon:&nbsp;
+      span.code(ng-bind='couponCode')
+      a.remove(ng-click='remove()') &times;
+    br
+    a(ng-click='showCouponEntry = true') Change coupon
 
-    button.btn.btn-primary(type='submit') Save
+  section#coupon-entry(ng-show='showCouponEntry')
+    form.form-inline(role='form' ng-submit='save()')
+      .form-group
+        label.control-label(for='coupon-code') Coupon
+        input.form-control(name='coupon-code' ng-model='couponCode')
+
+      button.btn.btn-primary(type='submit') Save
+
+    p.error(ng-bind='error' ng-show='error')
