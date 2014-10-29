@@ -3,7 +3,7 @@ module Sprangular
     config.cached_paths = %w(layout directives products home)
 
     initializer "sprangular.assets.configure" do |app|
-      assets = Rails.application.config.assets
+      assets = Rails.application.assets
 
       assets.register_mime_type 'text/html', '.html'
       assets.register_engine '.slim', Slim::Template
