@@ -39,6 +39,7 @@ Sprangular.service "Cart", ($http) ->
       order.adjustmentTotal = Number(data.adjustment_total)
       order.total = Number(data.total)
       order.shipToBillAddress = data.use_billing
+      order.couponCode = data.coupon_code
 
       if data.bill_address
         order.billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
