@@ -18,7 +18,11 @@ module Sprangular
       templates = Hash[
         Rails.application.assets.each_logical_path.
         select { |file| file.end_with?('html') }.
-        map { |file| [file, ActionController::Base.helpers.asset_path(file)] }
+        map do |file|
+          path = digest_assets? ? Rails.application.assets[file].digest_path : asset_path(file)
+
+          [file, path]
+        end
       ]
 
       {env: Rails.env,
