@@ -2,6 +2,8 @@
 
 Spree + Angular.js + Bootstrap
 
+# [Live Demo](http://sprangular-demo.herokuapp.com)
+
 ## Features Overview
 
 - Full Spree front-end
@@ -16,6 +18,7 @@ Spree + Angular.js + Bootstrap
 - Cart dropdown/popover
 - Lookup shipping & tax by zip code
 - Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
+- Exampl rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
 
 ## Installing
 
