@@ -25,7 +25,6 @@ html ng-app="Sprangular" ng-controller="GlobalCtrl"
       ng-include(src="'assets/layout/footer.html'")
 
     = javascript_include_tag "application"
-    = javascript_include_tag "https://js.stripe.com/v2/"
     = render 'sprangular/shared/analytics'
 
     script Sprangular.constant('Env', #{ js_environment.to_json.html_safe })
