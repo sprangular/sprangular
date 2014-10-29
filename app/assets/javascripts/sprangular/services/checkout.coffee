@@ -1,12 +1,22 @@
 Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
 
   checkout =
+    saveCoupon: ->
+      order = Cart.current
+
+      params =
+        order:
+          coupon_code: order.couponCode
+
+      @put(params)
+
     update: ->
       order = Cart.current
 
       params =
         order:
           use_billing: order.shipToBillAddress
+          coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
         state: 'confirm'
