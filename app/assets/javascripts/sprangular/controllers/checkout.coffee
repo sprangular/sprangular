@@ -1,4 +1,5 @@
-Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Account, Cart, Checkout) ->
+Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout) ->
+  Status.pageTitle = 'Checkout'
   $scope.countries = countries
   $scope.order = order
   $scope.processing = false

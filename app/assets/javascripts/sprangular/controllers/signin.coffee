@@ -1,5 +1,5 @@
 Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash, Status) ->
-
+  Status.pageTitle = 'Sign in'
   $scope.signingUp = false
   $scope.askForEmail = false
 

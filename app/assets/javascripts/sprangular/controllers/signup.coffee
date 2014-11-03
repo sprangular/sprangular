@@ -1,5 +1,5 @@
 Sprangular.controller 'SignupCtrl', ($scope, $location, Account, Status, Flash) ->
-
+  Status.pageTitle = 'Sign up'
   $scope.user = { email: '', password: '', password_confirmation: '', errors: {} }
   $scope.signingUp = false
 

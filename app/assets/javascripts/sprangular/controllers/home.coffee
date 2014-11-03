@@ -1,4 +1,5 @@
 Sprangular.controller 'HomeCtrl', ($scope, Status, Catalog, products, Cart) ->
+  Status.pageTitle = 'Home'
 
   $scope.products = products
   $scope.page = 1

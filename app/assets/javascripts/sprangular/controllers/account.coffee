@@ -1,4 +1,5 @@
 Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account, user) ->
+  Status.pageTitle = 'My Account'
 
   user.password = ''
   user.password_confirmation = ''
