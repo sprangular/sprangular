@@ -54,3 +54,11 @@ class Sprangular.Order
 
   resetCreditCard: ->
     @creditCard = new Sprangular.CreditCard
+
+  locateCouponCode: ->
+    couponAdjustment = _.find @adjustments, (adjustment) ->
+      adjustment.source_type == 'Spree::PromotionAction'
+
+    if couponAdjustment
+      # label == 'Promotion (couponName)'
+      @couponCode = couponAdjustment.label.split(/[()]+/)[1]
