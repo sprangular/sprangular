@@ -1,6 +1,10 @@
 #product-details.container(ng-class="{'sold-out': !product.isAvailable() }")
   .row
     .col-sm-6.col-xs-12
+      section.gallery
+        ng-include(src="'products/gallery.html'")
+
+    .col-sm-6.col-xs-12
       section.details
         h1(ng-bind="product.name")
 
@@ -31,7 +35,3 @@
             span.glyphicon.glyphicon-chevron-right
 
       ng-include(src="'products/properties.html'")
-
-    .col-sm-6.col-xs-12
-      section.gallery
-        ng-include(src="'products/gallery.html'")
