@@ -85,8 +85,8 @@ PATH
       rails-assets-underscore.string
       sass-rails
       slim-rails
-      spree_api (~> 2.3.4)
-      spree_core (~> 2.3.4)
+      spree_api (>= 2.3.4)
+      spree_core (>= 2.3.4)
 
 GEM
   remote: https://rubygems.org/
