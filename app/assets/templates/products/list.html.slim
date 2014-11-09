@@ -1,13 +1,11 @@
 .product-listing
-  .col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable() }")
+  .product.col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable() }")
     .col-lg-12
       a(ng-href='{{product.permalink}}')
         img.img-responsive.full(ng-src="{{product.image.large}}")
 
     h2.title
       a(ng-href='{{product.permalink}}' ng-bind="product.name")
-
-    p.desc(ng-bind='product.description')
 
     .with-variants(ng-show="product.hasVariants")
       ul.variants
@@ -22,7 +20,7 @@
                          product="product"
                          variant="selectedVariants[product.id]"
                          quantity=1
-                         class="{'btn-primary': true}")
+                         class="{'btn-primary': true, 'btn-block': true}")
 
     .without-variants(ng-hide="product.hasVariants")
       p.sold-out(ng-if="!product.isAvailable()") This item is sold out
@@ -31,4 +29,4 @@
                          product="product"
                          variant="product.master"
                          quantity=1
-                         class="{'btn-primary': true}")
+                         class="{'btn-primary': true, 'btn-block': true}")
