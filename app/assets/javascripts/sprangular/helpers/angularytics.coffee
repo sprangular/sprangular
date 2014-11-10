@@ -1,6 +1,11 @@
 Sprangular
   .config (AngularyticsProvider) ->
-    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal'])
+    if window.ga
+      handlers = ['Console', 'GoogleUniversal']
+    else
+      handlers = ['Console']
+
+    AngularyticsProvider.setEventHandlers(handlers)
 
   .run (Angularytics) ->
     Angularytics.init()
