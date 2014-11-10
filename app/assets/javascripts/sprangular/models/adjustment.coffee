@@ -1,4 +1,7 @@
 class Sprangular.Adjustment
+  init: ->
+    @amount = Number(@amount)
+
   isPromo: ->
     @source_type == 'Spree::PromotionAction'
 
