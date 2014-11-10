@@ -3,6 +3,10 @@ Sprangular.controller "CartCtrl", ($scope, Cart, Status, Angularytics) ->
   $scope.cart = Cart.current
   $scope.status = Status
 
+  $scope.removeAdjustment = (adjustment) ->
+    Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
+    Cart.removeAdjustment(adjustment)
+
   $scope.removeItem = (item) ->
     Angularytics.trackEvent("Cart", "Item removed", item.variant.product.name)
     Cart.removeItem item
