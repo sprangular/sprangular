@@ -103,6 +103,16 @@ Sprangular.service "Cart", ($http) ->
       $http.put '/api/cart/change_variant', params
         .success(@load)
 
+    removeAdjustment: (adjustment) ->
+      @current.adjustmentTotal += Number(adjustment.amount)
+      console.log @current.adjustmentTotal
+      @current.adjustments = _.without(@current.adjustments, adjustment)
+
+      params = $.param(adjustment_id: adjustment.id)
+
+      $http.put '/api/cart/remove_adjustment', params
+        .success(@load)
+
     shippingRates: (options) ->
       params =
         country_id: options.countryId
