@@ -14,7 +14,8 @@ module Sprangular
     end
 
     def js_environment
-      config = Spree::Config
+      config = ::Spree::Config
+      store = Spree::Store.current
       templates = Hash[
         Rails.application.assets.each_logical_path.
         select { |file| file.end_with?('html') }.
@@ -27,7 +28,7 @@ module Sprangular
 
       {env: Rails.env,
         config: {
-          site_name: config.site_name,
+          site_name: store.seo_title || store.name,
           logo:      asset_path(config.logo),
           default_country_id: config.default_country_id,
           facebook_app_id: ENV['FACEBOOK_APP_ID'],
