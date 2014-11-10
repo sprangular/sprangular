@@ -1,28 +1,24 @@
-Sprangular.directive 'couponForm', ->
+Sprangular.directive 'promoForm', ->
   restrict: 'E'
-  templateUrl: 'coupons/form.html'
+  templateUrl: 'promos/form.html'
   scope:
     order: '='
   controller: ($scope, Cart, Checkout) ->
-    $scope.showCouponEntry = false
-    $scope.couponCode = Cart.current.couponCode
-
-    $scope.remove = ->
-      $scope.couponCode = ''
-      $scope.save()
+    $scope.showPromoEntry = false
+    $scope.promoCode = Cart.current.promoCode
 
     $scope.save = ->
-      Cart.current.couponCode = $scope.couponCode
+      Cart.current.promoCode = $scope.promoCode
 
       error = (message) ->
-        $scope.couponCode = ''
+        $scope.promoCode = ''
         $scope.error = message
 
-      Checkout.saveCoupon()
+      Checkout.savePromo()
         .success (response) ->
           if response.error
             error(response.error)
           else
-            $scope.showCouponEntry = false
+            $scope.showPromoEntry = false
         .error ->
           error('An error occured')
