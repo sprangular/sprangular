@@ -41,8 +41,6 @@ Sprangular.service "Cart", ($http) ->
       order.shipToBillAddress = data.use_billing
       order.adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
 
-      order.locatePromoCode()
-
       if data.bill_address
         order.billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
 

@@ -52,9 +52,3 @@ class Sprangular.Order
 
   resetCreditCard: ->
     @creditCard = new Sprangular.CreditCard
-
-  locatePromoCode: ->
-    promo = _.find(@adjustments, (adjustment) -> adjustment.isPromo())
-
-    if promo
-      @promoCode = promo.promoCode()
