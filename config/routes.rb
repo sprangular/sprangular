@@ -12,6 +12,7 @@ Sprangular::Engine.routes.draw do
         post :add_variant
         put :update_variant
         put :change_variant
+        put :remove_adjustment
         delete :remove_variant
       end
       resource :account

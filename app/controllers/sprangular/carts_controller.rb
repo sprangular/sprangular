@@ -58,6 +58,18 @@ class Sprangular::CartsController < Sprangular::BaseController
     render 'spree/api/orders/show'
   end
 
+  def remove_adjustment
+    @order = current_order(create_order_if_necessary: true)
+    adjustment = @order.adjustments.where(id: params[:adjustment_id]).first!
+    promotion = @order.promotions.where('spree_promotions.id' => adjustment.source.promotion_id).first!
+    @order.promotions.delete(promotion)
+    adjustment.destroy
+
+    @order.update_totals
+
+    render 'spree/api/orders/show'
+  end
+
   def destroy
     if @order = current_order
       @order.empty!
