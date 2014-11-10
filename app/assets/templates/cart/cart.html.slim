@@ -76,6 +76,8 @@
           a.btn.btn-link(ng-click="empty()")
             | Empty cart
 
+          promo-form(order='cart')
+
         .pull-right
           a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
             | Checkout
