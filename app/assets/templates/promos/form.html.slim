@@ -5,8 +5,8 @@ section#promo-selection
   section#promo-entry(ng-show='showPromoEntry')
     form.form-inline(role='form' ng-submit='save()')
       .form-group
-        label.control-label(for='coupon-code') Promo
-        input.form-control(name='coupon-code' ng-model='promoCode')
+        label.control-label(for='promo-code') Code
+        input.form-control(name='promo-code' ng-model='promoCode')
 
       button.btn.btn-primary(type='submit') Save
 
