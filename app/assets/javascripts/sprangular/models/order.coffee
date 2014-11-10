@@ -6,8 +6,6 @@ class Sprangular.Order
 
     @clear()
 
-  init: ->
-
   clear: ->
     @number = ''
     @items = []
@@ -55,10 +53,8 @@ class Sprangular.Order
   resetCreditCard: ->
     @creditCard = new Sprangular.CreditCard
 
-  locateCouponCode: ->
-    couponAdjustment = _.find @adjustments, (adjustment) ->
-      adjustment.source_type == 'Spree::PromotionAction'
+  locatePromoCode: ->
+    promo = _.find(@adjustments, (adjustment) -> adjustment.isPromo())
 
-    if couponAdjustment
-      # label == 'Promotion (couponName)'
-      @couponCode = couponAdjustment.label.split(/[()]+/)[1]
+    if promo
+      @promoCode = promo.promoCode()
