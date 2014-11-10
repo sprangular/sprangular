@@ -3,12 +3,13 @@ Sprangular.directive 'promoForm', ->
   templateUrl: 'promos/form.html'
   scope:
     order: '='
-  controller: ($scope, Cart, Checkout) ->
+  controller: ($scope, Cart, Checkout, Angularytics) ->
     $scope.showPromoEntry = false
     $scope.promoCode = Cart.current.promoCode
 
     $scope.save = ->
       Cart.current.promoCode = $scope.promoCode
+      Angularytics.trackEvent("Cart", "Coupon added", $scope.promoCode)
 
       error = (message) ->
         $scope.promoCode = ''
