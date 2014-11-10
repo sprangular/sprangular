@@ -55,7 +55,8 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
       params ||= {}
 
       $http.put("/spree/api/checkouts/#{Cart.current.number}", $.param(params))
-           .success(Cart.load)
+           .success (response) ->
+             Cart.load(response) unless response.error
            .error (response) ->
              Cart.errors(response.errors)
 
