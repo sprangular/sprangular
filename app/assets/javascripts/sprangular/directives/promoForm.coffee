@@ -5,7 +5,7 @@ Sprangular.directive 'promoForm', ->
     order: '='
   controller: ($scope, Cart, Checkout, Angularytics) ->
     $scope.showPromoEntry = false
-    $scope.promoCode = Cart.current.promoCode
+    $scope.promoCode = ''
 
     $scope.save = ->
       Cart.current.promoCode = $scope.promoCode
@@ -15,7 +15,7 @@ Sprangular.directive 'promoForm', ->
         $scope.promoCode = ''
         $scope.error = message
 
-      Checkout.savePromo()
+      Checkout.savePromo($scope.promoCode)
         .success (response) ->
           if response.error
             error(response.error)

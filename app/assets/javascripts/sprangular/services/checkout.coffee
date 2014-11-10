@@ -1,12 +1,10 @@
 Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
 
   checkout =
-    savePromo: ->
-      order = Cart.current
-
+    savePromo: (code) ->
       params =
         order:
-          coupon_code: order.promoCode
+          coupon_code: code
 
       @put(params)
 
