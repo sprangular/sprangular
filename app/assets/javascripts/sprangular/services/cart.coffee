@@ -104,8 +104,8 @@ Sprangular.service "Cart", ($http) ->
         .success(@load)
 
     removeAdjustment: (adjustment) ->
-      @current.adjustmentTotal += Number(adjustment.amount)
-      console.log @current.adjustmentTotal
+      @current.adjustmentTotal -= adjustment.amount
+      @current.total -= adjustment.amount
       @current.adjustments = _.without(@current.adjustments, adjustment)
 
       params = $.param(adjustment_id: adjustment.id)
