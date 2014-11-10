@@ -1,10 +1,14 @@
-Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout) ->
+Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics) ->
   Status.pageTitle = 'Checkout'
   $scope.countries = countries
   $scope.order = order
   $scope.processing = false
 
   $scope.order.resetCreditCard()
+
+  $scope.removeAdjustment = (adjustment) ->
+    Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
+    Cart.removeAdjustment(adjustment)
 
   $scope.submit = ->
     $scope.processing = true

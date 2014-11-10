@@ -50,6 +50,8 @@
             | {{order.itemTotal | currency}}
 
           dt(ng-repeat-start="adjustment in order.adjustments")
+            a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+              span.glyphicon.glyphicon-remove
             | {{adjustment.label}}
           dd(ng-repeat-end)
             | {{adjustment.amount | currency}}
