@@ -2,7 +2,8 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.product = product
   $scope.adding = false
   $scope.selected =
-    image: product.variants[0].images[0]
+    image: null
+    images: []
     quantity: 1
     variant: null
 
@@ -12,7 +13,14 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   Status.pageTitle = $scope.product.name
 
   $scope.$watch 'selected.variant', (variant) ->
-    $scope.selected.image = variant.images[0] if variant
+    if variant && variant.images.length > 0
+      $scope.selected.images = variant.images
+    else if product.hasVariants
+      $scope.selected.images = product.variants[0].images
+    else
+      $scope.selected.images = product.images
+
+    $scope.selected.image = $scope.selected.images[0]
 
   $scope.changeQuantity = (val) ->
     $scope.selected.quantity = val
