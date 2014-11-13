@@ -2,7 +2,7 @@
   .product.col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable() }")
     .col-lg-12
       a(ng-href='{{product.permalink}}')
-        img.img-responsive.full(ng-src="{{product.image.large}}")
+        img.img-responsive.full(ng-src="{{product.image.largeUrl}}")
 
     h2.title
       a(ng-href='{{product.permalink}}' ng-bind="product.name")

@@ -1,6 +1,6 @@
 section.image.row
   .col-sm-12
-    img.img-responsive(ng-src="{{selected.image.large}}")
-section.thumbs.row(ng-show="selected.variant.images.length > 1")
-  .col-sm-3(ng-repeat='image in selected.variant.images' ng-click="changeImage(image)")
-    img.img-thumbnail.img-responsive(ng-src="{{image.large}}")
+    img.img-responsive(ng-src="{{selected.image.largeUrl}}")
+section.thumbs.row(ng-show="selected.images.length > 1")
+  .col-sm-3(ng-repeat='image in selected.images' ng-click="changeImage(image)")
+    img.img-thumbnail.img-responsive(ng-src="{{image.productUrl}}")

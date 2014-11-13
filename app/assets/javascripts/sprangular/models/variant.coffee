@@ -3,10 +3,10 @@ class Sprangular.Variant
     @name = if @option_values[0] then @option_values[0].presentation else ""
 
     @images = _.map @images, (image) ->
-      mini: image.mini_url
-      small: image.small_url
-      large: image.large_url
-      extra: image.extra_url
+      miniUrl: image.mini_url
+      smallUrl: image.small_url
+      largeUrl: image.large_url
+      productUrl: image.product_url
 
     @image = @images[0]
 
