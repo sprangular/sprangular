@@ -32,7 +32,8 @@ module Sprangular
           logo:      asset_path(config.logo),
           default_country_id: config.default_country_id,
           facebook_app_id: ENV['FACEBOOK_APP_ID'],
-          payment_methods: payment_methods
+          payment_methods: payment_methods,
+          image_sizes: Spree::Image.attachment_definitions[:attachment][:styles].keys
         },
         templates: templates
       }
