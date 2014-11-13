@@ -68,12 +68,11 @@ Sprangular.service "Cart", ($http) ->
       if foundProducts.length > 0
         @changeItemQuantity(foundProducts[0], quantity)
       else
-        @current.items.push(variant: variant, quantity: quantity, price: variant.price)
-
         params = $.param(variant_id: variant.id, quantity: quantity)
 
         $http.post '/api/cart/add_variant', params
-          .success(@load)
+          .success (response) ->
+            @load(response)
 
     removeItem: (item) ->
       order = service.current
@@ -82,12 +81,8 @@ Sprangular.service "Cart", ($http) ->
       @updateItemQuantity item.variant.id, 0
 
     changeItemQuantity: (item, delta) ->
-      oldQuantity = item.quantity
-      item.quantity += delta
-      item.quantity = 0 if item.quantity < 0
-
-      if item.quantity != oldQuantity
-        @updateItemQuantity(item.variant.id, item.quantity)
+      if delta != 0
+        @updateItemQuantity(item.variant.id, item.quantity + delta)
 
     updateItemQuantity: (id, quantity) ->
       params = $.param(variant_id: id, quantity: quantity)
