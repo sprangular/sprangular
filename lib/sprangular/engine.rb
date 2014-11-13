@@ -1,6 +1,6 @@
 module Sprangular
   class Engine < ::Rails::Engine
-    config.cached_paths = %w(layout directives products home)
+    config.cached_paths = %w(layout directives products home cart promos)
 
     initializer "sprangular.assets.configure" do |app|
       assets = Rails.application.assets
