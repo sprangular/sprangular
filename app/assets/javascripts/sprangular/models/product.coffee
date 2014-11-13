@@ -4,13 +4,6 @@ class Sprangular.Product
 
     @permalink = "#!/products/#{@slug}"
 
-    @image = {
-      mini: images[0].mini_url
-      small: images[0].small_url
-      large: images[0].large_url
-      extra: images[0].extra_url
-    }
-
     if @variants.length > 0
       @hasVariants = true
       @variants = Sprangular.extend(@variants, Sprangular.Variant)
@@ -18,6 +11,8 @@ class Sprangular.Product
       @hasVariants = false
       @master = Sprangular.extend(@master, Sprangular.Variant)
       @variants = [@master]
+
+    @image = @variants[0].images[0]
 
     self = @
     @options = {}
