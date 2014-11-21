@@ -21,6 +21,12 @@ class Sprangular.Address
   shortAddress: ->
     "#{@fullName()}, #{@addressLine()}, #{@city} #{@state.abbr}, #{@zipcode}"
 
+  addressLine: ->
+    if @address2
+      @address1 + " " + @address2
+    else
+      @address1
+
   serialize: ->
     id: @id
     firstname: @firstname
