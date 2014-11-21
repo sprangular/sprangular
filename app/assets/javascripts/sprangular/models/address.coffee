@@ -18,6 +18,9 @@ class Sprangular.Address
   fullName: ->
     "#{@firstname} #{@lastname}"
 
+  shortAddress: ->
+    "#{@fullName()}, #{@addressLine()}, #{@city} #{@state.abbr}, #{@zipcode}"
+
   serialize: ->
     id: @id
     firstname: @firstname
