@@ -29,3 +29,14 @@ class Sprangular.Address
     zipcode: @zipcode
     state_id: @stateId
     country_id: @countryId
+
+  same: (other) ->
+    @firstname == other.firstname &&
+      @lastname == other.lastname &&
+      @address1 == other.address1 &&
+      @address2 == other.address2 &&
+      @city == other.city &&
+      @phone == other.phone &&
+      @zipcode == other.zipcode &&
+      @countryId == other.countryId &&
+      @stateId == other.stateId
