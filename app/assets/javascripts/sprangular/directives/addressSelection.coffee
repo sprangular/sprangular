@@ -12,8 +12,7 @@ Sprangular.directive 'addressSelection', ->
       return unless addresses
 
       if addresses.length > 0
-        $scope.existingAddress = true
+        found = _.find addresses, (existing) ->
+          existing.same($scope.address)
 
-    $scope.$watch 'address', (address) ->
-      found = _.find address, (existing) ->
-        existing.same(address)
+        $scope.existingAddress = true if found
