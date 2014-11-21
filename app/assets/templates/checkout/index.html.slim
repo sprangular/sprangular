@@ -6,6 +6,10 @@
     .col-md-12
       h1 Checkout
 
+      p.secure(ng-if='secure')
+        span.fa.fa-lock(ng-if='secure')
+        | &nbsp;Secure transaction
+
   .row
     .col-md-8.col-xs-12
       section#billing-address

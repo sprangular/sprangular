@@ -4,6 +4,7 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
   $scope.order = order
   $scope.processing = false
   $scope.user = Account.user
+  $scope.secure = $location.protocol() == 'https:'
 
   $scope.order.resetCreditCard()
 
