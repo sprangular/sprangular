@@ -3,6 +3,7 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
   $scope.countries = countries
   $scope.order = order
   $scope.processing = false
+  $scope.user = Account.current
 
   $scope.order.resetCreditCard()
 
