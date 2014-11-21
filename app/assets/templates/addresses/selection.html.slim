@@ -2,9 +2,9 @@ section.addresses
   section.existing-address(ng-show='existingAddress')
     select(ng-options='address')
 
-    a.new-address Use new address
+    a.new-address(ng-click='toggleExistingAddress()') Use new address
 
-  section.new-address(ng-show='!existingAddress')
+  section.new-address(ng-hide='existingAddress')
     address-form(address='address' countries='countries')
 
-    a.existing-address(ng-if='addresses.length > 0 && existingAddress') Use existing address
+    a.existing-address(ng-if='addresses.length > 0' ng-click='toggleExistingAddress()') Use existing address
