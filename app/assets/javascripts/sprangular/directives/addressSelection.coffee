@@ -22,3 +22,5 @@ Sprangular.directive 'addressSelection', ->
 
       if $scope.existingAddress
         $scope.address = $scope.addresses[0]
+      else
+        $scope.address = new Sprangular.Address()
