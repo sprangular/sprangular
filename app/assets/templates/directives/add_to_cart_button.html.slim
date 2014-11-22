@@ -1,12 +1,14 @@
 a.btn.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disabled="adding || !variant")
-  span(ng-show="adding") Adding ...
+  span(ng-show="adding")
+    i.fa.fa-refresh.fa-spin
+    | &nbsp;Adding ...
 
   span(ng-hide="adding")
     span(ng-hide='variant || !product.hasVariants')
       span.caption Select option
 
     span(ng-show='variant || !product.hasVariants')
-      span.glyphicon.glyphicon-plus
+      span.fa.fa-plus-circle
       | &nbsp;
       span.caption
         span(ng-hide="inCart()") Add to cart
