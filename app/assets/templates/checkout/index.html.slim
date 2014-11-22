@@ -35,7 +35,7 @@
       section#credit-card
         h2 Credit Card
 
-        credit-card-form(credit-card='order.creditCard')
+        credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
       button.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
         span(ng-if='!processing')
