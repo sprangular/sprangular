@@ -1,6 +1,13 @@
 class Sprangular.User
   init: ->
+    @creditCards = []
     @_mergeAddressLists()
+
+    for paymentSource in @payment_sources
+      card = new Sprangular.CreditCard
+      card.init(paymentSource)
+
+      @creditCards.push(card)
 
   _mergeAddressLists: ->
     addresses = []
