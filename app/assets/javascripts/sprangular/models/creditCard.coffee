@@ -38,7 +38,7 @@ class Sprangular.CreditCard
     not (@token and @token.length > 0)
 
   label: ->
-    "#{type} XXXX-XXXX-XXXX-#{@lastDigits}"
+    "#{@constructor.TYPE_NAMES[@type]} XXXX-XXXX-XXXX-#{@lastDigits}"
 
   determineType: ->
     @type = if @number.match /^3[47]/
