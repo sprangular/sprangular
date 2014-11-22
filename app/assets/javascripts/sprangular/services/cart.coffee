@@ -72,7 +72,7 @@ Sprangular.service "Cart", ($http) ->
 
         $http.post '/api/cart/add_variant', params
           .success (response) ->
-            @load(response)
+            service.load(response)
 
     removeItem: (item) ->
       order = service.current
