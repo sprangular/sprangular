@@ -275,7 +275,7 @@ GEM
     rails-assets-sinon (1.11.1)
     rails-assets-sinonjs (1.10.2)
     rails-assets-underscore (1.7.0)
-    rails-assets-underscore.string (2.3.3)
+    rails-assets-underscore.string (2.4.0)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
