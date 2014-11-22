@@ -204,6 +204,19 @@ footer {
   }
 }
 
+.btn {
+  .caption {
+    border-right: solid 2px rgba($body-bg, 0.4);
+    padding-right: 7px;
+  }
+
+  &.btn-default {
+    .caption {
+      border-right-color: rgba($gray-dark, 0.5);
+    }
+  }
+}
+
 a.cart-link.visible-xs {
   float: right;
   padding: 15px;
