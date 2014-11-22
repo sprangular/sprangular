@@ -8,7 +8,7 @@ Spree + Angular.js + Bootstrap
 
 - Full Spree front-end
 - Single page checkout
-- 1-click checkout
+- 1-click checkout (Planned)
 - Product listing with infinite scroll
 - Product search with auto-complete
 - Easy to override templates/controllers
@@ -16,7 +16,7 @@ Spree + Angular.js + Bootstrap
 - Full Google Analytics support via [Angularytics](https://github.com/mgonto/angularytics)
 - Variant selection by option type
 - Cart dropdown/popover
-- Lookup shipping & tax by zip code
+- Lookup shipping & tax by zip code (Planned)
 - Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
 - Example rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
 
