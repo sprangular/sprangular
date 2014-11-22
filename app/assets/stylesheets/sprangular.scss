@@ -55,7 +55,6 @@ td {
   }
 }
 
-
 footer {
   background: $gray;
   color: $gray-light;
@@ -111,6 +110,29 @@ footer {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: $footer-height;
+}
+
+.product-listing {
+  .product {
+    text-align: center;
+
+    .hover {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      padding: 15px;
+      display: none;
+    }
+
+    &:hover {
+      img {
+        opacity: 0.4;
+      }
+      .hover {
+        display: block;
+      }
+    }
+  }
 }
 
 .checkout-nav {

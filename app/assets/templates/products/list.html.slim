@@ -5,29 +5,29 @@
         img.img-responsive.full(ng-src="{{product.image.largeUrl}}")
 
     .hover
-      h2.title
-        a(ng-href='{{product.permalink}}' ng-bind="product.name")
+      a(ng-href='{{product.permalink}}')
+        h2.title(ng-bind="product.name")
 
-      .with-variants(ng-show="product.hasVariants")
-        ul.variants
-          li(ng-repeat="variant in product.variants")
-            a(ng-click="selectVariant(variant)"
-              ng-class="{'is-selected': isSelected(variant)}"
-              ng-bind="variant.options_text")
+        .with-variants(ng-show="product.hasVariants")
+          ul.variants
+            li(ng-repeat="variant in product.variants")
+              a(ng-click="selectVariant(variant)"
+                ng-class="{'is-selected': isSelected(variant)}"
+                ng-bind="variant.options_text")
 
-        p.sold-out(ng-if="selectedVariants[product] && !selectedVariants[product].isAvailable()") This item is sold out
+          p.sold-out(ng-if="selectedVariants[product] && !selectedVariants[product].isAvailable()") Sold out
 
-        add-to-cart-button(ng-if="!selectedVariants[product] || selectedVariants[product].isAvailable()"
-                           product="product"
-                           variant="selectedVariants[product.id]"
-                           quantity=1
-                           class="{'btn-primary': true, 'btn-block': true}")
+          add-to-cart-button(ng-if="!selectedVariants[product] || selectedVariants[product].isAvailable()"
+                             product="product"
+                             variant="selectedVariants[product.id]"
+                             quantity=1
+                             class="{'btn-primary': true}")
 
-      .without-variants(ng-hide="product.hasVariants")
-        p.sold-out(ng-if="!product.isAvailable()") This item is sold out
+        .without-variants(ng-hide="product.hasVariants")
+          p.sold-out(ng-if="!product.isAvailable()") Sold out
 
-        add-to-cart-button(ng-if="product.isAvailable()"
-                           product="product"
-                           variant="product.master"
-                           quantity=1
-                           class="{'btn-primary': true, 'btn-block': true}")
+          add-to-cart-button(ng-if="product.isAvailable()"
+                             product="product"
+                             variant="product.master"
+                             quantity=1
+                             class="{'btn-primary': true}")
