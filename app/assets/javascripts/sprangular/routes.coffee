@@ -28,8 +28,10 @@ Sprangular.config ($routeProvider) ->
       controller: 'ProductCtrl'
       templateUrl: 'products/show.html'
       resolve:
-        product: (Catalog, $route) ->
-          Catalog.find($route.current.params.id)
+        product: (Status, Catalog, $route) ->
+          slug = $route.current.params.id
+
+          Status.findCachedProduct(slug) || Catalog.find(slug)
 
     .when '/t/:path*',
       controller: 'ProductListCtrl'
