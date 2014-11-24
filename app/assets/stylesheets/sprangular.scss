@@ -61,9 +61,18 @@ a {
   span {
     display: inline-block;
   }
+
   .caption {
     margin-right: 5px;
     font-weight: bold;
+    border-right: solid 2px rgba($body-bg, 0.4);
+    padding-right: 7px;
+  }
+
+  &.btn-default {
+    .caption {
+      border-right-color: rgba($gray-dark, 0.5);
+    }
   }
 }
 
@@ -237,19 +246,6 @@ footer {
     padding: 10px 16px;
     border-radius: 50%;
     width: auto;
-  }
-}
-
-.btn {
-  .caption {
-    border-right: solid 2px rgba($body-bg, 0.4);
-    padding-right: 7px;
-  }
-
-  &.btn-default {
-    .caption {
-      border-right-color: rgba($gray-dark, 0.5);
-    }
   }
 }
 
