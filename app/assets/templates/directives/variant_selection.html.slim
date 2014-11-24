@@ -1,7 +1,7 @@
 .option.row(ng-repeat="option in product.options" class="{{option.type.name}}")
   .col-lg-12
     .values.btn-group(ng-class="class")
-      button.btn.btn-default.title(disabled)
+      button.btn.btn-default.option-title(disabled)
         b(ng-bind='option.type.presentation')
 
       button.btn.btn-default(ng-repeat="item in option.values"
