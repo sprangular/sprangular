@@ -18,6 +18,7 @@ class Sprangular.Order
     @adjustmentTotal = 0
     @total = 0
     @errors = null
+    @state = null
 
   isEmpty: ->
     @items.length == 0

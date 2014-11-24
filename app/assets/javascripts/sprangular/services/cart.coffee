@@ -33,6 +33,7 @@ Sprangular.service "Cart", ($http) ->
       order = service.current
       order.clear()
       order.number = data.number
+      order.state = data.state
       order.itemTotal = Number(data.item_total)
       order.taxTotal = Number(data.tax_total)
       order.shipTotal = Number(data.ship_total)
