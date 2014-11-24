@@ -25,7 +25,7 @@
             tr.item(ng-repeat='item in cart.items')
               td.image
                 a(href="#!/products/{{item.variant.product.slug}}")
-                  img(ng-src="{{item.variant.image.mini}}")
+                  img(ng-src="{{item.variant.image.miniUrl}}")
 
               td.name
                 p
