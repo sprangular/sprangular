@@ -23,8 +23,15 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, 
 
   $scope.doSearch = ->
     Angularytics.trackEvent("Product", "Search", $scope.search.text)
-    $location.search('search', $scope.search.text)
-    $location.path "/products"
+
+    product = _.find $scope.lastSearch, (product) ->
+                product.name == $scope.search.text
+
+    if product
+      $location.path "/products/#{product.slug}"
+    else
+      $location.search('search', $scope.search.text)
+      $location.path "/products"
 
   $scope.getProducts = (search) ->
     return [] unless search
