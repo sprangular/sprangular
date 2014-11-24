@@ -30,34 +30,7 @@ Sprangular.service "Cart", ($http) ->
             order.errors[key] = attrErrors
 
     load: (data) ->
-      order = service.current
-      order.clear()
-      order.number = data.number
-      order.state = data.state
-      order.itemTotal = Number(data.item_total)
-      order.taxTotal = Number(data.tax_total)
-      order.shipTotal = Number(data.ship_total)
-      order.adjustmentTotal = Number(data.adjustment_total)
-      order.total = Number(data.total)
-      order.shipToBillAddress = data.use_billing
-      order.adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
-
-      if data.bill_address
-        order.billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
-
-      if data.ship_address
-        order.shippingAddress = Sprangular.extend(data.ship_address, Sprangular.Address)
-
-      products = Sprangular.extend(data.products, Sprangular.Product)
-
-      for item in data.line_items
-        for product in products
-          variant = product.findVariant(item.variant_id)
-          break if variant
-
-        order.items.push(variant: variant, quantity: item.quantity, price: item.price)
-
-      order
+      service.current.load(data)
 
     empty: ->
       $http.delete '/api/cart'
