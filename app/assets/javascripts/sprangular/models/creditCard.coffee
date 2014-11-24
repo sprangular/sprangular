@@ -62,5 +62,8 @@ class Sprangular.CreditCard
     token: @token
     cc_type: @type
 
+  same: (other) ->
+    @id == other.id
+
   _validateCardFormat: ->
     'invalid card number' unless Sprangular.Luhn.isValid(@number)
