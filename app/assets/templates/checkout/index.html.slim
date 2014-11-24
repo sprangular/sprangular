@@ -40,8 +40,11 @@
       button.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
         span(ng-if='!processing')
           span.caption Confirm
+          | &nbsp;
           span.glyphicon.glyphicon-chevron-right
         span(ng-if='processing')
+          span.fa.fa-refresh.fa-spin
+          | &nbsp;
           span.caption Loading...
 
     .col-md-4.hidden-xs
