@@ -7,6 +7,7 @@
 //= require jquery
 //= require angular
 //= require angularytics
+//= require bootstrap-sass-official
 //= require validity
 
 //
