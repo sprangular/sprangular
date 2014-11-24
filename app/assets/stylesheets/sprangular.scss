@@ -166,21 +166,33 @@ footer {
 .product-listing {
   .product {
     text-align: center;
+    img {
+      transition: opacity 0.3s ease-in;
+    }
 
-    .hover {
-      width: 100%;
-      height: 100%;
+    .title, .with-variants, .without-variants {
       position: absolute;
-      padding: 15px;
+      width: 100%;
       display: none;
+      padding: 15px;
+    }
+
+    .with-variants, .without-variants {
+      bottom: 15px;
+    }
+
+    .title a {
+      text-decoration: none;
     }
 
     &:hover {
       img {
-        opacity: 0.4;
+        opacity: 0.3;
       }
-      .hover {
+
+      .title, .with-variants, .without-variants {
         display: block;
+        z-index: 2;
       }
     }
   }
