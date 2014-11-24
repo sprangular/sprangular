@@ -5,15 +5,11 @@
         a(ng-href='{{product.permalink}}' ng-bind="product.name")
 
       .with-variants(ng-show="product.hasVariants")
-        ul.variants
-          li(ng-repeat="variant in product.variants")
-            a(ng-click="selectVariant(variant)"
-              ng-class="{'is-selected': isSelected(variant)}"
-              ng-bind="variant.options_text")
+        variant-selection(product="product" variant="selectedVariants[product.id]" class="{'btn-group-xs': true}")
 
-        p.sold-out(ng-if="selectedVariants[product] && !selectedVariants[product].isAvailable()") Sold out
+        p.sold-out(ng-if="selectedVariants[product.id] && !selectedVariants[product.id].isAvailable()") Sold out
 
-        add-to-cart-button(ng-if="!selectedVariants[product] || selectedVariants[product].isAvailable()"
+        add-to-cart-button(ng-if="!selectedVariants[product.id] || selectedVariants[product.id].isAvailable()"
                            product="product"
                            variant="selectedVariants[product.id]"
                            quantity=1
