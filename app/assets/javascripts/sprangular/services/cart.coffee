@@ -70,7 +70,7 @@ Sprangular.service "Cart", ($http) ->
       else
         params = $.param(variant_id: variant.id, quantity: quantity)
 
-        $http.post '/api/cart/add_variant', params
+        $http.post '/api/cart/add_variant', params, ignoreLoadingIndicator: true
           .success (response) ->
             service.load(response)
 
@@ -87,7 +87,7 @@ Sprangular.service "Cart", ($http) ->
     updateItemQuantity: (id, quantity) ->
       params = $.param(variant_id: id, quantity: quantity)
 
-      $http.put '/api/cart/update_variant', params
+      $http.put '/api/cart/update_variant', params, ignoreLoadingIndicator: true
         .success(@load)
 
     changeVariant: (oldVariant, newVariant) ->
