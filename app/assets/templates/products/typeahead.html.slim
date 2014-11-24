@@ -1,0 +1,7 @@
+ul#product-typeahead(tabindex="-1" class="typeahead dropdown-menu" ng-show="$isVisible()" role="select")
+  li(role="presentation" ng-repeat="match in $matches" ng-class="{active: $index == $activeIndex}")
+    a.clearfix(role="menuitem" tabindex="-1" ng-click="$select($index, $event)")
+      .pull-left
+        img(ng-src="{{match.value.image.miniUrl}}")
+
+      span(ng-bind='match.label')
