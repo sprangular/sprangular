@@ -27,4 +27,7 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, 
     $location.path "/products"
 
   $scope.getProducts = (search) ->
-    Catalog.products(search)
+    return [] unless search
+    Catalog.products(search, 1, ignoreLoadingIndicator: true)
+      .then (products) ->
+        $scope.lastSearch = products
