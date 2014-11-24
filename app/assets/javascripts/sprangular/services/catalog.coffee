@@ -1,4 +1,4 @@
-Sprangular.service 'Catalog', ($http, $q, _) ->
+Sprangular.service 'Catalog', ($http, $q, _, Status) ->
   service =
     pageSize: 8
 
@@ -32,6 +32,7 @@ Sprangular.service 'Catalog', ($http, $q, _) ->
              list.totalCount = data.total_count
              list.totalPages = data.pages
              list.page = data.current_page
+             Status.cacheProducts(list)
              list
 
   service
