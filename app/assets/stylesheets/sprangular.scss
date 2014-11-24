@@ -76,6 +76,12 @@ a {
   }
 }
 
+.input-group {
+  .input-group-btn .btn .glyphicon {
+    line-height: 20px;
+  }
+}
+
 #signin {
   nav a {
     display: block;
