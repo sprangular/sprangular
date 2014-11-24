@@ -5,7 +5,7 @@ a.btn.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disabled="adding ||
 
   span(ng-hide="adding")
     span(ng-hide='variant || !product.hasVariants')
-      span.caption Select option
+      | Select option
 
     span(ng-show='variant || !product.hasVariants')
       span.fa.fa-plus-circle
