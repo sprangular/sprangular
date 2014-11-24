@@ -51,6 +51,9 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
 
       @put(params)
 
+    next: ->
+      @put(null, 'next')
+
     put: (params, path) ->
       params ||= {}
 
