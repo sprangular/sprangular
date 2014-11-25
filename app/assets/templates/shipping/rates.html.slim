@@ -1,5 +1,8 @@
 .shipping-rates
-  p(ng-if='loading') Refreshing rates...
+  p(ng-if='loading')
+    span.fa.fa-refresh.fa-spin
+    | &nbsp;
+    | Refreshing rates...
 
   div(ng-if='!loading')
     p.not-found(ng-if='rates.length == 0') Shipping not available to {{order.actualShippingAddress().country.name}}
