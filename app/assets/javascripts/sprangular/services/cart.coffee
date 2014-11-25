@@ -1,7 +1,10 @@
 Sprangular.service "Cart", ($http) ->
 
   service =
-    current: new Sprangular.Order
+    current: null
+
+    init: ->
+      @current  = new Sprangular.Order
 
     reload: ->
       $http.get '/api/cart.json'
