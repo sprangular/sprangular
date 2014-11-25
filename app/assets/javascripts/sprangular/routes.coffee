@@ -82,6 +82,9 @@ Sprangular.config ($routeProvider) ->
     .when '/checkout/complete',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
+      resolve:
+        order: (Account) ->
+          _.last(Account.user.orders)
 
     .otherwise
       templateUrl: '404.html'
