@@ -9,7 +9,10 @@
     .pull-right
       a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
         span(ng-if='!processing') Place Order
-        span(ng-if='processing') Processing...
+        span(ng-if='processing')
+          span.fa.fa-refresh.fa-spin
+          | &nbsp;
+          span.caption Processing...
 
   .row
     .col-lg-4.col-md-6.address.billing
