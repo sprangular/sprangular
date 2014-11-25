@@ -97,6 +97,6 @@ Sprangular.service "Cart", ($http) ->
     hasVariant: (variant)    -> @current.hasVariant(variant)
     isEmpty:                 -> @current.isEmpty()
 
-  service.clear()
+  service.init()
   service.reload()
   service
