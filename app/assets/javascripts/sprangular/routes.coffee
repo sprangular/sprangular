@@ -79,7 +79,7 @@ Sprangular.config ($routeProvider) ->
         order: (Cart) ->
           Cart.reload().then -> Cart.current
 
-    .when 'checkout/complete',
+    .when '/checkout/complete',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
 
