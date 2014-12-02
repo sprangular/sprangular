@@ -19,11 +19,13 @@ class Sprangular.Order
     @total = 0
     @errors = null
     @state = null
+    @shipmentState = null
 
   load: (data) ->
     @clear()
     @number = data.number
     @state = data.state
+    @shipmentState = data.shipment_state
     @itemTotal = Number(data.item_total)
     @taxTotal = Number(data.tax_total)
     @shipTotal = Number(data.ship_total)
