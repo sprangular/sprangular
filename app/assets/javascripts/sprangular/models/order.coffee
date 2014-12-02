@@ -25,6 +25,7 @@ class Sprangular.Order
     @number = data.number
     @state = data.state
     @itemTotal = Number(data.item_total)
+    @taxTotal = Number(data.tax_total)
     @shipTotal = Number(data.ship_total)
     @adjustmentTotal = Number(data.adjustment_total)
     @total = Number(data.total)
