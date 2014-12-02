@@ -34,6 +34,11 @@ class Sprangular.Order
     @shipToBillAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
 
+    if shippingMethod = _.last(data.shipping_methods)
+      @shippingMethodId = shippingMethod.id
+    else
+      @shippingMethodId = null
+
     if data.bill_address
       @billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
 

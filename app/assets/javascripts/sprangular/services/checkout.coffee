@@ -19,7 +19,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           bill_address_attributes: order.billingAddress.serialize()
 
       if order.shippingMethod
-        params.order.shipping_method_id = order.shipping_method_id
+        params.order.shipping_method_id = order.shippingMethodId
 
       if order.shippingRate
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id

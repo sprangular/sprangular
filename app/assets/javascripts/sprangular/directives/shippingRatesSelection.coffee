@@ -7,7 +7,7 @@ Sprangular.directive 'shippingRateSelection', ->
     $scope.loading = false
     $scope.rates = []
 
-    $scope.$watch 'order.shipping_method_id', (shippingMethodId) ->
+    $scope.$watch 'order.shippingMethodId', (shippingMethodId) ->
       rate = _.find($scope.rates, (rate) -> rate.shippingMethodId == shippingMethodId)
 
       if rate
@@ -30,10 +30,10 @@ Sprangular.directive 'shippingRateSelection', ->
             .then ((results) ->
               $scope.rates = results
 
-              order.shipping_method_id = null unless _.find(results, (rate) -> rate.shippingMethodId == order.shipping_method_id)
+              order.shippingMethodId = null unless _.find(results, (rate) -> rate.shippingMethodId == order.shippingMethodId)
 
-              if order.shipping_method_id == null && results.length > 0
-                order.shipping_method_id = results[0].shippingMethodId
+              if order.shippingMethodId == null && results.length > 0
+                order.shippingMethodId = results[0].shippingMethodId
 
               $scope.loading = false), (->
 
