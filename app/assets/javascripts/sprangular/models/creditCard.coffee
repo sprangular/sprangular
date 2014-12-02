@@ -13,14 +13,14 @@ class Sprangular.CreditCard
     number: ['required', '_validateCardFormat']
     month: 'required'
     year: 'required'
-    cvv: ['required', length: {greaterThan: 2, lessThan: 5}]
+    cvc: ['required', length: {greaterThan: 2, lessThan: 5}]
 
   constructor: ->
     @number = ''
     @name = null
     @month = null
     @year = null
-    @cvv = ''
+    @cvc = null
     @type = null
     @token = null
     @lastDigits = null

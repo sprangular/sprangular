@@ -45,8 +45,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         params.order.use_existing_card = 'no'
         sourceParams = {}
         sourceParams.number = card.number
-        sourceParams.verification_value = card.cvc
         sourceParams.cc_type = card.type
+        sourceParams.verification_value = card.cvc
         sourceParams.month = card.month
         sourceParams.year = card.year
         sourceParams.last_digits = card.lastDigits
