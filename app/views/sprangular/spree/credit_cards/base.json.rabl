@@ -1,1 +1,1 @@
-attributes *credit_card_attributes
+attributes *creditcard_attributes
