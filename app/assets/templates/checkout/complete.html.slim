@@ -1,4 +1,19 @@
-p We got your order.
+#checkout-complete.container
+  .row
+    .col-lg-12
+      h1 All done!
 
-pre
- | {{ order }}
+      p
+        | Your order \#{{order.number}} was successfully submitted, you should receive an email receipt shortly.
+
+      pre
+        | {{ order.state }}
+
+      section#share
+        p Share your order:
+
+        p
+          a Facebook
+
+        p
+          a Twitter
