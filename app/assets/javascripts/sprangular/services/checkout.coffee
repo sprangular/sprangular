@@ -1,6 +1,6 @@
-Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
+Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
-  checkout =
+  service =
     savePromo: (code) ->
       params =
         order:
@@ -27,32 +27,59 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
 
       @put(params)
 
-    complete: ->
+    finalize: ->
       paymentMethodId = Env.config.payment_methods['gateway'].id
       params =
-        'order[payments_attributes][][payment_method_id]': paymentMethodId
-        'state': 'complete'
+        order:
+          payment_attributes:
+            payment_method_id: paymentMethodId
+          payment_source: {}
 
       order = Cart.current
       card = order.creditCard
 
       if card.id
-        params['use_existing_card'] = 'yes'
-        params['existing_card'] = card.id
+        params.order.use_existing_card = 'yes'
+        params.order.existing_card = card.id
       else
-        params["use_existing_card"] = 'no'
-        params["payment_source[#{paymentMethodId}][number]"] = card.number
-        params["payment_source[#{paymentMethodId}][verification_value]"] = card.cvc
-        params["payment_source[#{paymentMethodId}][cc_type]"] = card.ccType
-        params["payment_source[#{paymentMethodId}][month]"] = card.month
-        params["payment_source[#{paymentMethodId}][year]"] = card.year
-        params["payment_source[#{paymentMethodId}][last_digits]"] = card.lastDigits
-        params["payment_source[#{paymentMethodId}][name]"] = order.billingAddress.fullName()
+        params.order.use_existing_card = 'no'
+        sourceParams = {}
+        sourceParams.number = card.number
+        sourceParams.verification_value = card.cvc
+        sourceParams.cc_type = card.type
+        sourceParams.month = card.month
+        sourceParams.year = card.year
+        sourceParams.last_digits = card.lastDigits
+        sourceParams.name = order.billingAddress.fullName()
 
-      @put(params)
+        params.order.payment_source[paymentMethodId] = sourceParams
 
-    next: ->
-      @put(null, 'next')
+      order.errors = ''
+
+      @complete(params)
+
+    complete: (params) ->
+      deferred = $q.defer()
+      @put(params, 'advance')
+        .success (order) ->
+          if order.completed_at != null
+            deferred.resolve(order)
+          else if order.state == 'confirm'
+            service.put()
+              .success (data) ->
+                if data.state == 'confirm'
+                  alert 'Could not transition order to state "complete"'
+                  deferred.reject(data)
+                else
+                  deferred.resolve(data)
+              .error (data) ->
+                deferred.reject(data)
+          else
+            service.complete(params)
+              .then(((response) -> deferred.resolve(response)),
+                    ((response) -> deferred.reject(response)))
+
+      deferred.promise
 
     put: (params, path) ->
       params ||= {}
@@ -64,4 +91,4 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
            .error (response) ->
              Cart.errors(response.errors)
 
-  checkout
+  service

@@ -5,10 +5,12 @@ Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, order, Account,
   $scope.complete = ->
     $scope.processing = true
 
-    Checkout.complete()
-      .success ->
-        Cart.init()
-        $location.path('/checkout/complete')
+    success = ->
+      Cart.init()
+      Account.init()
+      $location.path('/checkout/complete')
 
-      .error ->
-        $location.path('/checkout')
+    error = ->
+      $location.path('/checkout')
+
+    Checkout.finalize().then(success, error)
