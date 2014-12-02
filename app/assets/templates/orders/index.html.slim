@@ -10,6 +10,10 @@ h2 Order History
       dd
         | {{order.number}}
 
+      dt Status
+      dd
+        | {{order.state}}
+
       dt Ordered on
       dd
         | {{order.completed_at | date}}
