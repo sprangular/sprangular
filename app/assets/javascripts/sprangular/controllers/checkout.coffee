@@ -6,6 +6,8 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
   $scope.user = Account.user
   $scope.secure = $location.protocol() == 'https'
 
+  Cart.lastOrder = null
+
   $scope.order.resetCreditCard()
 
   $scope.removeAdjustment = (adjustment) ->
