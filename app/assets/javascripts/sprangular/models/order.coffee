@@ -87,5 +87,15 @@ class Sprangular.Order
     else
       @shippingAddress
 
-  resetCreditCard: ->
-    @creditCard = new Sprangular.CreditCard
+  resetAddresses: (user) ->
+    if @billingAddress.isEmpty() && user && user.addresses.length > 0
+      @billingAddress = user.addresses[0]
+
+    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@shipToBillAddress
+      @shippingAddress = user.addresses[0]
+
+  resetCreditCard: (user) ->
+    if user && user.creditCards.length > 0
+      @creditCard = _.last(user.creditCards)
+    else
+      @creditCard = new Sprangular.CreditCard

@@ -39,6 +39,17 @@ class Sprangular.Address
     state_id: @stateId
     country_id: @countryId
 
+  isEmpty: ->
+    !@firstname &&
+    !@lastname &&
+    !@address1 &&
+    !@address2 &&
+    !@city &&
+    !@phone &&
+    !@zipcode &&
+    !@countryId &&
+    !@stateId
+
   same: (other) ->
     @firstname == other.firstname &&
       @lastname == other.lastname &&
