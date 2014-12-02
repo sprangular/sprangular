@@ -22,4 +22,6 @@ Sprangular::Engine.routes.draw do
       resources :shipping_rates, only: :index
     end
   end
+
+  put 'api/checkouts/:id/quick_update', to: 'spree/api/checkouts#quick_update'
 end
