@@ -54,14 +54,6 @@ class Sprangular.CreditCard
             else if @number.match /^(2131|1800|35)/
               'jcb'
 
-  serialize: ->
-    name: @name
-    last_digits: @lastDigits
-    month: @month
-    year: @year
-    token: @token
-    cc_type: @type
-
   same: (other) ->
     @id == other.id
 
