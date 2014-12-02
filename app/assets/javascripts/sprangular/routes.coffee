@@ -84,7 +84,8 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'checkout/complete.html'
       resolve:
         order: (Account) ->
-          _.last(Account.user.orders)
+          Account.reload().then ->
+            _.last(Account.user.orders)
 
     .otherwise
       templateUrl: '404.html'
