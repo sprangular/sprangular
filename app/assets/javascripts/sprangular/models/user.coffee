@@ -2,6 +2,7 @@ class Sprangular.User
   init: ->
     @creditCards = []
     @_mergeAddressLists()
+    @orders = Sprangular.extend(@orders, Sprangular.Order)
 
     for paymentSource in @payment_sources
       card = new Sprangular.CreditCard
