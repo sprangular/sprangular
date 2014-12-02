@@ -17,7 +17,6 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        state: 'confirm'
 
       if order.shippingMethod
         params.order.shipping_method_id = order.shipping_method_id
