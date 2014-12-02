@@ -52,36 +52,15 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         sourceParams.last_digits = card.lastDigits
         sourceParams.name = order.billingAddress.fullName()
 
-        params.order.payment_source[paymentMethodId] = sourceParams
+        params.payment_source[paymentMethodId] = sourceParams
 
-      order.errors = ''
+      @put(params)
+        .success (data) ->
+          Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
+          Account.reload().then ->
+            Cart.init()
 
-      @complete(params)
-
-    complete: (params) ->
-      deferred = $q.defer()
-      @put(params, 'advance')
-        .success (order) ->
-          if order.completed_at != null
-            deferred.resolve(order)
-          else if order.state == 'confirm'
-            service.put()
-              .success (data) ->
-                if data.state == 'confirm'
-                  alert 'Could not transition order to state "complete"'
-                  deferred.reject(data)
-                else
-                  deferred.resolve(data)
-              .error (data) ->
-                deferred.reject(data)
-          else
-            service.complete(params)
-              .then(((response) -> deferred.resolve(response)),
-                    ((response) -> deferred.reject(response)))
-
-      deferred.promise
-
-    put: (params, path) ->
+    put: (params) ->
       params ||= {}
       path ||= ''
 
