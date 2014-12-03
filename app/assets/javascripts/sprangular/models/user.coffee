@@ -10,6 +10,8 @@ class Sprangular.User
 
       @creditCards.push(card)
 
+    @allowOneClick = @creditCards.length > 0 && @addresses.length > 0
+
   _mergeAddressLists: ->
     addresses = []
     unique = (address) -> addresses[address.id] = Sprangular.extend(address, Sprangular.Address)

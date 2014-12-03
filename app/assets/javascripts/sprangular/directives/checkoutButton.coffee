@@ -10,8 +10,7 @@ Sprangular.directive 'checkoutButton', ->
     $scope.processing = false
 
     $scope.$watch 'user', (user) ->
-      $scope.allowOneClick =
-        user && user.addresses.length > 0 && user.creditCards.length > 0
+      $scope.allowOneClick = user.allowOneClick
 
     $scope.standardCheckout = ->
       $scope.processing = true
