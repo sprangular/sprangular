@@ -30,8 +30,7 @@
       section.in-cart.row(ng-show='hasVariant()')
         .col-md-12
           p Item was added to your cart
-          a.btn.btn-success.btn-lg.btn-block(href='#!/checkout')
-            | Checkout
-            span.glyphicon.glyphicon-chevron-right
+
+          checkout-button(user='user')
 
       ng-include(src="'products/properties.html'")

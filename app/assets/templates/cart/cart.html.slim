@@ -82,6 +82,4 @@
           promo-form(order='cart')
 
         .pull-right
-          a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
-            | Checkout
-            span.glyphicon.glyphicon-chevron-right
+          checkout-button(user='user' ng-click='$hide()')
