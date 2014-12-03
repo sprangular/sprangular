@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency 'rails', '~> 4.1.4'
-  s.add_dependency 'spree_core', '>= 2.3.4'
-  s.add_dependency 'spree_api', '>= 2.3.4'
+  s.add_dependency 'rails'
+  s.add_dependency 'spree_core', '>= 2.4'
+  s.add_dependency 'spree_api', '>= 2.4'
   s.add_dependency 'slim-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
