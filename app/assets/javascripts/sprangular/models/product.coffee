@@ -13,6 +13,8 @@ class Sprangular.Product
       @variants = [@master]
 
     @image = @variants[0].images[0]
+    if !@image?
+      @image = @master.images[0]
 
     self = @
     @options = {}
