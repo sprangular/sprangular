@@ -1,6 +1,7 @@
 class Sprangular.Product
   init: ->
     images = @master.images
+    @images = images
 
     @permalink = "#!/products/#{@slug}"
 
