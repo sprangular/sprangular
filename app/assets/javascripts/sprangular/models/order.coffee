@@ -18,6 +18,43 @@ class Sprangular.Order
     @adjustmentTotal = 0
     @total = 0
     @errors = null
+    @state = null
+    @shipmentState = null
+
+  load: (data) ->
+    @clear()
+    @number = data.number
+    @state = data.state
+    @shipmentState = data.shipment_state
+    @itemTotal = Number(data.item_total)
+    @taxTotal = Number(data.tax_total)
+    @shipTotal = Number(data.ship_total)
+    @adjustmentTotal = Number(data.adjustment_total)
+    @total = Number(data.total)
+    @shipToBillAddress = data.use_billing
+    @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
+
+    if shippingMethod = _.last(data.shipping_methods)
+      @shippingMethodId = shippingMethod.id
+    else
+      @shippingMethodId = null
+
+    if data.bill_address
+      @billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
+
+    if data.ship_address
+      @shippingAddress = Sprangular.extend(data.ship_address, Sprangular.Address)
+
+    products = Sprangular.extend(data.products, Sprangular.Product)
+
+    for item in data.line_items
+      for product in products
+        variant = product.findVariant(item.variant_id)
+        break if variant
+
+      @items.push(variant: variant, quantity: item.quantity, price: item.price)
+
+    @
 
   isEmpty: ->
     @items.length == 0
@@ -50,5 +87,15 @@ class Sprangular.Order
     else
       @shippingAddress
 
-  resetCreditCard: ->
-    @creditCard = new Sprangular.CreditCard
+  resetAddresses: (user) ->
+    if @billingAddress.isEmpty() && user && user.addresses.length > 0
+      @billingAddress = user.addresses[0]
+
+    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@shipToBillAddress
+      @shippingAddress = user.addresses[0]
+
+  resetCreditCard: (user) ->
+    if user && user.creditCards.length > 0
+      @creditCard = _.last(user.creditCards)
+    else
+      @creditCard = new Sprangular.CreditCard

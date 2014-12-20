@@ -17,15 +17,15 @@
         .with-items(ng-hide="isEmpty()")
           table.table.table-striped
             tr
-              th(colspan=2) Item
-              th(width="15%") Quantity
+              th(colspan=2 width="50%") Item
+              th(width="25%") Quantity
               th Price
               th
 
             tr.item(ng-repeat='item in cart.items')
               td.image
                 a(href="#!/products/{{item.variant.product.slug}}")
-                  img(ng-src="{{item.variant.image.mini}}")
+                  img(ng-src="{{item.variant.image.miniUrl}}")
 
               td.name
                 p
@@ -82,6 +82,4 @@
           promo-form(order='cart')
 
         .pull-right
-          a.btn.btn-lg.btn-primary(ng-href="/#!/checkout" ng-click="$hide()")
-            | Checkout
-            span.glyphicon.glyphicon-chevron-right
+          checkout-button(user='user' ng-click='$hide()')

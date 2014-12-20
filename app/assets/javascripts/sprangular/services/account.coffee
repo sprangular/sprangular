@@ -1,4 +1,4 @@
-Sprangular.service "Account", ($http, _, $q, Wallet, Cart, Flash) ->
+Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
 
   service =
 
@@ -31,15 +31,12 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Cart, Flash) ->
 
       @isLogged = true
       @email = data.email
-      @wallet = Wallet
-      @wallet.load(@user)
 
     clear: ->
       @fetched = false
       @user = {}
       @isLogged = false
       @email = null
-      @wallet = null
 
     login: (data) ->
       params =
@@ -94,6 +91,14 @@ Sprangular.service "Account", ($http, _, $q, Wallet, Cart, Flash) ->
             Flash.success 'Account updated'
         .error ->
           Flash.error 'Save failed'
+
+    deleteCard: (card) ->
+      cards = @user.creditCards
+
+      $http.delete("/api/credit_cards/#{card.id}")
+        .success (data) ->
+          i = cards.indexOf card
+          cards.splice(i, 1) unless i is -1
 
   service.init()
   service

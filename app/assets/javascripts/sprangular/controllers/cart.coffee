@@ -1,5 +1,6 @@
-Sprangular.controller "CartCtrl", ($scope, Cart, Status, Angularytics) ->
+Sprangular.controller "CartCtrl", ($scope, Cart, Account, Status, Angularytics) ->
 
+  $scope.user = Account.user
   $scope.cart = Cart.current
   $scope.status = Status
 

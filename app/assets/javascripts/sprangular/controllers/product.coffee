@@ -1,5 +1,6 @@
-Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
+Sprangular.controller 'ProductCtrl', ($scope, Status, product, Account, Cart) ->
   $scope.product = product
+  $scope.user = Account.user
   $scope.adding = false
   $scope.selected =
     image: null
@@ -15,8 +16,6 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Cart) ->
   $scope.$watch 'selected.variant', (variant) ->
     if variant && variant.images.length > 0
       $scope.selected.images = variant.images
-    else if product.hasVariants
-      $scope.selected.images = product.variants[0].images
     else
       $scope.selected.images = product.images
 

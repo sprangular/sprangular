@@ -14,12 +14,12 @@
         variant-selection(product="product" variant="selected.variant" class="{'btn-group-lg': true}")
 
       section.add.row
-        .col-sm-12
-          h4 Quantity
         .col-sm-4
-          quantity-input(quantity="selected.quantity")
+          quantity-input(quantity="selected.quantity" ng-if='!selected.variant || selected.variant.isAvailable()')
         .col-sm-8
-          p.sold-out(ng-if="selected.variant && !selected.variant.isAvailable()") This item is sold out
+          p.sold-out(ng-if="selected.variant && !selected.variant.isAvailable()")
+            span.fa.fa-exclamation-triangle
+            | &nbsp;This item is sold out
 
           add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"
                              product="product"
@@ -30,8 +30,7 @@
       section.in-cart.row(ng-show='hasVariant()')
         .col-md-12
           p Item was added to your cart
-          a.btn.btn-success.btn-lg.btn-block(href='#!/checkout')
-            | Checkout
-            span.glyphicon.glyphicon-chevron-right
+
+          checkout-button(user='user')
 
       ng-include(src="'products/properties.html'")

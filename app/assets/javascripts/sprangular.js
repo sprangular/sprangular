@@ -3,10 +3,11 @@
 //
 
 //= require underscore
-//= require underscore.string/lib/underscore.string
+//= require underscore.string
 //= require jquery
 //= require angular
 //= require angularytics
+//= require bootstrap-sass-official
 //= require validity
 
 //

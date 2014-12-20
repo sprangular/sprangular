@@ -28,8 +28,10 @@ Sprangular.config ($routeProvider) ->
       controller: 'ProductCtrl'
       templateUrl: 'products/show.html'
       resolve:
-        product: (Catalog, $route) ->
-          Catalog.find($route.current.params.id)
+        product: (Status, Catalog, $route) ->
+          slug = $route.current.params.id
+
+          Status.findCachedProduct(slug) || Catalog.find(slug)
 
     .when '/t/:path*',
       controller: 'ProductListCtrl'
@@ -77,9 +79,12 @@ Sprangular.config ($routeProvider) ->
         order: (Cart) ->
           Cart.reload().then -> Cart.current
 
-    .when 'checkout/complete',
+    .when '/checkout/complete',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
+      resolve:
+        order: (Cart) ->
+          Cart.lastOrder
 
     .otherwise
       templateUrl: '404.html'

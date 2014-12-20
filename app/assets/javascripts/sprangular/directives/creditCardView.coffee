@@ -12,4 +12,4 @@ Sprangular.directive 'creditCardView', ->
       Sprangular.CreditCard.TYPE_NAMES[$scope.card.type]
 
     $scope.delete = ->
-      Account.wallet.delete(card)
+      Account.deleteCard($scope.card)

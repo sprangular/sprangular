@@ -26,7 +26,8 @@ form.credit-card(novalidate)
         p.error(ng-bind='creditCard.errors.year')
 
     .col-md-4
-      .form-group(ng-class="{'has-error': creditCard.errors.cvv}")
-        label.control-label(for='cvv') Verification Code
-        input.form-control(type='number' name='cvv' min=1 max=9999 ng-model='creditCard.cvv')
-        p.error(ng-bind='creditCard.errors.cvv')
+      .form-group(ng-class="{'has-error': creditCard.errors.cvc}")
+        label.control-label(for='cvc')
+          | Verification Code <a href="http://en.wikipedia.org/wiki/Card_security_code" target="_blank">what's this?</a>
+        input.form-control(type='number' name='cvc' min=1 max=9999 ng-model='creditCard.cvc')
+        p.error(ng-bind='creditCard.errors.cvc')

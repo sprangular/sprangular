@@ -13,29 +13,32 @@ class Sprangular.CreditCard
     number: ['required', '_validateCardFormat']
     month: 'required'
     year: 'required'
-    cvv: ['required', length: {greaterThan: 2, lessThan: 5}]
+    cvc: ['required', length: {greaterThan: 2, lessThan: 5}]
 
   constructor: ->
     @number = ''
     @name = null
     @month = null
     @year = null
-    @cvv = ''
+    @cvc = null
     @type = null
     @token = null
     @lastDigits = null
 
   init: (attributes) ->
-    @id = paymentSource.id
-    @name = paymentSource.name
-    @lastDigits = paymentSource.last_digits
-    @month = paymentSource.month
-    @year = paymentSource.year
-    @token = paymentSource.gateway_payment_profile_id
-    @type = paymentSource.cc_type
+    @id = attributes.id
+    @name = attributes.name
+    @lastDigits = attributes.last_digits
+    @month = attributes.month
+    @year = attributes.year
+    @token = attributes.gateway_payment_profile_id
+    @type = attributes.cc_type
 
   isNew: ->
     not (@token and @token.length > 0)
+
+  label: ->
+    "#{@constructor.TYPE_NAMES[@type]} XXXX-XXXX-XXXX-#{@lastDigits}"
 
   determineType: ->
     @type = if @number.match /^3[47]/
@@ -51,13 +54,8 @@ class Sprangular.CreditCard
             else if @number.match /^(2131|1800|35)/
               'jcb'
 
-  serialize: ->
-    name: @name
-    last_digits: @lastDigits
-    month: @month
-    year: @year
-    token: @token
-    cc_type: @type
+  same: (other) ->
+    @id == other.id
 
   _validateCardFormat: ->
     'invalid card number' unless Sprangular.Luhn.isValid(@number)

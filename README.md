@@ -14,11 +14,11 @@ Spree + Angular.js + Bootstrap
 - Easy to override templates/controllers
 - Easy to add new routes/controllers/templates
 - Full Google Analytics support via [Angularytics](https://github.com/mgonto/angularytics)
-- Advanced variant selection
+- Variant selection by option type
 - Cart dropdown/popover
-- Lookup shipping & tax by zip code
+- Lookup shipping & tax by zip code (Planned)
 - Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
-- Exampl rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
+- Example rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
 
 ## Installing
 

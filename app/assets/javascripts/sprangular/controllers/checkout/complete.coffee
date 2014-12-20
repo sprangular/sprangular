@@ -1,2 +1,2 @@
-Sprangular.controller 'CheckoutCompleteCtrl', ($scope, Account, Cart, Checkout) ->
-
+Sprangular.controller 'CheckoutCompleteCtrl', ($scope, order, Account, Cart, Checkout) ->
+  $scope.order = order

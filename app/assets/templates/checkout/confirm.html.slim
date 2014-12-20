@@ -3,13 +3,18 @@
     .col-md-6.col-md-offset-3.col-xs-12
       checkout-nav(step='confirm')
   .row
-    .col-md-4
+    .col-md-4.col-xs-4
       h1 Confirm
 
-    .pull-right
-      a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
-        span(ng-if='!processing') Place Order
-        span(ng-if='processing') Processing...
+    .col-md-8.col-xs-8
+      .clearfix
+        .pull-right
+          a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
+            span(ng-if='!processing') Place Order
+            span(ng-if='processing')
+              span.fa.fa-refresh.fa-spin
+              | &nbsp;
+              span.caption Processing...
 
   .row
     .col-lg-4.col-md-6.address.billing
@@ -67,4 +72,7 @@
     .col-md-12
       a.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
         span(ng-if='!processing') Place Order
-        span(ng-if='processing') Processing...
+        span(ng-if='processing')
+          span.fa.fa-refresh.fa-spin
+          | &nbsp;
+          span.caption Processing...

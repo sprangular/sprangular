@@ -1,9 +1,11 @@
-Sprangular.service 'Catalog', ($http, $q, _) ->
+Sprangular.service 'Catalog', ($http, $q, _, Status) ->
   service =
     pageSize: 8
 
-    products: (search=null, page=1) ->
-      @getPaged(page, search: search)
+    products: (search=null, page=1, options) ->
+      options ||= {}
+      options.search = search
+      @getPaged(page, options)
 
     productsByTaxon: (path, page=1) ->
       @getPaged(page, taxon: path)
@@ -22,7 +24,7 @@ Sprangular.service 'Catalog', ($http, $q, _) ->
       $http.get("/api/products/#{id}", class: Sprangular.Product)
 
     getPaged: (page=1, params={}) ->
-      $http.get("/api/products", params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
+      $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
            .then (response) ->
              data = response.data
              list = Sprangular.extend(data.products || [], Sprangular.Product)
@@ -30,6 +32,7 @@ Sprangular.service 'Catalog', ($http, $q, _) ->
              list.totalCount = data.total_count
              list.totalPages = data.pages
              list.page = data.current_page
+             Status.cacheProducts(list)
              list
 
   service

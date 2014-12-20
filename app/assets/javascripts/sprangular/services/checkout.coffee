@@ -1,6 +1,6 @@
-Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
+Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
-  checkout =
+  service =
     savePromo: (code) ->
       params =
         order:
@@ -17,10 +17,9 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        state: 'confirm'
 
       if order.shippingMethod
-        params.order.shipping_method_id = order.shipping_method_id
+        params.order.shipping_method_id = order.shippingMethodId
 
       if order.shippingRate
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
@@ -28,36 +27,44 @@ Sprangular.service "Checkout", ($http, _, Env, Account, Cart) ->
       @put(params)
 
     complete: ->
-      paymentMethodId = Env.config.payment_methods['gateway'].id
-      params =
-        'order[payments_attributes][][payment_method_id]': paymentMethodId
-        'state': 'complete'
-
       order = Cart.current
-      card = order.creditCard
+      card  = order.creditCard
+      paymentMethodId = Env.config.payment_methods['gateway'].id
+
+      params =
+        complete: true
+        'order[payments_attributes][][payment_method_id]': paymentMethodId
+        order: {}
+        payment_source: {}
 
       if card.id
-        params['use_existing_card'] = 'yes'
-        params['existing_card'] = card.id
+        params.order.existing_card = card.id
       else
-        params["use_existing_card"] = 'no'
-        params["payment_source[#{paymentMethodId}][number]"] = card.number
-        params["payment_source[#{paymentMethodId}][verification_value]"] = card.cvc
-        params["payment_source[#{paymentMethodId}][cc_type]"] = card.ccType
-        params["payment_source[#{paymentMethodId}][month]"] = card.month
-        params["payment_source[#{paymentMethodId}][year]"] = card.year
-        params["payment_source[#{paymentMethodId}][last_digits]"] = card.lastDigits
-        params["payment_source[#{paymentMethodId}][name]"] = order.billingAddress.fullName()
+        sourceParams = {}
+        sourceParams.number = card.number
+        sourceParams.cc_type = card.type
+        sourceParams.verification_value = card.cvc
+        sourceParams.month = card.month
+        sourceParams.year = card.year
+        sourceParams.name = order.billingAddress.fullName()
+
+        params.payment_source[paymentMethodId] = sourceParams
 
       @put(params)
+        .success (data) ->
+          Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
+          Account.reload().then ->
+            Cart.init()
 
     put: (params) ->
       params ||= {}
 
-      $http.put("/spree/api/checkouts/#{Cart.current.number}", $.param(params))
+      Cart.current.errors = null
+
+      $http.put("/api/checkouts/#{Cart.current.number}/quick_update", $.param(params))
            .success (response) ->
              Cart.load(response) unless response.error
            .error (response) ->
-             Cart.errors(response.errors)
+             Cart.errors(response.errors || response.exception)
 
-  checkout
+  service

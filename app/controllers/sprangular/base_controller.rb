@@ -10,6 +10,8 @@ class Sprangular::BaseController < Spree::BaseController
 
   helper Spree::Api::ApiHelpers
 
+  before_action :load_user_roles
+
   def invalid_resource!(resource)
     @resource = resource
     render "sprangular/errors/invalid", status: 422
@@ -36,4 +38,11 @@ protected
   end
   helper_method :current_currency
 
+  def load_user_roles
+    @current_user_roles = if @current_spree_user
+      @current_spree_user.spree_roles.pluck(:name)
+    else
+      []
+    end
+  end
 end
