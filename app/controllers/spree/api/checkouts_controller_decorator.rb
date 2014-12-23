@@ -23,8 +23,10 @@ private
   end
 
   def advance_to_complete
-    update_order
-    @order.finalize!
+    until @order.complete?
+      update_order
+      @order.next!
+    end
   end
 
   def update_order
