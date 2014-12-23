@@ -26,7 +26,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
       if order.creditCard
-      params['order[payments_attributes][][payment_method_id]'] = paymentMethodId
+        params['order[payments_attributes][][payment_method_id]'] = paymentMethodId
 
       @put(params)
 
