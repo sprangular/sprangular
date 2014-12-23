@@ -10,6 +10,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
     update: ->
       order = Cart.current
+      paymentMethodId = Env.config.payment_methods['gateway'].id
 
       params =
         order:
@@ -23,6 +24,9 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       if order.shippingRate
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
+
+      if order.creditCard
+      params['order[payments_attributes][][payment_method_id]'] = paymentMethodId
 
       @put(params)
 
