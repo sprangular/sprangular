@@ -90,7 +90,6 @@ PATH
       rails-assets-bootstrap-additions
       rails-assets-bootstrap-sass-official
       rails-assets-jasmine-sinon
-      rails-assets-ngInfiniteScroll
       rails-assets-sinon
       rails-assets-underscore
       rails-assets-underscore.string
@@ -291,8 +290,6 @@ GEM
       rails-assets-jasmine (~> 2.0.0)
       rails-assets-sinonjs (>= 1.7.1)
     rails-assets-jquery (2.1.1)
-    rails-assets-ngInfiniteScroll (1.2.0)
-      rails-assets-angular (>= 1.2.0)
     rails-assets-sinon (1.12.1)
     rails-assets-sinonjs (1.10.2)
     rails-assets-underscore (1.7.0)
