@@ -1,16 +1,12 @@
 module Sprangular
   module ApplicationHelper
     def payment_methods
-      hash = {}
-      methods = (Spree::PaymentMethod.available(:front_end) + Spree::PaymentMethod.available(:both)).uniq
-      methods.map do |method|
-        hash[method.method_type] = {
+      Spree::PaymentMethod.available(:front_end).map do |method|
+        {
           id: method.id,
-          name: method.name,
-          publishable_key: method.preferences[:publishable_key]
+          name: method.name
         }
       end
-      hash
     end
 
     def js_environment
