@@ -72,4 +72,4 @@ module Sprangular::OrderCheckoutDecorator
 
 end
 
-Spree::Order.include Sprangular::OrderCheckoutDecorator
+Spree::Order.send :include, Sprangular::OrderCheckoutDecorator
