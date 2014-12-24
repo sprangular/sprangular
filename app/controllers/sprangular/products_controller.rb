@@ -4,8 +4,9 @@ class Sprangular::ProductsController < Sprangular::BaseController
     @products = Spree::Product.active.includes(:option_types, :taxons, master: [:images, :option_values, :prices], product_properties: [:property], variants: [:images, :option_values, :prices])
     @products = @products.ransack(params[:q]).result if params[:q]
     @products = @products.distinct.page(params[:page]).per(params[:per_page])
+    @cache_key = [I18n.locale, @current_user_roles.include?('admin'), current_currency, params[:q], params[:per_page], params[:per_page]]
 
-    render 'spree/api/products/index'
+    render 'index'
   end
 
   def show
