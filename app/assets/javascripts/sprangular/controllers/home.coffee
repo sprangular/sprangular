@@ -1,20 +1,28 @@
 Sprangular.controller 'HomeCtrl', ($scope, Status, Catalog, products, Cart) ->
-  Status.pageTitle = 'Home'
+  Status.currentPageTitle = 'Home'
 
   $scope.products = products
-  $scope.page = 1
+  $scope.currentPage = 1
+  $scope.pageList = [1..products.totalPages]
   $scope.loadingComplete = false
   $scope.fetching = false
   $scope.selectedVariants = {}
 
   $scope.loadNextPage = ->
+    $scope.loadPage($scope.currentPage + 1)
+
+  $scope.loadPreviousPage = ->
+    $scope.loadPage($scope.currentPage - 1) unless $scope.currentPage == 0
+
+  $scope.loadPage = (index) ->
     $scope.fetching = true
 
-    Catalog.products(null, $scope.page+1)
+    Catalog.products(null, index)
       .then (newPage) ->
-        $scope.page++
+        $scope.currentPage = index
+        $scope.pageList = [1..products.totalPages]
         $scope.fetching = false
-        $scope.products = $scope.products.concat(newPage)
+        $scope.products = newPage
         $scope.loadingComplete = newPage.isLastPage
 
   $scope.selectVariant = (variant) ->

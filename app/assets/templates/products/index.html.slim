@@ -1,5 +1,14 @@
 h1(ng-bind="pageTitle")
 
-div(ng-include="'products/list.html'"
-  infinite-scroll='loadNextPage()'
-  infinite-scroll-disabled='loadingComplete || fetching')
+ng-include(src="'products/list.html'")
+
+nav
+  ul.pagination.pagination-lg
+    li.previous(ng-class="{disabled: currentPage == 1}")
+      a(ng-click='loadPreviousPage()') Previous
+
+    li.page(ng-repeat='page in pageList' ng-class="{active: page==currentPage}")
+      a(ng-bind='page' ng-click='loadPage(page)')
+
+    li.next(ng-class="{disabled: loadingComplete}")
+      a(ng-click='loadNextPage()') Next
