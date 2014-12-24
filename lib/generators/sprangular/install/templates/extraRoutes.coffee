@@ -1,4 +1,4 @@
-Sprangular.config ($routeProvider) ->
+Sprangular.defineRoutes ($routeProvider) ->
 
   $routeProvider
     .when '/about',

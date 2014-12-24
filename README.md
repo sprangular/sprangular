@@ -106,7 +106,7 @@ Create a `app/assets/javascripts/sprangular/controllers` or `resources` director
 Edit your `app/assets/javascripts/sprangular/extraRoutes.coffee` and add the route. For example:
 
 ```
-Sprangular.config ($routeProvider) ->
+Sprangular.defineRoutes ($routeProvider) ->
 
   $routeProvider
     .when '/about',

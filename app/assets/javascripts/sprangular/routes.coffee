@@ -88,3 +88,6 @@ Sprangular.config ($routeProvider) ->
 
     .otherwise
       templateUrl: '404.html'
+
+  _.each Sprangular.routeDefs, (fn) ->
+    fn($routeProvider)
