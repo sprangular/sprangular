@@ -1,6 +1,5 @@
 module Sprangular::ApiCheckoutControllerDecorator
   def quick_update
-    binding.pry
     load_order(true)
     authorize! :update, @order, order_token
 
