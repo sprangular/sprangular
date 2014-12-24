@@ -14,7 +14,6 @@ require 'rails-assets-angular-bootstrap'
 require 'rails-assets-angular-strap'
 require 'rails-assets-angular-motion'
 require 'rails-assets-bootstrap-additions'
-require 'rails-assets-ngInfiniteScroll'
 require 'rails-assets-angularytics'
 require 'rack/rewrite'
 require "sprangular/engine"
