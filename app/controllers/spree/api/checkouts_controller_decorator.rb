@@ -1,11 +1,15 @@
-Spree::Api::CheckoutsController.class_eval do
+module Sprangular::ApiCheckoutControllerDecorator
   def quick_update
     load_order(true)
     authorize! :update, @order, order_token
 
     revert_to_cart
-    advance_to_payment
-    advance_to_complete if params[:complete]
+
+    if params[:complete]
+      advance_to_complete
+    else
+      advance_to_payment
+    end
 
     respond_with(@order, default_template: 'spree/api/orders/show')
   end
@@ -16,18 +20,23 @@ private
   end
 
   def advance_to_payment
+    update_order
     until @order.payment?
-      update_order
       @order.next!
     end
   end
 
   def advance_to_complete
     update_order
-    @order.finalize!
+    until @order.complete?
+      @order.next!
+    end
   end
 
   def update_order
     @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
   end
 end
+
+Spree::Api::CheckoutsController.prepend Sprangular::ApiCheckoutControllerDecorator
+
