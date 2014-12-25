@@ -38,5 +38,4 @@ private
   end
 end
 
-Spree::Api::CheckoutsController.prepend Sprangular::ApiCheckoutControllerDecorator
-
+Spree::Api::CheckoutsController.send :prepend, Sprangular::ApiCheckoutControllerDecorator

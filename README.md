@@ -9,7 +9,6 @@ Spree + Angular.js + Bootstrap
 - Full Spree front-end
 - Single page checkout
 - 1-click checkout
-- Product listing with infinite scroll
 - Product search with auto-complete
 - Easy to override templates/controllers
 - Easy to add new routes/controllers/templates
@@ -79,7 +78,9 @@ $scope.$on 'cart.add', ->
   $scope.showModal = true
 ```
 
-### Caching templates
+### Caching
+
+#### Templates
 
 By default templates are fetched on-demand. Templates in `app/assets/templates/layout` are pre-generated and cached in the layout for increased speed.
 You can add additional templates to be pre-cached, by setting `config.cached_paths`. Example:
@@ -87,6 +88,15 @@ You can add additional templates to be pre-cached, by setting `config.cached_pat
 ```
 # config/initializers/sprangular.rb
 Sprangular::Engine.config.cached_paths += %w(products)
+```
+
+#### Data
+
+Configure `cache_store` in your `config/environments/production.rb`
+
+```ruby
+config.action_controller.perform_caching = true
+config.cache_store = :memory_store # or :dalli_store, :mem_cache_store
 ```
 
 ## Overriding
@@ -106,7 +116,7 @@ Create a `app/assets/javascripts/sprangular/controllers` or `resources` director
 Edit your `app/assets/javascripts/sprangular/extraRoutes.coffee` and add the route. For example:
 
 ```
-Sprangular.config ($routeProvider) ->
+Sprangular.defineRoutes ($routeProvider) ->
 
   $routeProvider
     .when '/about',

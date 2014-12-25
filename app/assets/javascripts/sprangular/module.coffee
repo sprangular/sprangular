@@ -1,10 +1,14 @@
 # Main Module
-window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngAnimate', 'underscore', 'ngSanitize', 'rawFilter', 'mgcrea.ngStrap', 'infinite-scroll', 'angularytics']
+window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngAnimate', 'underscore', 'ngSanitize', 'rawFilter', 'mgcrea.ngStrap', 'angularytics']
   .run (Env) ->
     paymentMethods = Env.config.payment_methods
 
-    if !paymentMethods.gateway
+    if paymentMethods.length == 0
       alert 'Gateway is not configured in Spree...'
+
+Sprangular.routeDefs = []
+Sprangular.defineRoutes = (fn) ->
+  Sprangular.routeDefs.push(fn)
 
 Sprangular.extend = (instance, type) ->
   return unless instance

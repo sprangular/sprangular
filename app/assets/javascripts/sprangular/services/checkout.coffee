@@ -10,7 +10,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
     update: ->
       order = Cart.current
-      paymentMethodId = Env.config.payment_methods['gateway'].id
+      card  = order.creditCard
+      paymentMethodId = Env.config.payment_methods[0].id
 
       params =
         order:
@@ -18,6 +19,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
+        'order[payments_attributes][][payment_method_id]': paymentMethodId
+        payment_source: {}
 
       if order.shippingMethod
         params.order.shipping_method_id = order.shippingMethodId

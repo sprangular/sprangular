@@ -1,7 +1,7 @@
 module Sprangular::OrderCheckoutDecorator
 
   def self.included(base)
-    base.prepend(InstanceMethods)
+    base.send(:prepend, InstanceMethods)
   end
 
   module InstanceMethods
@@ -72,4 +72,4 @@ module Sprangular::OrderCheckoutDecorator
 
 end
 
-Spree::Order.include Sprangular::OrderCheckoutDecorator
+Spree::Order.send :include, Sprangular::OrderCheckoutDecorator
