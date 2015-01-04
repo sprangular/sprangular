@@ -23,15 +23,27 @@
 
       address-view(address='order.billingAddress')
 
+      a(href="#!/checkout")
+        span.glyphicon.glyphicon-pencil
+        | &nbsp;Edit
+
     .col-lg-4.col-md-6.address.shipping(ng-hide='order.shipToBillAddress')
       h2 Shipping Address
 
       address-view(address='order.actualShippingAddress()')
 
+      a(href="#!/checkout")
+        span.glyphicon.glyphicon-pencil
+        | &nbsp;Edit
+
     .col-lg-4.col-md-6.payment
       h2 Payment
 
       credit-card-view(card='order.creditCard')
+
+      a(href="#!/checkout")
+        span.glyphicon.glyphicon-pencil
+        | &nbsp;Edit
 
   .row
     .col-md-12
@@ -57,7 +69,12 @@
           td.number(colspan=2 ng-bind='order.itemTotal | currency')
 
         tr.shipping
-          td Shipping - {{order.shippingRate.name}}
+          td
+            | Shipping - {{order.shippingRate.name}}
+            | &nbsp;
+            a(href="#!/checkout")
+              span.glyphicon.glyphicon-pencil
+
           td.number(colspan=2 ng-bind='order.shipTotal | currency')
 
         tr.taxes
