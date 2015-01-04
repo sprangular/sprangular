@@ -42,7 +42,7 @@ form.address(novalidate)
     .col-md-2
       .form-group(ng-class="{'has-error': address.errors.zipcode}")
         label.control-label(for='zip') Zip
-        input.form-control(type='text' name='zip' ng-model='address.zipcode')
+        input.form-control(type='text' name='zip' ng-model='address.zipcode' ng-model-options="{ debounce: {'default': 500, 'blur': 0} }")
         p.error(ng-bind='address.errors.zipcode')
 
   .form-group(ng-class="{'has-error': address.errors.phone}")
