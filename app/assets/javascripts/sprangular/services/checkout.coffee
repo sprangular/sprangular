@@ -11,7 +11,6 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
     update: ->
       order = Cart.current
       card  = order.creditCard
-      paymentMethodId = Env.config.payment_methods[0].id
 
       params =
         order:
@@ -19,7 +18,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        'order[payments_attributes][][payment_method_id]': paymentMethodId
+        'order[payments_attributes][][payment_method_id]': @_findPaymentMethodId()
         payment_source: {}
 
       if order.shippingRate
@@ -31,7 +30,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
     complete: ->
       order = Cart.current
       card  = order.creditCard
-      paymentMethodId = Env.config.payment_methods['gateway'].id
+      paymentMethodId = @_findPaymentMethodId()
 
       params =
         complete: true
@@ -68,5 +67,12 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
              Cart.load(response) unless response.error
            .error (response) ->
              Cart.errors(response.errors || response.exception)
+
+    _findPaymentMethodId: ->
+      paymentMethod = _.find Env.config.payment_methods, (method) -> method.name == 'Credit Card'
+
+      alert('Payment method "Credit Card" not found') unless paymentMethod
+
+      paymentMethod.id
 
   service
