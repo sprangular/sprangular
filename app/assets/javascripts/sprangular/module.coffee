@@ -63,7 +63,8 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
 
   $rootScope.$on '$routeChangeError', (event, current, previous, rejection) ->
     Status.routeChanging = false
-    alert "Error changing route #{rejection}"
+    alert "Error changing route. See console for details."
+    console?.log "Error changing route", rejection
 
   Account.init()
     .success -> Status.initialized = true
