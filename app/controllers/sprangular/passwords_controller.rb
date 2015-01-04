@@ -1,17 +1,9 @@
 class Sprangular::PasswordsController < Sprangular::BaseController
+  append_view_path "lib/views/frontend"
 
   def create
-    user = Spree::User.find_or_initialize_by(email: params[:spree_user][:email])
-
-    if user.persisted?
-      raw, enc = Devise.token_generator.generate(Spree::User, :reset_password_token)
-
-      user.reset_password_token   = enc
-      user.reset_password_sent_at = Time.now.utc
-      user.save(validate: false)
-
-      reset_url = main_app.root_url+"#!/reset-password/#{raw}" # main_app.store_password_url(id: raw)
-      UserMailer.reset_password_instructions(user, reset_url).deliver
+    if user = Spree::User.find_by(email: params[:spree_user][:email])
+      Spree::User.send_reset_password_instructions(user)
     else
       user.errors[:email] = 'Email address not found'
     end
