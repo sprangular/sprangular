@@ -13,7 +13,7 @@ Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Flash, 
       Flash.success("We've sent you an email with a link to reset your password.")
 
     error = (response) ->
-      request.errors = response.data.errors
+      request.errors['email'] = 'Email address not found'
 
     Account.forgotPassword(request).then(success, error)
 

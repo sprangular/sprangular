@@ -1,12 +1,9 @@
 class Sprangular::PasswordsController < Sprangular::BaseController
-  append_view_path "lib/views/frontend"
 
   def create
-    if user = Spree::User.find_by(email: params[:spree_user][:email])
-      Spree::User.send_reset_password_instructions(user)
-    else
-      user.errors[:email] = 'Email address not found'
-    end
+    user = Spree::User.find_by!(email: params[:spree_user][:email])
+
+    Spree::User.send_reset_password_instructions(user)
 
     respond_with user
   end
