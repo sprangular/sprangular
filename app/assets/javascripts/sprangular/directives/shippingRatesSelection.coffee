@@ -3,10 +3,10 @@ Sprangular.directive 'shippingRateSelection', ->
   templateUrl: 'shipping/rates.html'
   scope:
     order: '='
-  controller: ($scope, Cart, Checkout) ->
-    $scope.hasLocationData = false
+
+  controller: ($scope, Checkout) ->
     $scope.loading = false
-    $scope.rates = []
+    $scope.address = {}
 
     $scope.$watch 'order.shippingRate', (rate, oldRate) ->
       return if !oldRate || rate.id == oldRate.id
@@ -20,20 +20,19 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
+    $scope.$watch 'order.shipToBillAddress', ->
+      $scope.address = $scope.order.actualShippingAddress()
+
+    watchAddress = (address) ->
+      $scope.isValid = address.firstname && address.lastname && address.city && address.address1 && address.zipcode && address.country && address.state && address.phone
+
+    $scope.$watch('address', watchAddress, true)
+
     # use $scope.$watchGroup when its released
-    $scope.$watch 'order.actualShippingAddress().country.id + order.actualShippingAddress().state.id + order.actualShippingAddress().zipcode', (oldValue, newValue) ->
-      return if $scope.loading || !newValue || oldValue == newValue
+    $scope.$watch 'address.country.id + address.state.id + address.zipcode + isValid', (oldValue, newValue) ->
+      return if $scope.loading || oldValue == newValue || !$scope.isValid
 
       $scope.loading = true
-      order = $scope.order
-      address = order.actualShippingAddress()
-      $scope.hasLocationData = address.state && address.country && address.zipcode
 
-      Cart.shippingRates({countryId: address.countryId, stateId: address.stateId, zipcode: address.zipcode})
-          .then (->
-            $scope.rates = Cart.current.shippingRates
-
-            $scope.loading = false), (->
-
-            $scope.rates = []
-            $scope.loading = false)
+      Checkout.update().then ->
+        $scope.loading = false

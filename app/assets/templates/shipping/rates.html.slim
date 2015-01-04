@@ -5,14 +5,14 @@
     | Refreshing rates...
 
   div(ng-if='!loading')
-    p.not-found(ng-if='rates.length == 0')
-      span.not-available(ng-if='hasLocationData')
-        | Shipping not available to {{order.actualShippingAddress().country.name}}.
-      span.no-address(ng-if='!hasLocationData')
+    p.not-found(ng-show='order.shippingRates.length == 0')
+      span.not-available(ng-show='isValid')
+        | Shipping not available to {{address.country.name}}.
+      span.no-address(ng-hide='isValid')
         | Provide a country, state & zipcode to view available rates.
 
-    ul.list-unstyled
-      li(ng-repeat='shippingRate in rates')
+    ul.list-unstyled(ng-show='order.shippingRates.length > 0')
+      li(ng-repeat='shippingRate in order.shippingRates')
         label
           input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate')
           span
