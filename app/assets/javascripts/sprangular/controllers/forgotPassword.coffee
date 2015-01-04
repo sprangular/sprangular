@@ -1,19 +1,21 @@
-Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Status) ->
+Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Flash, Status) ->
+  Status.title = 'Forgot Password'
+
   request = { email: '', errors: {} }
 
   $scope.request = request
-  $scope.requestSent = false
 
   $scope.submit = ->
     request.errors = {}
-    $scope.requestSent = false
-    Account.forgotPassword(request)
-      .then (content) ->
-        request.email = ''
-        $scope.requestSent = true
-      , (errors) ->
-        console.log errors
-        request.errors = errors
+
+    success = ->
+      $location.path '/'
+      Flash.success("We've sent you an email with a link to reset your password.")
+
+    error = (response) ->
+      request.errors = response.data.errors
+
+    Account.forgotPassword(request).then(success, error)
 
   $scope.cancel = ->
     $location.path '/'
