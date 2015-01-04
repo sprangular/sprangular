@@ -22,10 +22,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         payment_source: {}
 
-      if order.shippingMethod
-        params.order.shipping_method_id = order.shippingMethodId
-
       if order.shippingRate
+        params['order[shipments_attributes][][id]'] = order.shipment.id
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
       @put(params)
