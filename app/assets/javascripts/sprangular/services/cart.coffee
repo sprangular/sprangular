@@ -84,6 +84,7 @@ Sprangular.service "Cart", ($http) ->
         .success(@load)
 
     shippingRates: (options) ->
+      order = @current
       params =
         country_id: options.countryId
         state_id: options.stateId
@@ -91,7 +92,7 @@ Sprangular.service "Cart", ($http) ->
         use_billing: @current.shipToBillAddress
 
       $http.get('/api/shipping_rates', {params: params, ignoreLoadingIndicator: true})
-        .success(@load)
+        .success (data) -> order.loadRates(data)
 
     clear:                   -> @current.clear()
     totalQuantity:           -> @current.totalQuantity()

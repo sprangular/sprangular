@@ -37,13 +37,7 @@ class Sprangular.Order
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []
 
-    @shipment = _.last(data.shipments)
-
-    if @shipment
-      @shippingRates = Sprangular.extend(@shipment.shipping_rates, Sprangular.ShippingRate)
-      @shippingRate = _.find @shippingRates, (rate) -> rate.selected
-    else
-      @shippingRate = null
+    @loadRates(data)
 
     if data.bill_address
       @billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
@@ -61,6 +55,15 @@ class Sprangular.Order
       @items.push(variant: variant, quantity: item.quantity, price: item.price)
 
     @
+
+  loadRates: (data) ->
+    @shipment = _.last(data.shipments)
+
+    if @shipment
+      @shippingRates = Sprangular.extend(@shipment.shipping_rates, Sprangular.ShippingRate)
+      @shippingRate = _.find @shippingRates, (rate) -> rate.selected
+    else
+      @shippingRate = null
 
   isEmpty: ->
     @items.length == 0
