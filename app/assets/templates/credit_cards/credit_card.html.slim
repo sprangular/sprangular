@@ -11,9 +11,9 @@
       dt Number
       dd
         | •••• •••• •••• {{card.lastDigits}}
+        a.btn.btn-mini.btn-link(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure you want to permanently remove this card?")
+          span.glyphicon.glyphicon-remove
 
       dt Expiration
       dd
         | {{card.month}} / {{card.year}}
-
-    a.btn.btn-mini.btn-primary(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure?") Delete

@@ -5,7 +5,7 @@ Sprangular.directive 'creditCardView', ->
   templateUrl: 'credit_cards/credit_card.html'
   scope:
     card: '='
-    allowDelete: '@'
+    allowDelete: '='
 
   controller: ($scope, Account) ->
     $scope.typeName = ->
