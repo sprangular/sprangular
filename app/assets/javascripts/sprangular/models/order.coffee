@@ -20,6 +20,8 @@ class Sprangular.Order
     @errors = null
     @state = null
     @shipmentState = null
+    @shippingRates = []
+    @shippingRate = null
 
   load: (data) ->
     @clear()
@@ -33,11 +35,15 @@ class Sprangular.Order
     @total = Number(data.total)
     @shipToBillAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
+    @shippingRates = []
 
-    if shippingMethod = _.last(data.shipping_methods)
-      @shippingMethodId = shippingMethod.id
+    @shipment = _.last(data.shipments)
+
+    if @shipment
+      @shippingRates = Sprangular.extend(@shipment.shipping_rates, Sprangular.ShippingRate)
+      @shippingRate = _.find @shippingRates, (rate) -> rate.selected
     else
-      @shippingMethodId = null
+      @shippingRate = null
 
     if data.bill_address
       @billingAddress = Sprangular.extend(data.bill_address, Sprangular.Address)
