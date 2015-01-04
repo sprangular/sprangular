@@ -60,7 +60,7 @@
                   span.glyphicon.glyphicon-remove
 
             tr.shipping
-              td(colspan=2) Shipping
+              td(colspan=2) Shipping - {{cart.shippingRate.name}}
               td.number(colspan=2 ng-bind='cart.shipTotal | currency')
               td
 

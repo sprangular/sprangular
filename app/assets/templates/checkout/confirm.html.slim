@@ -57,7 +57,7 @@
           td.number(colspan=2 ng-bind='order.itemTotal | currency')
 
         tr.shipping
-          td Shipping
+          td Shipping - {{order.shippingRate.name}}
           td.number(colspan=2 ng-bind='order.shipTotal | currency')
 
         tr.taxes
