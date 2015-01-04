@@ -5,11 +5,15 @@
     | Refreshing rates...
 
   div(ng-if='!loading')
-    p.not-found(ng-if='rates.length == 0') Shipping not available to {{order.actualShippingAddress().country.name}}
+    p.not-found(ng-if='rates.length == 0')
+      span.not-available(ng-if='hasLocationData')
+        | Shipping not available to {{order.actualShippingAddress().country.name}}.
+      span.no-address(ng-if='!hasLocationData')
+        | Provide a country, state & zipcode to view available rates.
 
     ul.list-unstyled
       li(ng-repeat='shippingRate in rates')
         label
-          input(type='radio' ng-model='order.shippingMethodId' ng-value='shippingRate.shippingMethodId')
+          input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate')
           span
             | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency}}

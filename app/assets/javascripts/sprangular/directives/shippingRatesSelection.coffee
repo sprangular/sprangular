@@ -3,39 +3,37 @@ Sprangular.directive 'shippingRateSelection', ->
   templateUrl: 'shipping/rates.html'
   scope:
     order: '='
-  controller: ($scope, Cart) ->
+  controller: ($scope, Cart, Checkout) ->
+    $scope.hasLocationData = false
     $scope.loading = false
     $scope.rates = []
 
-    $scope.$watch 'order.shippingMethodId', (shippingMethodId) ->
-      rate = _.find($scope.rates, (rate) -> rate.shippingMethodId == shippingMethodId)
+    $scope.$watch 'order.shippingRate', (rate, oldRate) ->
+      return if !oldRate || rate.id == oldRate.id
+
+      order = $scope.order
 
       if rate
-        $scope.order.shipTotal = rate.cost
+        order.shipTotal = rate.cost
       else
-        $scope.order.shipTotal = 0
+        order.shipTotal = 0
 
-      $scope.order.updateTotals()
+      order.updateTotals()
 
     # use $scope.$watchGroup when its released
-    for expr in ['order.actualShippingAddress().country', 'order.actualShippingAddress().state', 'order.actualShippingAddress().zipcode']
-      $scope.$watch expr, ->
-        return if $scope.loading
+    $scope.$watch 'order.actualShippingAddress().country.id + order.actualShippingAddress().state.id + order.actualShippingAddress().zipcode', (oldValue, newValue) ->
+      return if $scope.loading || !newValue || oldValue == newValue
 
-        $scope.loading = true
-        order = $scope.order
-        address = order.actualShippingAddress()
+      $scope.loading = true
+      order = $scope.order
+      address = order.actualShippingAddress()
+      $scope.hasLocationData = address.state && address.country && address.zipcode
 
-        Cart.shippingRates({countryId: address.countryId, stateId: address.stateId, zipcode: address.zipcode})
-            .then ((results) ->
-              $scope.rates = results
+      Cart.shippingRates({countryId: address.countryId, stateId: address.stateId, zipcode: address.zipcode})
+          .then (->
+            $scope.rates = Cart.current.shippingRates
 
-              order.shippingMethodId = null unless _.find(results, (rate) -> rate.shippingMethodId == order.shippingMethodId)
+            $scope.loading = false), (->
 
-              if order.shippingMethodId == null && results.length > 0
-                order.shippingMethodId = results[0].shippingMethodId
-
-              $scope.loading = false), (->
-
-              $scope.rates = []
-              $scope.loading = false)
+            $scope.rates = []
+            $scope.loading = false)
