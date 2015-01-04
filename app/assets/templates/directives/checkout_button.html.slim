@@ -1,6 +1,6 @@
 .checkout-button
   .standard
-    a.btn.btn-success.btn-lg.btn-block(ng-if='!allowOneClick' ng-click='standardCheckout()' ng-disabled='processing')
+    a.btn.btn-success.btn-lg.btn-block(ng-click='checkout()' ng-disabled='processing')
       span(ng-hide="processing")
         | Checkout
         span.glyphicon.glyphicon-chevron-right
@@ -8,17 +8,3 @@
       span(ng-show="processing")
         i.fa.fa-refresh.fa-spin
         | &nbsp;Processing ...
-
-  .one-click(ng-if='allowOneClick')
-    a.btn.btn-success.btn-lg.btn-block(ng-click='oneClickCheckout()' ng-disabled='processing')
-      span(ng-hide="processing")
-        | 1-Click Checkout
-        span.glyphicon.glyphicon-chevron-right
-
-      span(ng-show="processing")
-        i.fa.fa-refresh.fa-spin
-        | &nbsp;Preparing ...
-
-    a.btn.btn-link(ng-click='standardCheckout()')
-      | Standard Checkout
-      span.glyphicon.glyphicon-chevron-right

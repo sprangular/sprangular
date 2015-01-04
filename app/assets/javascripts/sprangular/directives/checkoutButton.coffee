@@ -30,3 +30,9 @@ Sprangular.directive 'checkoutButton', ->
           $location.path('/checkout/confirm')
         .error ->
           $location.path('/checkout')
+
+    $scope.checkout = ->
+      if $scope.allowOneClick
+        $scope.oneClickCheckout()
+      else
+        $scope.standardCheckout()
