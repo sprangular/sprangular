@@ -8,13 +8,19 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
     init: ->
       @clear()
 
-      $http.get '/api/account'
-        .success (data) ->
-          service.populateAccount(data)
-          service.fetched = true
-        .error (data) ->
-          service.isLogged = false
-          service.fetched = true
+      startupData = Sprangular.startupData
+
+      if startupData.User
+        service.populateAccount(startupData.User)
+        service.fetched = true
+      else
+        $http.get '/api/account'
+          .success (data) ->
+            service.populateAccount(data)
+            service.fetched = true
+          .error (data) ->
+            service.isLogged = false
+            service.fetched = true
 
     reload: ->
       @fetched = false

@@ -6,6 +6,7 @@ window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ng
     if paymentMethods.length == 0
       alert 'Gateway is not configured in Spree...'
 
+Sprangular.startupData = {}
 Sprangular.routeDefs = []
 Sprangular.defineRoutes = (fn) ->
   Sprangular.routeDefs.push(fn)
@@ -37,6 +38,8 @@ Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locati
 ]
 
 Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
+  Sprangular.startupData = {}
+  Status.initialized = true
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}
@@ -65,7 +68,3 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
     Status.routeChanging = false
     alert "Error changing route. See console for details."
     console?.log "Error changing route", rejection
-
-  Account.init()
-    .success -> Status.initialized = true
-    .error -> Status.initialized = true

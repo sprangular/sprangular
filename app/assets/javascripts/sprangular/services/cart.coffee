@@ -4,7 +4,7 @@ Sprangular.service "Cart", ($http) ->
     current: null
 
     init: ->
-      @current  = new Sprangular.Order
+      @current = new Sprangular.Order
 
     reload: ->
       $http.get '/api/cart.json'
@@ -101,5 +101,12 @@ Sprangular.service "Cart", ($http) ->
     isEmpty:                 -> @current.isEmpty()
 
   service.init()
-  service.reload()
+
+  startupData = Sprangular.startupData
+
+  if startupData.Order
+    service.load(startupData.Order)
+  else
+    service.reload()
+
   service
