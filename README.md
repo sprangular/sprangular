@@ -33,11 +33,15 @@ Add `spree`, `sprangular` and rails-assets source in your `Gemfile`. (notice we 
 ```
 source 'https://rails-assets.org'
 
-gem 'spree_core', '~> 2.3.4'
-gem 'spree_api', '~> 2.3.4'
-gem 'spree_backend', '~> 2.3.4'
-gem 'spree_sample', '~> 2.3.4'
-gem 'sprangular', github: 'DynamoMTL/sprangular'
+spree_branch = '2-4-stable'
+
+gem 'spree_core',        github: 'spree/spree',             branch: spree_branch
+gem 'spree_api',         github: 'spree/spree',             branch: spree_branch
+gem 'spree_backend',     github: 'spree/spree',             branch: spree_branch
+gem 'spree_sample',      github: 'spree/spree',             branch: spree_branch
+gem 'spree_gateway',     github: 'spree/spree_gateway',     branch: spree_branch
+gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: spree_branch
+gem 'sprangular',        github: 'DynamoMTL/sprangular'
 ```
 
 Run bundler
