@@ -198,6 +198,16 @@ footer {
   }
 }
 
+section.gallery {
+  section.thumbs .thumb {
+    cursor: pointer;
+
+    &.selected img {
+      border-color: $brand-success;
+    }
+  }
+}
+
 .checkout-nav {
   .stripe {
     background: $gray-lighter;

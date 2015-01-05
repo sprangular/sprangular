@@ -3,5 +3,5 @@ section.image.row
     img.img-responsive(ng-src="{{selected.image.largeUrl}}")
 
 section.thumbs.row.no-padding(ng-show="selected.images.length > 1")
-  .col-sm-3.col-xs-4(ng-repeat='image in selected.images' ng-click="changeImage(image)")
+  .thumb.col-sm-3.col-xs-4(ng-repeat='image in selected.images' ng-click="changeImage(image)" ng-class="{selected: image == selected.image}")
     img.img-thumbnail.img-responsive(ng-src="{{image.productUrl}}")
