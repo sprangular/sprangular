@@ -155,6 +155,19 @@ rake db:reset AUTO_ACCEPT=1 && rake spree_sample:load
 rails server
 ```
 
+### Testing
+
+```
+rake spec
+```
+
+If you want to see feature spec in browser (non-headless)
+
+```
+# requires firefox
+WEBDRIVER=selenium rake spec
+```
+
 ## License
 
 MIT
