@@ -1,7 +1,6 @@
 before_script:
   - sh -e /etc/init.d/xvfb start
   - export DISPLAY=:99.0
-bundler_args: --without development production --quiet
 script:
   - bundle exec rake db:reset AUTO_ACCEPT=1 && bundle exec rake spree_sample:load
   - bundle exec rake spec
