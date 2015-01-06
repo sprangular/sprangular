@@ -161,7 +161,7 @@ rails server
 rake spec
 ```
 
-If you want to see feature spec in browser (non-headless)
+If you want to see feature specs in browser (non-headless)
 
 ```
 # requires firefox

@@ -51,9 +51,9 @@ require 'spree/testing_support/caching'
 require 'paperclip/matchers'
 
 
-if ENV['WEBDRIVER'] = 'selenium'
+if ENV['WEBDRIVER'] == 'selenium'
   require 'selenium-webdriver'
-  Capybara.javascript_driver = :selenium
+  Capybara.default_driver = :selenium
 else
   require 'capybara/poltergeist'
   Capybara.javascript_driver = :poltergeist
@@ -71,34 +71,31 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 
-  # A workaround to deal with random failure caused by phantomjs. Turn it on
-  # by setting ENV['RSPEC_RETRY_COUNT']. Limit it to features tests where
-  # phantomjs is used.
-  config.before(:all, type: :feature) do
-    if ENV['RSPEC_RETRY_COUNT']
-      config.verbose_retry       = true # show retry status in spec process
-      config.default_retry_count = ENV['RSPEC_RETRY_COUNT'].to_i
-    end
+  config.before(:suite) do
+    WebMock.disable!
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
-    WebMock.disable!
-    if RSpec.current_example.metadata[:js]
+  config.before(:each) do |example|
+    if example.metadata[:js]
       DatabaseCleaner.strategy = :truncation
     else
-      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.start
     end
-    # TODO: Find out why open_transactions ever gets below 0
-    # See issue #3428
-    if ActiveRecord::Base.connection.open_transactions < 0
-      ActiveRecord::Base.connection.increment_open_transactions
-    end
-    DatabaseCleaner.start
     reset_spree_preferences
   end
 
-  config.after(:each) do
+  config.after(:each) do |example|
     DatabaseCleaner.clean
+
+    if example.metadata[:js]
+      DatabaseCleaner.strategy = :transaction
+    end
+  end
+
+  config.before(:each, type: :feature) do
+    Spree::Gateway::Bogus.create!(name: 'Credit Card', environment: Rails.env, display_on: 'front_end')
   end
 
   config.after(:each, type: :feature) do |example|
