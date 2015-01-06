@@ -29,6 +29,8 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
   def add_assets
     inject_into_file 'app/assets/stylesheets/application.css', " *= require sprangular\n", before: /\*\//, verbose: true
     js = <<-eos
+//= require jquery
+//= require bootstrap-sass-official
 //= require sprangular
 //= require sprangular/extraRoutes
 eos
