@@ -50,9 +50,10 @@ require 'spree/testing_support/caching'
 
 require 'paperclip/matchers'
 
-if ENV['WEBDRIVER'] == 'accessible'
-  require 'capybara/accessible'
-  Capybara.javascript_driver = :accessible
+
+if ENV['WEBDRIVER'] = 'selenium'
+  require 'selenium-webdriver'
+  Capybara.javascript_driver = :selenium
 else
   require 'capybara/poltergeist'
   Capybara.javascript_driver = :poltergeist
@@ -77,12 +78,6 @@ RSpec.configure do |config|
     if ENV['RSPEC_RETRY_COUNT']
       config.verbose_retry       = true # show retry status in spec process
       config.default_retry_count = ENV['RSPEC_RETRY_COUNT'].to_i
-    end
-  end
-
-  if ENV['WEBDRIVER'] == 'accessible'
-    config.around(:each, inaccessible: true) do |example|
-      Capybara::Accessible.skip_audit { example.run }
     end
   end
 
