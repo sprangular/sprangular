@@ -1,5 +1,9 @@
 # Sprangular
 
+[![Gem Version](https://badge.fury.io/rb/sprangular.svg)](http://badge.fury.io/rb/sprangular)
+[![Build Status](https://api.travis-ci.org/DynamoMTL/sprangular.png)](https://travis-ci.org/DynamoMTL/sprangular)
+[![Code Climate](https://codeclimate.com/github/DynamoMTL/sprangular.png)](https://codeclimate.com/github/DynamoMTL/sprangular)
+
 Spree + Angular.js + Bootstrap
 
 # [Live Demo](http://sprangular-demo.herokuapp.com)
