@@ -25,6 +25,7 @@ end
 require 'rspec/rails'
 require 'ffaker'
 require 'webmock/rspec'
+require 'capybara/angular'
 require 'pry'
 
 # Requires supporting files with custom matchers and macros, etc,
@@ -108,7 +109,6 @@ RSpec.configure do |config|
   config.after(:each, type: :feature) do |example|
     missing_translations = page.body.scan(/translation missing: #{I18n.locale}\.(.*?)[\s<\"&]/)
     if missing_translations.any?
-      #binding.pry
       puts "Found missing translations: #{missing_translations.inspect}"
       puts "In spec: #{example.location}"
     end
@@ -122,6 +122,8 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::Flash
 
   config.include Paperclip::Shoulda::Matchers
+
+  config.include Capybara::Angular::DSL
 
   config.fail_fast = ENV['FAIL_FAST'] || false
 end

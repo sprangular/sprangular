@@ -157,6 +157,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-angular (0.1.0)
+      capybara
     carmen (1.0.1)
       unicode_utils (~> 1.4.0)
     cldr-plurals-runtime-rb (1.0.0)
@@ -406,6 +408,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  capybara-angular
   database_cleaner
   factory_girl
   ffaker
