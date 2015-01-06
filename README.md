@@ -48,6 +48,8 @@ gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: spree_branch
 gem 'sprangular',        github: 'DynamoMTL/sprangular'
 ```
 
+Minification is not yet supported, so remove or comment the `uglifier` gem in your `Gemfile`.
+
 Run bundler
 
 ```
