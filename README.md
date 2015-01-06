@@ -77,28 +77,11 @@ rails generate sprangular:install
 
 The admin is now accessible at http://localhost:3000/spree/admin
 
-## Events
-
-The following events are emitted
-
-- cart.add
-- cart.empty
-- account.login
-- account.logout
-- loading.start
-- loading.end
-
-```coffeescript
-# show modal when item added to cart
-$scope.$on 'cart.add', ->
-  $scope.showModal = true
-```
-
 ### Caching
 
 #### Templates
 
-By default templates are fetched on-demand. Templates in `app/assets/templates/layout` are pre-generated and cached in the layout for increased speed.
+By default templates are fetched on-demand. Templates in `app/assets/templates/layout` are cached in the first html response for increased speed.
 You can add additional templates to be pre-cached, by setting `config.cached_paths`. Example:
 
 ```
@@ -119,7 +102,7 @@ config.cache_store = :memory_store # or :dalli_store, :mem_cache_store
 
 ### Views
 
-Copy the template to your `app/assets/templates` directory. The host app's version always takes presidence.
+Copy any template from sprangular's source to the `app/assets/templates` directory in the host app. The host app's version always takes presidence.
 
 ### Controllers/Resources
 
@@ -137,11 +120,30 @@ Sprangular.defineRoutes ($routeProvider) ->
   $routeProvider
     .when '/about',
       template: '<h1>#1 Internet Site</h1>'
+    .when '/privacy',
+      templateUrl: 'content/privacy.html' # maps to app/assets/templates/content/privacy.html.slim
 ```
 
 ## Existing Stores
 
 Sprangular configures Rack::Rewrite to provide a 301 redirect for your existing URLs. URLs like `/products` become `/#!/products`
+
+## Events
+
+The following events are emitted
+
+- cart.add
+- cart.empty
+- account.login
+- account.logout
+- loading.start
+- loading.end
+
+```coffeescript
+# show modal when item added to cart
+$scope.$on 'cart.add', ->
+  $scope.showModal = true
+```
 
 ## Development
 
