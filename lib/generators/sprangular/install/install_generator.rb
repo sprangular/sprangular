@@ -24,17 +24,17 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
     gsub_file 'app/assets/javascripts/application.js', %r{//= require jquery\n}, ''
     gsub_file 'app/assets/javascripts/application.js', %r{//= require jquery_ujs\n}, ''
     gsub_file 'app/assets/javascripts/application.js', %r{//= require turbolinks\n}, ''
+    gsub_file 'app/assets/javascripts/application.js', %r{//= require_tree .\n}, ''
   end
 
   def add_assets
     inject_into_file 'app/assets/stylesheets/application.css', " *= require sprangular\n", before: /\*\//, verbose: true
-    js = <<-eos
+    append_file 'app/assets/javascripts/application.js', <<-eos
 //= require jquery
 //= require bootstrap-sass-official
 //= require sprangular
 //= require sprangular/extraRoutes
 eos
-    inject_into_file 'app/assets/javascripts/application.js', js, before: %r{//= require_tree .} , verbose: true
 
     copy_file 'extraRoutes.coffee', 'app/assets/javascripts/sprangular/extraRoutes.coffee'
     copy_file 'about.html.slim', 'app/assets/templates/static/about.html.slim'
