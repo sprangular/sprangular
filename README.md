@@ -50,6 +50,12 @@ gem 'sprangular',        github: 'DynamoMTL/sprangular'
 
 Minification is not yet supported, so remove or comment the `uglifier` gem in your `Gemfile`.
 
+And in your `config/environments/production.rb`, comment out `js_compressor`:
+
+```
+# config.assets.js_compressor = :uglifier
+```
+
 Run bundler
 
 ```
