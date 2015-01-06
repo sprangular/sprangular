@@ -56,6 +56,11 @@ if ENV['WEBDRIVER'] == 'selenium'
   Capybara.default_driver = :selenium
 else
   require 'capybara/poltergeist'
+
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, timeout: 60)
+  end
+
   Capybara.javascript_driver = :poltergeist
 end
 
