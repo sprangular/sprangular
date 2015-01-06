@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 describe Sprangular::HomeController, type: :controller do
   context "GET index" do
