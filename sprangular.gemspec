@@ -1,21 +1,21 @@
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
-require "sprangular/version"
+require 'sprangular/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "sprangular"
+  s.name        = 'sprangular'
   s.version     = Sprangular::VERSION
-  s.authors     = ["Simon Walsh", "Hugo Frappier", "Josh Nussbaum"]
-  s.email       = ["simon@walsh.si", "hugo@godynamo.com", "josh@godynamo.com"]
-  s.homepage    = "http://www.godynamo.com"
-  s.summary     = "Spree + Angular.js frontend"
-  s.description = "Spree frontend using angular.js"
-  s.license     = "MIT"
+  s.authors     = ['Bryan Mahoney', 'Josh Nussbaum']
+  s.email       = ['bryan@godynamo.com', 'josh@godynamo.com']
+  s.homepage    = 'http://www.godynamo.com'
+  s.summary     = 'Spree + Angular.js frontend'
+  s.description = 'Spree frontend using angular.js'
+  s.license     = 'MIT'
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'rails'
   s.add_dependency 'spree_core', '>= 2.4'
@@ -39,10 +39,17 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-jasmine-sinon'
   s.add_dependency 'rails-assets-sinon'
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "spree_sample"
-  s.add_development_dependency "spree_auth_devise"
-  s.add_development_dependency "pry"
-  s.add_development_dependency "letter_opener"
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'spree_sample'
+  s.add_development_dependency 'spree_auth_devise'
+  s.add_development_dependency 'pry'
+  s.add_development_dependency 'letter_opener'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'factory_girl'
+  s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'webmock'
+  s.add_development_dependency 'nyan-cat-formatter'
 end
