@@ -51,4 +51,14 @@ describe "Visiting Products", js: true do
     end
   end
 
+  it "should be able to search for a product" do
+    within :css, ".navbar-form" do
+      fill_in "keywords", with: "shirt"
+
+      page.find('span.glyphicon').click
+    end
+
+    expect(page.all('.product-listing .product').size).to eq(1)
+  end
+
 end
