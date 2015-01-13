@@ -4,8 +4,8 @@ Sprangular.controller "GlobalCtrl", ($scope, Status, Env, Flash) ->
   $scope.status = Status
   $scope.env = Env
 
-  $scope.title = ->
-    if status.pageTitle
-      "#{Status.pageTitle} - #{Env.config.site_name}"
+  $scope.$watch 'status.pageTitle', (pageTitle) ->
+    $scope.title = if pageTitle
+      "#{pageTitle} - #{Env.config.site_name}"
     else
       Env.config.site_name
