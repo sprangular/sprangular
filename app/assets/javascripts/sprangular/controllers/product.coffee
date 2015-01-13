@@ -8,12 +8,14 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Account, Cart) ->
     quantity: 1
     variant: null
 
-  if !product.hasVariants
-    $scope.selected.variant = product.master
-
   Status.pageTitle        = $scope.product.name
   Status.meta.description = $scope.product.meta_description
   Status.meta.keywords    = $scope.product.meta_keywords
+
+  $scope.selected.variant = if product.hasVariants
+    Cart.current.findVariantForProduct(product) || product.firstAvailableVariant()
+  else
+    product.master
 
   $scope.$watch 'selected.variant', (variant) ->
     if variant && variant.images.length > 0

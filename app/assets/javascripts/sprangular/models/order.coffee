@@ -82,7 +82,11 @@ class Sprangular.Order
     @items.reduce ((total, item) -> total + item.quantity), 0
 
   findVariant: (variantId) ->
-    item for item in @items when item.variant.id is variantId
+    item for item in @items when item.variant.id == variantId
+
+  findVariantForProduct: (product) ->
+    variants = (item.variant for item in @items when item.variant.product.id == product.id)
+    variants[0] if variants
 
   hasVariant: (variant) ->
     variant && @findVariant(variant.id).length > 0

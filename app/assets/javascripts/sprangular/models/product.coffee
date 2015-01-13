@@ -60,3 +60,7 @@ class Sprangular.Product
       _.any @variants, (variant) -> variant.isAvailable()
     else
       @master.isAvailable()
+
+  firstAvailableVariant: ->
+    _.find @variants, (variant) ->
+      return variant if variant.isAvailable()
