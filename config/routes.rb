@@ -25,3 +25,7 @@ Sprangular::Engine.routes.draw do
 
   put 'api/checkouts/:id/quick_update', to: 'spree/api/checkouts#quick_update'
 end
+
+Spree::Core::Engine.routes.draw do
+  root to: redirect("/")
+end
