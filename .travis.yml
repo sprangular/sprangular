@@ -2,7 +2,9 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - export DISPLAY=:99.0
 script:
-  - cd spec/dummy && bundle exec rake db:reset AUTO_ACCEPT=1
+  - cd spec/dummy
+  - bundle exec rake db:reset AUTO_ACCEPT=1
+  - cd ../..
   - bundle exec rake spec
 rvm:
   - 2.1.5
