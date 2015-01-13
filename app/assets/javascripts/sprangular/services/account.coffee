@@ -48,11 +48,11 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
       params =
         'spree_user[email]': data.email,
         'spree_user[password]': data.password
-      $http.post '/spree/login.js', $.param params
+      $http.post '/spree/login.json', $.param params
         .success (data) ->
-          service.reload().then (data) ->
-            Cart.reload()
-            Flash.success 'Successfully signed in'
+          service.populateAccount(data)
+          Cart.reload()
+          Flash.success 'Successfully signed in'
         .error ->
           Flash.error 'Sign in failed'
 
@@ -69,8 +69,9 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
 
       $http.post('/api/account', $.param(params))
         .success (data) ->
-          service.reload().then (data) ->
-            Cart.reload()
+          service.populateAccount(data)
+
+          Cart.reload()
 
     forgotPassword: (data) ->
       params =
@@ -93,8 +94,9 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
         spree_user: data
       $http.put '/api/account', $.param params
         .success (data) ->
-          service.reload().then (data) ->
-            Flash.success 'Account updated'
+          service.populateAccount(data)
+
+          Flash.success 'Account updated'
         .error ->
           Flash.error 'Save failed'
 
