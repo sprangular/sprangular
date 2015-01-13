@@ -33,7 +33,10 @@ Sprangular.service "Cart", ($http) ->
             order.errors[key] = attrErrors
 
     load: (data) ->
-      service.current.load(data)
+      if data
+        service.current.load(data)
+      else
+        service.current.clear()
 
     empty: ->
       $http.delete '/api/cart'
