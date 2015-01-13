@@ -19,13 +19,16 @@ class Spree::UserSessionsController < Devise::SessionsController
     authenticate_spree_user!
 
     if spree_user_signed_in?
-      @user = spree_current_user
       respond_to do |format|
         format.html {
           flash[:success] = Spree.t(:logged_in_succesfully)
           redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         }
         format.json {
+          @user = spree_current_user
+          @order = current_order
+          @current_user_roles = @user.spree_roles
+
           render '/sprangular/accounts/show', layout: false
         }
       end
