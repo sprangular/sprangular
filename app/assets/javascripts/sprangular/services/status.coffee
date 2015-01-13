@@ -8,6 +8,7 @@ Sprangular.service "Status", ($rootScope) ->
     httpLoading: false
     routeChanging: false
     cachedProducts: []
+    meta: {}
 
     isLoading: ->
       @httpLoading || @routeChanging

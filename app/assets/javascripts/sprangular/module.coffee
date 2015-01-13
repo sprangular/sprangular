@@ -44,6 +44,7 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}
     Status.routeChanging = true
+    Status.meta = {}
 
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath

@@ -1,8 +1,10 @@
 html ng-app="Sprangular" ng-controller="GlobalCtrl"
   head
     title(ng-bind="title()")
-    meta name="fragment" content="!"
-    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    meta(name="fragment" content="!")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    meta(name="keywords" content="{{status.meta.keywords}}")
+    meta(name="description" content="{{status.meta.description}}")
 
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
