@@ -1,5 +1,6 @@
 class Spree::UserSessionsController < Devise::SessionsController
-  helper 'spree/base', 'spree/store'
+  helper 'spree/base', 'spree/store', Spree::Api::ApiHelpers
+
   if Spree::Auth::Engine.dash_available?
     helper 'spree/analytics'
   end
@@ -18,15 +19,14 @@ class Spree::UserSessionsController < Devise::SessionsController
     authenticate_spree_user!
 
     if spree_user_signed_in?
+      @user = spree_current_user
       respond_to do |format|
         format.html {
           flash[:success] = Spree.t(:logged_in_succesfully)
           redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         }
-        format.js {
-          render :json => {:user => spree_current_user,
-                           :ship_address => spree_current_user.ship_address,
-                           :bill_address => spree_current_user.bill_address}.to_json
+        format.json {
+          render '/sprangular/accounts/show', layout: false
         }
       end
     else
@@ -35,7 +35,7 @@ class Spree::UserSessionsController < Devise::SessionsController
           flash.now[:error] = t('devise.failure.invalid')
           render :new
         }
-        format.js {
+        format.json {
           render :json => { error: t('devise.failure.invalid') }, status: :unprocessable_entity
         }
       end
