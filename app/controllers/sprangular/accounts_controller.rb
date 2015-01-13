@@ -2,12 +2,11 @@ class Sprangular::AccountsController < Sprangular::BaseController
   before_filter :check_authorization, except: :create
 
   def create
-    user = Spree::User.new spree_user_params
-    if user.save
-      sign_in :spree_user, user
-    end
+    @user = Spree::User.create(spree_user_params)
 
-    respond_with user
+    sign_in(:spree_user, @user) if @user.persisted?
+
+    render 'show'
   end
 
   def show
