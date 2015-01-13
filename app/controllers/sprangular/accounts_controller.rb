@@ -17,7 +17,7 @@ class Sprangular::AccountsController < Sprangular::BaseController
     authorize! :update, @user
     @user.update_attributes spree_user_params
 
-    respond_with @user
+    render 'show'
   end
 
 private
