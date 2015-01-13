@@ -3,8 +3,8 @@ extends "spree/api/orders/order"
 
 node(:use_billing) { @order.bill_address == @order.ship_address }
 
-if lookup_context.find_all("spree/api/orders/#{root_object.state}").present?
-  extends "spree/api/orders/#{root_object.state}"
+if lookup_context.find_all("spree/api/orders/#{@order.state}").present?
+  extends "spree/api/orders/#{@order.state}"
 end
 
 child :billing_address => :bill_address do
