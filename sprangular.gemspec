@@ -55,4 +55,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'nyan-cat-formatter'
+  s.add_development_dependency 'teaspoon'
 end
