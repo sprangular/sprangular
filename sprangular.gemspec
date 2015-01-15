@@ -34,6 +34,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angularytics'
   s.add_dependency 'rails-assets-jasmine-sinon'
   s.add_dependency 'rails-assets-sinon'
+  s.add_dependency 'bourbon'
+  s.add_dependency 'neat'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails'
