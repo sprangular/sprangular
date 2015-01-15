@@ -1,5 +1,5 @@
 # Main Module
-window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngAnimate', 'underscore', 'ngSanitize', 'rawFilter', 'mgcrea.ngStrap', 'angularytics']
+window.Sprangular = angular.module "Sprangular", ['ngRoute', 'ngResource', 'ngAnimate', 'underscore', 'ngSanitize', 'rawFilter', 'angularytics']
   .run (Env) ->
     paymentMethods = Env.config.payment_methods
 
