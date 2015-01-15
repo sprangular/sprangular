@@ -36,7 +36,7 @@
                     variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
 
               td.quantity
-                quantity-input(quantity="item.quantity" change="cart.updateItemQuantity(item.variant.id, item.quantity)")
+                quantity-input(quantity="item.quantity" variant="item.variant" update-cart="true")
 
               td.price.number
                 span
