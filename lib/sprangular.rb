@@ -10,6 +10,8 @@ require 'angularjs-rails'
 require 'rails-assets-underscore'
 require 'rails-assets-underscore.string'
 require 'rails-assets-angularytics'
+require 'bourbon'
+require 'neat'
 require 'rack/rewrite'
 require "sprangular/engine"
 
