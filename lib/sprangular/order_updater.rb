@@ -19,11 +19,11 @@ module Sprangular
     def run
       @selected_rate = find_selected_rate(@order)
 
-      revert_to_cart
-
       if @params[:complete]
         advance_until(&:complete?)
       else
+        revert_to_cart
+
         advance_until(&:payment?)
       end
     end
