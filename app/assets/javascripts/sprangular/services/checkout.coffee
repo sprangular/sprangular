@@ -54,8 +54,30 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       @put(params)
         .success (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
+
+          service.trackOrder(Cart.lastOrder)
+
           Account.reload().then ->
             Cart.init()
+
+    trackOrder: (order) ->
+      return unless ga
+
+      ga "ecommerce:addTransaction",
+        id:       order.number
+        revenue:  order.total
+        shipping: order.shipTotal
+        tax:      order.taxTotal
+
+      for item in order.items
+        ga "ecommerce:addItem",
+          id:       order.number
+          name:     item.variant.name
+          sku:      item.variant.sku
+          price:    item.price
+          quantity: item.quantity
+
+      ga "ecommerce:send"
 
     put: (params) ->
       params ||= {}
