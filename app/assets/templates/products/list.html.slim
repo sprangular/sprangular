@@ -1,5 +1,5 @@
-.products.listing
-  .product.item(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable()}")
+.m-listing
+  .m-listing-item(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable()}")
     h2.title
       a(ng-href='{{product.permalink}}' ng-bind="product.name")
 
