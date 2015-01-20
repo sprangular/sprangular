@@ -3,7 +3,7 @@ Sprangular.service "Status", ($rootScope) ->
   status =
     initialized: false
     pageTitle: "Home"
-    bodyClass: "default"
+    bodyClasses: {default: true}
     requestedPath: null
     httpLoading: false
     routeChanging: false
@@ -19,6 +19,15 @@ Sprangular.service "Status", ($rootScope) ->
     findCachedProduct: (slug) ->
       _.find status.cachedProducts, (product) ->
         product.slug == slug
+
+    addBodyClass: (klass) ->
+      @bodyClasses[klass] = true
+
+    toggleBodyClass: (klass) ->
+      @bodyClasses[klass] = !@bodyClasses[klass]
+
+  $rootScope.$on '$routeChangeSuccess', ->
+    status.bodyClasses = {default: true}
 
   $rootScope.$watch (-> status.isLoading()), (loading) ->
     event = if loading then 'start' else 'end'
