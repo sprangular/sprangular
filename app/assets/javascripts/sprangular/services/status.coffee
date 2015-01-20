@@ -23,6 +23,9 @@ Sprangular.service "Status", ($rootScope) ->
     addBodyClass: (klass) ->
       @bodyClasses[klass] = true
 
+    removeBodyClass: (klass) ->
+      @bodyClasses[klass] = false
+
     toggleBodyClass: (klass) ->
       @bodyClasses[klass] = !@bodyClasses[klass]
 
