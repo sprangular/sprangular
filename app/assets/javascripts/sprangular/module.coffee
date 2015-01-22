@@ -7,9 +7,6 @@ window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ng
       alert 'Gateway is not configured in Spree...'
 
 Sprangular.startupData = {}
-Sprangular.routeDefs = []
-Sprangular.defineRoutes = (fn) ->
-  Sprangular.routeDefs.push(fn)
 
 Sprangular.extend = (instance, type) ->
   return unless instance
