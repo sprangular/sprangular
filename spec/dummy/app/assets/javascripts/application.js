@@ -15,3 +15,5 @@
 //= require sprangular
 //= require sprangular/extraRoutes
 //= require_tree .
+
+angular.module('DummyApp', ['Sprangular']);
