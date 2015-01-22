@@ -13,7 +13,5 @@
 //= require jquery
 //= require bootstrap-sass-official
 //= require sprangular
+//= require sprangular/host
 //= require sprangular/extraRoutes
-//= require_tree .
-
-angular.module('DummyApp', ['Sprangular']);
