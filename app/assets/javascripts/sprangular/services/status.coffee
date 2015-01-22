@@ -20,14 +20,24 @@ Sprangular.service "Status", ($rootScope) ->
       _.find status.cachedProducts, (product) ->
         product.slug == slug
 
-    addBodyClass: (klass) ->
-      @bodyClasses[klass] = true
+    # addBodyClass('open', 'focused')
+    addBodyClass: ->
+      @_eachClass arguments, (classes, klass) ->
+        classes[klass] = true
 
-    removeBodyClass: (klass) ->
-      @bodyClasses[klass] = false
+    # removeBodyClass('open', 'focused')
+    removeBodyClass: ->
+      @_eachClass arguments, (classes, klass) ->
+        classes[klass] = false
 
-    toggleBodyClass: (klass) ->
-      @bodyClasses[klass] = !@bodyClasses[klass]
+    # toggleBodyClass('open', 'focused')
+    toggleBodyClass: ->
+      @_eachClass arguments, (classes, klass) ->
+        classes[klass] = !classes[klass]
+
+    _eachClass: (args, fn) ->
+      self = this
+      _.each args, (klass) -> fn(self.bodyClasses, klass)
 
   $rootScope.$on '$routeChangeSuccess', ->
     status.bodyClasses = {default: true}
