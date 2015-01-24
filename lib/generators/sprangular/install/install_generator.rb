@@ -51,4 +51,10 @@ eos
   def add_layout
     template 'layout.slim', 'app/views/layouts/sprangular/application.slim'
   end
+
+  def copy_templates
+    if options["copy_templates"]
+      directory "../../../../../app/assets/templates", "app/assets/templates"
+    end
+  end
 end

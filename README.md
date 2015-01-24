@@ -72,8 +72,10 @@ spree install --auto-accept
 Then install sprangular:
 
 ```
-rails generate sprangular:install
+rails generate sprangular:install [AngularModuleName]
 ```
+
+You can pass the `--copy-templates` flag, if you want all Sprangular's templates copied to the host app's `app/assets/templates` dir.
 
 The admin is now accessible at http://localhost:3000/spree/admin
 
