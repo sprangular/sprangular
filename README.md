@@ -75,9 +75,9 @@ Then install sprangular:
 rails generate sprangular:install [AngularModuleName]
 ```
 
-You can pass the `--copy-templates` flag, if you want all Sprangular's templates copied to the host app's `app/assets/templates` dir.
+You can pass the `--copy-templates` flag if you'd like all of Sprangular's templates copied to the host app's `app/assets/templates` dir.
 
-The admin is now accessible at http://localhost:3000/spree/admin
+The admin is mounted at http://localhost:3000/spree/admin
 
 ### Caching
 
@@ -117,7 +117,7 @@ Create a `app/assets/javascripts/sprangular/controllers` or `resources` director
 Edit your `app/assets/javascripts/sprangular/extraRoutes.coffee` and add the route. For example:
 
 ```
-Sprangular.defineRoutes ($routeProvider) ->
+angular.module('MyApp').config ($routeProvider) ->
 
   $routeProvider
     .when '/about',
