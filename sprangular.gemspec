@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'angularjs-rails', "1.3.8"
   s.add_dependency 'rack-rewrite'
   s.add_dependency 'geocoder'
+  s.add_dependency 'ngannotate-rails'
   s.add_dependency 'font-awesome-rails', '~> 4.2'
   s.add_dependency 'rails-assets-bootstrap-sass-official'
   s.add_dependency 'rails-assets-angular-bootstrap'
