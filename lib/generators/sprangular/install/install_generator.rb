@@ -1,6 +1,9 @@
 class Sprangular::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
+  argument :module_name, type: :string, default: File.basename(Dir.pwd).underscore.camelize
+  class_option :copy_templates, type: :boolean, default: false
+
   def remove_spree_umbrella_gem
     gsub_file 'Gemfile', /^.*gem.["']spree["'].*\n/, ''
   end
@@ -33,12 +36,19 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
 //= require jquery
 //= require bootstrap-sass-official
 //= require sprangular
+//= require sprangular/host
 //= require sprangular/extraRoutes
 eos
 
-    copy_file 'extraRoutes.coffee', 'app/assets/javascripts/sprangular/extraRoutes.coffee'
-    copy_file 'about.html.slim', 'app/assets/templates/static/about.html.slim'
-    copy_file 'terms.html.slim', 'app/assets/templates/static/terms.html.slim'
-    copy_file 'privacy.html.slim', 'app/assets/templates/static/privacy.html.slim'
+    template 'host.coffee',        'app/assets/javascripts/sprangular/host.coffee'
+    template 'extraRoutes.coffee', 'app/assets/javascripts/sprangular/extraRoutes.coffee'
+
+    copy_file 'about.html.slim',    'app/assets/templates/static/about.html.slim'
+    copy_file 'terms.html.slim',    'app/assets/templates/static/terms.html.slim'
+    copy_file 'privacy.html.slim',  'app/assets/templates/static/privacy.html.slim'
+  end
+
+  def add_layout
+    template 'layout.slim', 'app/views/layouts/sprangular/application.slim'
   end
 end

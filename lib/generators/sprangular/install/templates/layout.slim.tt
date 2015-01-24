@@ -1,4 +1,4 @@
-html(ng-app="Sprangular" ng-controller="GlobalCtrl")
+html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
   head
     title(ng-bind="title")
     meta(name="fragment" content="!")
