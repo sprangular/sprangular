@@ -81,6 +81,7 @@ PATH
       geocoder
       jquery-rails
       ngannotate-rails
+      prerender_rails
       rack-rewrite
       rails
       rails-assets-angular-bootstrap
@@ -207,7 +208,7 @@ GEM
       railties (>= 3.2, < 5.0)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
-    geocoder (1.2.6)
+    geocoder (1.2.7)
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.3)
@@ -277,6 +278,9 @@ GEM
     premailer-rails (1.8.0)
       actionmailer (>= 3, < 5)
       premailer (~> 1.7, >= 1.7.9)
+    prerender_rails (1.1.1)
+      activesupport
+      rack
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)

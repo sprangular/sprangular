@@ -4,13 +4,17 @@ module Sprangular
     config.paths['app/views'] << File.join(Gem.loaded_specs['spree_auth_devise'].full_gem_path, "lib/views/frontend")
     config.cached_paths = %w(layout directives products home cart promos)
 
-    initializer "sprangular.assets.configure" do |app|
+    initializer "sprangular.assets.configure" do
       assets = Rails.application.assets
 
       assets.register_mime_type 'text/html', '.html'
       assets.register_engine '.slim', Slim::Template
 
       Rails.application.config.assets.precompile += %w( bootstrap/* )
+    end
+
+    initializer "sprangular.prerender" do
+      Rails.application.config.middleware.use Rack::Prerender, prerender_token: ENV['PRERENDER_TOKEN']
     end
 
     initializer "sprangular.add_middleware" do |app|
