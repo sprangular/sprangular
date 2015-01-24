@@ -20,6 +20,7 @@ Spree + Angular.js + Bootstrap
 - Variant selection by option type
 - Cart dropdown/popover
 - Lookup shipping & tax by zip code (Planned)
+- Indexable with Google/Bing/etc using prerendering via [prerender.io](http://prerender.io)
 - Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
 - Example rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
 
