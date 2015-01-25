@@ -22,14 +22,14 @@ module Sprangular
       if @params[:complete]
         advance_until(&:complete?)
       else
-        revert_to_cart
+        revert_to(:cart)
 
         advance_until(&:payment?)
       end
     end
 
-    def revert_to_cart
-      @order.update(state: 'cart') unless @order.cart?
+    def revert_to(state)
+      @order.update(state: state) unless @order.state == state
     end
 
     def advance_until
