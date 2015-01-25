@@ -1,4 +1,4 @@
-Sprangular.controller 'OrdersListCtrl', ($scope, Account) ->
+Sprangular.controller 'OrderListCtrl', ($scope, Account) ->
 
   $scope.account = Account
 
