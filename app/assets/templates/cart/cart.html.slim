@@ -43,7 +43,7 @@
                   | {{item.price * item.quantity | currency}}
 
               td.actions
-                a(ng-click="removeItem(item)")
+                a.remove(ng-click="removeItem(item)")
                   span.glyphicon.glyphicon-remove
 
             tr.item-total
@@ -76,7 +76,7 @@
 
       .aside-footer.clearfix(ng-hide='isEmpty()')
         .pull-left
-          a.btn.btn-link(ng-click="empty()")
+          a.empty.btn.btn-link(ng-click="empty()")
             | Empty cart
 
           promo-form(order='cart')
