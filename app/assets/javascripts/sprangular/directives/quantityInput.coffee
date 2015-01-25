@@ -11,7 +11,8 @@ Sprangular.directive 'quantityInput', ->
   controller: ($scope, Cart, Angularytics) ->
     $scope.$watch 'quantity', (newValue, oldValue)->
       if oldValue != newValue
-        Cart.updateItemQuantity($scope.variant.id, $scope.quantity) if $scope.updateCart
+        if $scope.updateCart
+          Cart.updateItemQuantity($scope.variant.id, $scope.quantity)
 
         if oldValue > newValue
           Angularytics.trackEvent("Cart", "Quantity decrease", oldValue - newValue)
