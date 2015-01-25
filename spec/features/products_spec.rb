@@ -8,11 +8,9 @@ describe "Visiting Products", js: true do
     ((first_store = Spree::Store.first) && first_store.name).to_s
   end
 
-  before(:each) do
-    visit sprangular_engine.root_path
-  end
-
   it "should increment counter when product added to cart" do
+    visit sprangular_engine.root_path
+
     product = page.all(:css, '.product')[4]
     product.hover
     product.click_link('a')
