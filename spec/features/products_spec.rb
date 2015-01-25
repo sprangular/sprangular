@@ -43,7 +43,7 @@ describe "Visiting Products", js: true do
       page.find('span.glyphicon').click
     end
 
-    expect(page.all('.product-listing .product').size).to eq(8)
+    expect(page.all('.product-listing .product').size).to eq(1)
   end
 
   context "a product with variants" do
