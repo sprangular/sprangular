@@ -6,3 +6,5 @@ script:
   - bundle exec rake db:reset AUTO_ACCEPT=1
   - cd ../..
   - bundle exec rake spec
+rvm:
+  - 2.0.0
