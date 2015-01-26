@@ -28,10 +28,11 @@ class Sprangular.Product
 
       _.each variant.option_values, (value) ->
         type = _.find(self.option_types, (type) -> type.id == value.option_type_id )
-        option = self.options[type.id]
+        if type
+          option = self.options[type.id]
 
-        option.values[value.id] = {value: value, variants: []} unless option.values[value.id]
-        option.values[value.id].variants.push(variant)
+          option.values[value.id] = {value: value, variants: []} unless option.values[value.id]
+          option.values[value.id].variants.push(variant)
 
   variantForValues: (selectedValues) ->
     _.find @variants, (variant) ->
