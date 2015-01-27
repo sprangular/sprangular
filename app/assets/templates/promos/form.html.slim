@@ -3,7 +3,7 @@ section#promo-selection
     a(ng-click='showPromoEntry = true') Add a coupon
 
   section#promo-entry(ng-show='showPromoEntry')
-    form.form-inline(role='form' ng-submit='save()')
+    form.form-inline(role='form' name="PromoForm" ng-submit='save()')
       .form-group
         label.control-label(for='promo-code') Code
         input.form-control(name='promo-code' ng-model='promoCode')
