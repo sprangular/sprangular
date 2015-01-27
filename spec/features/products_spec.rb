@@ -20,7 +20,7 @@ describe "Visiting Products", js: true do
       product.click_link('a')
     end
 
-    it 'should return the correct title when displaying a single product' do
+    scenario 'correct title when displaying a single product' do
       expect(page).to have_title('Ruby on Rails Baseball Jersey - ' + store_name)
 
       within('h1') do
@@ -28,13 +28,13 @@ describe "Visiting Products", js: true do
       end
     end
 
-    it 'displays metas' do
+    scenario 'displays metas' do
       expect(page).to have_meta(:description, 'Brand new Ruby on Rails Jersey')
       expect(page).to have_meta(:keywords, 'ror, jersey, ruby')
     end
   end
 
-  it "should be able to search for a product" do
+  scenario "search" do
     visit sprangular_engine.root_path
 
     within :css, ".navbar-form" do
@@ -46,7 +46,7 @@ describe "Visiting Products", js: true do
     expect(page.all('.product-listing .product').size).to eq(1)
   end
 
-  context "a product with variants" do
+  context "with variants" do
     let(:product) { Spree::Product.find_by_name("Ruby on Rails Baseball Jersey") }
     let(:option_value) { create(:option_value) }
     let!(:variant) { product.variants.create!(price: 5.59) }
@@ -56,7 +56,7 @@ describe "Visiting Products", js: true do
       variant.option_values << option_value
     end
 
-    it "displays price of first variant listed" do
+    scenario "displays price of first variant listed" do
       product.variants.first.stock_items.update_all(count_on_hand: 1, backorderable: false)
 
       visit sprangular_engine.root_path(anchor: "!/products/#{product.slug}")
@@ -68,7 +68,7 @@ describe "Visiting Products", js: true do
       end
     end
 
-    it "display out of stock for when variant sold out" do
+    scenario "display out of stock for when variant sold out" do
       product.variants.first.stock_items.update_all(count_on_hand: 0, backorderable: false)
 
       visit sprangular_engine.root_path(anchor: "!/products/#{product.slug}")
@@ -79,7 +79,7 @@ describe "Visiting Products", js: true do
     end
   end
 
-  context "a product with variants, images only for the variants" do
+  context "with variants, images only for the variants" do
     let(:product) { Spree::Product.find_by_name("Ruby on Rails Baseball Jersey") }
     let(:option_type) { create(:option_type) }
 
@@ -98,7 +98,7 @@ describe "Visiting Products", js: true do
       v2.images.create!(attachment: image)
     end
 
-    it "should not display no image available" do
+    scenario "should not display no image available" do
       visit sprangular_engine.root_path(anchor: "!/products/#{product.slug}")
 
       click_button "S"
@@ -107,7 +107,7 @@ describe "Visiting Products", js: true do
     end
   end
 
-  it "should be able to hide products without price" do
+  scenario "hide products without price" do
     Spree::Price.update_all(amount: nil)
     Spree::Config.show_products_without_price = true
 
@@ -120,7 +120,7 @@ describe "Visiting Products", js: true do
     expect(page.all('.product-listing .product').size).to eq(0)
   end
 
-  it "should return the correct title when displaying a single product" do
+  scenario "correct title when displaying a single product" do
     product = Spree::Product.find_by_name("Ruby on Rails Baseball Jersey")
 
     visit sprangular_engine.root_path(anchor: "!/products/#{product.slug}")

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe "User", type: :feature, js: true do
-  it "can sign in and sign out" do
+describe "User", js: true do
+  scenario "sign in and sign out" do
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
     visit sprangular_engine.root_path
@@ -36,7 +36,7 @@ describe "User", type: :feature, js: true do
     expect(page).to have_text("Welcome to Sprangular")
   end
 
-  it "can sign up" do
+  scenario "sign up" do
     visit sprangular_engine.root_path
 
     within 'header' do
@@ -61,7 +61,7 @@ describe "User", type: :feature, js: true do
     expect(page).to have_text("Welcome to Sprangular")
   end
 
-  it "is redirected to requested page after sign in" do
+  scenario "redirected to requested page after sign in" do
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
     visit sprangular_engine.root_path
@@ -82,7 +82,7 @@ describe "User", type: :feature, js: true do
     end
   end
 
-  it "is redirected to requested page after sign up" do
+  scenario "redirected to requested page after sign up" do
     visit sprangular_engine.root_path
 
     within 'header' do
@@ -104,7 +104,7 @@ describe "User", type: :feature, js: true do
     end
   end
 
-  it "can reset password" do
+  scenario "reset password" do
     create(:store, url: 'example.com')
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
