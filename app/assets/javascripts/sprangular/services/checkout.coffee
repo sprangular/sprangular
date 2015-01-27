@@ -82,9 +82,13 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
     put: (params) ->
       params ||= {}
 
+      config =
+        headers:
+          'X-Spree-Order-Token': Cart.current.token
+
       Cart.current.errors = null
 
-      $http.put("/api/checkouts/#{Cart.current.number}/quick_update", $.param(params))
+      $http.put("/api/checkouts/#{Cart.current.number}/quick_update", $.param(params), config)
            .success (response) ->
              Cart.load(response) unless response.error
            .error (response) ->
