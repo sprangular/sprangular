@@ -103,4 +103,45 @@ describe "User", type: :feature, js: true do
       expect(page).to have_text("My Account")
     end
   end
+
+  it "can reset password" do
+    create(:store, url: 'example.com')
+    user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
+
+    visit sprangular_engine.root_path
+
+    within 'header' do
+      page.find('a', text: 'Sign in').click
+    end
+
+    page.find('a', text: 'Forgot your password?').click
+
+    within :css, "form[name=ForgotPasswordForm]" do
+      fill_in "email", with: "user@example.com"
+
+      click_on "Reset my password"
+    end
+
+    page.find('a', text: 'Shop').click
+    page.find('a', text: 'All Products').click
+
+    user = user.reload
+    raw_token = user.send_reset_password_instructions
+
+    visit sprangular_engine.root_path(anchor: "!/reset-password/#{raw_token}")
+
+    within :css, "form[name=ResetPasswordForm]" do
+      fill_in "password",              with: "654321"
+      fill_in "password_confirmation", with: "654321"
+
+      click_on "Update my password"
+    end
+
+    expect(page).to have_text("Welcome to Sprangular")
+
+    within "header" do
+      expect(page).to have_content("Log out")
+      expect(page).to_not have_content("Sign in")
+    end
+  end
 end
