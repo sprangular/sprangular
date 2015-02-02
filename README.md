@@ -4,7 +4,7 @@
 [![Build Status](https://api.travis-ci.org/DynamoMTL/sprangular.png)](https://travis-ci.org/DynamoMTL/sprangular)
 [![Code Climate](https://codeclimate.com/github/DynamoMTL/sprangular.png)](https://codeclimate.com/github/DynamoMTL/sprangular)
 
-Spree + Angular.js + Bootstrap
+Spree + Angular.js
 
 # [Live Demo](http://sprangular-demo.herokuapp.com)
 
