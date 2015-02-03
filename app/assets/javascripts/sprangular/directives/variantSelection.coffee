@@ -30,3 +30,7 @@ Sprangular.directive 'variantSelection', ->
     if scope.variant
       for value in scope.variant.option_values
         scope.values[value.option_type_id] = value
+
+    else if scope.product
+      for type in scope.product.option_values
+        scope.values[value.option_type_id] = value
