@@ -1,7 +1,7 @@
 .dropdown
   .dropdown-container
-    p.dropdown-description(ng-bind='label.presentation')
-    p.dropdown-button(ng-bind='selected' ng-click='expand()')
+    p.dropdown-description(ng-bind='description')
+    p.dropdown-button(ng-bind="displayValue(model.$viewValue) || emptyMessage" ng-click='expand()')
 
     ul.dropdown-menu.dropdown-select(ng-class="{'show-menu': expanded}")
-      li(ng-repeat="option in options" ng-bind="option.value.presentation" ng-click="select(option.value)")
+      li(ng-repeat="option in options" ng-bind="displayValue(option)" ng-click="select(option)")

@@ -1,25 +1,38 @@
 'use strict'
 
-Sprangular.directive 'dropdown', ->
+Sprangular.directive 'dropdown', ($parse) ->
   restrict: 'E'
+  require: ['?ngModel']
   templateUrl: 'directives/dropdown.html'
   scope:
-    label: '='
+    description: '@'
+    label: '@'
     options: '='
     class: '='
-    change: '='
+    emptyMessage: '@'
+
+  link: (scope, element, attrs, ctrls) ->
+    ngModelCtrl = ctrls[0]
+
+    if !attrs.emptyMessage
+      attrs.emptyMessage = '-- Choose --'
+
+    scope.model = ngModelCtrl
 
   controller: ($scope) ->
-    $scope.selected = "Please select an option"
     $scope.expanded = false
-    $scope.value = null
 
-    # function that expands dropdown
-    $scope.expand = () ->
+    $scope.expand = ->
       $scope.expanded = true
 
-    # function that selects a value, called by ng-click
+    $scope.displayValue = (val) ->
+      return unless val
+
+      if $scope.label
+        eval "val.#{$scope.label}"
+      else
+        val
+
     $scope.select = (value) ->
-      $scope.value = value
-      $scope.selected = value.presentation # save the value on the scope, so that the ui shows selected value, and we have it for form submissions
-      $scope.expanded = false # hide the dropdown list
+      $scope.model.$setViewValue(value)
+      $scope.expanded = false

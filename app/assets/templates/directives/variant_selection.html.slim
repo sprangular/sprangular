@@ -1,1 +1,6 @@
-dropdown(label="option.type" options="option.values" class="option.type.name" ng-repeat="option in product.options")
+dropdown(ng-repeat="option in product.options"
+         description="{{option.presentation}}"
+         options="option.values"
+         label="presentation"
+         class="option.type.name"
+         ng-model='values[option.id]')
