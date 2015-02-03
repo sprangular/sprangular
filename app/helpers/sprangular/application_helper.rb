@@ -54,10 +54,13 @@ module Sprangular
       end
 
       Dir["app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
-        asset_path = asset_path(path.gsub("app/assets/templates/", ""))
-        asset_path = asset_path.gsub(/^\/app\/assets\/templates/, '/assets').gsub(/.slim$/, '')
+        sprockets_path = path.gsub("app/assets/templates/", "")
+        
+        asset_path = asset_path(sprockets_path).
+          gsub(/^\/app\/assets\/templates/, '/assets').
+          gsub(/.slim$/, '')
 
-        hash[asset_path] = Tilt.new(path).render.html_safe
+        hash[asset_path] = Rails.application.assets.find_asset(sprockets_path).body
         hash
       end
     end
