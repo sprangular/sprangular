@@ -9,20 +9,17 @@ Sprangular.directive 'variantSelection', ->
     class: '='
     change: '&'
   controller: ($scope) ->
-    $scope.values = {}
-
     $scope.$watch 'variant', (newVariant, oldVariant)->
       $scope.change({oldVariant: oldVariant, newVariant: newVariant}) if newVariant != oldVariant
+
+    $scope.$watchCollection 'values', (newValues) ->
+      $scope.variant = $scope.product.variantForValues(_.values(newValues))
 
     $scope.isValueSelected = (value) ->
       $scope.values[value.option_type_id]?.id == value.id
 
     $scope.isValueAvailable = (value) ->
       $scope.product.availableValues(_.values($scope.values))
-
-    $scope.selectValue = (value) ->
-      $scope.values[value.option_type_id] = value
-      $scope.variant = $scope.product.variantForValues(_.values($scope.values))
 
   link: (scope, element, attrs) ->
     scope.values = {}
