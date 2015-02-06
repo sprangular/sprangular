@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', '>= 2.4'
   s.add_dependency 'spree_api', '>= 2.4'
   s.add_dependency 'spree_auth_devise'
+  s.add_dependency 'spree_static_content'
   s.add_dependency 'slim-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
