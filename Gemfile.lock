@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/DynamoMTL/spree_static_content.git
+  revision: 2018e4c6ff460dcc21366f52674fc2d3659accf0
+  branch: 2-4-stable
+  specs:
+    spree_static_content (2.3.0)
+      spree_core (~> 2.4.0)
+
+GIT
   remote: git://github.com/rails/sass-rails.git
   revision: 4ec13b1e10c86695b4a094ff9c5049c28567c7d2
   specs:
@@ -444,5 +452,6 @@ DEPENDENCIES
   spree_backend!
   spree_gateway!
   spree_sample
+  spree_static_content!
   sqlite3
   webmock
