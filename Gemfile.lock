@@ -107,6 +107,7 @@ PATH
       spree_api (>= 2.4)
       spree_auth_devise
       spree_core (>= 2.4)
+      spree_static_content
 
 GEM
   remote: https://rubygems.org/
