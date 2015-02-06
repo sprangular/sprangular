@@ -8,6 +8,7 @@ Sprangular::Engine.routes.draw do
       resources :taxonomies, only: :index
       get 'taxons/*permalink', to: 'taxons#show'
       resources :products, only: %i(index show)
+      resources :pages, only: :show
       resource :cart do
         post :add_variant
         put :update_variant
