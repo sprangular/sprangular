@@ -1,4 +1,4 @@
-module BaseControllerExtensions
+module Sprangular::BaseControllerDecorator
   def self.prepended(base)
     base.after_filter :set_csrf_cookie_for_ng
   end
@@ -16,5 +16,5 @@ end
 
 # TODO: should be just Spree::BaseController once base class is fixed here:
 # https://github.com/DynamoMTL/spree_chimpy/blob/master/app/controllers/spree/chimpy/subscribers_controller.rb#L1
-ApplicationController.send(:prepend, BaseControllerExtensions)
-Spree::BaseController.send(:prepend, BaseControllerExtensions)
+ApplicationController.send(:prepend, Sprangular::BaseControllerDecorator)
+Spree::BaseController.send(:prepend, Sprangular::BaseControllerDecorator)

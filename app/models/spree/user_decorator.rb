@@ -1,4 +1,4 @@
-module UserExtensions
+module Sprangular::UserDecorator
   def past_bill_addresses
     past_addresses :bill_address
   end
@@ -26,4 +26,4 @@ module UserExtensions
   end
 end
 
-Spree.user_class.send(:prepend, UserExtensions)
+Spree.user_class.send(:prepend, Sprangular::UserDecorator)
