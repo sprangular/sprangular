@@ -1,8 +1,8 @@
 # Sprangular
 
 [![Gem Version](https://badge.fury.io/rb/sprangular.svg)](http://badge.fury.io/rb/sprangular)
-[![Build Status](https://api.travis-ci.org/DynamoMTL/sprangular.png)](https://travis-ci.org/DynamoMTL/sprangular)
-[![Code Climate](https://codeclimate.com/github/DynamoMTL/sprangular.png)](https://codeclimate.com/github/DynamoMTL/sprangular)
+[![Build Status](https://api.travis-ci.org/DynamoMTL/sprangular.png)](https://travis-ci.org/sprangular/sprangular)
+[![Code Climate](https://codeclimate.com/github/DynamoMTL/sprangular.png)](https://codeclimate.com/github/sprangular/sprangular)
 
 Spree + Angular.js
 
@@ -20,7 +20,7 @@ Spree + Angular.js
 - Variant selection by option type
 - Cart dropdown/popover
 - Lookup shipping & tax by zip code (Planned)
-- Indexable by search engines via [prerender.io](http://prerender.io). See [guide](https://github.com/DynamoMTL/sprangular/wiki/prerendering)
+- Indexable by search engines via [prerender.io](http://prerender.io). See [guide](https://github.com/sprangular/sprangular/wiki/prerendering)
 - Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
 - Example rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
 
