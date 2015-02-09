@@ -22,7 +22,7 @@ Spree + Angular.js
 - Lookup shipping & tax by zip code (Planned)
 - Indexable by search engines via [prerender.io](http://prerender.io). See [guide](https://github.com/sprangular/sprangular/wiki/prerendering)
 - Newsletter signup form (optional) via [spree_chimpy](https://github.com/DynamoMTL/spree_chimpy)
-- Example rails app [DynamoMTL/sprangular-demo](https://github.com/DynamoMTL/sprangular-demo)
+- Example rails app [DynamoMTL/sprangular-demo](https://github.com/sprangular/sprangular-demo)
 
 ## Installing
 
