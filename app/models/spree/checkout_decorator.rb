@@ -64,4 +64,4 @@ module Sprangular::OrderCheckoutDecorator
   end
 end
 
-Spree::Order.send :prepend, Sprangular::OrderCheckoutDecorator
+Spree::Order.send(:prepend, Sprangular::OrderCheckoutDecorator)
