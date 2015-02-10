@@ -12,9 +12,6 @@ Sprangular.config ($routeProvider) ->
       requires: {user: true}
       controller: 'AccountCtrl'
       templateUrl: 'account/show.html'
-      resolve:
-        user: (Account) ->
-          Account.init().then -> Account.user
 
     .when '/products',
       controller: 'ProductListCtrl'
