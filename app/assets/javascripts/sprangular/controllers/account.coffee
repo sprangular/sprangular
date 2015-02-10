@@ -2,15 +2,15 @@ Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, A
   Status.pageTitle = 'My Account'
 
   user = Account.user
-  user.password = ''
-  user.password_confirmation = ''
 
   $scope.editing = false
   $scope.user = user
 
   refreshAccount = ->
     Account.init().then ->
-      $scope.user = Account.user
+      user = Account.user
+      user.password = ''
+      user.password_confirmation = ''
 
   $scope.edit = ->
     $scope.editing = true
