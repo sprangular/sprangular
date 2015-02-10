@@ -24,6 +24,10 @@ Sprangular.config ($routeProvider) ->
         products: (Catalog, $route) ->
           Catalog.products($route.current.params.search, 1)
 
+    .when '/pages/:id',
+      controller: 'PageShowCtrl'
+      templateUrl: 'pages/show.html'
+
     .when '/products/:id',
       controller: 'ProductCtrl'
       templateUrl: 'products/show.html'
