@@ -7,7 +7,7 @@ Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, A
   $scope.user = user
 
   refreshAccount = ->
-    Account.init().then ->
+    Account.reload().then ->
       user = Account.user
       user.password = ''
       user.password_confirmation = ''
