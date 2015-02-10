@@ -19,7 +19,10 @@ class Sprangular.Address
     "#{@firstname} #{@lastname}"
 
   shortAddress: ->
-    "#{@fullName()}, #{@addressLine()}, #{@city} #{@state.abbr}, #{@zipcode}"
+    "#{@fullName()}, #{@addressLine()}, #{@city} #{@actualStateName()}, #{@zipcode}"
+
+  actualStateName: ->
+    @state?.abbr || @state_name
 
   addressLine: ->
     if @address2
