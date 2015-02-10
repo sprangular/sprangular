@@ -15,6 +15,11 @@ Sprangular.service 'Catalog', ($http, $q, _, Status) ->
         .then (response) ->
           response.data
 
+    taxonsByName: (name) ->
+      $http.get("spree/api/taxonomies?q[name_eq]=#{name}")
+        .then (response) ->
+          response.data.taxonomies[0].root.taxons
+
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")
         .then (response) ->
