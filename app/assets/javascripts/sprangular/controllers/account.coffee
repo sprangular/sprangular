@@ -1,16 +1,11 @@
-Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account) ->
+Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account, user) ->
   Status.pageTitle = 'My Account'
 
-  user = Account.user
+  user.password = ''
+  user.password_confirmation = ''
 
   $scope.editing = false
   $scope.user = user
-
-  refreshAccount = ->
-    Account.reload().then ->
-      user = Account.user
-      user.password = ''
-      user.password_confirmation = ''
 
   $scope.edit = ->
     $scope.editing = true
@@ -27,5 +22,3 @@ Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, A
         $location.path('/') if !Account.isLogged
       , (errors) ->
         user.errors = errors
-
-  refreshAccount()
