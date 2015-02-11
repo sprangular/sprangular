@@ -14,9 +14,11 @@ class Sprangular::CartsController < Sprangular::BaseController
     order = current_order(create_order_if_necessary: true)
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
+    options  = (params[:options] || {}).merge(currency: current_currency)
 
     if quantity.between?(1, 2_147_483_647)
       begin
+        line_item = order.contents.add(variant, quantity)
         order.ensure_updated_shipments
         @order = order.reload
         render 'spree/api/orders/show'
