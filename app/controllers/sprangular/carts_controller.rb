@@ -11,13 +11,22 @@ class Sprangular::CartsController < Sprangular::BaseController
 
   # Adds a new item to the order (creating a new order if none already exists)
   def add_variant
-    populator = Spree::OrderPopulator.new(current_order(create_order_if_necessary: true), current_currency)
-    if populator.populate(params[:variant_id], params[:quantity])
-      current_order.ensure_updated_shipments
-      @order = current_order
-      render 'spree/api/orders/show'
+    order = current_order(create_order_if_necessary: true)
+    variant  = Spree::Variant.find(params[:variant_id])
+    quantity = params[:quantity].to_i
+    options  = (params[:options] || {}).merge(currency: current_currency)
+
+    if quantity.between?(1, 2_147_483_647)
+      begin
+        line_item = order.contents.add(variant, quantity)
+        order.ensure_updated_shipments
+        @order = order.reload
+        render 'spree/api/orders/show'
+      rescue ActiveRecord::RecordInvalid => e
+        invalid_resource!(e.record)
+      end
     else
-      invalid_resource!(populator)
+      invalid_resource!(order)
     end
   end
 
