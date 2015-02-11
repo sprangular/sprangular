@@ -1,6 +1,6 @@
-Sprangular.service 'Catalog', ($http, $q, _, Status) ->
+Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
   service =
-    pageSize: 8
+    pageSize: Env.config.product_page_size
 
     products: (search=null, page=1, options) ->
       options ||= {}

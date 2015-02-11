@@ -29,7 +29,8 @@ module Sprangular
           default_country_id: config.default_country_id,
           facebook_app_id: ENV['FACEBOOK_APP_ID'],
           payment_methods: payment_methods,
-          image_sizes: Spree::Image.attachment_definitions[:attachment][:styles].keys
+          image_sizes: Spree::Image.attachment_definitions[:attachment][:styles].keys,
+          product_page_size: Spree::Config.products_per_page
         },
         templates: templates
       }
