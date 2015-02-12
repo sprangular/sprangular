@@ -8,6 +8,10 @@ describe "Visiting Products", js: true do
     ((first_store = Spree::Store.first) && first_store.name).to_s
   end
 
+  before do
+    Spree::Config.products_per_page = 8
+  end
+
   describe 'meta tags and title' do
     let(:jersey) { Spree::Product.find_by_name('Ruby on Rails Baseball Jersey') }
     let(:metas) { { meta_description: 'Brand new Ruby on Rails Jersey', meta_keywords: 'ror, jersey, ruby' } }
