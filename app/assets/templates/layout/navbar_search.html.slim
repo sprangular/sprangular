@@ -1,7 +1,7 @@
 .col-sm-3.col-md-3.hidden-xs
-  form.navbar-form(role="search" ng-submit="doSearch()")
+  form.navbar-form(name="SearchForm" role="search" ng-submit="doSearch()")
     .input-group
-      input#keywords.form-control(type="text" placeholder="Search" ng-model="search.text" autofocus bs-typeahead
+      input.form-control(type="text" name="keywords" placeholder="Search" ng-model="search.text" autofocus bs-typeahead
         data-delay="500" data-min-length="3" data-template="products/typeahead.html"
         ng-options="product.name as product.name for product in getProducts($viewValue)")
 
