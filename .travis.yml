@@ -7,4 +7,4 @@ script:
   - cd ../..
   - bundle exec rake spec
 rvm:
-  - 2.0.0
+  - 2.1.5
