@@ -51,6 +51,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-angular'
   s.add_development_dependency 'selenium-webdriver'
+  s.add_development_dependency 'chromedriver-helper'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'ffaker'
