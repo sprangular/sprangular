@@ -40,8 +40,9 @@ describe "Visiting Products", js: true do
 
   scenario "search" do
     visit sprangular_engine.root_path
+    wait_for_route_changes
 
-    within :css, ".navbar-form" do
+    within :css, "form[name=SearchForm]" do
       fill_in "keywords", with: "shirt"
 
       page.find('span.glyphicon').click
