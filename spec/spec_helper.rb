@@ -54,15 +54,23 @@ require 'paperclip/matchers'
 if ENV['WEBDRIVER'] == 'selenium'
   require 'selenium-webdriver'
   Capybara.default_driver = :selenium
+
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
 else
   require 'capybara/poltergeist'
 
   Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, timeout: 120, js_errors: false, phantomjs_logger: StringIO.new)
+    Capybara::Poltergeist::Driver.new(app, timeout: 120,
+                                           js_errors: false,
+                                           phantomjs_logger: StringIO.new)
   end
 
   Capybara.javascript_driver = :poltergeist
 end
+
+Capybara.raise_server_errors = false
 
 RSpec.configure do |config|
   config.color = true
