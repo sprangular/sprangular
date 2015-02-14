@@ -6,7 +6,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         order:
           coupon_code: code
 
-      @put(params)
+      @put(null, params)
 
     update: ->
       order = Cart.current
@@ -25,7 +25,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         params['order[shipments_attributes][][id]'] = order.shipment.id
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
-      @put(params)
+      @put("quick_update", params)
 
     complete: ->
       order = Cart.current
@@ -51,7 +51,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
         params.payment_source[paymentMethodId] = sourceParams
 
-      @put(params)
+      @put("quick_update", params)
         .success (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
@@ -79,16 +79,17 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       ga "ecommerce:send"
 
-    put: (params) ->
+    put: (path, params) ->
       params ||= {}
 
       config =
         headers:
           'X-Spree-Order-Token': Cart.current.token
 
+      url = _.compact(["/api/checkouts/#{Cart.current.number}",path]).join("/")
       Cart.current.errors = null
 
-      $http.put("/api/checkouts/#{Cart.current.number}/quick_update", $.param(params), config)
+      $http.put(url, $.param(params), config)
            .success (response) ->
              Cart.load(response) unless response.error
            .error (response) ->
