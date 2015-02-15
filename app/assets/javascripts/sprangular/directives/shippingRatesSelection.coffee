@@ -30,7 +30,8 @@ Sprangular.directive 'shippingRateSelection', ->
 
     # use $scope.$watchGroup when its released
     $scope.$watch 'address.country.id + address.state.id + address.zipcode + isValid', (oldValue, newValue) ->
-      return if $scope.loading || oldValue == newValue || !$scope.isValid
+      return if $scope.loading 
+      return if $scope.order.shippingRates.length > 0 && (oldValue == newValue || !$scope.isValid) 
 
       $scope.loading = true
 
