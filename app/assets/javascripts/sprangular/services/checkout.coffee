@@ -6,7 +6,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         order:
           coupon_code: code
 
-      @put("apply_coupon_code", params)
+      service._request("/api/orders/#{Cart.current.number}/apply_coupon_code", params)
 
     update: ->
       order = Cart.current
@@ -25,7 +25,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         params['order[shipments_attributes][][id]'] = order.shipment.id
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
-      @put("quick_update", params)
+      @put(params)
 
     complete: ->
       order = Cart.current
@@ -51,7 +51,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
         params.payment_source[paymentMethodId] = sourceParams
 
-      @put("quick_update", params)
+      @put(params)
         .success (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
@@ -79,21 +79,21 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       ga "ecommerce:send"
 
-    put: (path, params) ->
-      params ||= {}
+    put: (params) ->
+      service._request("/api/checkouts/#{Cart.current.number}/quick_update", params ||= {})
 
+    _request: (url, params) ->
       config =
         headers:
           'X-Spree-Order-Token': Cart.current.token
 
-      url = _.compact(["/api/checkouts", Cart.current.number, path]).join("/")
       Cart.current.errors = null
 
       $http.put(url, $.param(params), config)
-           .success (response) ->
-             Cart.load(response) unless response.error
-           .error (response) ->
-             Cart.errors(response.errors || response.exception)
+        .success (response) ->
+          Cart.load(response) unless response.error
+        .error (response) ->
+          Cart.errors(response.errors || response.exception)
 
     _findPaymentMethodId: ->
       paymentMethod = _.find Env.config.payment_methods, (method) -> method.name == 'Credit Card'
