@@ -20,13 +20,14 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
-    $scope.$watch 'order.shipToBillAddress', ->
+    $scope.$watch('order.actualShippingAddress()', ->
       $scope.address = $scope.order.actualShippingAddress()
+    , true)
 
-    watchAddress = (address) ->
+    validateAddress = (address) ->
       $scope.isValid = address.firstname && address.lastname && address.city && address.address1 && address.zipcode && address.country && address.state && address.phone
 
-    $scope.$watch('address', watchAddress, true)
+    $scope.$watch('address', validateAddress, true)
 
     # use $scope.$watchGroup when its released
     $scope.$watch 'address.country.id + address.state.id + address.zipcode + isValid', (oldValue, newValue) ->
@@ -36,3 +37,5 @@ Sprangular.directive 'shippingRateSelection', ->
 
       Checkout.update().then ->
         $scope.loading = false
+
+    validateAddress($scope.address)
