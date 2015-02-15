@@ -1,7 +1,7 @@
 class Sprangular::CartsController < Sprangular::BaseController
 
   def show
-    @order = current_order
+    @order = current_order(create_order_if_necessary: true)
     if @order
       render 'spree/api/orders/show'
     else
