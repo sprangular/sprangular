@@ -38,7 +38,3 @@ end
 child :adjustments => :adjustments do
   extends "spree/api/adjustments/show"
 end
-
-child :products => :products do
-  extends "spree/api/products/show"
-end

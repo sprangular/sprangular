@@ -47,13 +47,8 @@ class Sprangular.Order
     if data.ship_address
       @shippingAddress = Sprangular.extend(data.ship_address, Sprangular.Address)
 
-    products = Sprangular.extend(data.products, Sprangular.Product)
-
     for item in data.line_items
-      for product in products
-        variant = product.findVariant(item.variant_id)
-        break if variant
-
+      variant = item.variant
       @items.push(variant: variant, quantity: item.quantity, price: item.price)
 
     @
