@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics) ->
+Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics, Flash) ->
   Status.pageTitle = 'Checkout'
   user = Account.user
 
@@ -21,6 +21,7 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
     $scope.processing = true
 
     if $scope.order.isInvalid()
+      Flash.error("Please correct the errors on your form.")
       $scope.processing = false
       return
 
