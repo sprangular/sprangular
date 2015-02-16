@@ -38,3 +38,5 @@ end
 child :adjustments => :adjustments do
   extends "spree/api/adjustments/show"
 end
+
+node(:subscription_interval) { session[:subscription_interval] }

@@ -38,6 +38,7 @@ class Sprangular.Order
     @shipToBillAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []
+    @subscriptionInterval = data.subscription_interval
 
     @loadRates(data)
 
