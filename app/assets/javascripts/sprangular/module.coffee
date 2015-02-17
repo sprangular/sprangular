@@ -24,7 +24,7 @@ Sprangular.extend = (instance, type) ->
       newInstance
 
 # Default Headers
-Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locationProvider, $logProvider) ->
+Sprangular.config ["$httpProvider", "$locationProvider", "$logProvider", ($httpProvider, $locationProvider, $logProvider) ->
   $httpProvider.defaults.headers.common['Accept'] = 'application/json'
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
   $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
