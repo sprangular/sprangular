@@ -37,7 +37,7 @@ Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locati
     .debugEnabled (Env.env isnt "production")
 ]
 
-Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
+Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->
   Sprangular.startupData = {}
   Status.initialized = true
 
@@ -68,4 +68,4 @@ Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
   $rootScope.$on '$routeChangeError', (event, current, previous, rejection) ->
     Status.routeChanging = false
     alert "Error changing route. See console for details."
-    console?.log "Error changing route", rejection
+    $log.info "Error changing route", rejection
