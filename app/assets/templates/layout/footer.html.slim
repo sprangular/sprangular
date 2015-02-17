@@ -3,13 +3,13 @@ footer.container-fluid(ng-controller="FooterCtrl")
     .col-lg-2
       small
         | Powered by&nbsp;
-        a(href="https://github.com/DynamoMTL/sprangular") Sprangular
+        a(ng-href="https://github.com/DynamoMTL/sprangular") Sprangular
 
     .col-lg-4
       ng-include(src="'layout/subscribe.html'")
 
     .col-lg-6.clearfix
-      a.dynamo(href="http://godynamo.com/")
+      a.dynamo(ng-href="http://godynamo.com/")
         .level1
           span.d D
           span.y Y

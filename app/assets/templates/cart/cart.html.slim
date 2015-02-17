@@ -12,7 +12,7 @@
       .aside-body
         .empty(ng-show="isEmpty()")
           p Your cart is empty
-          a.btn.btn-lg.btn-primary(href="#!/products" ng-click="$hide()") Start Shopping
+          a.btn.btn-lg.btn-primary(ng-href="#!/products" ng-click="$hide()") Start Shopping
 
         .with-items(ng-hide="isEmpty()")
           table.table.table-striped
@@ -24,12 +24,12 @@
 
             tr.item(ng-repeat='item in cart.items')
               td.image
-                a(href="#!/products/{{item.variant.product.slug}}")
+                a(ng-href="#!/products/{{item.variant.product.slug}}")
                   img(ng-src="{{item.variant.image.miniUrl}}")
 
               td.name
                 p
-                  a(href="#!/products/{{item.variant.product.slug}}")
+                  a(ng-href="#!/products/{{item.variant.product.slug}}")
                     | {{item.variant.product.name}}
 
                   section.options(ng-show='item.variant.product.hasVariants')
