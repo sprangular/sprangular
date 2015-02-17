@@ -24,7 +24,7 @@ Sprangular.extend = (instance, type) ->
       newInstance
 
 # Default Headers
-Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locationProvider) ->
+Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locationProvider, $logProvider) ->
   $httpProvider.defaults.headers.common['Accept'] = 'application/json'
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
   $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -32,6 +32,9 @@ Sprangular.config ["$httpProvider", "$locationProvider", ($httpProvider, $locati
   $locationProvider
     .html5Mode false
     .hashPrefix '!'
+
+  $logProvider
+    .debugEnabled (Env.env isnt "production")
 ]
 
 Sprangular.run ($rootScope, $location, Status, Account, Cart, Flash) ->
