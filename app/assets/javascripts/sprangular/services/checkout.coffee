@@ -6,7 +6,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         order:
           coupon_code: code
 
-      service._request("/api/orders/#{Cart.current.number}/apply_coupon_code", params)
+      @put(params)
 
     update: ->
       order = Cart.current
@@ -80,9 +80,9 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       ga "ecommerce:send"
 
     put: (params) ->
-      service._request("/api/checkouts/#{Cart.current.number}/quick_update", params ||= {})
+      url = "/api/checkouts/#{Cart.current.number}/quick_update"
+      params = params ||= {}
 
-    _request: (url, params) ->
       config =
         headers:
           'X-Spree-Order-Token': Cart.current.token
