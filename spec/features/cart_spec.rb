@@ -32,7 +32,7 @@ describe "Cart", type: :feature, js: true do
     page.find(:css, '.cart-link').click
     page.find(:css, '#cart-aside .remove').click
 
-    sleep 1
+    sleep 5
 
     expect(page).to have_content("Your cart is empty")
   end
