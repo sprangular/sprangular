@@ -11,6 +11,7 @@ Spree + Angular.js
 ## Features Overview
 
 - Full Spree front-end
+- New functions can be added in the host app or by creating a gem. Example gem: [sprangular_static_content](https://github.com/sprangular/sprangular_static_content)
 - Single page checkout
 - 1-click checkout
 - Product search with auto-complete
