@@ -3,7 +3,7 @@ ng-include(src="'home/jumbotron.html'")
 ng-include(src="'products/list.html'")
 
 nav
-  ul.pagination.pagination-lg
+  ul.pagination.pagination-lg(ng-if="products.length > 0")
     li.previous(ng-class="{disabled: currentPage == 1}")
       a(ng-click='loadPreviousPage()') Previous
 
