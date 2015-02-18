@@ -45,7 +45,9 @@ describe "Cart", type: :feature, js: true do
       page.find(:css, 'a.plus').click
     end
 
-    puts Spree::Order.last.inspect
+    sleep 5
+
+    puts Spree::Order.last.line_items.inspect
 
     expect(page).to have_css("a.cart-link .cart-qty", text: "2")
   end
