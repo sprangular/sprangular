@@ -1,4 +1,7 @@
 .product-listing.clearfix
+  .empty(ng-if="products.length == 0")
+    p Sorry, no products found.
+
   .product.col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable()}")
     .col-lg-12
       h2.title
