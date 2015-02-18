@@ -32,9 +32,6 @@ describe "Cart", type: :feature, js: true do
     page.find(:css, '.cart-link').click
     page.find(:css, '#cart-aside .remove').click
 
-    visit sprangular_engine.root_path(anchor: "!/products/#{mug.slug}")
-    page.find(:css, '.add-to-cart').click
-
     expect(page).to have_content("Your cart is empty")
   end
 
