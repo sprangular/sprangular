@@ -1,0 +1,39 @@
+box: wercker/rvm
+# Build definition
+# See the Rails section on the wercker devcenter:
+# http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
+# You will want to define your database as follows:
+# services:
+#   - wercker/postgresql
+# See more about services on our devcenter:
+# http://devcenter.wercker.com/articles/services/
+build:
+    steps:
+        # Uncomment this to force RVM to use a specific Ruby version
+        - rvm-use:
+            version: 2.1.5
+
+        # A step that executes `bundle install` command
+        - bundle-install
+
+        # A step that prepares the database.yml using the database in services
+        # - rails-database-yml
+
+        # A custom script step, name value is used in the UI
+        # and the code value contains the command that get executed
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+
+        - script:
+            name: setup spec/dummy
+            code: |
+                cd spec/dummy
+                bundle exec rake db:reset AUTO_ACCEPT=1
+
+        - script:
+               name: rspec
+               code: bundle exec rspec
