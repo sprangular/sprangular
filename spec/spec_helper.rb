@@ -62,8 +62,7 @@ else
   require 'capybara/poltergeist'
 
   Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, timeout: 120,
-                                           phantomjs_logger: StringIO.new)
+    Capybara::Poltergeist::Driver.new(app, timeout: 120)
   end
 
   Capybara.javascript_driver = :poltergeist
