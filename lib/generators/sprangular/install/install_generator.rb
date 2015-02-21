@@ -18,9 +18,9 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
   end
 
   def remove_assets
-    git rm: "-rf vendor/assets/images/spree/frontend"
-    git rm: "-rf vendor/assets/javascripts/spree/frontend"
-    git rm: "-rf vendor/assets/stylesheets/spree/frontend"
+    run "rm -rf vendor/assets/images/spree/frontend"
+    run "rm -rf vendor/assets/javascripts/spree/frontend"
+    run "rm -rf vendor/assets/stylesheets/spree/frontend"
   end
 
   def remove_uneeded_js
