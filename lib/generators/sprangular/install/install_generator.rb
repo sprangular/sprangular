@@ -45,6 +45,9 @@ eos
     template 'host.coffee',        'app/assets/javascripts/sprangular/host.coffee'
     template 'extraRoutes.coffee', 'app/assets/javascripts/sprangular/extraRoutes.coffee'
 
+    create_file 'app/assets/javascripts/sprangular/controllers/.keep', ''
+    create_file 'app/assets/javascripts/sprangular/services/.keep', ''
+
     copy_file 'about.html.slim',    'app/assets/templates/static/about.html.slim'
     copy_file 'terms.html.slim',    'app/assets/templates/static/terms.html.slim'
     copy_file 'privacy.html.slim',  'app/assets/templates/static/privacy.html.slim'
