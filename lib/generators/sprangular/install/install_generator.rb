@@ -38,8 +38,8 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
 //= require sprangular
 //= require sprangular/host
 //= require sprangular/extraRoutes
-//= require_tree sprangular/controllers
-//= require_tree sprangular/services
+//= require_tree ./sprangular/controllers
+//= require_tree ./sprangular/services
 eos
 
     template 'host.coffee',        'app/assets/javascripts/sprangular/host.coffee'
