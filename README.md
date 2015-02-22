@@ -11,7 +11,8 @@ Spree + Angular.js
 ## Features Overview
 
 - Full Spree front-end
-- New functions can be added in the host app or by creating a gem. Example gem: [sprangular_static_content](https://github.com/sprangular/sprangular_static_content)
+- New functions can be added in the host app or by creating a gem.
+  Example: [sprangular_static_content](https://github.com/sprangular/sprangular_static_content)
 - Single page checkout
 - 1-click checkout
 - Product search with auto-complete
@@ -22,15 +23,15 @@ Spree + Angular.js
 - Cart dropdown/popover
 - Lookup shipping & tax by zip code (Planned)
 - Indexable by search engines via [prerender.io](http://prerender.io). See [guide](https://github.com/sprangular/sprangular/wiki/prerendering)
-- Example rails app [DynamoMTL/sprangular-demo](https://github.com/sprangular/sprangular-demo)
+- Example rails app [spranguar/sprangular-demo](https://github.com/sprangular/sprangular-demo)
 
 ## Installing
 
-See [Setup Guide](https://github.com/DynamoMTL/sprangular/wiki/setup-guide)
+See [Setup Guide](https://github.com/sprangular/sprangular/wiki/setup-guide)
 
 ## Documentation
 
-See [Wiki](https://github.com/DynamoMTL/sprangular/wiki)
+See [Wiki](https://github.com/sprangular/sprangular/wiki)
 
 ## License
 
