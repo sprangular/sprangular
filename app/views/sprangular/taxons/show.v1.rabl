@@ -1,5 +1,5 @@
 object @taxon
-cache @taxon
+cache [I18n.locale, @taxon]
 attributes *taxon_attributes
 
 node do |t|

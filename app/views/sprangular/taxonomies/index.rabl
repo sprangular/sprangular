@@ -1,4 +1,4 @@
 collection @taxonomies
-cache :all
+cache [I18n.locale, @taxonomies]
 
 extends "spree/api/taxonomies/show"
