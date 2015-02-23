@@ -26,13 +26,20 @@ module Sprangular
         config: {
           site_name: store.seo_title || store.name,
           logo:      asset_path(config.logo),
+          locale:    I18n.locale,
           default_country_id: config.default_country_id,
           payment_methods: payment_methods,
           image_sizes: Spree::Image.attachment_definitions[:attachment][:styles].keys,
           product_page_size: Spree::Config.products_per_page
         },
+        translations: current_translations[:sprangular].to_json.html_safe,
         templates: templates
       }
+    end
+
+    def current_translations
+      @translations ||= I18n.backend.send(:translations)
+      @translations[I18n.locale].with_indifferent_access
     end
 
     def cached_templates
@@ -46,7 +53,8 @@ module Sprangular
 
       files = Dir[root + "app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
         asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
-        local_path = 'app/assets/templates/' + asset_path
+        local_path = "app/assets/templates/#{I18n.locale}/" + asset_path
+        
 
         hash[asset_path.gsub(/.slim$/, '')] = Tilt.new(path).render.html_safe if !File.exists?(local_path)
 
@@ -57,7 +65,7 @@ module Sprangular
         sprockets_path = path.gsub("app/assets/templates/", "")
         
         asset_path = asset_path(sprockets_path).
-          gsub(/^\/app\/assets\/templates/, '/assets').
+          gsub(/^\/app\/assets\/templates/, "/assets/").
           gsub(/.slim$/, '')
 
         hash[asset_path] = Rails.application.assets.find_asset(sprockets_path).body.html_safe

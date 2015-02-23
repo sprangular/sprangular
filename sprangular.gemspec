@@ -43,7 +43,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angularytics'
   s.add_dependency 'rails-assets-jasmine-sinon'
   s.add_dependency 'rails-assets-sinon'
-
+  s.add_dependency 'rails-assets-angular-translate'
+  s.add_dependency 'rails-assets-angular-i18n'
+  
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'spree_sample'

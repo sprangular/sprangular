@@ -3,6 +3,7 @@ Sprangular::Engine.routes.draw do
     root to: 'home#index'
 
     scope '/api', defaults: {format: :json} do
+      post 'locale/set'
       resources :taxonomies, only: :index
       get 'taxons/*permalink', to: 'taxons#show'
       resources :products, only: %i(index show)
