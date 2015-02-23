@@ -2,6 +2,9 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
   service =
     pageSize: Env.config.product_page_size
 
+    fetched:
+      taxonomies: null
+
     products: (search=null, page=1, options) ->
       options ||= {}
       options.search = search
@@ -11,8 +14,10 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
       @getPaged(page, taxon: path)
 
     taxonomies: ->
+      _service = @
       $http.get("/api/taxonomies")
         .then (response) ->
+          _service.fetched.taxonomies = response.data
           response.data
 
     taxonsByName: (name) ->
