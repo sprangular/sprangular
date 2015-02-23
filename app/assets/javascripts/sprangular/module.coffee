@@ -1,6 +1,15 @@
 # Main Module
-window.Sprangular = angular.module "Sprangular", ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngAnimate', 'underscore', 'ngSanitize', 'mgcrea.ngStrap', 'angularytics', 'pascalprecht.translate']
-  .run (Env) ->
+window.Sprangular = angular.module('Sprangular', [
+  'ui.bootstrap'
+  'ngRoute'
+  'ngResource'
+  'ngAnimate'
+  'underscore'
+  'ngSanitize'
+  'mgcrea.ngStrap'
+  'angularytics'
+  'pascalprecht.translate'
+]).run (Env) ->
     paymentMethods = Env.config.payment_methods
 
     if paymentMethods.length == 0
@@ -24,10 +33,17 @@ Sprangular.extend = (instance, type) ->
       newInstance
 
 # Default Headers
-Sprangular.config ["$httpProvider", "$locationProvider", '$translateProvider', "$logProvider", "Env", ($httpProvider, $locationProvider, $translateProvider, $logProvider, Env) ->
-  $httpProvider.defaults.headers.common['Accept'] = 'application/json'
-  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-  $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
+Sprangular.config [
+  '$httpProvider'
+  '$locationProvider'
+  '$translateProvider'
+  '$logProvider'
+  'Env'
+  ($httpProvider, $locationProvider, $translateProvider, $logProvider, Env) ->
+    $httpProvider.defaults.headers.common['Accept'] = 'application/json'
+    encode_as_form = 'application/x-www-form-urlencoded'
+    $httpProvider.defaults.headers.post['Content-Type'] = encode_as_form
+    $httpProvider.defaults.headers.put['Content-Type'] = encode_as_form
 
   $locationProvider
     .html5Mode false
@@ -37,8 +53,8 @@ Sprangular.config ["$httpProvider", "$locationProvider", '$translateProvider', "
     .debugEnabled (Env.env isnt "production")
 
   # i18n Support
-  $translateProvider.translations(Env.config.locale, Env.config.translations);
-  $translateProvider.preferredLanguage(Env.config.locale);
+  $translateProvider.translations(Env.config.locale, Env.config.translations)
+  $translateProvider.preferredLanguage(Env.config.locale)
 ]
 
 Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->

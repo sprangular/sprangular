@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def set_user_language
     I18n.locale = if session.key?(:locale)
-      session[:locale]
+                    session[:locale]
     else
       Rails.application.config.i18n.default_locale || I18n.default_locale
     end

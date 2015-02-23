@@ -1,6 +1,6 @@
-##
-# API Endpoint to set locale for session
 module Sprangular
+  ##
+  # API Endpoint to set locale for session
   class LocaleController < Sprangular::BaseController
     def set
       session[:locale] = params[:locale]
