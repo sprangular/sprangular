@@ -13,12 +13,17 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     productsByTaxon: (path, page=1) ->
       @getPaged(page, taxon: path)
 
-    taxonomies: ->
+    taxonomies: (refetch=true)->
+      q = $q.defer()
       _service = @
-      $http.get("/api/taxonomies")
-        .then (response) ->
-          _service.fetched.taxonomies = response.data
-          response.data
+      if !refetch and _service.fetched.taxonomies isnt null
+        q.resolve _service.fetched.taxonomies
+      else
+        $http.get("/api/taxonomies")
+          .then (response) ->
+            _service.fetched.taxonomies = response.data
+            q.resolve response.data
+      return q.promise
 
     taxonsByName: (name) ->
       $http.get("spree/api/taxonomies?q[name_eq]=#{name}")
@@ -35,14 +40,14 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
 
     getPaged: (page=1, params={}) ->
       $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
-           .then (response) ->
-             data = response.data
-             list = Sprangular.extend(data.products || [], Sprangular.Product)
-             list.isLastPage = (data.count < service.pageSize) || (page == data.pages)
-             list.totalCount = data.total_count
-             list.totalPages = data.pages
-             list.page = data.current_page
-             Status.cacheProducts(list)
-             list
+        .then (response) ->
+          data = response.data
+          list = Sprangular.extend(data.products || [], Sprangular.Product)
+          list.isLastPage = (data.count < service.pageSize) || (page == data.pages)
+          list.totalCount = data.total_count
+          list.totalPages = data.pages
+          list.page = data.current_page
+          Status.cacheProducts(list)
+          list
 
   service
