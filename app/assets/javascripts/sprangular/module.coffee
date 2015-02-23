@@ -1,6 +1,13 @@
 # Main Module
-window.Sprangular = angular.module "Sprangular", ['ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'mgcrea.ngStrap', 'angularytics', 'pascalprecht.translate']
-  .run (Env) ->
+window.Sprangular = angular.module('Sprangular', [
+  'ngRoute'
+  'ngAnimate'
+  'underscore'
+  'ngSanitize'
+  'mgcrea.ngStrap'
+  'angularytics'
+  'pascalprecht.translate'
+]).run (Env) ->
     paymentMethods = Env.config.payment_methods
 
     if paymentMethods.length == 0
@@ -24,10 +31,17 @@ Sprangular.extend = (instance, type) ->
       newInstance
 
 # Default Headers
-Sprangular.config ["$httpProvider", "$locationProvider", '$translateProvider', "$logProvider", "Env", ($httpProvider, $locationProvider, $translateProvider, $logProvider, Env) ->
-  $httpProvider.defaults.headers.common['Accept'] = 'application/json'
-  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-  $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
+Sprangular.config [
+  '$httpProvider'
+  '$locationProvider'
+  '$translateProvider'
+  '$logProvider'
+  'Env'
+  ($httpProvider, $locationProvider, $translateProvider, $logProvider, Env) ->
+    $httpProvider.defaults.headers.common['Accept'] = 'application/json'
+    encode_as_form = 'application/x-www-form-urlencoded'
+    $httpProvider.defaults.headers.post['Content-Type'] = encode_as_form
+    $httpProvider.defaults.headers.put['Content-Type'] = encode_as_form
 
   $locationProvider
     .html5Mode false

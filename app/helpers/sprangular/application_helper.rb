@@ -12,11 +12,11 @@ module Sprangular
     def js_environment
       config = ::Spree::Config
       store = Spree::Store.current
-      supported_locales = if Object.const_defined?('SpreeI18n') 
-        SpreeI18n::Config.supported_locales
-      else
-        [:en, :de]
-      end
+      supported_locales = if Object.const_defined?('SpreeI18n')
+                            SpreeI18n::Config.supported_locales
+                          else
+                            [:en, :de]
+                          end
 
       templates = Hash[
         Rails.application.assets.each_logical_path.
@@ -28,7 +28,8 @@ module Sprangular
         end
       ]
 
-      {env: Rails.env,
+      {
+        env: Rails.env,
         config: {
           site_name: store.seo_title || store.name,
           logo:      asset_path(config.logo),
@@ -61,7 +62,6 @@ module Sprangular
       files = Dir[root + "app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
         asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
         local_path = "app/assets/templates/#{I18n.locale}/" + asset_path
-        
 
         hash[asset_path.gsub(/.slim$/, '')] = Tilt.new(path).render.html_safe if !File.exists?(local_path)
 
@@ -70,9 +70,9 @@ module Sprangular
 
       Dir["app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
         sprockets_path = path.gsub("app/assets/templates/", "")
-        
+
         asset_path = asset_path(sprockets_path).
-          gsub(/^\/app\/assets\/templates/, "/assets/").
+          gsub(/^\/app\/assets\/templates/, '/assets').
           gsub(/.slim$/, '')
 
         hash[asset_path] = Rails.application.assets.find_asset(sprockets_path).body.html_safe
