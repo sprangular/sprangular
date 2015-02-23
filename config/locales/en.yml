@@ -1,7 +1,9 @@
 en: 
   sprangular: 
+    en: English
+    de: German
     my_account: My Account
-    login: Log In
+    login: Sign in
     logout: Log Out
     shop: Shop
     initializing: Initializing...

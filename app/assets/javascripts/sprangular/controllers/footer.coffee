@@ -1,18 +1,11 @@
-Sprangular.controller "FooterCtrl", ($scope, $location, Account, Catalog, Status) ->
+Sprangular.controller "FooterCtrl", ($scope, $location, Account, Catalog, Status, Env) ->
 
   $scope.catalog = Catalog
   $scope.account = Account
+  $scope.supported_locales = Env.config.supported_locales
 
   $scope.goToMyAccount = ->
     $location.path '/account'
 
-  $scope.changeLng = (lng, url) ->
-    $.ajax(
-      type: 'POST'
-      url: '/api/locale/set'
-      data:
-        locale: lng
-        authenticity_token: $('meta[name="csrf-token"]').attr('content')
-    ).success ->
-      window.location.reload()
-    return
+  $scope.changeLocale = (locale) ->
+    Account.changeLocale(locale)
