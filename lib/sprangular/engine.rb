@@ -11,6 +11,7 @@ module Sprangular
       assets.register_engine '.slim', Slim::Template
 
       Rails.application.config.assets.precompile += %w( bootstrap/* )
+      Rails.application.config.assets.precompile += %w( angular-i18n/*)
     end
 
     initializer "sprangular.prerender" do

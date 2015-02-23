@@ -15,4 +15,4 @@ a.btn.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disabled="adding ||
         span(ng-show="inCart() && quantity <= 1") Add another
         span(ng-show="inCart() && quantity > 1") Add {{quantity}} more
       span.price
-        | {{(variant || product).price * quantity  | number: 2 | currency}}
+        | {{(variant || product).price * quantity | currency}}
