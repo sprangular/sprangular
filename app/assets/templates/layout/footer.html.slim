@@ -4,7 +4,12 @@ footer.container-fluid(ng-controller="FooterCtrl")
       small
         | Powered by&nbsp;
         a(ng-href="https://github.com/DynamoMTL/sprangular") Sprangular
-
+      p
+        small
+          a ng-click="changeLng('en')" English
+          |  &middot; 
+          a  ng-click="changeLng('de')" German
+      
     .col-lg-6.clearfix
       a.dynamo(ng-href="http://godynamo.com/")
         .level1
