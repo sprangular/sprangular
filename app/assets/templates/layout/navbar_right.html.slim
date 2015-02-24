@@ -9,6 +9,8 @@ ul.nav.navbar-nav.navbar-right
     a(ng-click="login()") Sign in
 
   li.cart.hidden-xs
-    a.cart-link(bs-aside data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
+    a#right-cart-link.cart-link(bs-aside data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
       span.glyphicon.glyphicon-shopping-cart
       span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
+
+      cart-popover(placement="bottom-right" target="#right-cart-link")
