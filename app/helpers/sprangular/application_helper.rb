@@ -65,7 +65,7 @@ module Sprangular
 
       files = Dir[root + "app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
         asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
-        local_path = "app/assets/templates/#{I18n.locale}/" + asset_path
+        local_path = "app/assets/templates/" + asset_path
 
         hash[asset_path.gsub(/.slim$/, '')] = Tilt.new(path).render.html_safe if !File.exists?(local_path)
 
