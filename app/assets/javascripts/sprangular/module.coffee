@@ -43,16 +43,16 @@ Sprangular.config [
     $httpProvider.defaults.headers.post['Content-Type'] = encode_as_form
     $httpProvider.defaults.headers.put['Content-Type'] = encode_as_form
 
-  $locationProvider
-    .html5Mode false
-    .hashPrefix '!'
+    $locationProvider
+      .html5Mode false
+      .hashPrefix '!'
 
-  $logProvider
-    .debugEnabled (Env.env isnt "production")
+    $logProvider
+      .debugEnabled (Env.env isnt "production")
 
-  # i18n Support
-  $translateProvider.translations(Env.config.locale, Env.config.translations)
-  $translateProvider.preferredLanguage(Env.config.locale)
+    # i18n Support
+    $translateProvider.translations(Env.config.locale, Env.translations)
+    $translateProvider.use(Env.config.locale)
 ]
 
 Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->
