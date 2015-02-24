@@ -1,4 +1,4 @@
-span ng-repeat="locale in supported_locales"
+.locales-selector ng-repeat="locale in supported_locales"
   a(ng-href="/locale/{{locale}}")
     | {{ locale | translate }}
   | {{$last ? '' : ' &middot; '}}
