@@ -28,7 +28,7 @@ module Sprangular
           site_name: store.seo_title || store.name,
           logo:      asset_path(config.logo),
           locale:    I18n.locale,
-          currency:    Money::Currency.table[current_currency.downcase.to_sym],
+          currency:  Money::Currency.table[current_currency.downcase.to_sym],
           supported_locales: supported_locales,
           default_country_id: config.default_country_id,
           payment_methods: payment_methods,
@@ -44,7 +44,8 @@ module Sprangular
       if Object.const_defined?('SpreeI18n')
         SpreeI18n::Config.supported_locales
       else
-        [:en]
+        # Use Default locale, and do not provide a front end selector.
+        []
       end
     end
 
