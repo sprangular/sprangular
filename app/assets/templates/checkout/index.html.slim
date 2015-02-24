@@ -54,25 +54,25 @@
         dl.dl-horizontal
           dt Sub-total
           dd
-            | {{order.itemTotal | currency}}
+            | {{order.itemTotal | currency : currency_symbol}}
 
           dt(ng-repeat-start="adjustment in order.adjustments")
             a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
               span.glyphicon.glyphicon-remove
             | {{adjustment.label}}
           dd(ng-repeat-end)
-            | {{adjustment.amount | currency}}
+            | {{adjustment.amount | currency : currency_symbol}}
 
           dt Shipping
           dd
-            | {{order.shipTotal | currency}}
+            | {{order.shipTotal | currency : currency_symbol}}
 
           dt Tax
           dd
-            | {{order.taxTotal | currency}}
+            | {{order.taxTotal | currency : currency_symbol}}
 
           dt Total
           dd
-            | {{order.total | currency}}
+            | {{order.total | currency : currency_symbol}}
 
         promo-form(order='order')

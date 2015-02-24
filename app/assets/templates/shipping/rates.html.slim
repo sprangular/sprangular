@@ -16,4 +16,4 @@
         label
           input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate')
           span
-            | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency}}
+            | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency : currency_symbol}}

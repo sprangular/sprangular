@@ -1,8 +1,9 @@
-Sprangular.controller "CartCtrl", ($scope, Cart, Account, Status, Angularytics) ->
+Sprangular.controller "CartCtrl", ($scope, Cart, Account, Status, Angularytics, Env) ->
 
   $scope.user = Account.user
   $scope.cart = Cart.current
   $scope.status = Status
+  $scope.currency_symbol = Env.config.currency.symbol
 
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
