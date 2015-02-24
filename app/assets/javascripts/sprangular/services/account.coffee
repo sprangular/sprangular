@@ -104,18 +104,5 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
           i = cards.indexOf card
           cards.splice(i, 1) unless i is -1
 
-    changeLocale: (locale) ->
-      req =
-        method: 'POST'
-        url: '/api/locale/set'
-        data:
-          locale: locale
-          authenticity_token: $('meta[name="csrf-token"]').attr('content')
-        headers:
-          'Content-Type': 'application/json'
-      $http(req).success ->
-        window.location.reload()
-      return
-
   service.init()
   service

@@ -1,4 +1,4 @@
 span ng-repeat="locale in supported_locales"
-  a(ng-click="changeLocale(locale)")
+  a(ng-href="/locale/{{locale}}")
     | {{ locale | translate }}
   | {{$last ? '' : ' &middot; '}}

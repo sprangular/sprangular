@@ -6,6 +6,3 @@ Sprangular.controller "FooterCtrl", ($scope, $location, Account, Catalog, Status
 
   $scope.goToMyAccount = ->
     $location.path '/account'
-
-  $scope.changeLocale = (locale) ->
-    Account.changeLocale(locale)

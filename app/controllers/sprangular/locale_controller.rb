@@ -2,12 +2,12 @@ module Sprangular
   ##
   # API Endpoint to set locale for session
   class LocaleController < Sprangular::BaseController
-    def set
+    def show
       session[:locale] = params[:locale]
 
       respond_to do |format|
-        format.json { render json: true }
-        format.html { redirect_to root_path }
+        format.js { render js: 'window.location.reload' }
+        format.html { redirect_to :back }
       end
     end
   end
