@@ -35,7 +35,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angular-sanitize'
   s.add_dependency 'rails-assets-angular-animate'
   s.add_dependency 'rails-assets-bootstrap-sass-official'
-  s.add_dependency 'rails-assets-angular-bootstrap'
   s.add_dependency 'rails-assets-angular-strap'
   s.add_dependency 'rails-assets-angular-motion'
   s.add_dependency 'rails-assets-bootstrap-additions'

@@ -85,7 +85,6 @@ PATH
       rails
       rails-assets-angular (= 1.3.9)
       rails-assets-angular-animate
-      rails-assets-angular-bootstrap
       rails-assets-angular-motion
       rails-assets-angular-route
       rails-assets-angular-sanitize
@@ -309,8 +308,6 @@ GEM
     rails-assets-angular (1.3.9)
     rails-assets-angular-animate (1.3.13)
       rails-assets-angular (~> 1.3.0)
-    rails-assets-angular-bootstrap (0.12.0)
-      rails-assets-angular
     rails-assets-angular-motion (0.3.4)
       rails-assets-angular (>= 1.2, < 2)
       rails-assets-angular-animate (>= 1.2, < 2)
