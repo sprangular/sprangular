@@ -12,12 +12,6 @@ module Sprangular
     def js_environment
       config = ::Spree::Config
       store = Spree::Store.current
-      supported_locales = if Object.const_defined?('SpreeI18n')
-                            SpreeI18n::Config.supported_locales
-                          else
-                            [:en, :de]
-                          end
-
       templates = Hash[
         Rails.application.assets.each_logical_path.
         select { |file| file.end_with?('html') }.
@@ -34,6 +28,7 @@ module Sprangular
           site_name: store.seo_title || store.name,
           logo:      asset_path(config.logo),
           locale:    I18n.locale,
+          currency:    Money::Currency.table[current_currency.downcase.to_sym],
           supported_locales: supported_locales,
           default_country_id: config.default_country_id,
           facebook_app_id: ENV['FACEBOOK_APP_ID'],
@@ -44,6 +39,14 @@ module Sprangular
         translations: current_translations[:sprangular],
         templates: templates
       }
+    end
+
+    def supported_locales
+      if Object.const_defined?('SpreeI18n')
+        SpreeI18n::Config.supported_locales
+      else
+        [:en]
+      end
     end
 
     def current_translations

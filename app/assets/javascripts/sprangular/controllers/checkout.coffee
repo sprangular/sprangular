@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics) ->
+Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics, Env) ->
   Status.pageTitle = 'Checkout'
   user = Account.user
 
@@ -7,6 +7,7 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
   $scope.processing = false
   $scope.user = user
   $scope.secure = $location.protocol() == 'https'
+  $scope.currency_symbol = Env.config.currency.symbol
 
   Cart.lastOrder = null
 
