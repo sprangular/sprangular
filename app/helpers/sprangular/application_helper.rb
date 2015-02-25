@@ -27,7 +27,6 @@ module Sprangular
           site_name: store.seo_title || store.name,
           logo:      asset_path(config.logo),
           default_country_id: config.default_country_id,
-          facebook_app_id: ENV['FACEBOOK_APP_ID'],
           payment_methods: payment_methods,
           image_sizes: Spree::Image.attachment_definitions[:attachment][:styles].keys,
           product_page_size: Spree::Config.products_per_page

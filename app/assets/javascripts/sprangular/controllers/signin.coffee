@@ -1,11 +1,9 @@
-Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash, Status) ->
+Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Flash, Status) ->
   Status.pageTitle = 'Sign in'
   $scope.signingUp = false
   $scope.askForEmail = false
 
   $scope.user = {}
-
-  $scope.facebookEmail = null
 
   $scope.$watch ->
     Account.email
@@ -26,16 +24,5 @@ Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Facebook, Flash
       .error ->
         $scope.signingIn = false
 
-  $scope.connectWithFacebook = ->
-    Facebook.login($scope.facebookEmail)
-      .then (content) ->
-        Account.reload()
-          .then (content) ->
-            $scope.askForEmail = false
-      , (error) ->
-        if error.status == 404
-          $scope.askForEmail = true
-
   $scope.cancelEmailAsking = ->
     $scope.askForEmail = false
-    $scope.facebookEmail = null
