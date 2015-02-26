@@ -19,8 +19,7 @@ Sprangular.controller 'SignupCtrl', (
     Account.signup($scope.user)
       .success (content) ->
         $scope.signingUp = false
-        $translate('app.signed_up_msg').then (paragraph) ->
-          Flash.success paragraph
+        Flash.success 'app.signed_up_msg'
         $location.path(Status.requestedPath || "/")
         Status.requestedPath = null
 

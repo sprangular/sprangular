@@ -11,8 +11,7 @@ Sprangular.controller 'ResetPasswordCtrl', ($scope, $location, $routeParams, Acc
 
     Account.resetPassword(request)
       .then (content) ->
-        $translate('app.password_saved').then (paragraph) ->
-          Flash.success paragraph
+        Flash.success 'app.password_saved'
 
         $location.path('/')
 

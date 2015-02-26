@@ -18,8 +18,7 @@ Sprangular.controller 'ForgotPasswordCtrl', (
 
     success = ->
       $location.path '/'
-      $translate('app.confirm_reset_password').then (paragraph) ->
-        Flash.error(paragraph)
+      Flash.error('app.confirm_reset_password')
 
     error = (response) ->
       $translate('app.email_not_found').then (paragraph) ->

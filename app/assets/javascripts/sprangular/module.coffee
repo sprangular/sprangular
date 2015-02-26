@@ -77,22 +77,19 @@ Sprangular.run (
 
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath
-      $translate('app.sign_in_or_register').then (paragraph) ->
-        Flash.error(paragraph)
+      Flash.error('app.sign_in_or_register')
 
       $location.path('/sign-in')
       event.preventDefault()
 
     else if requirements.guest && Account.isLogged
-      $translate('app.must_be_logged_in').then (paragraph) ->
-        Flash.error(paragraph)
+      Flash.error('app.must_be_logged_in')
 
       $location.path('/')
       event.preventDefault()
 
     else if requirements.cart && Cart.current.items.length == 0
-      $translate('app.no_items_in_cart').then (paragraph) ->
-        Flash.error(paragraph)
+      Flash.error('app.no_items_in_cart')
 
       $location.path('/')
       event.preventDefault()
