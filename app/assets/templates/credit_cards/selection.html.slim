@@ -3,10 +3,12 @@ section.credit-card
     select(ng-options='cc as cc.label() for cc in creditCards' ng-model='creditCard')
 
     p
-      a.new-credit-card(ng-click='toggleExistingCreditCard()') Use new card
+      a.new-credit-card(ng-click='toggleExistingCreditCard()')
+        | {{ 'credit_card.use_new' | translate}}
 
   section.new-credit-card(ng-hide='existingCreditCard')
     credit-card-form(credit-card='creditCard' countries='countries')
 
     p
-      a.existing-credit-card(ng-if='creditCards.length > 0' ng-click='toggleExistingCreditCard()') Use existing card
+      a.existing-credit-card(ng-if='creditCards.length > 0' ng-click='toggleExistingCreditCard()')
+        | {{ 'credit_card.use_existing' | translate}}
