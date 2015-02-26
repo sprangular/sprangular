@@ -1,5 +1,7 @@
 Sprangular.controller 'ResetPasswordCtrl', ($scope, $location, $routeParams, Account, Status, Flash) ->
-  Status.pageTitle = 'Reset password'
+  $translate('account.reset_password').then (paragraph) ->
+    Status.pageTitle = paragraph
+
   request = { password: '', password_confirmation: '', reset_password_token: $routeParams.token, errors: {} }
 
   $scope.request = request
