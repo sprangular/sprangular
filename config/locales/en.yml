@@ -1,0 +1,141 @@
+en:
+  sprangular:
+    en: English
+    de: German
+    initializing: Initializing...
+    loading: Loading...
+    app:
+      home: Home
+      oh_snap: Oh SNAP!
+      404: The page you've requested was not found
+      must_be_logged_in: "Sorry, that page is only available when you're signed out."
+      sign_in_or_register: Please sign in or register to continue.
+      no_items_in_cart: "Sorry, there are no items in your cart."
+      confirm_reset_password: "We've sent you an email with a link to reset your password."
+      email_not_found: Email address not found
+      forgot_password: Forgot Password
+      logout_success: Successfully logged out
+      password_saved: 'Your password was saved. By the way, we signed you in at the same time.'
+      signed_up_msg: Successfully signed up!
+      signup_failed: Sign up failed
+      signin_failed: Sign in failed
+      signed_in: Successfully signed in
+      account_updated: 'Account updated'
+      account_update_failed: Account could not be saved
+    crud:
+      edit: Edit
+      new: New
+      create: Create
+      update: Update
+      cancel: Cancel
+      save: Save
+    nav:
+      search: Search
+      my_account: My Account
+      login: Sign in
+      logout: Log Out
+      register: Sign Up
+      shop: Shop
+      all_products: All Products
+      products: Products
+      next: Next
+      previous: Previous
+    account:
+      email: Email
+      password: Password
+      password_confirmation: Password Confirmation
+      create_account: Create Account
+      forgot_password: Forgot Password
+      update_password: Update Password
+      reset_password: Reset Password
+      reset_my_password: Reset my Password
+      leave_blank_to_prevent_change: Leave the password blank if you do not want to change it.
+    address:
+      name: Name
+      first_name: First Name
+      last_name: Last Name
+      address: Address
+      addresses: Addresses
+      city: City
+      state: State / Province
+      country: Country
+      zip: Zip Code
+      phone: Phone
+      use_existing: Use Existing Address
+      use_new: Use New Address
+      no_addresses: No Addresses on File
+    cart:
+      added_to_cart: added to your cart
+      checkout: Checkout
+      my_cart: My Cart
+      my_empty_cart: Your cart is empty
+      start_shopping: Start Shopping
+      item: Item
+      quantity: Quantity
+      price: Price
+      sub_total:  Sub Total
+      shipping: Shipping
+      tax: Taxes
+      total: Total
+      empty_cart: Empty your Cart
+    checkout:
+      success_msg: "Your order <strong>{{order_number}}</strong> was successfully submitted, you'll receive an email receipt shortly."
+      confirm: Confirm
+      checkout: Checkout
+      place_order: Place Order
+      billing_address: Billing Address
+      billing_and_shipping_address: Billing And Shipping Address
+      shipping_address: Shipping Address
+      ship_to_billing_address: Ship to Billing Address
+      delivery_options: Delivery Options
+      credit_card: Credit Card
+      payment: Payment
+      summary: Summary
+      name: Name
+      quantity: Quantity
+      success: Success
+      sub_total: Sub Total
+      shipping: Shipping
+      tax: Taxes
+      total: Total
+      processing: Processing...
+      secure_transaction: Secure transaction
+      done: Done
+      details: Details
+    credit_cards:
+      number: Number
+      month: Month
+      year: Year
+      verification: verification number
+      expiration: Expiration
+      whats_this: what's this?
+      use_new: Use new card
+      use_existing: Use existing card
+      credit_cards: Credit Cards
+      no_credit_cards_on_file: No credits cards on file
+    directives:
+      adding: adding ...
+      add_to_cart: Add to Cart
+      add_another: Add Another
+      add_quantity: "Add {{quantity}} more"
+    orders:
+      order_history: Order History
+      no_orders_on_file: No orders on file
+      number: Order Number
+      state: Status
+      ordered_on: Ordered On
+      amount: Amount
+      shipping_state: Shipping Status
+      see_details: See Details
+    promo:
+      add: Add Coupon
+      code: Code
+    products:
+      no_products:
+      sold_out: Sold Out
+      specs: Specfications
+      sold_out_msg: This item is sold out
+    shipping:
+      refreshing: Refreshing Rates ...
+      fill_required_info: "Provide a country, state & zipcode to view available rates."
+      not_available: "Shipping not available to {{address.country.name}}."

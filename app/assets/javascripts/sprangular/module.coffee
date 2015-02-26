@@ -1,6 +1,13 @@
 # Main Module
-window.Sprangular = angular.module "Sprangular", ['ngRoute', 'ngAnimate', 'underscore', 'ngSanitize', 'mgcrea.ngStrap', 'angularytics']
-  .run (Env) ->
+window.Sprangular = angular.module('Sprangular', [
+  'ngRoute'
+  'ngAnimate'
+  'underscore'
+  'ngSanitize'
+  'mgcrea.ngStrap'
+  'angularytics'
+  'pascalprecht.translate'
+]).run (Env) ->
     paymentMethods = Env.config.payment_methods
 
     if paymentMethods.length == 0
@@ -24,20 +31,42 @@ Sprangular.extend = (instance, type) ->
       newInstance
 
 # Default Headers
-Sprangular.config ["$httpProvider", "$locationProvider", "$logProvider", "Env", ($httpProvider, $locationProvider, $logProvider, Env) ->
-  $httpProvider.defaults.headers.common['Accept'] = 'application/json'
-  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-  $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
+Sprangular.config [
+  '$httpProvider'
+  '$locationProvider'
+  '$translateProvider'
+  '$logProvider'
+  'Env'
+  ($httpProvider, $locationProvider, $translateProvider, $logProvider, Env) ->
+    $httpProvider.defaults.headers.common['Accept'] = 'application/json'
+    encode_as_form = 'application/x-www-form-urlencoded'
+    $httpProvider.defaults.headers.post['Content-Type'] = encode_as_form
+    $httpProvider.defaults.headers.put['Content-Type'] = encode_as_form
 
-  $locationProvider
-    .html5Mode false
-    .hashPrefix '!'
+    $locationProvider
+      .html5Mode false
+      .hashPrefix '!'
 
-  $logProvider
-    .debugEnabled (Env.env isnt "production")
+    $logProvider
+      .debugEnabled (Env.env isnt "production")
+
+    # i18n Support
+    $translateProvider
+      .translations(Env.config.locale, Env.translations)
+      .fallbackLanguage(['en'])
+    $translateProvider.use(Env.config.locale)
 ]
 
-Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->
+Sprangular.run (
+  $rootScope,
+  $location,
+  $log,
+  Status,
+  Account,
+  Cart,
+  Flash,
+  $translate
+) ->
   Sprangular.startupData = {}
   Status.initialized = true
 
@@ -48,17 +77,20 @@ Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->
 
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath
-      Flash.error('Please sign in or register to continue.')
+      Flash.error('app.sign_in_or_register')
+
       $location.path('/sign-in')
       event.preventDefault()
 
     else if requirements.guest && Account.isLogged
-      Flash.error("Sorry, that page is only available when you're signed out.")
+      Flash.error('app.must_be_logged_in')
+
       $location.path('/')
       event.preventDefault()
 
     else if requirements.cart && Cart.current.items.length == 0
-      Flash.error('Sorry, there are no items in your cart.')
+      Flash.error('app.no_items_in_cart')
+
       $location.path('/')
       event.preventDefault()
 

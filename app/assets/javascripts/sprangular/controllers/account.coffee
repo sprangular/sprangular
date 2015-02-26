@@ -1,5 +1,14 @@
-Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account, user) ->
-  Status.pageTitle = 'My Account'
+Sprangular.controller 'AccountCtrl', (
+  $scope,
+  $location,
+  $routeParams,
+  Status,
+  Account,
+  user,
+  $translate
+) ->
+  $translate('nav.my_account').then (paragraph) ->
+    Status.pageTitle = paragraph
 
   user.password = ''
   user.password_confirmation = ''

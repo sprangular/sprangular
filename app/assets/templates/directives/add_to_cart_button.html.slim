@@ -1,18 +1,20 @@
 a.btn.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disabled="adding || !variant")
   span(ng-show="adding")
     i.fa.fa-refresh.fa-spin
-    | &nbsp;Adding ...
+    | &nbsp;{{:: 'directives.adding' | translate }}
 
   span(ng-hide="adding")
     span(ng-hide='variant || !product.hasVariants')
-      | Select option
+      | {{:: 'directives.select_option' | translate }}
 
     span(ng-show='variant || !product.hasVariants')
       span.fa.fa-plus-circle
       | &nbsp;
       span.caption
-        span(ng-hide="inCart()") Add to cart
-        span(ng-show="inCart() && quantity <= 1") Add another
-        span(ng-show="inCart() && quantity > 1") Add {{quantity}} more
+        span(ng-hide="inCart()")
+          | {{:: 'directives.add_to_cart' | translate }}
+        span(ng-show="inCart() && quantity <= 1")
+          | {{:: 'directives.add_another' | translate }}
+        span(ng-show="inCart() && quantity > 1" translate='directives.add_quantity' translate-values='{quantity: quantity}')
       span.price
-        | {{(variant || product).price * quantity  | number: 2 | currency}}
+        | {{(variant || product).price * quantity | currency : currency_symbol }}

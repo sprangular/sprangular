@@ -1,5 +1,14 @@
-Sprangular.controller 'SignupCtrl', ($scope, $location, Account, Status, Flash) ->
-  Status.pageTitle = 'Sign up'
+Sprangular.controller 'SignupCtrl', (
+  $scope,
+  $location,
+  Account,
+  Status,
+  Flash,
+  $translate
+) ->
+  $translate('nav.register').then (paragraph) ->
+    Status.pageTitle = paragraph
+
   $scope.user = { email: '', password: '', password_confirmation: '', errors: {} }
   $scope.signingUp = false
 
@@ -10,7 +19,7 @@ Sprangular.controller 'SignupCtrl', ($scope, $location, Account, Status, Flash) 
     Account.signup($scope.user)
       .success (content) ->
         $scope.signingUp = false
-        Flash.success("Successfully signed up!")
+        Flash.success 'app.signed_up_msg'
         $location.path(Status.requestedPath || "/")
         Status.requestedPath = null
 

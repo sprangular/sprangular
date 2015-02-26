@@ -14,6 +14,7 @@
 // Angular specific
 //
 
+//= require angular-translate
 //= require angular-strap/angular-strap.js
 //= require angular-strap/angular-strap.tpl.js
 //= require angular-route

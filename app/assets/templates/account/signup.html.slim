@@ -1,29 +1,36 @@
 #signup.container
   .row
     .well.col-lg-8.col-lg-offset-2.col-xs-12
-      h1 Sign up
+      h1
+        | {{ :: 'nav.register' | translate }}
 
       form(name='signupForm' role="form" ng-submit="submit()" novalidate)
 
         .form-group
-          label(for="email") Email
+          label(for="email")
+            | {{ :: 'account.email' | translate }}
           input.form-control(name="email" ng-model="user.email" required autofocus)
           p.error(ng-bind="user.errors.email[0]")
 
         .form-group
-          label(for="password") Password
+          label(for="password")
+            | {{ :: 'account.password' | translate }}
           input.form-control(name="password" ng-model="user.password" type='password' required)
           p.error ng-bind="user.errors.password[0]"
 
         .form-group
-          label(for="password-confirmation") Confirm Password
+          label(for="password-confirmation")
+            | {{ :: 'account.password_confirmation' | translate }}
           input.form-control(name="password-confirmation" ng-model="user.password_confirmation" type='password' required)
           p.error(ng-bind="user.errors.password_confirmation[0]")
 
         .pull-right
           button.btn.btn-lg.btn-primary(type='submit' ng-disabled="signingUp")
-            span(ng-hide="signingUp") Sign up
-            span(ng-show="signingup") Loading...
+            span(ng-hide="signingUp")
+              | {{ :: 'nav.register' | translate }}
+            span(ng-show="signingup")
+              | {{ :: 'loading' | translate }}
 
         nav
-          a(ng-href="/#!/sign-in") Sign in
+          a(ng-href="/#!/sign-in")
+            | {{ :: 'nav.login' | translate }}
