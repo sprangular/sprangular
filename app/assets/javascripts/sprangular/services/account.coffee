@@ -1,4 +1,4 @@
-Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
+Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
   service =
 
@@ -52,9 +52,11 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
       $http.post '/spree/login.json', $.param params
         .success (data) ->
           service.populateAccount(data)
-          Flash.success 'Successfully signed in'
+          $translate('app.signed_in').then (paragraph) ->
+            Flash.success paragraph
         .error ->
-          Flash.error 'Sign in failed'
+          $translate('app.signin_failed').then (paragraph) ->
+            Flash.error paragraph
 
     logout: ->
       $http.get '/spree/logout'
@@ -91,10 +93,11 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash) ->
       $http.put '/api/account', $.param params
         .success (data) ->
           service.populateAccount(data)
-
-          Flash.success 'Account updated'
+          $translate('app.account_updated').then (paragraph) ->
+            Flash.success paragraph
         .error ->
-          Flash.error 'Save failed'
+          $translate('app.account_update_failed').then (paragraph) ->
+            Flash.error paragraph
 
     deleteCard: (card) ->
       cards = @user.creditCards

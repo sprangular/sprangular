@@ -9,7 +9,9 @@ Sprangular.controller 'ResetPasswordCtrl', ($scope, $location, $routeParams, Acc
 
     Account.resetPassword(request)
       .then (content) ->
-        Flash.success 'Your password was saved. By the way, we signed you in at the same time.'
+        $translate('app.password_saved').then (paragraph) ->
+          Flash.success paragraph
+
         $location.path('/')
 
       , (errors) ->
