@@ -12,8 +12,12 @@ module Sprangular
 
       Rails.application.config.assets.precompile += %w( bootstrap/* )
 
+      ##
+      # If spree i18n is installed precompile relevant angular translations
       if Object.const_defined?("SpreeI18n")
-        locales = SpreeI18n::Config.supported_locales.map{ |locale| "angular-i18n/angular-locale_#{locale}*" }
+        locales = SpreeI18n::Config.supported_locales.map do |locale|
+          "angular-i18n/angular-locale_#{locale}*"
+        end
         Rails.application.config.assets.precompile += locales
       end
     end
