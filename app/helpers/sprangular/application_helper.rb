@@ -36,7 +36,7 @@ module Sprangular
           image_sizes: Spree::Image.attachment_definitions[:attachment][:styles].keys,
           product_page_size: Spree::Config.products_per_page
         },
-        translations: current_translations[:sprangular],
+        translations: current_sprangular_translations,
         templates: templates
       }
     end
@@ -46,13 +46,16 @@ module Sprangular
         SpreeI18n::Config.supported_locales
       else
         # Use Default locale, and do not provide a front end selector.
-        []
+        [:en, :de]
       end
     end
 
-    def current_translations
-      @translations ||= I18n.backend.send(:translations)
-      @translations[I18n.locale].with_indifferent_access
+    def current_sprangular_translations
+      if I18n.backend.class == I18n::Backend::Simple
+        @translations ||= I18n.backend.send(:translations)[I18n.locale][:sprangular]
+      else
+        @translations ||= I18n.backend.backends.first.send(:translations)[I18n.locale][:sprangular]
+      end
     end
 
     def cached_templates

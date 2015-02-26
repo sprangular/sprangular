@@ -53,7 +53,9 @@ Sprangular.config [
       .debugEnabled (Env.env isnt "production")
 
     # i18n Support
-    $translateProvider.translations(Env.config.locale, Env.translations)
+    $translateProvider
+      .translations(Env.config.locale, Env.translations)
+      .fallbackLanguage(['en'])
     $translateProvider.use(Env.config.locale)
 ]
 

@@ -2,8 +2,11 @@ en:
   sprangular:
     en: English
     de: German
-    my_account: My Account
-    login: Sign in
-    logout: Log Out
-    shop: Shop
     initializing: Initializing...
+    nav:
+      search: Search
+      my_account: My Account
+      login: Sign in
+      logout: Log Out
+      shop: Shop
+      all_products: All Products
