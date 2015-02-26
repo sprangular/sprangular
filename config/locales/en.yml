@@ -86,9 +86,9 @@ en:
       billing_address: Billing Address
       billing_and_shipping_address: Billing And Shipping Address
       shipping_address: Shipping Address
-      ship_to_billing_address:
-      delivery_options:
-      credit_card:
+      ship_to_billing_address: Ship to Billing Address
+      delivery_options: Delivery Options
+      credit_card: Credit Card
       payment: Payment
       summary: Summary
       name: Name
@@ -127,6 +127,9 @@ en:
       amount: Amount
       shipping_state: Shipping Status
       see_details: See Details
+    promo:
+      add: Add Coupon
+      code: Code
     products:
       no_products:
       sold_out: Sold Out
