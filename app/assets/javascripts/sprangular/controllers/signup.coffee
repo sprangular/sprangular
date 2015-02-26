@@ -1,4 +1,11 @@
-Sprangular.controller 'SignupCtrl', ($scope, $location, Account, Status, Flash, $translate) ->
+Sprangular.controller 'SignupCtrl', (
+  $scope,
+  $location,
+  Account,
+  Status,
+  Flash,
+  $translate
+) ->
   $translate('nav.register').then (paragraph) ->
     Status.pageTitle = paragraph
 
