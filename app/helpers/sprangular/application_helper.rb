@@ -49,11 +49,14 @@ module Sprangular
       end
     end
 
+    ##
+    # Get relevant translations for front end. For both a simple, and "Chainable"
+    # i18n Backend, which is used by spree i18n.
     def current_sprangular_translations
       if I18n.backend.class == I18n::Backend::Simple
         @translations ||= I18n.backend.send(:translations)[I18n.locale][:sprangular]
       else
-        @translations ||= I18n.backend.backends.first.send(:translations)[I18n.locale][:sprangular]
+        @translations ||= I18n.backend.backends.last.send(:translations)[I18n.locale][:sprangular]
       end
     end
 
