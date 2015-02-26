@@ -18,17 +18,4 @@
 
       nav
         a(ng-href="/#!/forgot-password") Forgot your password?
-        a(ng-click="connectWithFacebook()") Connect with Facebook
         a(ng-href="/#!/sign-up") Create account
-
-      #fb-root
-
-      div(ng-show="askForEmail")
-        p We really need your email address... Please!!!
-
-        form(name='EmailForm' ng-submit="connectWithFacebook()")
-          input(ng-model="facebookEmail" type="email" placeholder="Email")
-          button.btn(type='submit') Continue
-
-          div.c-center
-            a ng-click="cancelEmailAsking()" Cancel

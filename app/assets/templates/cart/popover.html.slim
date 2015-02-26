@@ -1,0 +1,12 @@
+.popover
+    .arrow
+    .popover-content
+      p
+        | {{content.qty}}x <b>{{content.variant.product.name}}</b> added to your cart.
+
+      .clearfix
+        .pull-right
+          a.btn.btn-primary(ng-href="#!/checkout")
+            | Checkout
+            | &nbsp;
+            span.glyphicon.glyphicon-chevron-right

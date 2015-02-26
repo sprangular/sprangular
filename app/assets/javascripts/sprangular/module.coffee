@@ -1,8 +1,6 @@
 # Main Module
 window.Sprangular = angular.module('Sprangular', [
-  'ui.bootstrap'
   'ngRoute'
-  'ngResource'
   'ngAnimate'
   'underscore'
   'ngSanitize'
