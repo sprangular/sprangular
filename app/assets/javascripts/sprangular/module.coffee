@@ -57,7 +57,16 @@ Sprangular.config [
     $translateProvider.use(Env.config.locale)
 ]
 
-Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash, $translate) ->
+Sprangular.run (
+  $rootScope,
+  $location,
+  $log,
+  Status,
+  Account,
+  Cart,
+  Flash,
+  $translate
+) ->
   Sprangular.startupData = {}
   Status.initialized = true
 
