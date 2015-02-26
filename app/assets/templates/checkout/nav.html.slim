@@ -3,10 +3,13 @@
   nav(class="{{step}}")
     a.details(ng-href="#!/checkout")
       span.number 1
-      span.caption Details
+      span.caption
+        | {{ 'checkout.details' | translate}}
     a.confirm(ng-href="#!/checkout/confirm")
       span.number 2
-      span.caption Confirm
+      span.caption
+        | {{ 'checkout.confirm' | translate}}
     a.done
       span.number 3
-      span.caption Done
+      span.caption
+        | {{ 'checkout.done' | translate}}

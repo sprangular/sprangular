@@ -1,8 +1,10 @@
-h2 Credit Cards
+h2
+  | {{ 'credit_card.credit_cards' | translate}}
 
 #credit-cards
   .not-found(ng-if='creditCards.length == 0')
-    p No credits cards on file
+    p
+      | {{ 'credit_card.no_credit_cards_on_file' | translate}}
 
   .found.clearfix(ng-repeat="card in creditCards")
     credit-card-view(card='card' allow-delete='true')
