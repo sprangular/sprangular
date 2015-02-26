@@ -1,19 +1,19 @@
-Sprangular.factory 'Flash', ($timeout) ->
+Sprangular.factory 'Flash', ($timeout, $translate) ->
   messages: []
 
-  add: (type, message) ->
-    flash = type: type, text: message
+  add: (type, translate_key) ->
+    $translate(translate_key).then (translated) ->
+      flash = type: type, text: translated
 
-    @messages.push(flash)
-    @timeout(flash)
-
+      @messages.push(flash)
+      @timeout(flash)
   timeout: (flash) ->
     self = this
     $timeout((-> self.remove(flash)), 2500)
 
-  success: (message) -> @add('success', message)
-  info:    (message) -> @add('info',    message)
-  error:   (message) -> @add('danger',   message)
+  success: (translate_key) -> @add('success', translate_key)
+  info:    (translate_key) -> @add('info',    translate_key)
+  error:   (translate_key) -> @add('danger',   translate_key)
 
   remove: (flash) ->
     @messages = @messages.filter (x) -> x != flash

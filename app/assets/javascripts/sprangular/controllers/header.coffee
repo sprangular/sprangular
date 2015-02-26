@@ -26,8 +26,7 @@ Sprangular.controller "HeaderCtrl", (
       .then (content) ->
         Angularytics.trackEvent("Account", "Logout")
         $scope.$emit('account.logout')
-        $translate('app.logout_success').then (paragraph) ->
-          Flash.success paragraph
+        Flash.success 'app.logout_success'
         $location.path '/'
 
   $scope.login = ->
