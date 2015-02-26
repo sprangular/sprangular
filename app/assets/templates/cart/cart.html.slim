@@ -6,25 +6,25 @@
         h4.aside-title
           span.glyphicon.glyphicon-shopping-cart
           | &nbsp;
-          | {{'cart.my_cart' | translate}}
+          | {{:: 'cart.my_cart' | translate}}
           | &nbsp;
           span.badge(ng-bind='cart.totalQuantity()' ng-hide='isEmpty()')
       .aside-body
         .empty(ng-show="isEmpty()")
           p
-            | {{'cart.my_empty_cart' | translate}}
+            | {{:: 'cart.my_empty_cart' | translate}}
           a.btn.btn-lg.btn-primary(ng-href="#!/products" ng-click="$hide()")
-            | {{'cart.start_shopping' | translate}}
+            | {{:: 'cart.start_shopping' | translate}}
 
         .with-items(ng-hide="isEmpty()")
           table.table.table-striped
             tr
               th(colspan=2 width="50%")
-                | {{'cart.item' | translate}}
+                | {{:: 'cart.item' | translate}}
               th(width="25%")
-                | {{'cart.quantity' | translate}}
+                | {{:: 'cart.quantity' | translate}}
               th
-                | {{'cart.price' | translate}}
+                | {{:: 'cart.price' | translate}}
               th
 
             tr.item(ng-repeat='item in cart.items')
@@ -53,7 +53,7 @@
 
             tr.item-total
               td(colspan=2)
-                | {{'cart.sub_total' | translate}}
+                | {{:: 'cart.sub_total' | translate}}
               td.number(colspan=2 ng-bind='cart.itemTotal | currency : currency_symbol')
               td
 
@@ -67,26 +67,26 @@
 
             tr.shipping
               td(colspan=2)
-                | {{'cart.shipping' | translate}} - {{cart.shippingRate.name}}
+                | {{:: 'cart.shipping' | translate}} - {{cart.shippingRate.name}}
               td.number(colspan=2 ng-bind='cart.shipTotal | currency : currency_symbol')
               td
 
             tr.taxes
               td(colspan=2)
-                | {{'cart.tax' | translate}}
+                | {{:: 'cart.tax' | translate}}
               td.number(colspan=2 ng-bind='cart.taxTotal | currency : currency_symbol')
               td
 
             tr.total
               td(colspan=2)
-                | {{'cart.total' | translate}}
+                | {{:: 'cart.total' | translate}}
               td.number(colspan=2 ng-bind='cart.total | currency : currency_symbol')
               td
 
       .aside-footer.clearfix(ng-hide='isEmpty()')
         .pull-left
           a.empty.btn.btn-link(ng-click="empty()")
-            | {{'cart.empty_cart' | translate}}
+            | {{:: 'cart.empty_cart' | translate}}
 
           promo-form(order='cart')
 

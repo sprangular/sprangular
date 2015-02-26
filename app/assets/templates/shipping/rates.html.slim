@@ -2,14 +2,14 @@
   p(ng-if='loading')
     span.fa.fa-refresh.fa-spin
     | &nbsp;
-    | {{'shipping.refreshing' | translate }}
+    | {{:: 'shipping.refreshing' | translate }}
 
   div(ng-if='!loading')
     p.not-found(ng-show='order.shippingRates.length == 0')
       span.not-available(ng-show='isValid')
-        | {{'shipping.not_available' | translate }}
+        | {{:: 'shipping.not_available' | translate }}
       span.no-address(ng-hide='isValid')
-        | {{'shipping.fill_required_info' | translate }}
+        | {{:: 'shipping.fill_required_info' | translate }}
 
     ul.list-unstyled(ng-show='order.shippingRates.length > 0')
       li(ng-repeat='shippingRate in order.shippingRates')

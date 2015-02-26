@@ -2,10 +2,10 @@
   .row
     .col-lg-12
       h1
-        | {{ 'checkout.success' | translate }}
+        | {{ :: 'checkout.success' | translate }}
 
       p
-        | {{ 'checkout.success_msg' | translate:'{ order_number: order.number }' }}
+        | {{ :: 'checkout.success_msg' | translate:'{ order_number: order.number }' }}
 
       pre
         | {{ order.state }}

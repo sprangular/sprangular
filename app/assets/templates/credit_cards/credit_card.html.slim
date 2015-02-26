@@ -9,13 +9,13 @@
   .col-md-8.col-xs-9
     dl.dl-horizontal
       dt
-        | {{ 'credit_card.number' | translate}}
+        | {{ :: 'credit_card.number' | translate}}
       dd
         | •••• •••• •••• {{card.lastDigits}}
         a.btn.btn-mini.btn-link(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure you want to permanently remove this card?")
           span.glyphicon.glyphicon-remove
 
       dt
-        | {{ 'credit_card.expiration' | translate}}
+        | {{ :: 'credit_card.expiration' | translate}}
       dd
         | {{card.month}} / {{card.year}}

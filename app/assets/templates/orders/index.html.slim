@@ -1,38 +1,38 @@
 h2
-  | {{'orders.order_history' | translate }}
+  | {{:: 'orders.order_history' | translate }}
 #order-history
   .not-found(ng-if='user.orders.length == 0')
     p
-      | {{'orders.no_orders_on_file' | translate }}
+      | {{:: 'orders.no_orders_on_file' | translate }}
 
   .order(ng-repeat="order in user.orders")
     dl
       dt
-        | {{'orders.number' | translate }}
+        | {{:: 'orders.number' | translate }}
       dd
         | {{order.number}}
 
       dt
-        | {{'orders.state' | translate }}
+        | {{:: 'orders.state' | translate }}
       dd
         | {{order.state}}
 
       dt
-        | {{'orders.ordered_on' | translate }}
+        | {{:: 'orders.ordered_on' | translate }}
       dd
         | {{order.completed_at | date}}
 
       dt
-        | {{'orders.amount' | translate }}
+        | {{:: 'orders.amount' | translate }}
       dd
         | {{order.total | currency : currency_symbol}}
 
       dt
-        | {{'orders.shipping_state' | translate }}
+        | {{:: 'orders.shipping_state' | translate }}
       dd
         | {{order.shipment_state}}
 
     a.btn.btn-primary.btn-small ng-click="showOrderDetails(order)"
-      | {{'orders.see_details' | translate }}
+      | {{:: 'orders.see_details' | translate }}
 
     hr
