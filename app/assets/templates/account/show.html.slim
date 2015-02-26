@@ -1,17 +1,17 @@
 #account
   h1
-    | {{ 'nav.my_account' | translate }}
+    | {{ :: 'nav.my_account' | translate }}
 
   .well
     div ng-hide="editing"
       dl
         dt
-          | {{ 'account.email' | translate }}
+          | {{ :: 'account.email' | translate }}
         dd
           | {{user.email}}
 
         dt
-          | {{ 'account.password' | translate }}
+          | {{ :: 'account.password' | translate }}
         dd •••••••
 
       .clearfix
@@ -19,7 +19,7 @@
           a.btn.btn-primary.btn-lg(ng-click="edit()")
             span.glyphicon.glyphicon-edit
             | &nbsp;
-            | {{ 'crud.edit' | translate }}
+            | {{ :: 'crud.edit' | translate }}
 
     div ng-show="editing"
       div ng-include="'account/edit.html'"

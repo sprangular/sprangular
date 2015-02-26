@@ -2,9 +2,9 @@
   .standard
     a.btn.btn-success.btn-lg.btn-block(ng-click='checkout()' ng-disabled='processing')
       span(ng-hide="processing")
-        | {{'checkout.checkout' | translate }}
+        | {{:: 'checkout.checkout' | translate }}
         span.glyphicon.glyphicon-chevron-right
 
       span(ng-show="processing")
         i.fa.fa-refresh.fa-spin
-        | &nbsp;{{'checkout.processing' | translate }}
+        | &nbsp;{{:: 'checkout.processing' | translate }}

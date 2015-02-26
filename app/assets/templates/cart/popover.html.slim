@@ -2,11 +2,11 @@
     .arrow
     .popover-content
       p
-        | {{content.qty}}x <b>{{content.variant.product.name}}</b> {{'cart.added_to_cart' | translate}}
+        | {{content.qty}}x <b>{{content.variant.product.name}}</b> {{:: 'cart.added_to_cart' | translate}}
 
       .clearfix
         .pull-right
           a.btn.btn-primary(ng-href="#!/checkout")
-            | {{'cart.checkout' | translate}}
+            | {{:: 'cart.checkout' | translate}}
             | &nbsp;
             span.glyphicon.glyphicon-chevron-right

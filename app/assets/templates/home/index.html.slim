@@ -6,11 +6,11 @@ nav
   ul.pagination.pagination-lg(ng-if="products.length > 0")
     li.previous(ng-class="{disabled: currentPage == 1}")
       a(ng-click='loadPreviousPage()')
-        | {{'nav.previous' | translate }}
+        | {{:: 'nav.previous' | translate }}
 
     li.page(ng-repeat='page in pageList' ng-class="{active: page==currentPage}")
       a(ng-bind='page' ng-click='loadPage(page)')
 
     li.next(ng-class="{disabled: loadingComplete}")
       a(ng-click='loadNextPage()')
-        | {{'nav.next' | translate }}
+        | {{:: 'nav.next' | translate }}

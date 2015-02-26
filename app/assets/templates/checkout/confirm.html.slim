@@ -5,66 +5,66 @@
   .row
     .col-md-4.col-xs-4
       h1
-        | {{ 'checkout.confirm' | translate }}
+        | {{ :: 'checkout.confirm' | translate }}
 
     .col-md-8.col-xs-8
       .clearfix
         .pull-right
           a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
             span(ng-if='!processing')
-              | {{ 'checkout.place_order' | translate }}
+              | {{ :: 'checkout.place_order' | translate }}
             span(ng-if='processing')
               span.fa.fa-refresh.fa-spin
               | &nbsp;
               span.caption
-                |  {{ 'checkout.processing' | translate }}
+                |  {{ :: 'checkout.processing' | translate }}
 
   .row
     .col-lg-4.col-md-6.address.billing
       h2(ng-hide='order.shipToBillAddress')
-        | {{ 'checkout.billing_address' | translate }}
+        | {{ :: 'checkout.billing_address' | translate }}
       h2(ng-show='order.shipToBillAddress')
-        | {{ 'checkout.billing_and_shipping_address' | translate }}
+        | {{ :: 'checkout.billing_and_shipping_address' | translate }}
 
       address-view(address='order.billingAddress')
 
       a(ng-href="#!/checkout")
         span.glyphicon.glyphicon-pencil
-        | &nbsp; {{ 'crud.edit' | translate }}
+        | &nbsp; {{ :: 'crud.edit' | translate }}
 
     .col-lg-4.col-md-6.address.shipping(ng-hide='order.shipToBillAddress')
       h2
-        | {{ 'checkout.shipping_address' | translate }}
+        | {{ :: 'checkout.shipping_address' | translate }}
 
       address-view(address='order.actualShippingAddress()')
 
       a(ng-href="#!/checkout")
         span.glyphicon.glyphicon-pencil
-        | &nbsp;{{ 'crud.edit' | translate }}
+        | &nbsp;{{ :: 'crud.edit' | translate }}
 
     .col-lg-4.col-md-6.payment
       h2
-        | {{ 'checkout.payment' | translate }}
+        | {{ :: 'checkout.payment' | translate }}
 
       credit-card-view(card='order.creditCard')
 
       a(ng-href="#!/checkout")
         span.glyphicon.glyphicon-pencil
-        | &nbsp;{{ 'crud.edit' | translate }}
+        | &nbsp;{{ :: 'crud.edit' | translate }}
 
   .row
     .col-md-12
       h2
-        | {{ 'checkout.summary' | translate }}
+        | {{ :: 'checkout.summary' | translate }}
 
       table.table.table-striped
         tr
           th
-            | {{ 'checkout.name' | translate }}
+            | {{ :: 'checkout.name' | translate }}
           th(width="15%")
-            | {{ 'checkout.quantity' | translate }}
+            | {{ :: 'checkout.quantity' | translate }}
           th
-            | {{ 'checkout.success' | translate }}
+            | {{ :: 'checkout.success' | translate }}
 
         tr.item(ng-repeat='item in order.items')
           td.name
@@ -77,12 +77,12 @@
 
         tr.item-total
           td
-            | {{ 'checkout.sub_total' | translate }}
+            | {{ :: 'checkout.sub_total' | translate }}
           td.number(colspan=2 ng-bind='order.itemTotal | currency')
 
         tr.shipping
           td
-            | {{ 'checkout.shipping' | translate }} - {{order.shippingRate.name}}
+            | {{ :: 'checkout.shipping' | translate }} - {{order.shippingRate.name}}
             | &nbsp;
             a(ng-href="#!/checkout")
               span.glyphicon.glyphicon-pencil
@@ -91,21 +91,21 @@
 
         tr.taxes
           td
-            | {{ 'checkout.taxes' | translate }}
+            | {{ :: 'checkout.taxes' | translate }}
           td.number(colspan=2 ng-bind='order.taxTotal | currency')
 
         tr.total
           td
-            | {{ 'checkout.total' | translate }}
+            | {{ :: 'checkout.total' | translate }}
           td.number(colspan=2 ng-bind='order.total | currency')
 
   .row
     .col-md-12
       a.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
         span(ng-if='!processing')
-          | {{ 'checkout.place_order' | translate }}
+          | {{ :: 'checkout.place_order' | translate }}
         span(ng-if='processing')
           span.fa.fa-refresh.fa-spin
           | &nbsp;
           span.caption
-            | {{ 'checkout.processing' | translate }}
+            | {{ :: 'checkout.processing' | translate }}
