@@ -6,7 +6,7 @@ module Sprangular
       session[:locale] = params[:locale]
 
       respond_to do |format|
-        format.js { render js: 'window.location.reload' }
+        format.js { render js: "window.location.reload" }
         format.html { redirect_to :back }
       end
     end

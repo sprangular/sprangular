@@ -1,4 +1,11 @@
-Sprangular.controller "FooterCtrl", ($scope, $location, Account, Catalog, Status, Env) ->
+Sprangular.controller "FooterCtrl", (
+  $scope,
+  $location,
+  Account,
+  Catalog,
+  Status,
+  Env
+) ->
 
   $scope.catalog = Catalog
   $scope.account = Account
