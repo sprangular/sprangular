@@ -7,6 +7,20 @@ en:
     app:
       oh_snap: Oh SNAP!
       404: The page you've requested was not found
+      must_be_logged_in: "Sorry, that page is only available when you're signed out."
+      sign_in_or_register: Please sign in or register to continue.
+      no_items_in_cart: "Sorry, there are no items in your cart."
+      confirm_reset_password: "We've sent you an email with a link to reset your password."
+      email_not_found: Email address not found
+      forgot_password: Forgot Password
+      logout_success: Successfully logged out
+      password_saved: 'Your password was saved. By the way, we signed you in at the same time.'
+      signed_up_msg: Successfully signed up!
+      signup_failed: Sign up failed
+      signin_failed: Sign in failed
+      signed_in: Successfully signed in
+      account_updated: 'Account updated'
+      account_update_failed: Account could not be saved
     crud:
       edit: Edit
       new: New

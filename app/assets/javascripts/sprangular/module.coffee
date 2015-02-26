@@ -57,7 +57,7 @@ Sprangular.config [
     $translateProvider.use(Env.config.locale)
 ]
 
-Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->
+Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash, $translate) ->
   Sprangular.startupData = {}
   Status.initialized = true
 
@@ -68,17 +68,23 @@ Sprangular.run ($rootScope, $location, $log, Status, Account, Cart, Flash) ->
 
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath
-      Flash.error('Please sign in or register to continue.')
+      $translate('app.sign_in_or_register').then (paragraph) ->
+        Flash.error(paragraph)
+
       $location.path('/sign-in')
       event.preventDefault()
 
     else if requirements.guest && Account.isLogged
-      Flash.error("Sorry, that page is only available when you're signed out.")
+      $translate('app.must_be_logged_in').then (paragraph) ->
+        Flash.error(paragraph)
+
       $location.path('/')
       event.preventDefault()
 
     else if requirements.cart && Cart.current.items.length == 0
-      Flash.error('Sorry, there are no items in your cart.')
+      $translate('app.no_items_in_cart').then (paragraph) ->
+        Flash.error(paragraph)
+
       $location.path('/')
       event.preventDefault()
 
