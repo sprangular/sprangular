@@ -1,12 +1,12 @@
 ul.nav.navbar-nav.navbar-right
   li.my-account
-    a(ng-click="goToMyAccount()")= I18n.t 'sprangular.my_account'
+    a(ng-click="goToMyAccount()") {{'nav.my_account' | translate}}
 
   li.log-out(ng-show="account.isLogged")
-    a(ng-click="logout()")= I18n.t 'sprangular.logout'
+    a(ng-click="logout()") {{'nav.logout' | translate}}
 
   li.sign-in(ng-hide="account.isLogged")
-    a(ng-click="login()")= I18n.t 'sprangular.login'
+    a(ng-click="login()") {{'nav.login' | translate}}
 
   li.cart.hidden-xs
     a#right-cart-link.cart-link(bs-aside data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
