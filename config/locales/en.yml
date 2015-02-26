@@ -5,6 +5,7 @@ en:
     initializing: Initializing...
     loading: Loading...
     app:
+      home: Home
       oh_snap: Oh SNAP!
       404: The page you've requested was not found
       must_be_logged_in: "Sorry, that page is only available when you're signed out."
@@ -36,6 +37,7 @@ en:
       register: Sign Up
       shop: Shop
       all_products: All Products
+      products: Products
       next: Next
       previous: Previous
     account:

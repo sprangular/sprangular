@@ -1,4 +1,15 @@
-Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, Env, Flash, Status, Angularytics, $translate) ->
+Sprangular.controller "HeaderCtrl", (
+  $scope,
+  $location,
+  Cart,
+  Account,
+  Catalog,
+  Env,
+  Flash,
+  Status,
+  Angularytics,
+  $translate
+) ->
 
   $scope.cart = Cart
   Catalog.taxonomies().then (taxonomies) ->

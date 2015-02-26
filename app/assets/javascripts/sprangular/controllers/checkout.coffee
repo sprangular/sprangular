@@ -8,9 +8,11 @@ Sprangular.controller 'CheckoutCtrl', (
   Cart,
   Checkout,
   Angularytics,
-  Env
+  Env,
+  $translate
 ) ->
-  Status.pageTitle = 'Checkout'
+  $translate('checkout.checkout').then (paragraph) ->
+    Status.pageTitle = paragraph
   user = Account.user
 
   $scope.countries = countries

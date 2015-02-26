@@ -1,5 +1,6 @@
 Sprangular.controller 'SigninCtrl', ($scope, $location, Account, Flash, Status) ->
-  Status.pageTitle = 'Sign in'
+  $translate('nav.sign_in').then (paragraph) ->
+    Status.pageTitle = paragraph
   $scope.signingUp = false
   $scope.askForEmail = false
 

@@ -1,4 +1,11 @@
-Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Flash, Status, $translate) ->
+Sprangular.controller 'ForgotPasswordCtrl', (
+  $scope,
+  $location,
+  Account,
+  Flash,
+  Status,
+  $translate
+) ->
   $translate('app.forgot_password').then (paragraph) ->
     Status.title = paragraph
 
