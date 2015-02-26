@@ -4,11 +4,11 @@ section.credit-card
 
     p
       a.new-credit-card(ng-click='toggleExistingCreditCard()')
-        | {{ :: 'credit_card.use_new' | translate}}
+        | {{ :: 'credit_cards.use_new' | translate}}
 
   section.new-credit-card(ng-hide='existingCreditCard')
     credit-card-form(credit-card='creditCard' countries='countries')
 
     p
       a.existing-credit-card(ng-if='creditCards.length > 0' ng-click='toggleExistingCreditCard()')
-        | {{ :: 'credit_card.use_existing' | translate}}
+        | {{ :: 'credit_cards.use_existing' | translate}}
