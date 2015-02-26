@@ -1,7 +1,7 @@
 Sprangular::Engine.routes.draw do
   scope module: 'sprangular' do
     root to: 'home#index'
-    resources 'locale', only: :show, param: :locale
+    resources "locale", only: :show, param: :locale
 
     scope '/api', defaults: {format: :json} do
       resources :taxonomies, only: :index

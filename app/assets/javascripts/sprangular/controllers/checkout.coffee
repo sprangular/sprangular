@@ -1,4 +1,15 @@
-Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics, Env) ->
+Sprangular.controller 'CheckoutCtrl', (
+  $scope,
+  $location,
+  countries,
+  order,
+  Status,
+  Account,
+  Cart,
+  Checkout,
+  Angularytics,
+  Env
+) ->
   Status.pageTitle = 'Checkout'
   user = Account.user
 
