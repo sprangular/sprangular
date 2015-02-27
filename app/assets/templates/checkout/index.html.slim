@@ -37,7 +37,7 @@
 
         credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
-      button.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
+      button#confirm.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
         span(ng-if='!processing')
           span.caption Confirm
           | &nbsp;
