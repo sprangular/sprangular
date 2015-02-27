@@ -41,7 +41,7 @@ module Sprangular
       if @order.delivery? && @selected_rate
         shipment = @order.shipments.first
         available_rate = shipment.shipping_rates.detect {|rate| rate.shipping_method_id == @selected_rate.shipping_method_id && rate.cost == @selected_rate.cost}
-        shipment.update(selected_shipping_rate_id: available_rate.id)
+        shipment.update(selected_shipping_rate_id: available_rate.id) if available_rate
       end
       @order.next!
     end
@@ -53,7 +53,7 @@ module Sprangular
     def find_selected_rate(order)
       return unless attrs = @params[:order][:shipments_attributes].try(:first)
 
-      shipment = order.shipments.detect {|shipment| shipment.id == attrs[:id].to_i}
+      return unless shipment = order.shipments.detect {|shipment| shipment.id == attrs[:id].to_i}
       shipment.shipping_rates.find(attrs[:selected_shipping_rate_id])
     end
   end
