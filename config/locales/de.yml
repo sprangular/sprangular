@@ -127,6 +127,9 @@ de:
       amount: Betrag
       shipping_state: Sendungsstatus
       see_details: Details ansehen
+    promo:
+      add: Add Coupon
+      code: Code
     products:
       no_products: Keine Produkte
       sold_out: Ausverkauft
