@@ -128,8 +128,8 @@ de:
       shipping_state: Sendungsstatus
       see_details: Details ansehen
     promo:
-      add: Add Coupon
-      code: Code
+      add: Gutschein hinzufügen
+      code: Gutschein
     products:
       no_products: Keine Produkte
       sold_out: Ausverkauft
