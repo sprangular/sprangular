@@ -17,7 +17,7 @@ form.address(novalidate)
         p.error(ng-bind='address.errors.lastname')
 
   .form-group(ng-class="{'has-error': address.errors.address1}")
-    label.control-label(for='street') Address
+    label.control-label(for='address') Address
     textarea.form-control(type='text' name='address' ng-model='address.address1' rows=2)
     p.error(ng-bind='address.errors.address1')
 
