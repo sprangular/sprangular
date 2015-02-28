@@ -17,4 +17,4 @@ a.btn.add-to-cart(ng-click="addToCart()" ng-class="class" ng-disabled="adding ||
           | {{:: 'directives.add_another' | translate }}
         span(ng-show="inCart() && quantity > 1" translate='directives.add_quantity' translate-values='{quantity: quantity}')
       span.price
-        | {{(variant || product).price * quantity | currency : currency_symbol }}
+        | {{(variant || product).price * quantity | currency : currencySymbol }}

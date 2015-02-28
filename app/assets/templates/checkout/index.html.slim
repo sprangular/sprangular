@@ -64,28 +64,28 @@
           dt
             | {{ :: 'checkout.sub_total' | translate}}
           dd
-            | {{order.itemTotal | currency : currency_symbol}}
+            | {{order.itemTotal | currency : currencySymbol}}
 
           dt(ng-repeat-start="adjustment in order.adjustments")
             a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
               span.glyphicon.glyphicon-remove
             | {{adjustment.label}}
           dd(ng-repeat-end)
-            | {{adjustment.amount | currency : currency_symbol}}
+            | {{adjustment.amount | currency : currencySymbol}}
 
           dt
             | {{ :: 'checkout.shipping' | translate}}
           dd
-            | {{order.shipTotal | currency : currency_symbol}}
+            | {{order.shipTotal | currency : currencySymbol}}
 
           dt
             | {{ :: 'checkout.tax' | translate}}
           dd
-            | {{order.taxTotal | currency : currency_symbol}}
+            | {{order.taxTotal | currency : currencySymbol}}
 
           dt
             | {{ :: 'checkout.total' | translate}}
           dd
-            | {{order.total | currency : currency_symbol}}
+            | {{order.total | currency : currencySymbol}}
 
         promo-form(order='order')

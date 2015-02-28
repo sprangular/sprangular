@@ -45,7 +45,7 @@
 
               td.price.number
                 span
-                  | {{item.price * item.quantity | currency : currency_symbol}}
+                  | {{item.price * item.quantity | currency : currencySymbol}}
 
               td.actions
                 a.remove(ng-click="removeItem(item)")
@@ -54,12 +54,12 @@
             tr.item-total
               td(colspan=2)
                 | {{:: 'cart.sub_total' | translate}}
-              td.number(colspan=2 ng-bind='cart.itemTotal | currency : currency_symbol')
+              td.number(colspan=2 ng-bind='cart.itemTotal | currency : currencySymbol')
               td
 
             tr.adjustment(ng-repeat='adjustment in cart.adjustments')
               td(colspan=2 ng-bind='adjustment.label')
-              td.number(colspan=2 ng-bind='adjustment.amount | currency : currency_symbol')
+              td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
 
               td
                 a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
@@ -68,19 +68,19 @@
             tr.shipping
               td(colspan=2)
                 | {{:: 'cart.shipping' | translate}} - {{cart.shippingRate.name}}
-              td.number(colspan=2 ng-bind='cart.shipTotal | currency : currency_symbol')
+              td.number(colspan=2 ng-bind='cart.shipTotal | currency : currencySymbol')
               td
 
             tr.taxes
               td(colspan=2)
                 | {{:: 'cart.tax' | translate}}
-              td.number(colspan=2 ng-bind='cart.taxTotal | currency : currency_symbol')
+              td.number(colspan=2 ng-bind='cart.taxTotal | currency : currencySymbol')
               td
 
             tr.total
               td(colspan=2)
                 | {{:: 'cart.total' | translate}}
-              td.number(colspan=2 ng-bind='cart.total | currency : currency_symbol')
+              td.number(colspan=2 ng-bind='cart.total | currency : currencySymbol')
               td
 
       .aside-footer.clearfix(ng-hide='isEmpty()')

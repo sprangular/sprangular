@@ -7,7 +7,7 @@ Sprangular.directive 'shippingRateSelection', ->
   controller: ($scope, Checkout, Env) ->
     $scope.loading = false
     $scope.address = {}
-    $scope.currency_symbol = Env.config.currency.symbol
+    $scope.currencySymbol = Env.config.currency.symbol
 
     $scope.$watch 'order.shippingRate', (rate, oldRate) ->
       return if !oldRate || rate.id == oldRate.id

@@ -11,7 +11,7 @@ Sprangular.directive 'addToCartButton', ->
 
   controller: ($scope, Cart, Angularytics, Env) ->
     $scope.adding = false
-    $scope.currency_symbol = Env.config.currency.symbol
+    $scope.currencySymbol = Env.config.currency.symbol
 
     $scope.inCart = ->
       Cart.current.hasVariant($scope.variant)
