@@ -42,7 +42,7 @@ module Sprangular
     end
 
     def supported_locales
-      if Object.const_defined?("SpreeI18n")
+      if defined? SpreeI18n
         SpreeI18n::Config.supported_locales
       else
         # Use Default locale, and do not provide a front end selector.
