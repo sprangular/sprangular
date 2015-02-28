@@ -7,7 +7,7 @@ module Sprangular
 
       respond_to do |format|
         format.js { render js: "window.location.reload" }
-        format.html { redirect_to :back }
+        format.html { redirect_to sprangular_engine.root_path }
       end
     end
   end
