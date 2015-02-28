@@ -12,6 +12,8 @@ class Sprangular::BaseController < Spree::BaseController
 
   before_action :load_user_roles
 
+  before_action :set_language
+
   def invalid_resource!(resource)
     @resource = resource
     render "sprangular/errors/invalid", status: 422
@@ -26,6 +28,14 @@ class Sprangular::BaseController < Spree::BaseController
   end
 
 protected
+  def set_language
+    I18n.locale = if session.key?(:locale)
+                    session[:locale]
+                  else
+                    Rails.application.config.i18n.default_locale || I18n.default_locale
+                  end
+  end
+
 
   def check_authorization
     @user = current_spree_user
