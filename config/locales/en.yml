@@ -114,7 +114,7 @@ en:
       credit_cards: Credit Cards
       no_credit_cards_on_file: No credits cards on file
     directives:
-      adding: adding ...
+      adding: Adding ...
       add_to_cart: Add to Cart
       add_another: Add Another
       add_quantity: "Add {{quantity}} more"
