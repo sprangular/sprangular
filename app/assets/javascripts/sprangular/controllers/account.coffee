@@ -7,8 +7,7 @@ Sprangular.controller 'AccountCtrl', (
   user,
   $translate
 ) ->
-  $translate('nav.my_account').then (paragraph) ->
-    Status.pageTitle = paragraph
+  Status.setPageTitle('nav.my_account')
 
   user.password = ''
   user.password_confirmation = ''

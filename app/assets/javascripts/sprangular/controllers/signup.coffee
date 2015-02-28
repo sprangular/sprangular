@@ -6,8 +6,7 @@ Sprangular.controller 'SignupCtrl', (
   Flash,
   $translate
 ) ->
-  $translate('nav.register').then (paragraph) ->
-    Status.pageTitle = paragraph
+  Status.setPageTitle('nav.register')
 
   $scope.user = { email: '', password: '', password_confirmation: '', errors: {} }
   $scope.signingUp = false

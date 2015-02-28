@@ -11,8 +11,8 @@ Sprangular.controller 'CheckoutCtrl', (
   Env,
   $translate
 ) ->
-  $translate('checkout.checkout').then (paragraph) ->
-    Status.pageTitle = paragraph
+  Status.setPageTitle('checkout.checkout')
+
   user = Account.user
 
   $scope.countries = countries

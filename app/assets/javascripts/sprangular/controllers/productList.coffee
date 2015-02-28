@@ -1,11 +1,8 @@
 Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, products, Catalog, Cart) ->
   if taxon
-    $scope.pageTitle = taxon.pretty_name
+    Status.pageTitle = taxon.pretty_name
   else
-    $translate('nav.products').then (paragraph) ->
-      Status.pageTitle = paragraph
-
-  Status.pageTitle = $scope.pageTitle
+    Status.setPageTitle('nav.products')
 
   $scope.products = products
   $scope.currentPage = 1
