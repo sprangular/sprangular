@@ -7,7 +7,7 @@ Sprangular.controller 'HomeCtrl', (
   $translate
 ) ->
   $translate('app.home').then (paragraph) ->
-    Status.currentPageTitle = paragraph
+    Status.title = paragraph
 
   $scope.products = products
   $scope.currentPage = 1
