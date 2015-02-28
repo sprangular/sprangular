@@ -45,8 +45,7 @@ module Sprangular
       if defined? SpreeI18n
         SpreeI18n::Config.supported_locales
       else
-        # Use Default locale, and do not provide a front end selector.
-        []
+        Rails.application.config.i18n.available_locales
       end
     end
 
