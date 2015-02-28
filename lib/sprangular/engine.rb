@@ -11,14 +11,19 @@ module Sprangular
       assets.register_engine '.slim', Slim::Template
 
       Rails.application.config.assets.precompile += %w( bootstrap/* )
+    end
 
-      ##
-      # If spree i18n is installed precompile relevant angular translations
-      if Object.const_defined?("SpreeI18n")
-        locales = SpreeI18n::Config.supported_locales.map do |locale|
-          "angular-i18n/angular-locale_#{locale}*"
-        end
-        Rails.application.config.assets.precompile += locales
+    initializer "sprangular.locales" do
+      config  = Rails.application.config
+
+      locales = if defined? SpreeI18n
+                  SpreeI18n::Config.supported_locales
+                else
+                  config.i18n.available_locales
+                end
+
+      config.assets.precompile += locales.map do |locale|
+        "angular-i18n/angular-locale_#{locale}*"
       end
     end
 
