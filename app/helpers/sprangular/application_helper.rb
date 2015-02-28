@@ -55,9 +55,9 @@ module Sprangular
     # "Chainable" i18n Backend, which is used by spree i18n.
     def current_sprangular_translations
       if I18n.backend.class == I18n::Backend::Simple
-        @translations ||= I18n.backend.translations
+        @translations ||= I18n.backend.send(:translations)
       else
-        @translations ||= I18n.backend.backends.last.translations
+        @translations ||= I18n.backend.backends.last.send(:translations)
       end
       # Return only sprangular keys for js environment
       @translations[I18n.locale][:sprangular]
