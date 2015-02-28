@@ -36,7 +36,7 @@ module Sprangular
             Spree::Image.attachment_definitions[:attachment][:styles].keys,
           product_page_size: Spree::Config.products_per_page
         },
-        translations: current_sprangular_translations,
+        translations: current_translations,
         templates: templates
       }
     end
@@ -53,7 +53,9 @@ module Sprangular
     ##
     # Get relevant translations for front end. For both a simple, and
     # "Chainable" i18n Backend, which is used by spree i18n.
-    def current_sprangular_translations
+    def current_translations
+      I18n.backend.load_translations
+
       if I18n.backend.class == I18n::Backend::Simple
         @translations ||= I18n.backend.send(:translations)
       else
