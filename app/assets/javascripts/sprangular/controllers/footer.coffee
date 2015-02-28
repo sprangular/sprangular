@@ -9,7 +9,7 @@ Sprangular.controller "FooterCtrl", (
 
   $scope.catalog = Catalog
   $scope.account = Account
-  $scope.supported_locales = Env.config.supported_locales
+  $scope.supportedLocales = Env.config.supported_locales
 
   $scope.goToMyAccount = ->
     $location.path '/account'
