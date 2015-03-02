@@ -60,7 +60,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
             Cart.init()
 
     trackOrder: (order) ->
-      return unless ga
+      return if typeof(ga) is 'undefined'
 
       ga "ecommerce:addTransaction",
         id:       order.number
