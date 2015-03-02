@@ -25,7 +25,7 @@ Sprangular.directive 'checkoutButton', ->
       order.resetAddresses(user)
       order.resetCreditCard(user)
 
-      Checkout.update()
+      Checkout.update('payment')
         .success ->
           $location.path('/checkout/confirm')
         .error ->
