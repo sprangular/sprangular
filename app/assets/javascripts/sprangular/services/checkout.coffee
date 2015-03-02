@@ -8,18 +8,17 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put(params)
 
-    update: ->
+    update: (goto) ->
       order = Cart.current
       card  = order.creditCard
 
       params =
+        goto: goto
         order:
           use_billing: order.shipToBillAddress
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        'order[payments_attributes][][payment_method_id]': @_findPaymentMethodId()
-        payment_source: {}
 
       if order.shippingRate
         params['order[shipments_attributes][][id]'] = order.shipment.id
