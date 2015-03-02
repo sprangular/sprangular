@@ -22,8 +22,10 @@ module Sprangular
                   config.i18n.available_locales
                 end
 
-      config.assets.precompile += locales.map do |locale|
-        "angular-i18n/angular-locale_#{locale}*"
+      if locales
+        config.assets.precompile += locales.map do |locale|
+          "angular-i18n/angular-locale_#{locale}*"
+        end
       end
     end
 
