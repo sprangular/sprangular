@@ -91,7 +91,7 @@
 
         tr.taxes
           td
-            | {{ :: 'checkout.taxes' | translate }}
+            | {{ :: 'checkout.tax' | translate }}
           td.number(colspan=2 ng-bind='order.taxTotal | currency')
 
         tr.total
