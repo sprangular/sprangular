@@ -19,7 +19,7 @@
         .col-sm-8
           p.sold-out(ng-if="selected.variant && !selected.variant.isAvailable()")
             span.fa.fa-exclamation-triangle
-            | &nbsp;{{:: 'orders.sold_out_msg' | translate }}
+            | &nbsp;{{:: 'products.sold_out_msg' | translate }}
 
 
           add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"

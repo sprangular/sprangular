@@ -8,18 +8,17 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put(params)
 
-    update: ->
+    update: (goto) ->
       order = Cart.current
       card  = order.creditCard
 
       params =
+        goto: goto
         order:
           use_billing: order.shipToBillAddress
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        'order[payments_attributes][][payment_method_id]': @_findPaymentMethodId()
-        payment_source: {}
 
       if order.shippingRate
         params['order[shipments_attributes][][id]'] = order.shipment.id
@@ -33,7 +32,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       paymentMethodId = @_findPaymentMethodId()
 
       params =
-        complete: true
+        goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         order: {}
         payment_source: {}
@@ -61,7 +60,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
             Cart.init()
 
     trackOrder: (order) ->
-      return unless ga
+      return if typeof(ga) is 'undefined'
 
       ga "ecommerce:addTransaction",
         id:       order.number

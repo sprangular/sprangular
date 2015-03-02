@@ -26,9 +26,9 @@
 
         .pull-right
           button.btn.btn-lg.btn-primary(type='submit' ng-disabled="signingUp")
-            span(ng-hide="signingUp")
+            span(ng-hide="loading")
               | {{ :: 'nav.register' | translate }}
-            span(ng-show="signingup")
+            span(ng-show="loading")
               | {{ :: 'loading' | translate }}
 
         nav

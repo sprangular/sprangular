@@ -64,7 +64,7 @@
           th(width="15%")
             | {{ :: 'checkout.quantity' | translate }}
           th
-            | {{ :: 'checkout.success' | translate }}
+            | {{ :: 'checkout.amount' | translate }}
 
         tr.item(ng-repeat='item in order.items')
           td.name
@@ -91,7 +91,7 @@
 
         tr.taxes
           td
-            | {{ :: 'checkout.taxes' | translate }}
+            | {{ :: 'checkout.tax' | translate }}
           td.number(colspan=2 ng-bind='order.taxTotal | currency')
 
         tr.total
