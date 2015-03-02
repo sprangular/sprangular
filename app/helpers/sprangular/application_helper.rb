@@ -53,9 +53,9 @@ module Sprangular
     # Get relevant translations for front end. For both a simple, and
     # "Chainable" i18n Backend, which is used by spree i18n.
     def current_translations
-      I18n.backend.load_translations
-
       if I18n.backend.class == I18n::Backend::Simple
+        I18n.backend.load_translations
+
         @translations ||= I18n.backend.send(:translations)
       else
         @translations ||= I18n.backend.backends.last.send(:translations)
