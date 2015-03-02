@@ -38,7 +38,7 @@ Sprangular.controller 'CheckoutCtrl', (
       $scope.processing = false
       return
 
-    Checkout.update('confirm')
+    Checkout.update('payment')
       .success ->
         $location.path('/checkout/confirm')
       .error ->
