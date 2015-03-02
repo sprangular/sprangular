@@ -64,7 +64,7 @@
           th(width="15%")
             | {{ :: 'checkout.quantity' | translate }}
           th
-            | {{ :: 'checkout.success' | translate }}
+            | {{ :: 'checkout.amount' | translate }}
 
         tr.item(ng-repeat='item in order.items')
           td.name
