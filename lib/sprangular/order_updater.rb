@@ -18,13 +18,14 @@ module Sprangular
 
     def run
       @selected_rate = find_selected_rate(@order)
+      goto = @params[:goto]
 
-      if @params[:goto] == 'complete'
+      if goto == 'complete'
         advance_until(&:complete?)
       else
         revert_to(:cart)
 
-        advance_until(&:payment?)
+        advance_until(&:payment?) if goto == 'payment'
       end
     end
 
