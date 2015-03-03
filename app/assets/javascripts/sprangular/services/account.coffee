@@ -14,7 +14,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
         service.populateAccount(startupData.User)
         service.fetched = true
       else
-        $http.get '/api/account'
+        $http.get('/api/account')
           .success (data) ->
             service.populateAccount(data)
             service.fetched = true
@@ -24,7 +24,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     reload: ->
       @fetched = false
-      $http.get '/api/account'
+      $http.get('/api/account')
         .success (data) ->
           service.populateAccount(data)
           service.fetched = true
@@ -49,7 +49,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       params =
         'spree_user[email]': data.email,
         'spree_user[password]': data.password
-      $http.post '/spree/login.json', $.param params
+      $http.post('/spree/login.json', $.param(params))
         .success (data) ->
           service.populateAccount(data)
           Flash.success 'app.signed_in'
@@ -57,7 +57,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
           Flash.error 'app.signin_failed'
 
     logout: ->
-      $http.get '/spree/logout'
+      $http.get('/spree/logout')
         .success (data) ->
           service.isLogged = false
           service.clear()
@@ -74,21 +74,21 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
     forgotPassword: (data) ->
       params =
         spree_user: data
-      $http.post '/api/passwords', $.param params
+      $http.post('/api/passwords', $.param(params))
         .success (data) ->
           service.reload()
 
     resetPassword: (data) ->
       params =
         spree_user: data
-      $http.put '/api/passwords/'+data.reset_password_token, $.param params
+      $http.put('/api/passwords/'+data.reset_password_token, $.param(params))
         .success (data) ->
           service.reload()
 
     save: (data) ->
       params =
-        spree_user: data
-      $http.put '/api/account', $.param params
+        spree_user: data.serialize()
+      $http.put('/api/account', $.param(params))
         .success (data) ->
           service.populateAccount(data)
           Flash.success 'app.account_updated'
