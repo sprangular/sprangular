@@ -14,6 +14,10 @@ class Sprangular.User
 
     @allowOneClick = @creditCards.length > 0 && @addresses.length > 0
 
+  serialize: ->
+    _.omit this, (value) ->
+      typeof(value) == 'object' || typeof(value) == 'function' || Array.isArray(value)
+
   _mergeAddressLists: ->
     addresses = []
     unique = (address) ->
