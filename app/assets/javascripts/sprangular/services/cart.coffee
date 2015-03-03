@@ -48,8 +48,7 @@ Sprangular.service "Cart", ($http) ->
       if foundProducts.length > 0
         @updateItemQuantity(foundProducts[0].variant.id, quantity, extraParams)
       else
-        params = $.param(variant_id: variant.id, quantity: quantity) + '&' + $.param(extraParams)
-        console.log 'add_variant', params 
+        params = $.param(variant_id: variant.id, quantity: quantity) + '&' + $.param(extraParams)        
         $http.post '/api/cart/add_variant', params, ignoreLoadingIndicator: true
           .success (response) ->
             service.load(response)
@@ -66,7 +65,6 @@ Sprangular.service "Cart", ($http) ->
 
     updateItemQuantity: (id, quantity, extraParams = {}) ->
       params = $.param(variant_id: id, quantity: quantity, extraParams) + '&' + $.param(extraParams)
-      console.log 'updateItemQuantity', params
       $http.put '/api/cart/update_variant', params, ignoreLoadingIndicator: true
         .success(@load)
 

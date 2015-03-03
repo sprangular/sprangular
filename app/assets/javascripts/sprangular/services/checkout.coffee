@@ -3,10 +3,9 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
   service =
     savePromo: (code) ->
       params =
-        order:
-          coupon_code: code
+        coupon_code: code
 
-      @put(null, params)
+      @applyCouponCode(null, params)
 
     update: ->
       order = Cart.current
@@ -87,6 +86,22 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           'X-Spree-Order-Token': Cart.current.token
 
       url = _.compact(["/api/checkouts/#{Cart.current.number}",path]).join("/")
+      Cart.current.errors = null
+
+      $http.put(url, $.param(params), config)
+           .success (response) ->
+             Cart.load(response) unless response.error
+           .error (response) ->
+             Cart.errors(response.errors || response.exception)
+
+    applyCouponCode: (path, params) ->
+      params ||= {}
+
+      config =
+        headers:
+          'X-Spree-Order-Token': Cart.current.token
+
+      url = _.compact(["/spree/api/orders/#{Cart.current.number}/apply_coupon_code",path]).join("/")
       Cart.current.errors = null
 
       $http.put(url, $.param(params), config)
