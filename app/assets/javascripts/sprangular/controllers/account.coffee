@@ -4,8 +4,7 @@ Sprangular.controller 'AccountCtrl', (
   $routeParams,
   Status,
   Account,
-  user,
-  $translate
+  user
 ) ->
   Status.setPageTitle('nav.my_account')
 
