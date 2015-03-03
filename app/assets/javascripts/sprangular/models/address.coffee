@@ -62,3 +62,14 @@ class Sprangular.Address
       @zipcode == other.zipcode &&
       @countryId == other.countryId &&
       @stateId == other.stateId
+
+  key: ->
+    [@firstname,
+     @lastname,
+     @address1,
+     @address2,
+     @city,
+     @phone,
+     @zipcode,
+     @countryId,
+     @stateId].join('')
