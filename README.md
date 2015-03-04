@@ -21,6 +21,8 @@ Spree + Angular.js
 - Full Google Analytics support via [Angularytics](https://github.com/mgonto/angularytics)
 - Variant selection by option type
 - Cart dropdown/popover
+- Multi-currency
+- i18n (en & de support)
 - Lookup shipping & tax by zip code (Planned)
 - Indexable by search engines via [prerender.io](http://prerender.io). See [guide](https://github.com/sprangular/sprangular/wiki/prerendering)
 - Example rails app [spranguar/sprangular-demo](https://github.com/sprangular/sprangular-demo)

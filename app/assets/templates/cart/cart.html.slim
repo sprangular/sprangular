@@ -6,20 +6,25 @@
         h4.aside-title
           span.glyphicon.glyphicon-shopping-cart
           | &nbsp;
-          | My Cart
+          | {{:: 'cart.my_cart' | translate}}
           | &nbsp;
           span.badge(ng-bind='cart.totalQuantity()' ng-hide='isEmpty()')
       .aside-body
         .empty(ng-show="isEmpty()")
-          p Your cart is empty
-          a.btn.btn-lg.btn-primary(ng-href="#!/products" ng-click="$hide()") Start Shopping
+          p
+            | {{:: 'cart.my_empty_cart' | translate}}
+          a.btn.btn-lg.btn-primary(ng-href="#!/products" ng-click="$hide()")
+            | {{:: 'cart.start_shopping' | translate}}
 
         .with-items(ng-hide="isEmpty()")
           table.table.table-striped
             tr
-              th(colspan=2 width="50%") Item
-              th(width="25%") Quantity
-              th Price
+              th(colspan=2 width="50%")
+                | {{:: 'cart.item' | translate}}
+              th(width="25%")
+                | {{:: 'cart.quantity' | translate}}
+              th
+                | {{:: 'cart.price' | translate}}
               th
 
             tr.item(ng-repeat='item in cart.items')
@@ -40,44 +45,48 @@
 
               td.price.number
                 span
-                  | {{item.price * item.quantity | currency}}
+                  | {{item.price * item.quantity | currency : currencySymbol}}
 
               td.actions
                 a.remove(ng-click="removeItem(item)")
                   span.glyphicon.glyphicon-remove
 
             tr.item-total
-              td(colspan=2) Sub-total
-              td.number(colspan=2 ng-bind='cart.itemTotal | currency')
+              td(colspan=2)
+                | {{:: 'cart.sub_total' | translate}}
+              td.number(colspan=2 ng-bind='cart.itemTotal | currency : currencySymbol')
               td
 
             tr.adjustment(ng-repeat='adjustment in cart.adjustments')
               td(colspan=2 ng-bind='adjustment.label')
-              td.number(colspan=2 ng-bind='adjustment.amount | currency')
+              td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
 
               td
                 a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
                   span.glyphicon.glyphicon-remove
 
             tr.shipping
-              td(colspan=2) Shipping - {{cart.shippingRate.name}}
-              td.number(colspan=2 ng-bind='cart.shipTotal | currency')
+              td(colspan=2)
+                | {{:: 'cart.shipping' | translate}} - {{cart.shippingRate.name}}
+              td.number(colspan=2 ng-bind='cart.shipTotal | currency : currencySymbol')
               td
 
             tr.taxes
-              td(colspan=2) Taxes
-              td.number(colspan=2 ng-bind='cart.taxTotal | currency')
+              td(colspan=2)
+                | {{:: 'cart.tax' | translate}}
+              td.number(colspan=2 ng-bind='cart.taxTotal | currency : currencySymbol')
               td
 
             tr.total
-              td(colspan=2) Total
-              td.number(colspan=2 ng-bind='cart.total | currency')
+              td(colspan=2)
+                | {{:: 'cart.total' | translate}}
+              td.number(colspan=2 ng-bind='cart.total | currency : currencySymbol')
               td
 
       .aside-footer.clearfix(ng-hide='isEmpty()')
         .pull-left
           a.empty.btn.btn-link(ng-click="empty()")
-            | Empty cart
+            | {{:: 'cart.empty_cart' | translate}}
 
           promo-form(order='cart')
 

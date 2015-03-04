@@ -4,9 +4,10 @@ Sprangular.directive 'shippingRateSelection', ->
   scope:
     order: '='
 
-  controller: ($scope, Checkout) ->
+  controller: ($scope, Checkout, Env) ->
     $scope.loading = false
     $scope.address = {}
+    $scope.currencySymbol = Env.config.currency.symbol
 
     $scope.$watch 'order.shippingRate', (rate, oldRate) ->
       return if !oldRate || rate.id == oldRate.id
@@ -35,7 +36,7 @@ Sprangular.directive 'shippingRateSelection', ->
 
       $scope.loading = true
 
-      Checkout.update().then ->
+      Checkout.update('payment').then ->
         $scope.loading = false
 
     validateAddress($scope.address)

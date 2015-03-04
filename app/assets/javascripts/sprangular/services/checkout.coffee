@@ -3,23 +3,40 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
   service =
     savePromo: (code) ->
       params =
-        order:
-          coupon_code: code
+        coupon_code: code
 
-      @put(params)
+      config =
+        headers:
+          'X-Spree-Order-Token': Cart.current.token
 
-    update: ->
+      deferred = $q.defer()
+
+      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params), config)
+           .success (response) ->
+             Cart.load(response.order)
+
+             if response.error
+               deferred.reject(response)
+             else
+               deferred.resolve(response)
+
+           .error (response) ->
+             response.error ||= "Coupon code #{code} not found."
+             deferred.reject(response)
+
+      deferred.promise
+
+    update: (goto) ->
       order = Cart.current
       card  = order.creditCard
 
       params =
+        goto: goto
         order:
           use_billing: order.shipToBillAddress
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        'order[payments_attributes][][payment_method_id]': @_findPaymentMethodId()
-        payment_source: {}
 
       if order.shippingRate
         params['order[shipments_attributes][][id]'] = order.shipment.id
@@ -33,7 +50,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       paymentMethodId = @_findPaymentMethodId()
 
       params =
-        complete: true
+        goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         order: {}
         payment_source: {}
@@ -61,7 +78,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
             Cart.init()
 
     trackOrder: (order) ->
-      return unless ga
+      return if typeof(ga) is 'undefined'
 
       ga "ecommerce:addTransaction",
         id:       order.number

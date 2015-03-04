@@ -1,13 +1,19 @@
 section#promo-selection
   .add(ng-show='!showPromoEntry')
-    a(ng-click='showPromoEntry = true') Add a coupon
+    a(ng-click='showPromoEntry = true')
+      | {{:: 'promo.add' | translate }}
 
   section#promo-entry(ng-show='showPromoEntry')
     form.form-inline(role='form' name="PromoForm" ng-submit='save()')
       .form-group
-        label.control-label(for='promo-code') Code
+        label.control-label(for='promo-code')
+          | {{:: 'promo.code' | translate }}
         input.form-control(name='promo-code' ng-model='promoCode')
 
-      button.btn.btn-primary(type='submit') Save
+      button.btn.btn-primary(type='submit')
+        | {{:: 'crud.save' | translate }}
+
+      a.btn.btn-link(ng-click='reset()')
+        | {{:: 'crud.cancel' | translate }}
 
     p.error(ng-bind='error' ng-show='error')

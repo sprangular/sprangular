@@ -1,5 +1,12 @@
-Sprangular.controller 'AccountCtrl', ($scope, $location, $routeParams, Status, Account, user) ->
-  Status.pageTitle = 'My Account'
+Sprangular.controller 'AccountCtrl', (
+  $scope,
+  $location,
+  $routeParams,
+  Status,
+  Account,
+  user
+) ->
+  Status.setPageTitle('nav.my_account')
 
   user.password = ''
   user.password_confirmation = ''

@@ -1,7 +1,7 @@
 ul.nav.navbar-nav
   li.dropdown
     a(data-toggle="dropdown")
-      | Shop
+      | {{ :: 'nav.shop' | translate}}
       | &nbsp;
       span.caret
 
@@ -16,4 +16,4 @@ ul.nav.navbar-nav
       li.divider(ng-repeat-end)
 
       li
-        a(ng-href="/#!/products") All Products
+        a(ng-href="/#!/products") {{ :: 'nav.all_products' | translate }}

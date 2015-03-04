@@ -25,14 +25,16 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
-  s.add_dependency 'angularjs-rails', "1.3.8"
   s.add_dependency 'rack-rewrite'
   s.add_dependency 'geocoder'
   s.add_dependency 'ngannotate-rails'
   s.add_dependency 'prerender_rails'
   s.add_dependency 'font-awesome-rails', '~> 4.2'
+  s.add_dependency 'rails-assets-angular', '1.3.9'
+  s.add_dependency 'rails-assets-angular-route'
+  s.add_dependency 'rails-assets-angular-sanitize'
+  s.add_dependency 'rails-assets-angular-animate'
   s.add_dependency 'rails-assets-bootstrap-sass-official'
-  s.add_dependency 'rails-assets-angular-bootstrap'
   s.add_dependency 'rails-assets-angular-strap'
   s.add_dependency 'rails-assets-angular-motion'
   s.add_dependency 'rails-assets-bootstrap-additions'
@@ -41,6 +43,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angularytics'
   s.add_dependency 'rails-assets-jasmine-sinon'
   s.add_dependency 'rails-assets-sinon'
+  s.add_dependency 'rails-assets-angular-translate'
+  s.add_dependency 'rails-assets-angular-i18n'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails'
@@ -56,5 +60,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'webmock'
-  s.add_development_dependency 'nyan-cat-formatter'
 end

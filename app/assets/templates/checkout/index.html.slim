@@ -4,75 +4,88 @@
       checkout-nav(step='details')
   .row
     .col-md-12
-      h1 Checkout
+      h1
+        | {{:: 'checkout.checkout' | translate}}
 
       p.secure(ng-if='secure')
         span.fa.fa-lock(ng-if='secure')
-        | &nbsp;Secure transaction
+        | &nbsp;{{:: 'checkout.secure_transaction' | translate}}
 
   .row
     .col-md-8.col-xs-12
       section#billing-address
-        h2(ng-show='order.shipToBillAddress') Billing & Shipping Address
-        h2(ng-hide='order.shipToBillAddress') Billing Address
+        h2(ng-show='order.shipToBillAddress')
+          | {{ :: 'checkout.billing_and_shipping_address' | translate}}
+        h2(ng-hide='order.shipToBillAddress')
+          | {{ :: 'checkout.billing_address' | translate}}
 
         address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
 
         label
           input(type='checkbox' ng-model='order.shipToBillAddress')
-          | &nbsp;Ship to billing address
+          | &nbsp;{{ :: 'checkout.ship_to_billing_address' | translate}}
 
       section#shipping-address(ng-hide='order.shipToBillAddress')
-        h2 Shipping Address
+        h2
+          | {{ :: 'checkout.shipping_address' | translate}}
 
         address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
 
       section#delivery
-        h2 Delivery Options
+        h2
+          | {{ :: 'checkout.delivery_options' | translate}}
 
         shipping-rate-selection(order='order')
 
       section#credit-card
-        h2 Credit Card
+        h2
+          | {{ :: 'checkout.credit_card' | translate}}
 
         credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
-      button.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
+      button#confirm.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
         span(ng-if='!processing')
-          span.caption Confirm
+          span.caption
+            | {{ :: 'checkout.confirm' | translate}}
           | &nbsp;
           span.glyphicon.glyphicon-chevron-right
         span(ng-if='processing')
           span.fa.fa-refresh.fa-spin
           | &nbsp;
-          span.caption Loading...
+          span.caption
+            | {{ :: 'loading' | translate}}
 
     .col-md-4.hidden-xs
       .well
-        h2 Summary
+        h2
+          | {{ :: 'checkout.summary' | translate}}
 
         dl.dl-horizontal
-          dt Sub-total
+          dt
+            | {{ :: 'checkout.sub_total' | translate}}
           dd
-            | {{order.itemTotal | currency}}
+            | {{order.itemTotal | currency : currencySymbol}}
 
           dt(ng-repeat-start="adjustment in order.adjustments")
             a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
               span.glyphicon.glyphicon-remove
             | {{adjustment.label}}
           dd(ng-repeat-end)
-            | {{adjustment.amount | currency}}
+            | {{adjustment.amount | currency : currencySymbol}}
 
-          dt Shipping
+          dt
+            | {{ :: 'checkout.shipping' | translate}}
           dd
-            | {{order.shipTotal | currency}}
+            | {{order.shipTotal | currency : currencySymbol}}
 
-          dt Tax
+          dt
+            | {{ :: 'checkout.tax' | translate}}
           dd
-            | {{order.taxTotal | currency}}
+            | {{order.taxTotal | currency : currencySymbol}}
 
-          dt Total
+          dt
+            | {{ :: 'checkout.total' | translate}}
           dd
-            | {{order.total | currency}}
+            | {{order.total | currency : currencySymbol}}
 
         promo-form(order='order')

@@ -4,56 +4,67 @@
       checkout-nav(step='confirm')
   .row
     .col-md-4.col-xs-4
-      h1 Confirm
+      h1
+        | {{ :: 'checkout.confirm' | translate }}
 
     .col-md-8.col-xs-8
       .clearfix
         .pull-right
           a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
-            span(ng-if='!processing') Place Order
+            span(ng-if='!processing')
+              | {{ :: 'checkout.place_order' | translate }}
             span(ng-if='processing')
               span.fa.fa-refresh.fa-spin
               | &nbsp;
-              span.caption Processing...
+              span.caption
+                |  {{ :: 'checkout.processing' | translate }}
 
   .row
     .col-lg-4.col-md-6.address.billing
-      h2(ng-hide='order.shipToBillAddress') Billing Address
-      h2(ng-show='order.shipToBillAddress') Billing & Shipping Address
+      h2(ng-hide='order.shipToBillAddress')
+        | {{ :: 'checkout.billing_address' | translate }}
+      h2(ng-show='order.shipToBillAddress')
+        | {{ :: 'checkout.billing_and_shipping_address' | translate }}
 
       address-view(address='order.billingAddress')
 
       a(ng-href="#!/checkout")
         span.glyphicon.glyphicon-pencil
-        | &nbsp;Edit
+        | &nbsp; {{ :: 'crud.edit' | translate }}
 
     .col-lg-4.col-md-6.address.shipping(ng-hide='order.shipToBillAddress')
-      h2 Shipping Address
+      h2
+        | {{ :: 'checkout.shipping_address' | translate }}
 
       address-view(address='order.actualShippingAddress()')
 
       a(ng-href="#!/checkout")
         span.glyphicon.glyphicon-pencil
-        | &nbsp;Edit
+        | &nbsp;{{ :: 'crud.edit' | translate }}
 
     .col-lg-4.col-md-6.payment
-      h2 Payment
+      h2
+        | {{ :: 'checkout.payment' | translate }}
 
       credit-card-view(card='order.creditCard')
 
       a(ng-href="#!/checkout")
         span.glyphicon.glyphicon-pencil
-        | &nbsp;Edit
+        | &nbsp;{{ :: 'crud.edit' | translate }}
 
   .row
     .col-md-12
-      h2 Summary
+      h2
+        | {{ :: 'checkout.summary' | translate }}
 
       table.table.table-striped
         tr
-          th Name
-          th(width="15%") Quantity
-          th Price
+          th
+            | {{ :: 'checkout.name' | translate }}
+          th(width="15%")
+            | {{ :: 'checkout.quantity' | translate }}
+          th
+            | {{ :: 'checkout.amount' | translate }}
 
         tr.item(ng-repeat='item in order.items')
           td.name
@@ -65,12 +76,13 @@
           td.price.number(ng-bind='item.price * item.quantity | currency')
 
         tr.item-total
-          td Sub-total
+          td
+            | {{ :: 'checkout.sub_total' | translate }}
           td.number(colspan=2 ng-bind='order.itemTotal | currency')
 
         tr.shipping
           td
-            | Shipping - {{order.shippingRate.name}}
+            | {{ :: 'checkout.shipping' | translate }} - {{order.shippingRate.name}}
             | &nbsp;
             a(ng-href="#!/checkout")
               span.glyphicon.glyphicon-pencil
@@ -78,18 +90,22 @@
           td.number(colspan=2 ng-bind='order.shipTotal | currency')
 
         tr.taxes
-          td Taxes
+          td
+            | {{ :: 'checkout.tax' | translate }}
           td.number(colspan=2 ng-bind='order.taxTotal | currency')
 
         tr.total
-          td Total
+          td
+            | {{ :: 'checkout.total' | translate }}
           td.number(colspan=2 ng-bind='order.total | currency')
 
   .row
     .col-md-12
-      a.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
-        span(ng-if='!processing') Place Order
+      button#complete.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
+        span(ng-if='!processing')
+          | {{ :: 'checkout.place_order' | translate }}
         span(ng-if='processing')
           span.fa.fa-refresh.fa-spin
           | &nbsp;
-          span.caption Processing...
+          span.caption
+            | {{ :: 'checkout.processing' | translate }}
