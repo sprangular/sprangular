@@ -10,17 +10,21 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     productsByTaxon: (path, page=1) ->
       @getPaged(page, taxon: path)
 
-    taxonomies: (name)->
+    taxonomies: ->
       $http.get("/api/taxonomies", {cache: true})
-        .success (response) ->
-          $log.debug "taxonomies - response", response
-          if name
-            _.each response, (taxon)->
-              if taxon.name is name
-                $log.debug "taxonomies - if name - taxon.root.taxons", taxon.root.taxons
-                return taxon.root.taxons
-          else
-            return response.data       
+        .then (response) ->
+          response.data
+
+    taxonsByName: (name) ->
+      @taxonomies().then (response)->
+        result = null
+        if name
+          _.each response, (taxon)->
+            if taxon.name is name
+              result = taxon.root.taxons
+        else
+          result = response.data
+        return result
 
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")
