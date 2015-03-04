@@ -12,14 +12,15 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
 
     taxonomies: (name)->
       $http.get("/api/taxonomies", {cache: true})
-        .then (response) ->
+        .success (response) ->
+          $log.debug "taxonomies - response", response
           if name
-            $log.debug "taxonomies - if name", response
             _.each response, (taxon)->
               if taxon.name is name
+                $log.debug "taxonomies - if name - taxon.root.taxons", taxon.root.taxons
                 return taxon.root.taxons
           else
-            response.data            
+            return response.data       
 
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")
