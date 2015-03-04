@@ -10,7 +10,8 @@ class Sprangular.User
       card = new Sprangular.CreditCard
       card.init(paymentSource)
 
-      @creditCards.push(card)
+    @orders      = Sprangular.extend(@orders, Sprangular.Order)
+    @creditCards = Sprangular.extend(@payment_sources, Sprangular.CreditCard)
 
     @allowOneClick = @creditCards.length > 0 && @addresses.length > 0
 

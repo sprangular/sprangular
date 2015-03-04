@@ -25,14 +25,12 @@ class Sprangular.CreditCard
     @token = null
     @lastDigits = null
 
-  init: (attributes) ->
-    @id = attributes.id
-    @name = attributes.name
-    @lastDigits = attributes.last_digits
-    @month = attributes.month
-    @year = attributes.year
-    @token = attributes.gateway_payment_profile_id
-    @type = attributes.cc_type
+  init: ->
+    @id = @id
+    @name = @name
+    @lastDigits = @last_digits
+    @token = @gateway_payment_profile_id
+    @type = @cc_type
 
   isNew: ->
     not (@token and @token.length > 0)
