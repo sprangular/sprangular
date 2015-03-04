@@ -5,9 +5,13 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         coupon_code: code
 
+      config =
+        headers:
+          'X-Spree-Order-Token': Cart.current.token
+
       deferred = $q.defer()
 
-      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params))
+      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params), config)
            .success (response) ->
              Cart.load(response.order)
 
