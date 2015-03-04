@@ -47,7 +47,11 @@ Sprangular.service "Status", ($rootScope, $translate) ->
     status.bodyClasses = {default: true}
 
   $rootScope.$watch (-> status.isLoading()), (loading) ->
-    event = if loading then 'start' else 'end'
-    $rootScope.$broadcast("loading.#{event}")
+    if loading
+      status.addBodyClass('loading')
+      $rootScope.$broadcast("loading.start")
+    else
+      status.removeBodyClass('loading')
+      $rootScope.$broadcast("loading.end")
 
   status
