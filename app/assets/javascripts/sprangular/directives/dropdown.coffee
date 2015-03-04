@@ -21,9 +21,16 @@ Sprangular.directive 'dropdown', ($parse) ->
 
   controller: ($scope) ->
     $scope.expanded = false
+    $scope.sibling = null
 
     $scope.expand = ->
+      $scope.sibling = $scope.$parent.$$prevSibling || $scope.$parent.$$nextSibling
+
+      if($scope.$parent.$parent.isVariantOpen)
+        $scope.sibling.$$childHead.expanded = false
+
       $scope.expanded = true
+      $scope.$parent.$parent.isVariantOpen = true
 
     $scope.displayValue = (val) ->
       return unless val
@@ -36,3 +43,4 @@ Sprangular.directive 'dropdown', ($parse) ->
     $scope.select = (value) ->
       $scope.model.$setViewValue(value)
       $scope.expanded = false
+      $scope.$parent.$parent.isVariantOpen = false

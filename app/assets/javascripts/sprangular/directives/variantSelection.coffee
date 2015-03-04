@@ -9,6 +9,8 @@ Sprangular.directive 'variantSelection', ->
     class: '='
     change: '&'
   controller: ($scope) ->
+    $scope.isVariantOpen = false
+
     $scope.$watch 'variant', (newVariant, oldVariant)->
       $scope.change({oldVariant: oldVariant, newVariant: newVariant}) if newVariant != oldVariant
 
