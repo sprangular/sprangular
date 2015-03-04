@@ -2,9 +2,9 @@ body
   -webkit-font-smoothing: antialiased
   background-color: $base-background-color
   color: $base-font-color
-  font-family: $base-font-family
-  font-size: $base-font-size
-  line-height: $base-line-height
+  font-family: $b-font-family
+  font-size: $b-font-size
+  line-height: $b-line-height
 
 h1,
 h2,
@@ -12,8 +12,8 @@ h3,
 h4,
 h5,
 h6
-  font-family: $header-font-family
-  line-height: $header-line-height
+  font-family: $b-font-family-heading
+  line-height: $b-line-height-heading
   margin: 0
   text-rendering: optimizeLegibility // Fix the character spacing for headings
 
@@ -36,7 +36,7 @@ h6
   font-size: $h6-font-size
 
 p
-  margin: 0 0 ($base-spacing / 2)
+  margin: 0 0 ($b-space / 2)
 
 a
   @include transition(color 0.1s linear)
@@ -51,11 +51,11 @@ a
     outline: none
 
 hr
-  border-bottom: $base-border
+  border-bottom: $b-border
   border-left: none
   border-right: none
   border-top: none
-  margin: $base-spacing 0
+  margin: $b-space 0
 
 img,
 picture
@@ -63,10 +63,10 @@ picture
   max-width: 100%
 
 blockquote
-  border-left: 2px solid $base-border-color
+  border-left: 2px solid $b-border-color
   color: lighten($base-font-color, 15)
-  margin: $base-spacing 0
-  padding-left: $base-spacing / 2
+  margin: $b-space 0
+  padding-left: $b-space / 2
 
 cite
   color: lighten($base-font-color, 25)

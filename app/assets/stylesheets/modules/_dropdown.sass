@@ -1,14 +1,14 @@
 .dropdown
   ///////////////////////////////////////////////////////////////////////////////////
-  $base-border-color: gainsboro !default
-  $base-border-radius: 3px !default
-  $base-line-height: 1.5em !default
+  $b-border-color: gainsboro !default
+  $b-border-radius: 3px !default
+  $b-line-height: 1.5em !default
   $base-background-color: white !default
   $dark-gray: #333 !default
   $large-screen: em(860) !default
   $base-font-color: $dark-gray !default
 
-  line-height: $base-line-height
+  line-height: $b-line-height
 
   ul
     padding: 0
@@ -39,10 +39,10 @@
 
   .dropdown-description
     background: $dropdown-background
-    border-bottom-left-radius: $base-border-radius
+    border-bottom-left-radius: $b-border-radius
     border-bottom: $dropdown-border
     border-left: $dropdown-border
-    border-top-left-radius: $base-border-radius
+    border-top-left-radius: $b-border-radius
     border-top: $dropdown-border
     color: $dropdown-description-color
     float: left
@@ -58,8 +58,8 @@
 
   .dropdown-button
     background: $dropdown-background
-    border-bottom-right-radius: $base-border-radius
-    border-top-right-radius: $base-border-radius
+    border-bottom-right-radius: $b-border-radius
+    border-top-right-radius: $b-border-radius
     border-top: $dropdown-border
     border-right: $dropdown-border
     border-bottom: $dropdown-border
@@ -94,7 +94,7 @@
   .dropdown-menu
     @include transition (all 0.2s ease-in-out)
     background: $dropdown-background
-    border-radius: $base-border-radius
+    border-radius: $b-border-radius
     border: $dropdown-border
     box-shadow: 0 2px 2px transparentize(black, 0.8)
     color: $dropdown-color
@@ -129,14 +129,14 @@
 
 
   .dropdown-menu li:first-child
-    border-top-left-radius: $base-border-radius
-    border-top-right-radius: $base-border-radius
+    border-top-left-radius: $b-border-radius
+    border-top-right-radius: $b-border-radius
 
 
   .dropdown-menu li:last-child
     border: none
-    border-bottom-left-radius: $base-border-radius
-    border-bottom-right-radius: $base-border-radius
+    border-bottom-left-radius: $b-border-radius
+    border-bottom-right-radius: $b-border-radius
 
 
   .show-menu
