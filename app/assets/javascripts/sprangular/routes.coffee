@@ -14,7 +14,7 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'account/show.html'
       resolve:
         user: (Account) ->
-          Account.init().then -> Account.user
+          Account.reload().then -> Account.user
 
     .when '/products',
       controller: 'ProductListCtrl'
@@ -88,6 +88,3 @@ Sprangular.config ($routeProvider) ->
 
     .otherwise
       templateUrl: '404.html'
-
-  _.each Sprangular.routeDefs, (fn) ->
-    fn($routeProvider)

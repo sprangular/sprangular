@@ -1,14 +1,17 @@
 #account
-  h1 My Account
+  h1
+    | {{ :: 'nav.my_account' | translate }}
 
   .well
     div ng-hide="editing"
       dl
-        dt Email
+        dt
+          | {{ :: 'account.email' | translate }}
         dd
           | {{user.email}}
 
-        dt Password
+        dt
+          | {{ :: 'account.password' | translate }}
         dd •••••••
 
       .clearfix
@@ -16,7 +19,7 @@
           a.btn.btn-primary.btn-lg(ng-click="edit()")
             span.glyphicon.glyphicon-edit
             | &nbsp;
-            | Edit
+            | {{ :: 'crud.edit' | translate }}
 
     div ng-show="editing"
       div ng-include="'account/edit.html'"
@@ -25,4 +28,4 @@
 
   .clearfix ng-include="'addresses/index.html'" ng-controller="AddressListCtrl"
 
-  .clearfix ng-include="'orders/index.html'" ng-controller="OrdersListCtrl"
+  .clearfix ng-include="'orders/index.html'" ng-controller="OrderListCtrl"

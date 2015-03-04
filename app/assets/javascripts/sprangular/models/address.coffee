@@ -19,7 +19,10 @@ class Sprangular.Address
     "#{@firstname} #{@lastname}"
 
   shortAddress: ->
-    "#{@fullName()}, #{@addressLine()}, #{@city} #{@state.abbr}, #{@zipcode}"
+    "#{@fullName()}, #{@addressLine()}, #{@city} #{@actualStateName()}, #{@zipcode}"
+
+  actualStateName: ->
+    @state?.abbr || @state_name
 
   addressLine: ->
     if @address2
@@ -59,3 +62,14 @@ class Sprangular.Address
       @zipcode == other.zipcode &&
       @countryId == other.countryId &&
       @stateId == other.stateId
+
+  key: ->
+    [@firstname,
+     @lastname,
+     @address1,
+     @address2,
+     @city,
+     @phone,
+     @zipcode,
+     @countryId,
+     @stateId].join('')

@@ -1,7 +1,9 @@
 section.properties.row(ng-show="product.product_properties.length > 0")
   .col-md-12
     .panel.panel-default
-      .panel-heading Specifications
+      .panel-heading
+        | {{:: 'orders.specs' | translate }}
+
 
       .panel-body
         dl.dl-horizontal

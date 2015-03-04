@@ -1,4 +1,4 @@
-Sprangular.defineRoutes ($routeProvider) ->
+angular.module('DummyApp').config ($routeProvider) ->
   $routeProvider
     .when '/about',
       templateUrl: 'static/about.html'

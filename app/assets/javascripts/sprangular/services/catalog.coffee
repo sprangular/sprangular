@@ -1,6 +1,6 @@
-Sprangular.service 'Catalog', ($http, $q, _, Status) ->
+Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
   service =
-    pageSize: 8
+    pageSize: Env.config.product_page_size
 
     products: (search=null, page=1, options) ->
       options ||= {}
@@ -14,6 +14,11 @@ Sprangular.service 'Catalog', ($http, $q, _, Status) ->
       $http.get("/api/taxonomies")
         .then (response) ->
           response.data
+
+    taxonsByName: (name) ->
+      $http.get("spree/api/taxonomies?q[name_eq]=#{name}")
+        .then (response) ->
+          response.data.taxonomies[0].root.taxons
 
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")

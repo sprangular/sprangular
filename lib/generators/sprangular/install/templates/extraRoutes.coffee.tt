@@ -1,4 +1,4 @@
-Sprangular.defineRoutes ($routeProvider) ->
+angular.module('<%= module_name %>').config ($routeProvider) ->
 
   $routeProvider
     .when '/about',

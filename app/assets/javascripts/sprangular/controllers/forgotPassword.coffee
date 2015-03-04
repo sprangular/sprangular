@@ -1,5 +1,13 @@
-Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Flash, Status) ->
-  Status.title = 'Forgot Password'
+Sprangular.controller 'ForgotPasswordCtrl', (
+  $scope,
+  $location,
+  Account,
+  Flash,
+  Status,
+  $translate
+) ->
+  $translate('app.forgot_password').then (paragraph) ->
+    Status.title = paragraph
 
   request = { email: '', errors: {} }
 
@@ -10,10 +18,11 @@ Sprangular.controller 'ForgotPasswordCtrl', ($scope, $location, Account, Flash, 
 
     success = ->
       $location.path '/'
-      Flash.success("We've sent you an email with a link to reset your password.")
+      Flash.error('app.confirm_reset_password')
 
     error = (response) ->
-      request.errors['email'] = 'Email address not found'
+      $translate('app.email_not_found').then (paragraph) ->
+        request.errors['email'] = paragraph
 
     Account.forgotPassword(request).then(success, error)
 

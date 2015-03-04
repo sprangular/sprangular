@@ -1,15 +1,17 @@
 #checkout-complete.container
   .row
     .col-lg-12
-      h1 Success!
+      h1
+        | {{ :: 'checkout.success' | translate }}
 
       p
-        | Your order <strong>\#{{order.number}}</strong> was successfully submitted, you'll receive an email receipt shortly.
+        | {{ :: 'checkout.success_msg' | translate:'{ order_number: order.number }' }}
 
       pre
         | {{ order.state }}
 
       section#share
+        / TODO: Extract to Sprangular Social
         p Share your order:
 
         p

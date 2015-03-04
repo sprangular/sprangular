@@ -13,7 +13,7 @@
 // Angular specific
 //
 
-//= require angular-resource
+//= require angular-translate
 //= require angular-route
 //= require angular-sanitize
 //= require angular-animate

@@ -9,7 +9,6 @@
 #= require_tree ./directives
 #= require_tree ./interceptors
 #= require_tree ./helpers
-#= require_tree ./filters
 #= require_tree ./models
 
 window.prerenderReady = false

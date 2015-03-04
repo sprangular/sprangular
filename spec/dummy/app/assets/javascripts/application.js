@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require sprangular
+//= require sprangular/host
 //= require sprangular/extraRoutes
-//= require_tree .

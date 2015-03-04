@@ -39,7 +39,7 @@ class Spree::UserSessionsController < Devise::SessionsController
           render :new
         }
         format.json {
-          render :json => { error: t('devise.failure.invalid') }, status: :unprocessable_entity
+          render json: { error: t('devise.failure.invalid') }, status: :unprocessable_entity, layout: false
         }
       end
     end

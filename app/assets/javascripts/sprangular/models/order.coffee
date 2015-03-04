@@ -22,6 +22,7 @@ class Sprangular.Order
     @shipmentState = null
     @shippingRates = []
     @shippingRate = null
+    @token = null
 
   load: (data) ->
     @clear()
@@ -33,6 +34,7 @@ class Sprangular.Order
     @shipTotal = Number(data.ship_total)
     @adjustmentTotal = Number(data.adjustment_total)
     @total = Number(data.total)
+    @token = data.token
     @shipToBillAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []

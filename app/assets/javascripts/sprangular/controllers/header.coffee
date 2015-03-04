@@ -1,4 +1,15 @@
-Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, Env, Flash, Status, Angularytics) ->
+Sprangular.controller "HeaderCtrl", (
+  $scope,
+  $location,
+  Cart,
+  Account,
+  Catalog,
+  Env,
+  Flash,
+  Status,
+  Angularytics,
+  $translate
+) ->
 
   $scope.cart = Cart
   Catalog.taxonomies().then (taxonomies) ->
@@ -15,7 +26,7 @@ Sprangular.controller "HeaderCtrl", ($scope, $location, Cart, Account, Catalog, 
       .then (content) ->
         Angularytics.trackEvent("Account", "Logout")
         $scope.$emit('account.logout')
-        Flash.success "Successfully logged out"
+        Flash.success 'app.logout_success'
         $location.path '/'
 
   $scope.login = ->

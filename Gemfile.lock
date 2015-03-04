@@ -75,15 +75,22 @@ PATH
   remote: .
   specs:
     sprangular (0.0.1)
-      angularjs-rails (= 1.3.8)
       bourbon
       coffee-rails
       font-awesome-rails (~> 4.2)
       geocoder
       jquery-rails
       neat
+      ngannotate-rails
+      prerender_rails
       rack-rewrite
       rails
+      rails-assets-angular (= 1.3.9)
+      rails-assets-angular-animate
+      rails-assets-angular-i18n
+      rails-assets-angular-route
+      rails-assets-angular-sanitize
+      rails-assets-angular-translate
       rails-assets-angularytics
       rails-assets-jasmine-sinon
       rails-assets-sinon
@@ -139,13 +146,12 @@ GEM
     acts_as_list (0.6.0)
       activerecord (>= 3.0)
     addressable (2.3.6)
-    angularjs-rails (1.3.8)
     arel (5.0.1.20140414130214)
     awesome_nested_set (3.0.2)
       activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.9)
-    bourbon (4.1.1)
-      sass (~> 3.3)
+    bourbon (4.2.1)
+      sass (~> 3.4)
       thor
     builder (3.2.2)
     camertron-eprun (1.1.0)
@@ -162,6 +168,9 @@ GEM
       unicode_utils (~> 1.4.0)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (0.0.8)
+      nokogiri (~> 1.6)
+      version_sorter (~> 1.1)
     cldr-plurals-runtime-rb (1.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -175,7 +184,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.8.0)
+    coffee-script-source (1.9.1)
     colorize (0.7.5)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
@@ -197,7 +206,7 @@ GEM
       devise (>= 2.1.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    execjs (2.2.2)
+    execjs (2.3.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     ffaker (1.31.0)
@@ -206,7 +215,7 @@ GEM
       railties (>= 3.2, < 5.0)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
-    geocoder (1.2.6)
+    geocoder (1.2.7)
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.3)
@@ -242,10 +251,11 @@ GEM
     neat (1.7.1)
       bourbon (>= 4.0)
       sass (>= 3.3)
+    ngannotate-rails (0.15.4)
+      execjs
+      rails (>= 3.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
-    nyan-cat-formatter (0.11)
-      rspec (>= 2.99, >= 2.14.2, < 4)
     offsite_payments (2.0.1)
       active_utils (~> 2.2.0)
       activesupport (>= 3.2.14, < 5.0.0)
@@ -276,6 +286,9 @@ GEM
     premailer-rails (1.8.0)
       actionmailer (>= 3, < 5)
       premailer (~> 1.7, >= 1.7.9)
+    prerender_rails (1.1.2)
+      activesupport
+      rack
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -296,7 +309,16 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.9)
       sprockets-rails (~> 2.0)
-    rails-assets-angular (1.3.8)
+    rails-assets-angular (1.3.9)
+    rails-assets-angular-animate (1.3.9)
+      rails-assets-angular (= 1.3.9)
+    rails-assets-angular-i18n (1.3.14)
+    rails-assets-angular-route (1.3.9)
+      rails-assets-angular (= 1.3.9)
+    rails-assets-angular-sanitize (1.3.9)
+      rails-assets-angular (= 1.3.9)
+    rails-assets-angular-translate (2.6.1)
+      rails-assets-angular (>= 1.2.26, <= 1.4)
     rails-assets-angularytics (0.3.0)
       rails-assets-angular
     rails-assets-jasmine (2.0.4)
@@ -304,9 +326,9 @@ GEM
       rails-assets-jasmine (~> 2.0.0)
       rails-assets-sinonjs (>= 1.7.1)
     rails-assets-sinon (1.12.2)
-    rails-assets-sinonjs (1.10.2)
-    rails-assets-underscore (1.7.0)
-    rails-assets-underscore.string (2.4.0)
+    rails-assets-sinonjs (1.12.2)
+    rails-assets-underscore (1.8.2)
+    rails-assets-underscore.string (3.0.3)
     railties (4.1.9)
       actionpack (= 4.1.9)
       activesupport (= 4.1.9)
@@ -319,10 +341,6 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
-    rspec (3.1.0)
-      rspec-core (~> 3.1.0)
-      rspec-expectations (~> 3.1.0)
-      rspec-mocks (~> 3.1.0)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -349,7 +367,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    slim (3.0.1)
+    slim (3.0.2)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slim-rails (3.0.1)
@@ -384,6 +402,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unicode_utils (1.4.0)
+    version_sorter (1.1.1)
     versioncake (2.3.1)
       actionpack (>= 3.2)
       activesupport (>= 3.2)
@@ -407,11 +426,11 @@ PLATFORMS
 DEPENDENCIES
   capybara
   capybara-angular
+  chromedriver-helper
   database_cleaner
   factory_girl
   ffaker
   letter_opener
-  nyan-cat-formatter
   poltergeist
   pry
   rspec-rails

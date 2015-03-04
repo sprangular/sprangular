@@ -1,7 +1,4 @@
-Spree.user_class.class_eval do
-
-  has_many :user_authentications, :dependent => :destroy
-
+module Sprangular::UserDecorator
   def past_bill_addresses
     past_addresses :bill_address
   end
@@ -14,7 +11,7 @@ Spree.user_class.class_eval do
     orders.complete.order('updated_at DESC')
   end
 
-private
+  private
 
   def past_addresses(address_type)
     addresses = (past_orders_with_most_recent_first(address_type).map(&address_type) + [send(address_type)]).compact
@@ -27,6 +24,6 @@ private
   def past_orders_with_most_recent_first(address_type)
     completed_orders.includes(address_type => [:state, :country])
   end
-
 end
 
+Spree.user_class.send(:prepend, Sprangular::UserDecorator)

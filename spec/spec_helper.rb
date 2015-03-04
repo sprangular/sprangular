@@ -54,15 +54,22 @@ require 'paperclip/matchers'
 if ENV['WEBDRIVER'] == 'selenium'
   require 'selenium-webdriver'
   Capybara.default_driver = :selenium
+
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
 else
   require 'capybara/poltergeist'
 
   Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, timeout: 120)
+    Capybara::Poltergeist::Driver.new(app, timeout: 120,
+                                           phantomjs_logger: StringIO.new)
   end
 
   Capybara.javascript_driver = :poltergeist
 end
+
+Capybara.raise_server_errors = false
 
 RSpec.configure do |config|
   config.color = true
@@ -121,6 +128,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
 
   config.include Capybara::Angular::DSL
+  config.include RouteChange, type: :feature
 
   config.fail_fast = ENV['FAIL_FAST'] || false
 end

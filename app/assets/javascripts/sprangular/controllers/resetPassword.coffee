@@ -1,5 +1,6 @@
 Sprangular.controller 'ResetPasswordCtrl', ($scope, $location, $routeParams, Account, Status, Flash) ->
-  Status.pageTitle = 'Reset password'
+  Status.setPageTitle('account.reset_password')
+
   request = { password: '', password_confirmation: '', reset_password_token: $routeParams.token, errors: {} }
 
   $scope.request = request
@@ -9,7 +10,8 @@ Sprangular.controller 'ResetPasswordCtrl', ($scope, $location, $routeParams, Acc
 
     Account.resetPassword(request)
       .then (content) ->
-        Flash.success 'Your password was saved. By the way, we signed you in at the same time.'
+        Flash.success 'app.password_saved'
+
         $location.path('/')
 
       , (errors) ->

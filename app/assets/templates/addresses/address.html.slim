@@ -1,25 +1,32 @@
 .address
   dl.dl-horizontal
-    dt Name
+    dt
+      | {{:: 'address.name' | translate }}
     dd(ng-bind='address.fullName()')
 
-    dt Address
+    dt
+      | {{:: 'address.address' | translate }}
     dd
       | {{address.address1}}
       br(ng-if='address.address2')
       | {{address.address2}}
 
-    dt City
+    dt
+      | {{:: 'address.city' | translate }}
     dd(ng-bind='address.city')
 
-    dt State/Province
-    dd(ng-bind='address.state.name')
+    dt
+      | {{:: 'address.state' | translate }}
+    dd(ng-bind='address.actualStateName()')
 
-    dt Country
+    dt
+      | {{:: 'address.country' | translate }}
     dd(ng-bind='address.country.name')
 
-    dt Zip Code
+    dt
+      | {{:: 'address.zip' | translate }}
     dd(ng-bind='address.zipcode')
 
-    dt Phone
+    dt
+      | {{:: 'address.phone' | translate }}
     dd(ng-bind='address.phone')
