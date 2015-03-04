@@ -242,14 +242,28 @@ header.navigation
       clear: none
       float: right
 
+  .sign-up,
+  .log-out,
+  .my-account
+    a
+      display: inline-block
+      margin-top: 1em
+
+  .sign-up,
+  .log-out
+    a
+      float: right
+      font-size: 0.8em
+      padding: 0.75em 1em
+      text-transform: uppercase
+
   .sign-up
-    @include button(flat, $base-accent-color)
-    display: inline
-    float: right
-    font-size: 0.8em
-    margin-top: 1em
-    padding: 0.75em 1em
-    text-transform: uppercase
+    a
+      @include button(flat, $light-green)
+
+  .log-out
+    a
+      @include button(flat, $base-accent-color)
 
   .search-bar,
   .dashboard
@@ -262,7 +276,7 @@ header.navigation
     $search-bar-background: lighten($search-bar-border-color, 10%)
 
     float: left
-    padding: 0.85em 0.6em 0.7em 0.6em
+    padding: 1.25em 0.6em 0.7em 0.6em
     width: 60%
 
     form
@@ -310,3 +324,8 @@ header.navigation
   .dashboard
     ul li
       display: inline-block
+      margin-left: $b-space
+      vertical-align: middle
+
+      a
+        cursor: pointer

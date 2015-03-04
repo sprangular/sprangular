@@ -32,10 +32,13 @@ header.navigation(role="navigation" ng-controller="HeaderCtrl")
       .dashboard
         ul
           li.sign-up(ng-hide="account.isLogged")
-            a.sign-up(ng-click="login()") Sign in
+            a(ng-click="login()") Sign in
 
           li.my-account
-            a(ng-click="goToMyAccount()" ng-show="account.isLogged") My Account
+            a(ng-click="goToMyAccount()" ng-show="account.isLogged")
+              .fa-stack.fa-lg
+                .fa.fa-circle.fa-stack-2x
+                .fa.fa-user.fa-stack-1x.fa-inverse
 
           li.log-out(ng-show="account.isLogged")
             a(ng-click="logout()") Log out
