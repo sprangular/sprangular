@@ -12,17 +12,11 @@ Sprangular.directive 'promoForm', ->
       $scope.showPromoEntry = false
 
     $scope.save = ->
-      Angularytics.trackEvent("Cart", "Coupon added", $scope.promoCode)
-
-      error = (message) ->
-        $scope.promoCode = ''
-        $scope.error = message
-
       Checkout.savePromo($scope.promoCode)
-        .success (response) ->
-          if response.error
-            error(response.error)
-          else
-            $scope.reset()
-        .error ->
-          error('An error occured')
+        .then ->
+          Angularytics.trackEvent("Cart", "Coupon added", $scope.promoCode)
+          $scope.reset()
+
+        , (response) ->
+          $scope.promoCode = ''
+          $scope.error = response.error
