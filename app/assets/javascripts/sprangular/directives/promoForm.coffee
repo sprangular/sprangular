@@ -7,6 +7,10 @@ Sprangular.directive 'promoForm', ->
     $scope.showPromoEntry = false
     $scope.promoCode = ''
 
+    $scope.reset = ->
+      $scope.promoCode = ''
+      $scope.showPromoEntry = false
+
     $scope.save = ->
       Angularytics.trackEvent("Cart", "Coupon added", $scope.promoCode)
 
@@ -19,7 +23,6 @@ Sprangular.directive 'promoForm', ->
           if response.error
             error(response.error)
           else
-            $scope.promoCode = ''
-            $scope.showPromoEntry = false
+            $scope.reset()
         .error ->
           error('An error occured')

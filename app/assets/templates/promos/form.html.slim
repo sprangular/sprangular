@@ -13,4 +13,7 @@ section#promo-selection
       button.btn.btn-primary(type='submit')
         | {{:: 'crud.save' | translate }}
 
+      a.btn.btn-link(ng-click='reset()')
+        | {{:: 'crud.cancel' | translate }}
+
     p.error(ng-bind='error' ng-show='error')
