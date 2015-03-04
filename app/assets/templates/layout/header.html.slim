@@ -29,15 +29,18 @@ header.navigation(role="navigation" ng-controller="HeaderCtrl")
         ng-options="product.name as product.name for product in getProducts($viewValue)")
           button(type="submit" ng-click="doSearch()")
             img(alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png")
-      a.sign-up(ng-hide="account.isLogged" ng-click="login()") Sign in
-      ul
-        li.my-account
-          a(ng-click="goToMyAccount()" ng-show="account.isLogged") My Account
+      .dashboard
+        ul
+          li.sign-up(ng-hide="account.isLogged")
+            a.sign-up(ng-click="login()") Sign in
 
-        li.log-out(ng-show="account.isLogged")
-          a(ng-click="logout()") Log out
+          li.my-account
+            a(ng-click="goToMyAccount()" ng-show="account.isLogged") My Account
 
-        li.cart
-          a.cart-link(data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
-            span.glyphicon.glyphicon-shopping-cart
-            span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
+          li.log-out(ng-show="account.isLogged")
+            a(ng-click="logout()") Log out
+
+          li.cart
+            a.cart-link(data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
+              span.glyphicon.glyphicon-shopping-cart
+              span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
