@@ -36,13 +36,16 @@ describe "Promo", js: true do
 
       click_on "Save"
     end
+
+    while page.evaluate_script("document.querySelector('.loading')")
+      sleep 0.1
+    end
   end
 
   scenario "adding a coupon code" do
     add_coupon("10off")
 
     total = page.find(:css, '.total .number')
-
     expect(total.text).to eq('$9.99')
   end
 
