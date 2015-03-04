@@ -132,6 +132,7 @@ en:
       add: Add Coupon
       code: Code
     products:
+      select_option: Select option
       no_products:
       sold_out: Sold Out
       specs: Specfications
