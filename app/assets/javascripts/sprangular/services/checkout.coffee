@@ -3,10 +3,24 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
   service =
     savePromo: (code) ->
       params =
-        order:
-          coupon_code: code
+        coupon_code: code
 
-      @put(params)
+      deferred = $q.defer()
+
+      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params))
+           .success (response) ->
+             Cart.load(response.order)
+
+             if response.error
+               deferred.reject(response)
+             else
+               deferred.resolve(response)
+
+           .error (response) ->
+             response.error ||= "Coupon code #{code} not found."
+             deferred.reject(response)
+
+      deferred.promise
 
     update: (goto) ->
       order = Cart.current
