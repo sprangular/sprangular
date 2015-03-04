@@ -2,9 +2,6 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
   service =
     pageSize: Env.config.product_page_size
 
-    fetched:
-      taxonomies: null
-
     products: (search=null, page=1, options) ->
       options ||= {}
       options.search = search
@@ -13,22 +10,16 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     productsByTaxon: (path, page=1) ->
       @getPaged(page, taxon: path)
 
-    taxonomies: (refetch=true)->
-      q = $q.defer()
-      _service = @
-      if !refetch and _service.fetched.taxonomies isnt null
-        q.resolve _service.fetched.taxonomies
-      else
-        $http.get("/api/taxonomies")
-          .then (response) ->
-            _service.fetched.taxonomies = response.data
-            q.resolve response.data
-      return q.promise
-
-    taxonsByName: (name) ->
-      $http.get("spree/api/taxonomies?q[name_eq]=#{name}")
+    taxonomies: (name)->
+      $http.get("/api/taxonomies", {cache: true})
         .then (response) ->
-          response.data.taxonomies[0].root.taxons
+          if name
+            $log.debug "taxonomies - if name", response
+            _.each response, (taxon)->
+              if taxon.name is name
+                return taxon.root.taxons
+          else
+            response.data            
 
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")
