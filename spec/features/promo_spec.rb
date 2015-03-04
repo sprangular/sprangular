@@ -42,6 +42,7 @@ describe "Promo", js: true do
     add_coupon("10off")
 
     total = page.find(:css, '.total .number')
+
     expect(total.text).to eq('$9.99')
   end
 
@@ -50,5 +51,11 @@ describe "Promo", js: true do
     add_coupon("10off")
 
     expect(page).to have_content("The coupon code has already been applied")
+  end
+
+  scenario "adding an invalid coupon code" do
+    add_coupon("ALL-FREE")
+
+    expect(page).to have_content("The coupon code you entered doesn't exist")
   end
 end
