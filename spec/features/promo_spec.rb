@@ -21,26 +21,34 @@ describe "Promo", js: true do
 
   before do
     product.master.stock_items.update_all(count_on_hand: 1)
-  end
 
-  scenario "adding a coupon code" do
     visit sprangular_engine.root_path(anchor: "!/products/#{product.slug}")
 
     page.find(:css, '.add-to-cart').click
     page.find(:css, '.cart-link').click
+  end
 
-    total = page.find(:css, '.total .number')
-    expect(total.text).to eq('$19.99')
-
+  def add_coupon(code)
     page.find('a', text: 'Add Coupon').click
 
     within :css, "form[name=PromoForm]" do
-      fill_in "promo-code", with: "10off"
+      fill_in "promo-code", with: code
 
       click_on "Save"
     end
+  end
+
+  scenario "adding a coupon code" do
+    add_coupon("10off")
 
     total = page.find(:css, '.total .number')
     expect(total.text).to eq('$9.99')
+  end
+
+  scenario "adding coupon twice shows error" do
+    add_coupon("10off")
+    add_coupon("10off")
+
+    expect(page).to have_content("The coupon code has already been applied")
   end
 end
