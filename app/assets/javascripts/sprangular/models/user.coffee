@@ -8,9 +8,9 @@ class Sprangular.User
     @orders      = Sprangular.extend(@orders, Sprangular.Order)
     @creditCards = Sprangular.extend(@payment_sources, Sprangular.CreditCard)
 
-    @allowOneClick = @creditCards.length > 0 && @addresses.length > 0
-
     @_mergeAddressLists()
+
+    @allowOneClick = @creditCards.length > 0 && @addresses.length > 0
 
   serialize: ->
     _.omit this, (value) ->
