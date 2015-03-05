@@ -1,28 +1,32 @@
-.b-gridContainer
-  .m-listing
-    .m-listing-item(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable()}")
-      h2.title
-        a(ng-href='{{product.permalink}}' ng-bind="product.name")
+.m-listing-wrapper
+  .b-gridContainer
+    .m-listing
+      .m-listing-item(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable()}")
+        h4.title
+          a(ng-href='{{product.permalink}}' ng-bind="product.name")
 
-      .with-variants(ng-show="product.hasVariants")
-        variant-selection(product="product" variant="selectedVariants[product.id]" class="{'btn-group-xs': true}")
+        a.image(ng-href='{{product.permalink}}')
+          img(ng-src="{{product.image.largeUrl}}")
 
-        p.sold-out(ng-if="selectedVariants[product.id] && !selectedVariants[product.id].isAvailable()") Sold out
+        h5.price
+          | {{(selectedVariants[product.id] || product).price | currency : currencySymbol }}
 
-        add-to-cart-button(ng-if="!selectedVariants[product.id] || selectedVariants[product.id].isAvailable()"
-                           product="product"
-                           variant="selectedVariants[product.id]"
-                           quantity=1
-                           class="{'btn-primary': true}")
+        .with-variants(ng-show="product.hasVariants")
+          variant-selection(product="product" variant="selectedVariants[product.id]" class="{'btn-group-xs': true}")
 
-      .without-variants(ng-hide="product.hasVariants")
-        p.sold-out(ng-if="!product.isAvailable()") Sold out
+          p.sold-out(ng-if="selectedVariants[product.id] && !selectedVariants[product.id].isAvailable()") Sold out
 
-        add-to-cart-button(ng-if="product.isAvailable()"
-                           product="product"
-                           variant="product.master"
-                           quantity=1
-                           class="{'btn-primary': true}")
+          add-to-cart-button(ng-if="!selectedVariants[product.id] || selectedVariants[product.id].isAvailable()"
+                             product="product"
+                             variant="selectedVariants[product.id]"
+                             quantity=1
+                             class="{'btn-primary': true}")
 
-      a(ng-href='{{product.permalink}}')
-        img(ng-src="{{product.image.largeUrl}}")
+        .without-variants(ng-hide="product.hasVariants")
+          p.sold-out(ng-if="!product.isAvailable()") Sold out
+
+          add-to-cart-button(ng-if="product.isAvailable()"
+                             product="product"
+                             variant="product.master"
+                             quantity=1
+                             class="{'btn-primary': true}")
