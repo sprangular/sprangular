@@ -1,4 +1,36 @@
+.m-listing-wrapper
+  background: $lighter-gray
+  padding: 25px 0
+
 .m-listing
   .m-listing-item
     @include span-columns(3)
     @include omega(4n)
+    @include border-top-radius(3px)
+    @include border-bottom-radius(3px)
+    background: white
+    border-top: 6px solid $light-gray
+    margin-bottom: $b-space
+    overflow: hidden
+    padding-top: $b-space
+
+    .title, .image
+      padding: 0 $b-space
+
+    .price, .add-to-cart
+      text-align: right
+
+    .image
+      display: block
+      margin: $b-space 0
+
+    .price
+      padding: 0 1em
+      margin-bottom: .5em
+
+    .add-to-cart
+      @include border-top-radius(0)
+      @include border-bottom-radius(0)
+      background: $medium-green
+      text-align: right
+      width: 100%
