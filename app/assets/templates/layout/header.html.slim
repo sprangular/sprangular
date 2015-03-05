@@ -32,19 +32,20 @@ header.navigation(role="navigation" ng-controller="HeaderCtrl")
               img(alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png")
         .dashboard
           ul
-            li.sign-up(ng-hide="account.isLogged")
-              a(ng-click="login()") Sign in
-
             li.my-account
               a(ng-click="goToMyAccount()" ng-show="account.isLogged")
                 .fa-stack.fa-lg
                   .fa.fa-circle.fa-stack-2x
                   .fa.fa-user.fa-stack-1x.fa-inverse
 
+            li.cart
+              a.cart-link.button(data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
+                i.fa.fa-shopping-cart
+                | &nbsp;
+                span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
+
+            li.sign-up(ng-hide="account.isLogged")
+              a(ng-click="login()") Sign in
+
             li.log-out(ng-show="account.isLogged")
               a(ng-click="logout()") Log out
-
-            li.cart
-              a.cart-link(data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
-                span.glyphicon.glyphicon-shopping-cart
-                span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
