@@ -10,35 +10,37 @@ module Sprangular
     end
 
     def js_environment
-      config = ::Spree::Config
-      store = Spree::Store.current
-      templates = Hash[
-        Rails.application.assets.each_logical_path.
-        select { |file| file.end_with?('html') }.
-        map do |file|
-          path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
+      Rails.cache.fetch('js_environment') do
+        config = ::Spree::Config
+        store = Spree::Store.current
+        templates = Hash[
+          Rails.application.assets.each_logical_path.
+          select { |file| file.end_with?('html') }.
+          map do |file|
+            path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
 
-          [file, path]
-        end
-      ]
+            [file, path]
+          end
+        ]
 
-      {
-        env: Rails.env,
-        config: {
-          site_name: store.seo_title || store.name,
-          logo: asset_path(config.logo),
-          locale: I18n.locale,
-          currency: Money::Currency.table[current_currency.downcase.to_sym],
-          supported_locales: supported_locales,
-          default_country_id: config.default_country_id,
-          payment_methods: payment_methods,
-          image_sizes:
-            Spree::Image.attachment_definitions[:attachment][:styles].keys,
-          product_page_size: Spree::Config.products_per_page
-        },
-        translations: current_translations,
-        templates: templates
-      }
+        {
+          env: Rails.env,
+          config: {
+            site_name: store.seo_title || store.name,
+            logo: asset_path(config.logo),
+            locale: I18n.locale,
+            currency: Money::Currency.table[current_currency.downcase.to_sym],
+            supported_locales: supported_locales,
+            default_country_id: config.default_country_id,
+            payment_methods: payment_methods,
+            image_sizes:
+              Spree::Image.attachment_definitions[:attachment][:styles].keys,
+            product_page_size: Spree::Config.products_per_page
+          },
+          translations: current_translations,
+          templates: templates
+        }
+      end
     end
 
     def supported_locales
