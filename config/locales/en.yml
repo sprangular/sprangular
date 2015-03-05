@@ -93,7 +93,7 @@ en:
       summary: Summary
       name: Name
       quantity: Quantity
-      success: Success
+      success: Order Submitted
       sub_total: Sub Total
       shipping: Shipping
       tax: Taxes
