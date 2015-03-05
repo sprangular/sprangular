@@ -21,7 +21,7 @@ describe "Checkout", js: true do
     product.master.stock_items.update_all(count_on_hand: 1)
 
     visit sprangular_engine.root_path(anchor: "!/products/#{product.slug}")
-    wait_for_route_changes
+    wait_for_loading
 
     page.find(:css, '.add-to-cart').click
 

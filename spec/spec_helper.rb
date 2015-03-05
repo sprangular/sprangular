@@ -128,7 +128,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
 
   config.include Capybara::Angular::DSL
-  config.include RouteChange, type: :feature
+  config.include AngularHelpers, type: :feature
 
   config.fail_fast = ENV['FAIL_FAST'] || false
 end

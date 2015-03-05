@@ -5,7 +5,7 @@ describe "User", js: true do
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within 'header' do
       page.find('a', text: 'Sign in').click
@@ -39,7 +39,7 @@ describe "User", js: true do
 
   scenario "sign up" do
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within 'header' do
       page.find('a', text: 'Sign in').click
@@ -67,7 +67,7 @@ describe "User", js: true do
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within 'header' do
       page.find('a', text: 'My Account').click
@@ -87,7 +87,7 @@ describe "User", js: true do
 
   scenario "redirected to requested page after sign up" do
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within 'header' do
       page.find('a', text: 'My Account').click
@@ -113,7 +113,7 @@ describe "User", js: true do
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within 'header' do
       page.find('a', text: 'Sign in').click
@@ -134,7 +134,7 @@ describe "User", js: true do
     raw_token = user.send_reset_password_instructions
 
     visit sprangular_engine.root_path(anchor: "!/reset-password/#{raw_token}")
-    wait_for_route_changes
+    wait_for_loading
 
     within :css, "form[name=ResetPasswordForm]" do
       fill_in "password",              with: "654321"
@@ -155,7 +155,7 @@ describe "User", js: true do
     user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
 
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within 'header' do
       page.find('a', text: 'Sign in').click
