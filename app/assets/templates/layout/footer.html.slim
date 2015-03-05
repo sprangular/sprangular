@@ -1,21 +1,12 @@
-footer.container-fluid(ng-controller="FooterCtrl")
-  .row
-    .col-lg-6
+footer(ng-controller="FooterCtrl")
+  .b-gridContainer
+    p
       small
         | Powered by&nbsp;
         a(ng-href="https://github.com/DynamoMTL/sprangular") Sprangular
-      p
-        small
-          ng-include(src="'layout/locales.html'")
+      br
+      small
+        ng-include(src="'layout/locales.html'")
 
-    .col-lg-6.clearfix
-      a.dynamo(ng-href="http://godynamo.com/")
-        .level1
-          span.d D
-          span.y Y
-          span.n N
-        .level2
-          span.a A
-          span.m M
-        .level3
-          span.o O
+    a.dynamo(ng-href="http://godynamo.com/")
+      img(ng-src="assets/logo_dynamo.png")
