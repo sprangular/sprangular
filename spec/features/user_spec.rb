@@ -150,4 +150,39 @@ describe "User", js: true do
       expect(page).to_not have_content("Sign in")
     end
   end
+
+  scenario "update account details" do
+    user = create(:user, email: 'user@example.com', password: '123456', password_confirmation: '123456')
+
+    visit sprangular_engine.root_path
+    wait_for_route_changes
+
+    within 'header' do
+      page.find('a', text: 'Sign in').click
+    end
+
+    within :css, 'form[name=signinForm]' do
+      fill_in "email",    with: "user@example.com"
+      fill_in "password", with: "123456"
+
+      click_on "Sign in"
+    end
+
+    within 'header' do
+      page.find('a', text: 'My Account').click
+    end
+
+    page.find(:css, '#account a').click
+
+    within :css, 'form[name=accountForm]' do
+      fill_in "email",    with: "user2@example.com"
+      fill_in "password", with: "123456"
+      fill_in "password_confirmation", with: "123456"
+
+      click_on "Update"
+    end
+
+    user.reload
+    expect(user.email).to eql("user2@example.com")
+  end
 end
