@@ -1,14 +1,15 @@
-a.add-to-cart.button(ng-click="addToCart()" ng-class="class" ng-disabled="adding || !variant" ng-show='variant || !product.hasVariants')
-  span(ng-show="adding")
-    | {{:: 'directives.adding' | translate }} &nbsp;
-    i.fa.fa-refresh.fa-spin
+a.add-to-cart(ng-class="class" ng-show='variant || !product.hasVariants')
+  .button(ng-click="addToCart()" ng-disabled="adding || !variant")
+    span(ng-show="adding")
+      | {{:: 'directives.adding' | translate }} &nbsp;
+      i.fa.fa-refresh.fa-spin
 
-  span(ng-hide="adding")
-    span.caption
-      span(ng-hide="inCart()")
-        | {{:: 'directives.add_to_cart' | translate }}
-      span(ng-show="inCart() && quantity <= 1")
-        | {{:: 'directives.add_another' | translate }}
-      span(ng-show="inCart() && quantity > 1" translate='directives.add_quantity' translate-values='{quantity: quantity}')
-    | &nbsp;
-    i.fa.fa-plus-circle
+    span(ng-hide="adding")
+      span.caption
+        span(ng-hide="inCart()")
+          | {{:: 'directives.add_to_cart' | translate }}
+        span(ng-show="inCart() && quantity <= 1")
+          | {{:: 'directives.add_another' | translate }}
+        span(ng-show="inCart() && quantity > 1" translate='directives.add_quantity' translate-values='{quantity: quantity}')
+      | &nbsp;
+      i.fa.fa-plus-circle
