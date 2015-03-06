@@ -10,9 +10,22 @@ Sprangular.directive 'variantSelection', ->
     change: '&'
   controller: ($scope) ->
     $scope.isVariantOpen = false
+    $scope.isWrapperOpen = false
+    $scope.variantSet = false
+    $scope.variantPresentations = false
 
     $scope.$watch 'variant', (newVariant, oldVariant)->
-      $scope.change({oldVariant: oldVariant, newVariant: newVariant}) if newVariant != oldVariant
+      if newVariant != oldVariant
+        $scope.change({oldVariant: oldVariant, newVariant: newVariant})
+        $scope.variantSet = true
+        $scope.isWrapperOpen = false
+
+        if(newVariant.option_values.length > 0)
+          $scope.variantPresentations = []
+
+          for value in newVariant.option_values
+            $scope.variantPresentations.push(value.presentation)
+
 
     $scope.$watchCollection 'values', (newValues) ->
       $scope.variant = $scope.product.variantForValues(_.values(newValues))
@@ -22,6 +35,9 @@ Sprangular.directive 'variantSelection', ->
 
     $scope.isValueAvailable = (value) ->
       $scope.product.availableValues(_.values($scope.values))
+
+    $scope.openWrapper = ->
+      $scope.isWrapperOpen = true
 
   link: (scope, element, attrs) ->
     scope.values = {}
