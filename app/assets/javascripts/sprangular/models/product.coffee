@@ -27,12 +27,12 @@ class Sprangular.Product
       variant.product = self
 
       _.each variant.option_values, (value) ->
-        type = _.find(self.option_types, (type) -> type.id == value.option_type_id )
-        if type
-          option = self.options[type.id]
+        option = self.options[value.option_type_id]
 
-          option.values[value.id] = {value: value, variants: []} unless option.values[value.id]
-          option.values[value.id].variants.push(variant)
+        if !option.values[value.id]
+          option.values[value.id] = angular.extend(value, variants: [])
+
+        option.values[value.id].variants.push(variant)
 
   variantForValues: (selectedValues) ->
     _.find @variants, (variant) ->
@@ -63,7 +63,4 @@ class Sprangular.Product
       @master.isAvailable()
 
   firstAvailableVariant: ->
-    if @variants.length == 1
-      @variants[0]
-    else
-      _.find @variants, (variant) -> variant.isAvailable()
+    _.find @variants, (variant) -> variant.isAvailable()
