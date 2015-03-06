@@ -1,11 +1,24 @@
-.option.row(ng-repeat="option in product.options" class="{{option.type.name}}")
-  .col-lg-12
-    .values.btn-group(ng-class="class")
-      button.btn.btn-default.option-title(disabled)
-        b(ng-bind='option.type.presentation')
+.flexi.row(ng-repeat="type in ad_hoc" class="{{type.name}}")
+  p
+    |{{type.option_type.presentation}}
+  .option(ng-repeat="option in type.ad_hoc_option_values")
+    input(type="radio"
+          name="option.name"
+          id="{{option.name}}"
+          ng-value="option.option_type_id")
+    label(for="{{option.name}}"
+          ng-bind="option.presentation")
 
-      button.btn.btn-default(ng-repeat="item in option.values"
-             ng-class="{'btn-success': isValueSelected(item.value)}"
-             ng-disabled="!isValueAvailable(item.value)"
-             ng-click="selectValue(item.value)"
-             ng-bind="item.value.presentation")
+.flexi.row(ng-repeat="type in custom" class="{{type.name}}")
+  p
+    |{{type.description}}
+  .option
+    input(type="radio"
+          name="type.name"
+          id="{{type.name}}"
+          ng-value="type.id")
+    label(for="{{type.name}}")
+      input(type="text"
+            name="{{type.name}}"
+            value=""
+            placeholder="{{type.presentation}}")

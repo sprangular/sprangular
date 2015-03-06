@@ -26,8 +26,5 @@ Sprangular.directive 'flexiSelection', ($log)->
     #   $scope.variant = $scope.product.variantForValues(_.values($scope.values))
 
   link: (scope, element, attrs) ->
-    # scope.values = {}
-
-    # if scope.variant
-    #   for value in scope.variant.option_values
-    #     scope.values[value.option_type_id] = value
+    scope.ad_hoc = if (scope.product.ad_hoc_option_types?) then scope.product.ad_hoc_option_types else null
+    scope.custom = if (scope.product.product_customization_types?) then scope.product.product_customization_types else null
