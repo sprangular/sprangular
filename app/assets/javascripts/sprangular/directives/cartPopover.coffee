@@ -16,6 +16,7 @@ Sprangular.directive 'cartPopover', ($timeout, $rootScope, $popover) ->
     $rootScope.$on 'cart.add', (event, args) ->
       content.variant = args.variant
       content.qty = args.qty
+      content.options = args.options
 
       popover.show()
 

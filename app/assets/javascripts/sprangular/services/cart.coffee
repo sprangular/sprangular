@@ -42,13 +42,13 @@ Sprangular.service "Cart", ($http) ->
       $http.delete '/api/cart'
         .success(@load)
 
-    addVariant: (variant, quantity) ->
+    addVariant: (variant, quantity, options=null) ->
       foundProducts = @findVariant(variant.id)
 
       if foundProducts.length > 0
         @changeItemQuantity(foundProducts[0], quantity)
       else
-        params = $.param(variant_id: variant.id, quantity: quantity)
+        params = $.param(variant_id: variant.id, quantity: quantity, options: options)
 
         $http.post '/api/cart/add_variant', params, ignoreLoadingIndicator: true
           .success (response) ->
