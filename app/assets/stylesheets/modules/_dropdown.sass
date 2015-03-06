@@ -32,18 +32,21 @@
   $dropdown-arrow-top-distance: 0
 
   .dropdown-container
+    border-bottom: $dropdown-border
+    border-left: $dropdown-border
+    border-right: $dropdown-border
+    border-top: $dropdown-border
+    border-bottom-right-radius: $b-border-radius
+    border-top-right-radius: $b-border-radius
+    border-bottom-left-radius: $b-border-radius
+    border-top-left-radius: $b-border-radius
     display: inline-block
     position: relative
     text-align: center
 
-
   .dropdown-description
     background: $dropdown-background
-    border-bottom-left-radius: $b-border-radius
-    border-bottom: $dropdown-border
-    border-left: $dropdown-border
-    border-top-left-radius: $b-border-radius
-    border-top: $dropdown-border
+    border-radius: inherit
     color: $dropdown-description-color
     float: left
     font-size: 0.7em
@@ -54,15 +57,9 @@
     @include media($large-screen)
       font-size: 1em
 
-
-
   .dropdown-button
     background: $dropdown-background
-    border-bottom-right-radius: $b-border-radius
-    border-top-right-radius: $b-border-radius
-    border-top: $dropdown-border
-    border-right: $dropdown-border
-    border-bottom: $dropdown-border
+    border-radius: inherit
     cursor: pointer
     float: right
     font-size: 0.7em
