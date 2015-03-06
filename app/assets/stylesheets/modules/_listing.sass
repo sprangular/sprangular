@@ -11,8 +11,8 @@
     background: white
     border-top: 6px solid $light-gray
     margin-bottom: $b-space
-    overflow: hidden
     padding-top: $b-space
+    position: relative
 
     .title, .image
       padding: 0 $b-space
@@ -21,7 +21,8 @@
       text-align: right
 
     .add-to-cart,
-    .dropdown .dropdown-container
+    .select-variant,
+    .dropdown-wrapper .dropdown-container
       width: 100%
 
     .image
@@ -32,8 +33,46 @@
       padding: 0 1em
       margin-bottom: .5em
 
+    .add-to-cart,
+    .select-variant
+      float: left
+
+      .button
+        @include border-top-radius(0)
+        @include border-bottom-radius(3px)
+        width: 100%
+
     .add-to-cart
-      @include border-top-radius(0)
-      @include border-bottom-radius(0)
-      background: $medium-green
       text-align: right
+
+      .button
+        background: $medium-green
+
+    .select-variant
+      .button
+        background: $medium-gray
+
+      .presentation
+        display: inline-block
+        margin-right: 5px
+
+      &.is-selected
+        width: 50%
+
+        .button
+          border-bottom-right-radius: 0
+
+    .dropdown-wrapper
+      bottom: -85px
+      left: 0
+      position: absolute
+      width: 100%
+      z-index: $stratum-lowest
+
+    .with-variants
+      .add-to-cart
+        width: 50%
+
+        .button
+          border-bottom-left-radius: 0
+
