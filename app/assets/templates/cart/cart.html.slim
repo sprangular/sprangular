@@ -40,14 +40,6 @@
                   section.options(ng-show='item.variant.product.hasVariants')
                     variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
 
-                  / options-selection will go here
-                  / div for each adhoc type
-                  /   title
-                  /   possible values
-                  /     name
-                  / div for each customization type
-                  /   title
-
               td.quantity
                 quantity-input(quantity="item.quantity" variant="item.variant" update-cart="true")
 
