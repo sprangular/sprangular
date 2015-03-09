@@ -57,13 +57,22 @@
         background: $medium-gray
 
       .presentation
+        @include border-top-radius(5px)
+        @include border-bottom-radius(5px)
+        background: $medium-gray
+        color: white
         display: inline-block
+        height: 20px
+        line-height: 20px
         margin-right: 5px
+        padding: 0 5px
+        text-align: center
 
       &.is-selected
         width: 50%
 
         .button
+          background: $blue
           border-bottom-right-radius: 0
 
     .dropdown-wrapper
