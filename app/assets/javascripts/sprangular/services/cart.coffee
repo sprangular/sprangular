@@ -46,7 +46,7 @@ Sprangular.service "Cart", ($http) ->
       foundProducts = @findVariant(variant.id)
 
       if foundProducts.length > 0
-        @changeItemQuantity(foundProducts[0], quantity)
+        @changeItemQuantity(foundProducts[0], quantity, flexi)
       else
         params = $.param(variant_id: variant.id, quantity: quantity, flexi: flexi)
 
@@ -60,12 +60,12 @@ Sprangular.service "Cart", ($http) ->
       order.items.splice(i, 1) unless i is -1
       @updateItemQuantity item.variant.id, 0
 
-    changeItemQuantity: (item, delta) ->
+    changeItemQuantity: (item, delta, flexi=null) ->
       if delta != 0
-        @updateItemQuantity(item.variant.id, item.quantity + delta)
+        @updateItemQuantity(item.variant.id, item.quantity + delta, flexi)
 
-    updateItemQuantity: (id, quantity) ->
-      params = $.param(variant_id: id, quantity: quantity)
+    updateItemQuantity: (id, quantity, flexi=null) ->
+      params = $.param(variant_id: id, quantity: quantity, flexi: flexi)
 
       $http.put '/api/cart/update_variant', params, ignoreLoadingIndicator: true
         .success(@load)
