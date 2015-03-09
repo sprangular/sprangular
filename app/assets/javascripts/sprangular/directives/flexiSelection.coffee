@@ -7,23 +7,27 @@ Sprangular.directive 'flexiSelection', ($log)->
     product: '='
     class: '='
     change: '&'
+    selected: "="
   controller: ($scope) ->
 
     $log.debug $scope
-    # $scope.values = {}
 
-    # $scope.$watch 'variant', (newVariant, oldVariant)->
-    #   $scope.change({oldVariant: oldVariant, newVariant: newVariant}) if newVariant != oldVariant
+    # $scope.$watch 'ad_hoc', (n, o)->
+    #   $log.debug "$watch 'ad_hoc'", n, o
 
-    # $scope.isValueSelected = (value) ->
-    #   $scope.values[value.option_type_id]?.id == value.id
+    # $scope.$watch 'selected', (n, o)->
+    #   $log.debug "$watch 'selected'", n, o
+    #   # $scope.change({oldVariant: oldVariant, newVariant: newVariant}) if newVariant != oldVariant
 
-    # $scope.isValueAvailable = (value) ->
-    #   $scope.product.availableValues(_.values($scope.values))
+    # # $scope.isValueSelected = (value) ->
+    # #   $scope.values[value.option_type_id]?.id == value.id
 
-    # $scope.selectValue = (value) ->
-    #   $scope.values[value.option_type_id] = value
-    #   $scope.variant = $scope.product.variantForValues(_.values($scope.values))
+    # # $scope.isValueAvailable = (value) ->
+    # #   $scope.product.availableValues(_.values($scope.values))
+
+    # # $scope.selectValue = (value) ->
+    # #   $scope.values[value.option_type_id] = value
+    # #   $scope.variant = $scope.product.variantForValues(_.values($scope.values))
 
   link: (scope, element, attrs) ->
     scope.ad_hoc = if (scope.product.ad_hoc_option_types?) then scope.product.ad_hoc_option_types else null

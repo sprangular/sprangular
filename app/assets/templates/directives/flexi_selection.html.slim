@@ -3,9 +3,10 @@
     |{{type.option_type.presentation}}
   .option(ng-repeat="option in type.ad_hoc_option_values")
     input(type="radio"
-          name="option.name"
+          name="{{option.name}}"
           id="{{option.name}}"
-          ng-value="option.option_type_id")
+          ng-value="option.option_type_id"
+          ng-model="option.isSelected")
     label(for="{{option.name}}"
           ng-bind="option.presentation")
 
@@ -14,9 +15,10 @@
     |{{type.description}}
   .option
     input(type="radio"
-          name="type.name"
+          name="{{option.name}}"
           id="{{type.name}}"
-          ng-value="type.id")
+          ng-value="type.id"
+          ng-model="type.isSelected")
     label(for="{{type.name}}")
       input(type="text"
             name="{{type.name}}"
