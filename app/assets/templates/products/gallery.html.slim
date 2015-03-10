@@ -1,6 +1,6 @@
-section.image
-  img.img-responsive(ng-src="{{selected.image.largeUrl}}")
+figure.image
+  img(ng-src="{{selected.image.largeUrl}}")
 
-section.thumbs(ng-show="selected.images.length > 1")
-  .thumb(ng-repeat='image in selected.images' ng-click="changeImage(image)" ng-class="{selected: image == selected.image}")
-    img.img-thumbnail.img-responsive(ng-src="{{image.productUrl}}")
+.thumbs(ng-show="selected.images.length > 1")
+  figure.thumb(ng-repeat='image in selected.images' ng-click="changeImage(image)" ng-class="{selected: image == selected.image}")
+    img(ng-src="{{image.productUrl}}")
