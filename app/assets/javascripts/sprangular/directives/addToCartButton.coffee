@@ -7,6 +7,7 @@ Sprangular.directive 'addToCartButton', ->
     variant: '='
     quantity: '='
     product: '='
+    flexi: '='
     class: '='
 
   controller: ($scope, Cart, Angularytics, Env) ->
@@ -20,7 +21,7 @@ Sprangular.directive 'addToCartButton', ->
       $scope.adding = true
       Angularytics.trackEvent("Cart", "Add", $scope.variant.product.name)
 
-      Cart.addVariant($scope.variant, $scope.quantity)
+      Cart.addVariant($scope.variant, $scope.quantity, $scope.flexi)
         .success ->
           $scope.adding = false
-          $scope.$emit('cart.add', {variant: $scope.variant, qty: $scope.quantity})
+          $scope.$emit('cart.add', {variant: $scope.variant, qty: $scope.quantity, flexi: $scope.flexi})
