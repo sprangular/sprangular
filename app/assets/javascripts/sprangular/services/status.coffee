@@ -1,4 +1,4 @@
-Sprangular.service "Status", ($rootScope) ->
+Sprangular.service "Status", ($rootScope, $translate) ->
 
   status =
     initialized: false
@@ -19,6 +19,10 @@ Sprangular.service "Status", ($rootScope) ->
     findCachedProduct: (slug) ->
       _.find status.cachedProducts, (product) ->
         product.slug == slug
+
+    setPageTitle: (translation_key) ->
+      $translate(translation_key).then (text) ->
+        status.pageTitle = text
 
     # addBodyClass('open', 'focused')
     addBodyClass: ->
@@ -43,7 +47,11 @@ Sprangular.service "Status", ($rootScope) ->
     status.bodyClasses = {default: true}
 
   $rootScope.$watch (-> status.isLoading()), (loading) ->
-    event = if loading then 'start' else 'end'
-    $rootScope.$broadcast("loading.#{event}")
+    if loading
+      status.addBodyClass('loading')
+      $rootScope.$broadcast("loading.start")
+    else
+      status.removeBodyClass('loading')
+      $rootScope.$broadcast("loading.end")
 
   status

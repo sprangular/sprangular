@@ -1,10 +1,9 @@
 Sprangular::Engine.routes.draw do
   scope module: 'sprangular' do
     root to: 'home#index'
+    resources "locale", only: :show, param: :locale
 
     scope '/api', defaults: {format: :json} do
-      post 'facebook/fetch'
-
       resources :taxonomies, only: :index
       get 'taxons/*permalink', to: 'taxons#show'
       resources :products, only: %i(index show)

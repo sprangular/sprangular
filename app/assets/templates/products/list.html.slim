@@ -1,4 +1,8 @@
 .product-listing.clearfix
+  .empty(ng-if="products.length == 0")
+    p
+      | {{:: 'orders.no_products' | translate }}
+
   .product.col-lg-3.col-sm-6.col-xs-12(ng-repeat='product in products' ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{'sold-out': !product.isAvailable()}")
     .col-lg-12
       h2.title
@@ -7,7 +11,8 @@
       .with-variants(ng-show="product.hasVariants")
         variant-selection(product="product" variant="selectedVariants[product.id]" class="{'btn-group-xs': true}")
 
-        p.sold-out(ng-if="selectedVariants[product.id] && !selectedVariants[product.id].isAvailable()") Sold out
+        p.sold-out(ng-if="selectedVariants[product.id] && !selectedVariants[product.id].isAvailable()")
+          | {{:: 'products.sold_out' | translate }}
 
         add-to-cart-button(ng-if="!selectedVariants[product.id] || selectedVariants[product.id].isAvailable()"
                            product="product"
@@ -16,7 +21,8 @@
                            class="{'btn-primary': true}")
 
       .without-variants(ng-hide="product.hasVariants")
-        p.sold-out(ng-if="!product.isAvailable()") Sold out
+        p.sold-out(ng-if="!product.isAvailable()")
+          | {{:: 'products.sold_out' | translate }}
 
         add-to-cart-button(ng-if="product.isAvailable()"
                            product="product"

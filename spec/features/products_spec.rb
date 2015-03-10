@@ -19,6 +19,7 @@ describe "Visiting Products", js: true do
     before do
       jersey.update_attributes(metas)
       visit sprangular_engine.root_path
+      wait_for_loading
       product = page.all(:css, '.product')[4]
       product.hover
       product.click_link('a')
@@ -40,7 +41,7 @@ describe "Visiting Products", js: true do
 
   scenario "search" do
     visit sprangular_engine.root_path
-    wait_for_route_changes
+    wait_for_loading
 
     within :css, "form[name=SearchForm]" do
       fill_in "keywords", with: "shirt"

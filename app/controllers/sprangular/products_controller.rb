@@ -1,6 +1,6 @@
 class Sprangular::ProductsController < Sprangular::BaseController
   def index
-    @products = Spree::Product.active.includes(:option_types, :taxons, master: [:images, :option_values, :prices], product_properties: [:property], variants: [:images, :option_values, :prices])
+    @products = product_scope
     @products = @products.where("spree_prices.amount IS NOT NULL").where("spree_prices.currency" => current_currency) unless Spree::Config.show_products_without_price
     @products = @products.ransack(params[:q]).result if params[:q]
     @products = @products.distinct.page(params[:page]).per(params[:per_page])
@@ -10,9 +10,13 @@ class Sprangular::ProductsController < Sprangular::BaseController
   end
 
   def show
-    @product = Spree::Product.active.where(slug: params[:id]).first!
+    @product = product_scope.where(slug: params[:id]).first!
 
     render 'spree/api/products/show'
   end
 
+private
+  def product_scope
+    Spree::Product.active.includes(:option_types, :taxons, master: [:images, :option_values, :prices], product_properties: [:property], variants: [:images, :option_values, :prices])
+  end
 end

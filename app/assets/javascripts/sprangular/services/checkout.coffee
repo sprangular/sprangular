@@ -5,26 +5,44 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         coupon_code: code
 
-      @applyCouponCode(null, params)
+      config =
+        headers:
+          'X-Spree-Order-Token': Cart.current.token
 
-    update: ->
+      deferred = $q.defer()
+
+      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params), config)
+           .success (response) ->
+             Cart.load(response.order)
+
+             if response.error
+               deferred.reject(response)
+             else
+               deferred.resolve(response)
+
+           .error (response) ->
+             response.error ||= "Coupon code #{code} not found."
+             deferred.reject(response)
+
+      deferred.promise
+
+    update: (goto) ->
       order = Cart.current
       card  = order.creditCard
 
       params =
+        goto: goto
         order:
           use_billing: order.shipToBillAddress
           coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
-        'order[payments_attributes][][payment_method_id]': @_findPaymentMethodId()
-        payment_source: {}
 
       if order.shippingRate
         params['order[shipments_attributes][][id]'] = order.shipment.id
         params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
-      @put("quick_update", params)
+      @put(params)
 
     complete: ->
       order = Cart.current
@@ -32,7 +50,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       paymentMethodId = @_findPaymentMethodId()
 
       params =
-        complete: true
+        goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         order: {}
         payment_source: {}
@@ -50,7 +68,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
         params.payment_source[paymentMethodId] = sourceParams
 
-      @put("quick_update", params)
+      @put(params)
         .success (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
@@ -60,7 +78,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
             Cart.init()
 
     trackOrder: (order) ->
-      return unless ga
+      return if typeof(ga) is 'undefined'
 
       ga "ecommerce:addTransaction",
         id:       order.number
@@ -78,37 +96,21 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       ga "ecommerce:send"
 
-    put: (path, params) ->
-      params ||= {}
+    put: (params) ->
+      url = "/api/checkouts/#{Cart.current.number}/quick_update"
+      params = params ||= {}
 
       config =
         headers:
           'X-Spree-Order-Token': Cart.current.token
 
-      url = _.compact(["/api/checkouts/#{Cart.current.number}",path]).join("/")
       Cart.current.errors = null
 
       $http.put(url, $.param(params), config)
-           .success (response) ->
-             Cart.load(response) unless response.error
-           .error (response) ->
-             Cart.errors(response.errors || response.exception)
-
-    applyCouponCode: (path, params) ->
-      params ||= {}
-
-      config =
-        headers:
-          'X-Spree-Order-Token': Cart.current.token
-
-      url = _.compact(["/spree/api/orders/#{Cart.current.number}/apply_coupon_code",path]).join("/")
-      Cart.current.errors = null
-
-      $http.put(url, $.param(params), config)
-           .success (response) ->
-             Cart.load(response) unless response.error
-           .error (response) ->
-             Cart.errors(response.errors || response.exception)
+        .success (response) ->
+          Cart.load(response) unless response.error
+        .error (response) ->
+          Cart.errors(response.errors || response.exception)
 
     _findPaymentMethodId: ->
       paymentMethod = _.find Env.config.payment_methods, (method) -> method.name == 'Credit Card'

@@ -18,9 +18,9 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
   end
 
   def remove_assets
-    git rm: "-rf vendor/assets/images/spree/frontend"
-    git rm: "-rf vendor/assets/javascripts/spree/frontend"
-    git rm: "-rf vendor/assets/stylesheets/spree/frontend"
+    run "rm -rf vendor/assets/images/spree/frontend"
+    run "rm -rf vendor/assets/javascripts/spree/frontend"
+    run "rm -rf vendor/assets/stylesheets/spree/frontend"
   end
 
   def remove_uneeded_js
@@ -38,10 +38,15 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
 //= require sprangular
 //= require sprangular/host
 //= require sprangular/extraRoutes
+//= require_tree ./sprangular/controllers
+//= require_tree ./sprangular/services
 eos
 
     template 'host.coffee',        'app/assets/javascripts/sprangular/host.coffee'
     template 'extraRoutes.coffee', 'app/assets/javascripts/sprangular/extraRoutes.coffee'
+
+    create_file 'app/assets/javascripts/sprangular/controllers/.keep', ''
+    create_file 'app/assets/javascripts/sprangular/services/.keep', ''
 
     copy_file 'about.html.slim',    'app/assets/templates/static/about.html.slim'
     copy_file 'terms.html.slim',    'app/assets/templates/static/terms.html.slim'

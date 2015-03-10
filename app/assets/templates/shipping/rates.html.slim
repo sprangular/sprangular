@@ -2,18 +2,18 @@
   p(ng-if='loading')
     span.fa.fa-refresh.fa-spin
     | &nbsp;
-    | Refreshing rates...
+    | {{:: 'shipping.refreshing' | translate }}
 
   div(ng-if='!loading')
     p.not-found(ng-show='order.shippingRates.length == 0')
       span.not-available(ng-show='isValid')
-        | Shipping not available to {{address.country.name}}.
+        | {{:: 'shipping.not_available' | translate }}
       span.no-address(ng-hide='isValid')
-        | Provide a country, state & zipcode to view available rates.
+        | {{:: 'shipping.fill_required_info' | translate }}
 
     ul.list-unstyled(ng-show='order.shippingRates.length > 0')
       li(ng-repeat='shippingRate in order.shippingRates')
         label
           input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate')
           span
-            | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency}}
+            | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency : currencySymbol}}

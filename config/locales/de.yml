@@ -1,0 +1,141 @@
+de:
+  sprangular:
+    en: Englisch
+    de: Deutsch
+    initializing: Wird Vorbereitet...
+    loading: Wird geladen...
+    app:
+      home: Home
+      oh_snap: Hoppla!
+      404: Die Seite konnte leider nicht gefunden werden.
+      must_be_logged_in: "Sorry, diese Seite ist nur verfügbar wenn Du ausgelogged bist."
+      sign_in_or_register: Bitte melde dich an um fortzufahren.
+      no_items_in_cart: "Dein Warenkorb ist leider leer"
+      confirm_reset_password: "Ein Link zur wiederherstellung Deines Passworts wurde per Email geschickt"
+      email_not_found: Email Adresse konnte nicht gefunden werden
+      forgot_password: Passwort Vergessen
+      logout_success: Erfolgreich Abegemeldet
+      password_saved: 'Dein Passwort wurde gespeichert, wir haben dich auch gleichzeitig angemeldet'
+      signed_up_msg: Erfolgreich Angemeldet!
+      signup_failed: Anmeldung fehlgeschlagen
+      signin_failed: Fehler beim Einloggen
+      signed_in: Erfolgreich Eingelogged
+      account_updated: 'Konto aktualisiert'
+      account_update_failed: Konto konnte nicht gespeichert werden
+    crud:
+      edit: Ändern
+      new: Neu
+      create: Erstellen
+      update: Aktualisieren
+      cancel: Abbrechen
+      save: Speichern
+    nav:
+      search: Suchen
+      my_account: Mein Konto
+      login: Anmelden
+      logout: Abmelden
+      register: Registrieren
+      shop: Shop
+      all_products: Alle Produkte
+      products: Produkte
+      next: Nächste
+      previous: Zurück
+    account:
+      email: Email
+      password: Passwort
+      password_confirmation: Passwort bestätigen
+      create_account: Konto Anlegen
+      forgot_password: Passwort vergessen
+      update_password: Passwort aktualisieren
+      reset_password: Passwort wiederherstellen
+      reset_my_password: Mein Passwort wiederherstellen
+      leave_blank_to_prevent_change: Lass das Passwort leer wenn es unverändert bleiben soll
+    address:
+      name: Name
+      first_name: Vorname
+      last_name: Nachname
+      address: Adresse
+      addresses: Adressen
+      city: Stadt
+      state: Bundesland / Provinz
+      country: Land
+      zip: Postleitzahl
+      phone: Telefon
+      use_existing: Vorhandene Adresse verwenden
+      use_new: Neue Adresse verwenden
+      no_addresses: Keine Adresse in Datenbank
+    cart:
+      added_to_cart: Zum Warenkorb hinzugefügt
+      checkout: Kasse
+      my_cart: Warenkorb
+      my_empty_cart: Dein Warenkorb ist leer
+      start_shopping: Jetzt Einkaufen
+      item: Artikel
+      quantity: Menge
+      price: Preis
+      sub_total:  Zwischensumme
+      shipping: Versand
+      tax: Steuer
+      total: Gesamtbetrag
+      empty_cart: Warenkorb leeren
+    checkout:
+      success_msg: "Deine Bestellung <strong>{{order_number}}</strong> wurde entgegengenommen,und du erhälst in kürze eine Emailbestätigung."
+      confirm: Bestätigen
+      checkout: Kasse
+      place_order: Jetzt Bestellen
+      billing_address: Rechnungsadresse
+      billing_and_shipping_address: Rechnungs- und Lieferadresse
+      shipping_address: Lieferadresse
+      ship_to_billing_address: An Rechnungsadresse versenden
+      delivery_options: Versandoptionen
+      credit_card: Kreditkarte
+      payment: Bezahlung
+      summary: Zusammenfassung
+      name: Name
+      quantity: Menge
+      success: Erfolgreich
+      sub_total: Zwischensumme
+      shipping: Versand
+      tax: Steuer
+      total: Gesamtbetrag
+      processing: Wird bearbeitet...
+      secure_transaction: sichere Abwicklung
+      done: Fertig
+      details: Details
+    credit_cards:
+      number: Nummer
+      month: Monat
+      year: Jahr
+      verification: Kartenprüfnummer
+      expiration: Ablaufdatum
+      whats_this: Was ist das?
+      use_new: Neue Karte benutzen
+      use_existing: Vorhandene Karte benutzen
+      credit_cards: Kreditkarten
+      no_credit_cards_on_file: Keine Kreditkarten hinterlegt
+    directives:
+      adding: wird hinzugefügt ...
+      add_to_cart: In den Warenkorb
+      add_another: hinzufügen
+      add_quantity: "{{quantity}} hinzufügen"
+    orders:
+      order_history: Bestellhistorie
+      no_orders_on_file: Keine Bestellungen hinterlegt
+      number: Bestellungsnummer
+      state: Status
+      ordered_on: Bestellt am
+      amount: Betrag
+      shipping_state: Sendungsstatus
+      see_details: Details ansehen
+    promo:
+      add: Gutschein hinzufügen
+      code: Gutschein
+    products:
+      no_products: Keine Produkte
+      sold_out: Ausverkauft
+      specs: Spezifikation
+      sold_out_msg: Dieser Artikel ist ausverkauft
+    shipping:
+      refreshing: Preise werden aktualisiert ...
+      fill_required_info: "Bitte Land, Bundesland, und Postleitzahl angeben um aktuelle Preise zu sehen"
+      not_available: "Versand nach {{address.country.name}} leider zur Zeit nicht verfügbar."

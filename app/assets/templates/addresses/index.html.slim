@@ -1,8 +1,10 @@
-h2 Addresses
+h2
+  | {{:: 'address.addresses' | translate}}
 
 #addresses
   .not-found(ng-if='user.addresses.length == 0')
-    p No addresses on file
+    p
+      | {{:: 'address.no_addresses' | translate}}
 
   .found(ng-repeat="address in user.addresses")
     address-view(address='address')

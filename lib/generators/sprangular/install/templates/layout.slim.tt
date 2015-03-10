@@ -31,3 +31,6 @@ html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
     = yield
 
     = render 'sprangular/shared/analytics'
+
+    - if I18n.locale != :en
+      = javascript_include_tag "angular-i18n/angular-locale_#{I18n.locale}.js"

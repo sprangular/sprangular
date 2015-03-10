@@ -1,5 +1,18 @@
-Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Status, Account, Cart, Checkout, Angularytics, Flash) ->
-  Status.pageTitle = 'Checkout'
+Sprangular.controller 'CheckoutCtrl', (
+  $scope,
+  $location,
+  countries,
+  order,
+  Status,
+  Account,
+  Cart,
+  Checkout,
+  Angularytics,
+  Env,
+  $translate
+) ->
+  Status.setPageTitle('checkout.checkout')
+
   user = Account.user
 
   $scope.countries = countries
@@ -7,6 +20,7 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
   $scope.processing = false
   $scope.user = user
   $scope.secure = $location.protocol() == 'https'
+  $scope.currencySymbol = Env.config.currency.symbol
 
   Cart.lastOrder = null
 
@@ -25,7 +39,7 @@ Sprangular.controller 'CheckoutCtrl', ($scope, $location, countries, order, Stat
       $scope.processing = false
       return
 
-    Checkout.update()
+    Checkout.update('payment')
       .success ->
         $location.path('/checkout/confirm')
       .error ->

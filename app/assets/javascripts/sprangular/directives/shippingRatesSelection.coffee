@@ -4,9 +4,10 @@ Sprangular.directive 'shippingRateSelection', ->
   scope:
     order: '='
 
-  controller: ($scope, Checkout) ->
+  controller: ($scope, Checkout, Env) ->
     $scope.loading = false
     $scope.address = {}
+    $scope.currencySymbol = Env.config.currency.symbol
 
     $scope.$watch 'order.shippingRate', (rate, oldRate) ->
       return if !oldRate || rate.id == oldRate.id
@@ -20,13 +21,14 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
-    $scope.$watch 'order.shipToBillAddress', ->
+    $scope.$watch('order.actualShippingAddress()', ->
       $scope.address = $scope.order.actualShippingAddress()
+    , true)
 
-    watchAddress = (address) ->
+    validateAddress = (address) ->
       $scope.isValid = address.firstname && address.lastname && address.city && address.address1 && address.zipcode && address.country && address.state && address.phone
 
-    $scope.$watch('address', watchAddress, true)
+    $scope.$watch('address', validateAddress, true)
 
     # use $scope.$watchGroup when its released
     $scope.$watch 'address.country.id + address.state.id + address.zipcode + isValid', (oldValue, newValue) ->
@@ -35,5 +37,7 @@ Sprangular.directive 'shippingRateSelection', ->
 
       $scope.loading = true
 
-      Checkout.update().then ->
+      Checkout.update('payment').then ->
         $scope.loading = false
+
+    validateAddress($scope.address)

@@ -13,6 +13,22 @@ module Sprangular
       Rails.application.config.assets.precompile += %w( bootstrap/* )
     end
 
+    initializer "sprangular.locales" do
+      config  = Rails.application.config
+
+      locales = if defined? SpreeI18n
+                  SpreeI18n::Config.supported_locales
+                else
+                  config.i18n.available_locales
+                end
+
+      if locales
+        config.assets.precompile += locales.map do |locale|
+          "angular-i18n/angular-locale_#{locale}*"
+        end
+      end
+    end
+
     initializer "sprangular.prerender" do
       Rails.application.config.middleware.use Rack::Prerender, prerender_token: ENV['PRERENDER_TOKEN']
     end
