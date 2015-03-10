@@ -1,11 +1,10 @@
-section.properties.row(ng-show="product.product_properties.length > 0")
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-        | {{:: 'orders.specs' | translate }}
+section.properties(ng-show="product.product_properties.length > 0")
+  .panel.panel-default
+    .panel-heading
+      | {{:: 'orders.specs' | translate }}
 
 
-      .panel-body
-        dl.dl-horizontal
-          dt(ng-repeat-start="property in product.product_properties" ng-bind="property.property_name")
-          dd(ng-repeat-end ng-bind="property.value")
+    .panel-body
+      dl.dl-horizontal
+        dt(ng-repeat-start="property in product.product_properties" ng-bind="property.property_name")
+        dd(ng-repeat-end ng-bind="property.value")

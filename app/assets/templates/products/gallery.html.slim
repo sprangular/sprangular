@@ -1,7 +1,6 @@
-section.image.row
-  .col-sm-12.col-xs-12
-    img.img-responsive(ng-src="{{selected.image.largeUrl}}")
+section.image
+  img.img-responsive(ng-src="{{selected.image.largeUrl}}")
 
-section.thumbs.row.no-padding(ng-show="selected.images.length > 1")
-  .thumb.col-sm-3.col-xs-4(ng-repeat='image in selected.images' ng-click="changeImage(image)" ng-class="{selected: image == selected.image}")
+section.thumbs(ng-show="selected.images.length > 1")
+  .thumb(ng-repeat='image in selected.images' ng-click="changeImage(image)" ng-class="{selected: image == selected.image}")
     img.img-thumbnail.img-responsive(ng-src="{{image.productUrl}}")
