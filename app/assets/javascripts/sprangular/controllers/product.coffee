@@ -7,7 +7,6 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Account, Cart) ->
     images: []
     quantity: 1
     variant: null
-    options: null
 
   Status.pageTitle        = $scope.product.name
   Status.meta.description = $scope.product.meta_description
