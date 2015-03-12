@@ -54,6 +54,8 @@
             | {{ :: 'checkout.total' | translate }}
           td.number(colspan=2 ng-bind='order.total | currency')
 
+      promo-form(order='order')
+
   .row
     .col-md-12
       button#complete.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
