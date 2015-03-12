@@ -41,13 +41,15 @@ module Sprangular
     def template_paths
       Rails.cache.fetch('template_paths') do
         Hash[
-          Rails.application.assets.each_logical_path.
-          select { |file| file.end_with?('html') }.
-          map do |file|
-            path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
+          Rails
+            .application
+            .assets.each_logical_path
+            .select { |file| file.end_with?('html') }
+            .map do |file|
+              path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
 
-            [file, path]
-          end
+              [file, path]
+            end
         ]
       end
     end
