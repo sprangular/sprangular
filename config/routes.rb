@@ -23,4 +23,5 @@ Sprangular::Engine.routes.draw do
   end
 
   put 'api/checkouts/:id/quick_update', to: 'spree/api/checkouts#quick_update'
+  put 'api/checkouts/:id/refresh_shipping_rates', to: 'spree/api/checkouts#refresh_shipping_rates'
 end

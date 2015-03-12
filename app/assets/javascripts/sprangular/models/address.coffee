@@ -2,8 +2,8 @@
 
 class Sprangular.Address
   Validity.define @,
-    firstname: 'required'
-    lastname: 'required'
+    # firstname: 'required'
+    # lastname: 'required'
     address1: 'required'
     city: 'required'
     state: 'required'
@@ -12,6 +12,7 @@ class Sprangular.Address
     phone: 'required'
 
   init: ->
+    console.log 'address init'
     @stateId = @state_id
     @countryId = @country_id
 
@@ -30,9 +31,20 @@ class Sprangular.Address
     else
       @address1
 
-  serialize: ->
-    firstname: @firstname
-    lastname: @lastname
+  usingFullName: ->
+    @name && @name.length > 0      
+
+  getFirstname: ->
+    return @name.split(' ').slice(0, -1).join(' ') if @usingFullName()
+    @firstname
+
+  getLastname: ->
+    return @name.split(' ').slice(-1).join(' ') if @usingFullName()
+    @lastname
+
+  serialize: ->        
+    firstname: @getFirstname()
+    lastname: @getLastname()    
     address1: @address1
     address2: @address2
     city: @city
