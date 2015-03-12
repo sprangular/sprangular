@@ -1,28 +1,8 @@
-#checkout-confirm.container(ng-controller='CheckoutReviewCtrl')
-  .row
-    .col-md-6.col-md-offset-3.col-xs-12
-      checkout-nav(step='confirm')
-  .row
-    .col-md-4.col-xs-4
-      h1
-        | {{ :: 'checkout.confirm' | translate }}
-
-    .col-md-8.col-xs-8
-      .clearfix
-        .pull-right
-          a.btn.btn-primary.btn-lg(ng-disabled='processing' ng-click="complete()")
-            span(ng-if='!processing')
-              | {{ :: 'checkout.place_order' | translate }}
-            span(ng-if='processing')
-              span.fa.fa-refresh.fa-spin
-              | &nbsp;
-              span.caption
-                |  {{ :: 'checkout.processing' | translate }}
-
+#checkout-confirm(ng-controller='CheckoutReviewCtrl')
   .row
     .col-md-12
       h2
-        | {{ :: 'checkout.summary' | translate }}
+        | {{ :: 'checkout.review' | translate }}
 
       table.table.table-striped
         tr
