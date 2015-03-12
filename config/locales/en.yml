@@ -80,7 +80,7 @@ en:
       empty_cart: Empty your Cart
     checkout:
       success_msg: "Your order <strong>{{order_number}}</strong> was successfully submitted, you'll receive an email receipt shortly."
-      confirm: Confirm
+      review: Review
       checkout: Checkout
       place_order: Place Order
       billing_address: Billing Address
