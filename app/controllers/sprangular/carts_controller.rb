@@ -22,6 +22,8 @@ class Sprangular::CartsController < Sprangular::BaseController
         @order = order.reload
         render 'spree/api/orders/show'
       rescue ActiveRecord::RecordInvalid => e
+        logger.info(e.message)
+        logger.info(e.backtrace.join("\n"))
         invalid_resource!(e.record)
       end
     else
