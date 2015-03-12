@@ -5,7 +5,7 @@ Sprangular.directive 'addressSelection', ->
     address: '='
     addresses: '='
     countries: '='
-  controller: ($scope) ->
+  controller: ($rootScope, $scope) ->
     $scope.existingAddress = false
 
     $scope.$watch 'addresses', (addresses) ->
@@ -17,8 +17,10 @@ Sprangular.directive 'addressSelection', ->
 
         $scope.toggleExistingAddress() if found
 
-    $scope.toggleExistingAddress = ->
+    $scope.toggleExistingAddress = ->            
       $scope.existingAddress = !$scope.existingAddress
+      
+      $rootScope.$broadcast('addressSelection.new')        
 
       if $scope.existingAddress
         $scope.address = $scope.addresses[0]
