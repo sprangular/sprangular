@@ -4,7 +4,6 @@ module Sprangular
                :type, :attachment_updated_at, :attachment_width,
                :attachment_height, :alt, :viewable_type, :viewable_id
 
-
     def attributes
       super.tap do |attrs|
         image_styles.each_key do |style|
