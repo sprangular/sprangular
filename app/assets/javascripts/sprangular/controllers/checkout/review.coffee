@@ -1,5 +1,5 @@
-Sprangular.controller 'CheckoutConfirmCtrl', ($scope, $location, order, Account, Cart, Checkout) ->
-  $scope.order = order
+Sprangular.controller 'CheckoutReviewCtrl', ($scope, $location, Account, Cart, Checkout) ->
+  $scope.order = Cart.current
   $scope.processing = false
 
   $scope.complete = ->
