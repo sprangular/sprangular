@@ -37,10 +37,10 @@
 
         tr.shipping
           td
-            | {{ :: 'checkout.shipping' | translate }} - {{order.shippingRate.name}}
-            | &nbsp;
-            a(ng-href="#!/checkout")
-              span.glyphicon.glyphicon-pencil
+            | {{ :: 'checkout.shipping' | translate }}
+
+            span(ng-if='order.shippingRate.name')
+              |&nbsp;- {{order.shippingRate.name}}
 
           td.number(colspan=2 ng-bind='order.shipTotal | currency')
 
