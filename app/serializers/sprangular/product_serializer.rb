@@ -7,13 +7,15 @@ module Sprangular
     has_one :master, serializer: Sprangular::SmallVariantSerializer
 
     has_many :variants, embed: :objects,
-             serializer: Sprangular::SmallVariantSerializer
-    has_many :option_types,
-             serializer: Sprangular::OptionTypeSerializer
+                        serializer: Sprangular::SmallVariantSerializer
+
+    has_many :option_types, serializer: Sprangular::OptionTypeSerializer
+
     has_many :product_properties, embed: :objects,
-             serializer: Sprangular::OptionTypeSerializer
+                                  serializer: Sprangular::OptionTypeSerializer
+
     has_many :classifications, embed: :objects,
-             serializer: Sprangular::ClassificationSerializer
+                               serializer: Sprangular::ClassificationSerializer
 
     # rubocop:disable Style/PredicateName
     def has_variants
