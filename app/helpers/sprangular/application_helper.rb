@@ -13,6 +13,7 @@ module Sprangular
       {
         env: Rails.env,
         config: js_config,
+        locale: I18n.locale,
         currency: Money::Currency.table[current_currency.downcase.to_sym],
         translations: current_translations,
         templates: template_paths
@@ -27,7 +28,6 @@ module Sprangular
         {
           site_name: store.seo_title || store.name,
           logo: asset_path(config.logo),
-          locale: I18n.locale,
           supported_locales: supported_locales,
           default_country_id: config.default_country_id,
           payment_methods: payment_methods,
