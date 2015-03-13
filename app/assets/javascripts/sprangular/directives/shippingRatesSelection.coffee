@@ -4,7 +4,7 @@ Sprangular.directive 'shippingRateSelection', ->
   scope:
     order: '='
 
-  controller: ($scope, Checkout, Env) ->
+  controller: ($rootScope, $scope, Checkout, Env) ->
     $scope.loading = false
     $scope.address = {}
     $scope.currencySymbol = Env.config.currency.symbol
@@ -26,8 +26,15 @@ Sprangular.directive 'shippingRateSelection', ->
     , true)
 
     validateAddress = (address) ->
-      $scope.isValid = address.firstname && address.lastname && address.city && address.address1 && address.zipcode && address.country && address.state && address.phone
+      $scope.isValid = address.name && address.city && address.address1 && address.zipcode && address.country && address.state && address.phone
 
     $scope.$watch('address', validateAddress, true)
+
+    # use $scope.$watchGroup when its released
+    $scope.$watch 'address.name + address.country.id + address.state.id + address.zipcode + address.phone + isValid', (oldValue, newValue) ->
+      return if $scope.loading 
+      return if $scope.order.shippingRates.length > 0 && (oldValue == newValue || !$scope.isValid) 
+
+      $rootScope.$broadcast('addressSelection.editing')                    
 
     validateAddress($scope.address)

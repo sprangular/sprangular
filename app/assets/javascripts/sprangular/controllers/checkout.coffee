@@ -9,6 +9,7 @@ Sprangular.controller 'CheckoutCtrl', (
   Checkout,
   Angularytics,
   Env,
+  Flash,
   $translate
 ) ->
   Status.setPageTitle('checkout.checkout')
@@ -31,7 +32,7 @@ Sprangular.controller 'CheckoutCtrl', (
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
 
-  $scope.submit = ->
+  $scope.submit = ->    
     $scope.processing = true
 
     if $scope.order.isInvalid()

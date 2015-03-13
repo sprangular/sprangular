@@ -4,6 +4,7 @@ class Sprangular.Address
   Validity.define @,
     # firstname: 'required'
     # lastname: 'required'
+    name: 'required'
     address1: 'required'
     city: 'required'
     state: 'required'
@@ -12,7 +13,7 @@ class Sprangular.Address
     phone: 'required'
 
   init: ->
-    console.log 'address init'
+    @name = @fullName()
     @stateId = @state_id
     @countryId = @country_id
 

@@ -13,7 +13,9 @@ module Sprangular::ApiCheckoutControllerDecorator
     authorize! :update, @order, order_token    
 
     @order.create_proposed_shipments
-    @order.updater.update_shipments
+    @order.updater.update_shipments    
+    @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)      
+
     respond_with(@order, default_template: 'spree/api/orders/show')
   end
 end
