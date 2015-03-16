@@ -13,9 +13,9 @@ module Sprangular
     end
 
     has_one :selected_shipping_rate,
-      serializer: Sprangular::ShippingRateSerializer
+            serializer: Sprangular::ShippingRateSerializer
     has_many :shipping_rates,
-      serializer: Sprangular::ShippingRateSerializer
+             serializer: Sprangular::ShippingRateSerializer
 
     has_many :adjustments, serializer: Sprangular::AdjustmentSerializer
 
