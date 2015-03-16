@@ -54,7 +54,7 @@ class Sprangular.Order
         variant = product.findVariant(item.variant_id)
         break if variant
 
-      @items.push(variant: variant, quantity: item.quantity, price: item.price)
+      @items.push(variant: variant, flexi_variants: item.flexi_variants, quantity: item.quantity, price: item.price)
 
     @
 
