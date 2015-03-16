@@ -2,7 +2,7 @@ module Sprangular
   class SmallVariantSerializer < BaseSerializer
     attributes :id, :name, :sku, :price, :weight, :height, :width, :depth,
                :is_master, :slug, :description, :track_inventory,
-               :display_price, :options_text, :total_on_hand
+               :display_price, :options_text, :total_on_hand, :product_id
 
     attributes :in_stock, :is_backorderable, :is_destroyed
 
