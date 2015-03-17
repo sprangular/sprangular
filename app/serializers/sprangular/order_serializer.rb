@@ -16,7 +16,7 @@ module Sprangular
     end
 
     has_one :bill_address, serializer: Sprangular::AddressSerializer
-    # has_one :ship_address
+    has_one :ship_address, serializer: Sprangular::AddressSerializer
 
     has_many :line_items, serializer: Sprangular::LineItemSerializer
 
@@ -26,10 +26,18 @@ module Sprangular
 
     has_many :adjustments, serializer: Sprangular::AdjustmentSerializer
 
+    has_many :products, serializer: Sprangular::ProductSerializer
+
     attribute :permissions
 
     def permissions
       { can_update: current_ability.can?(:update, object) }
+    end
+
+    attribute :use_billing
+
+    def use_billing
+      object.bill_address == object.ship_address
     end
 
     # TODO Handle order state-based attributes
