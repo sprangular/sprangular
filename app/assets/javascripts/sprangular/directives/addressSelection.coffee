@@ -20,8 +20,6 @@ Sprangular.directive 'addressSelection', ->
     $scope.toggleExistingAddress = ->            
       $scope.existingAddress = !$scope.existingAddress
       
-      $rootScope.$broadcast('addressSelection.editing')        
-
       if $scope.existingAddress
         $scope.address = $scope.addresses[0]
       else
