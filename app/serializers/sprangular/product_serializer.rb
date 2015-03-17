@@ -12,7 +12,7 @@ module Sprangular
     has_many :option_types, serializer: Sprangular::OptionTypeSerializer
 
     has_many :product_properties, embed: :objects,
-                                  serializer: Sprangular::OptionTypeSerializer
+                                  serializer: Sprangular::ProductPropertySerializer
 
     has_many :classifications, embed: :objects,
                                serializer: Sprangular::ClassificationSerializer
