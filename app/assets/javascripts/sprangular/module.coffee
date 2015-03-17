@@ -52,9 +52,9 @@ Sprangular.config [
 
     # i18n Support
     $translateProvider
-      .translations(Env.config.locale, Env.translations)
+      .translations(Env.locale, Env.translations)
       .fallbackLanguage(['en'])
-    $translateProvider.use(Env.config.locale)
+    $translateProvider.use(Env.locale)
 ]
 
 Sprangular.run (
