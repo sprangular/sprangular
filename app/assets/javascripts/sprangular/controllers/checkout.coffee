@@ -31,21 +31,12 @@ Sprangular.controller 'CheckoutCtrl', (
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
 
-  $scope.submit = ->
+  $scope.complete = ->
     $scope.processing = true
 
     if $scope.order.isInvalid()
       $scope.processing = false
       return
-
-    Checkout.update('payment')
-      .success ->
-        $location.path('/checkout')
-      .error ->
-        $scope.processing = false
-
-  $scope.complete = ->
-    $scope.processing = true
 
     Checkout.complete()
       .error   -> $location.path('/checkout')
