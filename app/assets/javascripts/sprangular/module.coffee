@@ -65,10 +65,13 @@ Sprangular.run (
   Account,
   Cart,
   Flash,
-  $translate
+  $translate,
+  $cacheFactory
 ) ->
   Sprangular.startupData = {}
   Status.initialized = true
+
+  $cacheFactory.get('$http').removeAll()
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}
