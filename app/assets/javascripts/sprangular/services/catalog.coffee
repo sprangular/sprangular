@@ -13,7 +13,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     taxonomies: ->
       $http.get("/api/taxonomies", {cache: true})
         .then (response) ->
-          response.data
+          response.data.taxonomies
 
     taxonsByName: (name) ->
       @taxonomies().then (response)->
