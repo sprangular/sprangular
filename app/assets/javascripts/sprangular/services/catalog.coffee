@@ -27,15 +27,15 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
         return result
 
     taxon: (path) ->
-      $http.get("/api/taxons/#{path}")
+      $http.get("/api/taxons/#{path}", {cache: true})
         .then (response) ->
           response.data
 
     find: (id) ->
-      $http.get("/api/products/#{id}", class: Sprangular.Product)
+      $http.get("/api/products/#{id}", class: Sprangular.Product, {cache: true})
 
     getPaged: (page=1, params={}) ->
-      $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
+      $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon}, {cache: true})
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
