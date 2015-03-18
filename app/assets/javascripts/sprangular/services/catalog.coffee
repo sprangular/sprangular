@@ -29,7 +29,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")
         .then (response) ->
-          response.data
+          response.data.taxon
 
     find: (id) ->
       $http.get("/api/products/#{id}", class: Sprangular.Product)
