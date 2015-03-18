@@ -34,7 +34,6 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         goto: goto
         order:
           use_billing: order.shipToBillAddress
-          coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
 
