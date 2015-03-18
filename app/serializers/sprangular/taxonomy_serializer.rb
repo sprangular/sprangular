@@ -1,6 +1,6 @@
 module Sprangular
   class TaxonomySerializer < BaseSerializer
-    attributes :id, :name
+    attributes *taxonomy_attributes
 
     has_one :root, embed: :objects,
                    serializer: Sprangular::TaxonSerializer
