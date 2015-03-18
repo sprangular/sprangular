@@ -43,3 +43,11 @@ Sprangular.controller 'CheckoutCtrl', (
         $location.path('/checkout')
       .error ->
         $scope.processing = false
+
+  $scope.complete = ->
+    $scope.processing = true
+
+    Checkout.complete()
+      .error   -> $location.path('/checkout')
+      .success ->
+        $location.path('/checkout/complete')
