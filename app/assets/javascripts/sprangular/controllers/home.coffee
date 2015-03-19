@@ -9,6 +9,7 @@ Sprangular.controller 'HomeCtrl', (
   Status.setPageTitle('app.home')
 
   $scope.products = products
+  $scope.taxonomies = Catalog.taxonomies()
   $scope.currentPage = 1
   $scope.pageList = [1..products.totalPages]
   $scope.loadingComplete = false
