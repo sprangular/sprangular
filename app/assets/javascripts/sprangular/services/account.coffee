@@ -37,6 +37,12 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       Cart.load(@user.current_order)
 
       @isLogged = true
+      @isGuest = false
+      @email = data.email
+
+    populateGuestAccount: (data) ->
+      @isGuest = true
+      @isLogged = true
       @email = data.email
 
     clear: ->
@@ -45,13 +51,23 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       @isLogged = false
       @email = null
 
+    guestLogin: (data) ->
+      params =
+        'order[email]': data.email
+      $http.post('/api/cart/guest_login.json', $.param(params))
+        .success (data) ->
+          service.populateGuestAccount(data)
+          Flash.success 'app.signed_in'
+        .error ->
+          Flash.error 'app.signin_failed'
+
     login: (data) ->
       params =
         'spree_user[email]': data.email,
         'spree_user[password]': data.password
       $http.post('/spree/login.json', $.param(params))
         .success (data) ->
-          service.populateAccount(data)
+          service.populateGuestAccount(data.email)
           Flash.success 'app.signed_in'
         .error ->
           Flash.error 'app.signin_failed'
