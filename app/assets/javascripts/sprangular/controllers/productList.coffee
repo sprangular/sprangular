@@ -6,6 +6,7 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
     Status.setPageTitle('nav.products')
 
   $scope.products = products
+  $scope.taxonomies = Catalog.taxonomies()
   $scope.currentPage = 1
   $scope.pageList = [1..products.totalPages]
   $scope.loadingComplete = false
