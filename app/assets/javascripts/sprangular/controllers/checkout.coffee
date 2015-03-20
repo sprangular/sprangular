@@ -13,20 +13,19 @@ Sprangular.controller 'CheckoutCtrl', (
 ) ->
   Status.setPageTitle('checkout.checkout')
 
-  user = Account.user unless Account.isGuest
-
   $scope.countries = countries
   $scope.order = order
   $scope.processing = false
-  $scope.user = user unless Account.isGuest
   $scope.secure = $location.protocol() == 'https'
   $scope.currencySymbol = Env.currency.symbol
-
   Cart.lastOrder = null
 
-  unless Account.isGuest
+  if !Account.isGuestCheckout
+    $scope.user = user = Account.user
     order.resetAddresses(user)
     order.resetCreditCard(user)
+  else
+    $scope.user = user = {}
 
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
