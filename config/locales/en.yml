@@ -44,8 +44,8 @@ en:
       email: Email
       password: Password
       password_confirmation: Password Confirmation
-      create_account: Create Account
-      forgot_password: Forgot Password
+      create_account: Create account
+      forgot_password: Forgot your password?
       update_password: Update Password
       reset_password: Reset Password
       reset_my_password: Reset my Password
