@@ -5,7 +5,7 @@ Sprangular.directive 'creditCardForm', ->
     creditCard: '='
   controller: ($scope, $locale) ->
     $scope.months = _.map $locale.DATETIME_FORMATS.MONTH, (month, index) ->
-      {"index": index, "name": month}
+      {"index": index + 1, "name": month}
 
     currentYear = (new Date).getFullYear()
     $scope.years = [currentYear .. currentYear+15]
