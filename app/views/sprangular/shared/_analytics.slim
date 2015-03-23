@@ -5,4 +5,9 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', '#{tracker.analytics_id}', location.host);
+  - if Rails.env.production?
+    javascript:
+      ga('create', '#{tracker.analytics_id}', 'auto');
+  - else
+    javascript:
+      ga('create', '#{tracker.analytics_id}', {'cookieDomain': 'none'});
