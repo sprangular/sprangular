@@ -43,7 +43,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
           list.totalCount = data.meta.total_count
           list.totalPages = data.meta.pages
           list.page = data.meta.current_page
-          Status.cacheProducts(list)
+          # Status.cacheProducts(list)
           list
 
   service
