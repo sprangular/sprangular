@@ -98,6 +98,11 @@ module Sprangular
     end
 
     def find_selected_rate(order)
+      # When changing zones, don't persist a shipment 
+      # that has been or will be deleted as part of the callback chain
+      if order.state == 'address' || order.state == 'delivery'
+        @params[:order].delete :shipments_attributes and return
+      end
       return unless attrs = @params[:order][:shipments_attributes].try(:first)
 
       return unless shipment = order.shipments.detect {|shipment| shipment.id == attrs[:id].to_i}
