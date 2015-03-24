@@ -20,7 +20,6 @@ Sprangular.service "Status", ($rootScope, $translate) ->
       status.cachedProducts = status.cachedProducts.concat(list)
 
     findCachedProduct: (slug) ->
-      console.log status.cachedProducts
       _.find status.cachedProducts, (product) ->
         product.slug == slug
 
