@@ -31,7 +31,7 @@ Sprangular.config ($routeProvider) ->
         product: (Status, Catalog, $route) ->
           slug = $route.current.params.id
 
-          Status.findCachedProduct(slug) || Catalog.find(slug)
+          Catalog.find(slug)
 
     .when '/t/:path*',
       controller: 'ProductListCtrl'
