@@ -14,7 +14,7 @@ Sprangular.service "Status", ($rootScope, $translate) ->
       @httpLoading || @routeChanging
 
     cacheProduct: (product) ->
-      status.cacheProducts.push product
+      status.cachedProducts.push(product)
 
     cacheProducts: (list) ->
       status.cachedProducts = status.cachedProducts.concat(list)
