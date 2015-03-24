@@ -35,6 +35,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
       $http.get("/api/products/#{id}", class: Sprangular.Product)
         .then (response) ->
           Status.cacheProduct(response)
+          response
 
     getPaged: (page=1, params={}) ->
       $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
