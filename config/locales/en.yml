@@ -33,8 +33,8 @@ en:
       search: Search
       my_account: My Account
       login: Sign in
-      logout: Log Out
-      register: Sign Up
+      logout: Log out
+      register: Sign up
       shop: Shop
       all_products: All Products
       products: Products
@@ -44,11 +44,11 @@ en:
       email: Email
       password: Password
       password_confirmation: Password Confirmation
-      create_account: Create Account
-      forgot_password: Forgot Password
-      update_password: Update Password
-      reset_password: Reset Password
-      reset_my_password: Reset my Password
+      create_account: Create account
+      forgot_password: Forgot your password?
+      update_password: Update my password
+      reset_password: Reset password
+      reset_my_password: Reset my password
       leave_blank_to_prevent_change: Leave the password blank if you do not want to change it.
     address:
       name: Name

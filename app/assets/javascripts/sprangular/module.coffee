@@ -52,9 +52,9 @@ Sprangular.config [
 
     # i18n Support
     $translateProvider
-      .translations(Env.config.locale, Env.translations)
+      .translations(Env.locale, Env.translations)
       .fallbackLanguage(['en'])
-    $translateProvider.use(Env.config.locale)
+    $translateProvider.use(Env.locale)
 ]
 
 Sprangular.run (
@@ -65,10 +65,13 @@ Sprangular.run (
   Account,
   Cart,
   Flash,
-  $translate
+  $translate,
+  $cacheFactory
 ) ->
   Sprangular.startupData = {}
   Status.initialized = true
+
+  $cacheFactory.get('$http').removeAll()
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}

@@ -21,7 +21,6 @@
             span.fa.fa-exclamation-triangle
             | &nbsp;{{:: 'products.sold_out_msg' | translate }}
 
-
           add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"
                              product="product"
                              variant="selected.variant"

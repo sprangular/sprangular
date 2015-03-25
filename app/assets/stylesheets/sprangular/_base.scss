@@ -1,0 +1,284 @@
+body {
+  padding: 70px 0 0 0;
+}
+
+.row.no-padding {
+  [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.img-responsive {
+  width: 100%;
+}
+
+#loading {
+  position: fixed;
+  z-index: 999;
+  height: 4em;
+  width: 100%;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+
+  .fa {
+    color: $body-bg;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($gray,0.4);
+  }
+}
+
+.navbar-brand img {
+  max-height: 25px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.btn.add-to-cart {
+  span {
+    display: inline-block;
+  }
+
+  .caption {
+    margin-right: 5px;
+    font-weight: bold;
+    border-right: solid 2px rgba($body-bg, 0.4);
+    padding-right: 7px;
+  }
+
+  &.btn-default {
+    .caption {
+      border-right-color: rgba($gray-dark, 0.5);
+    }
+  }
+}
+
+.input-group {
+  .input-group-btn .btn .glyphicon {
+    line-height: 20px;
+  }
+}
+
+#signin {
+  nav a {
+    display: block;
+  }
+}
+
+#initializing {
+  text-align: center;
+}
+
+.aside {
+  width: 100%;
+}
+
+td {
+  &.number {
+    text-align: right;
+  }
+
+  .total & {
+    font-weight: bold;
+  }
+}
+
+footer {
+  background: $gray;
+  color: $gray-light;
+  padding: 10px 5px 5px;
+
+  a {
+    color: $gray-light;
+    font-weight: bold;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .dynamo {
+    .level1, .level2, .level3 {
+      text-align: center;
+    }
+    span {
+      display: inline-block;
+      padding: 0px 6px;
+      font-weight: bolder;
+    }
+  }
+}
+
+form {
+  p.error {
+    color: $brand-danger;
+  }
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+$footer-height: 80px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: $footer-height;
+}
+
+#wrap {
+  padding-bottom: 20px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: $footer-height;
+}
+
+.product-listing {
+  .product {
+    text-align: center;
+    min-height: 300px;
+
+    img {
+      transition: opacity 0.3s ease-in;
+    }
+
+    .title, .with-variants, .without-variants {
+      position: absolute;
+      width: 100%;
+      display: none;
+      padding: 15px;
+    }
+
+    .with-variants, .without-variants {
+      bottom: 15px;
+    }
+
+    .title a {
+      text-decoration: none;
+    }
+
+    &:hover {
+      img {
+        opacity: 0.3;
+      }
+
+      .title, .with-variants, .without-variants {
+        display: block;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+section.gallery {
+  section.thumbs .thumb {
+    cursor: pointer;
+
+    &.selected img {
+      border-color: $brand-success;
+    }
+  }
+}
+
+.checkout-nav {
+  .stripe {
+    background: $gray-lighter;
+    height: 6px;
+    position: absolute;
+    margin-top: 17px;
+    width: 90%;
+    z-index: -1;
+  }
+
+  nav {
+    a {
+      text-decoration: none;
+      display: inline-block;
+      width: 33%;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+      }
+
+      &:last-child {
+        text-align: right;
+      }
+    }
+
+    &.details a.details, &.confirm a.confirm, &.done a.done {
+      .number {
+        background: $brand-info;
+        color: $body-bg;
+      }
+      .caption {
+        color: $brand-info;
+      }
+    }
+
+    &.confirm {
+      a.details .number {
+        background: $brand-success;
+        color: $body-bg;
+      }
+    }
+
+    &.done {
+      a.details, a.confirm {
+        .number {
+          background: $brand-success;
+          color: $body-bg;
+        }
+      }
+    }
+  }
+
+  span.caption {
+    display: block;
+    margin: 0px auto;
+    color: $gray;
+  }
+
+  span.number {
+    display: inline-block;
+    color: $gray-light;
+    background: $gray-lighter;
+    padding: 10px 16px;
+    border-radius: 50%;
+    width: auto;
+  }
+}
+
+a.cart-link.visible-xs {
+  float: right;
+  padding: 15px;
+}
+
+@media (min-width: $screen-sm-min) {
+  .aside {
+    width: 50%;
+  }
+}
