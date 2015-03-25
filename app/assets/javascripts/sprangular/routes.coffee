@@ -84,7 +84,7 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'orders/show.html'
       resolve:
         order: (Account, $route) ->
-          Account.current.findOrder($route.current.number)
+          Account.user.findOrder($route.current.params.number)
 
     .otherwise
       templateUrl: '404.html'
