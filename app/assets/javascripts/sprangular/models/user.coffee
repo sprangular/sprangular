@@ -16,6 +16,9 @@ class Sprangular.User
     _.omit this, (value) ->
       typeof(value) == 'object' || typeof(value) == 'function' || Array.isArray(value)
 
+  findOrder: (number) ->
+    _.find @orders, (order) -> order.number == number
+
   _extendAddress: (attrs) ->
     Sprangular.extend(attrs, Sprangular.Address)
 
