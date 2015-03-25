@@ -40,6 +40,7 @@ en:
       products: Products
       next: Next
       previous: Previous
+      continue: Continue
     account:
       email: Email
       password: Password
@@ -79,7 +80,7 @@ en:
       total: Total
       empty_cart: Empty your Cart
     checkout:
-      success_msg: "Your order <strong>{{order_number}}</strong> was successfully submitted, you'll receive an email receipt shortly."
+      success_msg: "Your order {{order_number}} was successfully submitted, you'll receive an email receipt shortly."
       confirm: Confirm
       checkout: Checkout
       place_order: Place Order
