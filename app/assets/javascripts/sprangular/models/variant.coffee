@@ -11,4 +11,4 @@ class Sprangular.Variant
     @image = @images[0]
 
   isAvailable: ->
-    !@track_inventory || @in_stock
+    !@track_inventory || @in_stock || @is_backorderable
