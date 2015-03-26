@@ -20,7 +20,7 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.currencySymbol = Env.currency.symbol
   Cart.lastOrder = null
 
-  if !Account.isGuestCheckout
+  if !Account.isGuest
     $scope.user = user = Account.user
     order.resetAddresses(user)
     order.resetCreditCard(user)

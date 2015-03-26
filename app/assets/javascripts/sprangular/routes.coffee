@@ -43,27 +43,27 @@ Sprangular.config ($routeProvider) ->
           Catalog.productsByTaxon($route.current.params.path)
 
     .when '/sign-in',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'SigninCtrl'
       templateUrl: 'account/signin.html'
 
     .when '/sign-up',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'SignupCtrl'
       templateUrl: 'account/signup.html'
 
     .when '/forgot-password',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'ForgotPasswordCtrl'
       templateUrl: 'account/forgot_password.html'
 
     .when '/reset-password/:token',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'ResetPasswordCtrl'
       templateUrl: 'account/reset_password.html'
 
     .when '/checkout',
-      requires: {user: true, cart: true}
+      requires: {guest: true, cart: true}
       controller: 'CheckoutCtrl'
       templateUrl: 'checkout/index.html'
       resolve:

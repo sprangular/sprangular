@@ -25,10 +25,8 @@ Sprangular.controller 'SigninCtrl', (
       .success (content) ->
         $scope.signingIn = false
         $scope.$emit('account.login', Account)
-
         $location.path(Status.requestedPath || "/")
         Status.requestedPath = null
-
       .error ->
         $scope.signingIn = false
 

@@ -4,7 +4,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     fetched: false
     isLogged: false
-    isGuestCheckout: false
+    isGuest: false
 
     init: ->
       @clear()
@@ -39,8 +39,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       @email = data.email
 
     populateGuestAccount: (data) ->
-      @isGuestCheckout = true
-      @isLogged = true
+      @isGuest = true
       @email = data.email
 
     clear: ->
