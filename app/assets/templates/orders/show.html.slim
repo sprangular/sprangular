@@ -27,6 +27,12 @@ dl
   dd
     | {{order.shipmentState}}
 
+  dt
+    | {{:: 'orders.tracking' | translate }}
+  dd
+    span(ng-repeat="shipment in order.shipments")
+      | {{shipment.tracking || ('orders.no_tracking' | translate)}}
+
 h2 Details
 
 table.table.table-striped

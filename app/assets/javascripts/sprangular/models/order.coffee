@@ -40,6 +40,7 @@ class Sprangular.Order
     @shippingRates = []
     @completedAt = data.completed_at
     @shipmentState = data.shipment_state
+    @shipments = data.shipments
 
     @loadRates(data)
 
