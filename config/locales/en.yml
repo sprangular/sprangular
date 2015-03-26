@@ -123,6 +123,8 @@ en:
     orders:
       order_history: Order History
       no_orders_on_file: No orders on file
+      no_tracking: Not available
+      tracking: "Tracking #"
       number: Order Number
       state: Status
       ordered_on: Ordered On

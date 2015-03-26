@@ -78,5 +78,13 @@ Sprangular.config ($routeProvider) ->
         order: (Cart) ->
           Cart.lastOrder
 
+    .when '/orders/:number',
+      requires: {user: true}
+      controller: 'OrderDetailCtrl'
+      templateUrl: 'orders/show.html'
+      resolve:
+        order: (Orders, $route) ->
+          Orders.find($route.current.params.number)
+
     .otherwise
       templateUrl: '404.html'
