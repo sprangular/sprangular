@@ -39,6 +39,7 @@ class Sprangular.Order
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []
     @completedAt = data.completed_at
+    @shipmentState = data.shipment_state
 
     @loadRates(data)
 
