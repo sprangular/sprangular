@@ -1,0 +1,57 @@
+#checkout-confirm(ng-controller='CheckoutReviewCtrl')
+  .row
+    .col-md-12
+      h2
+        | {{ :: 'checkout.review' | translate }}
+
+      table.table.table-striped
+        tr
+          th
+            | {{ :: 'checkout.name' | translate }}
+          th(width="15%")
+            | {{ :: 'checkout.quantity' | translate }}
+          th
+            | {{ :: 'checkout.amount' | translate }}
+
+        tr.item(ng-repeat='item in order.items')
+          td.name
+            | {{item.variant.product.name}}
+            span(ng-if='item.variant.product.hasVariants()')
+              | &nbsp;{{item.variant.options_text}}
+
+          td.quantity.number(ng-bind='item.quantity')
+          td.price.number(ng-bind='item.price * item.quantity | currency')
+
+        tr.item-total
+          td
+            | {{ :: 'checkout.sub_total' | translate }}
+          td.number(colspan=2 ng-bind='order.itemTotal | currency')
+
+        tr.adjustment(ng-repeat='adjustment in order.adjustments')
+          td(colspan=2)
+            | {{adjustment.label}}
+
+            a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+              span.glyphicon.glyphicon-remove
+          td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
+
+        tr.shipping
+          td
+            | {{ :: 'checkout.shipping' | translate }}
+
+            span(ng-if='order.shippingRate.name')
+              |&nbsp;- {{order.shippingRate.name}}
+
+          td.number(colspan=2 ng-bind='order.shipTotal | currency')
+
+        tr.taxes
+          td
+            | {{ :: 'checkout.tax' | translate }}
+          td.number(colspan=2 ng-bind='order.taxTotal | currency')
+
+        tr.total
+          td
+            | {{ :: 'checkout.total' | translate }}
+          td.number(colspan=2 ng-bind='order.total | currency')
+
+      promo-form(order='order')
