@@ -40,7 +40,8 @@ table.table.table-striped
 
   tr.item(ng-repeat='item in order.items')
     td.name
-      | {{item.variant.product.name}}
+      a(ng-href="#!/products/{{item.variant.product.slug}}")
+        | {{item.variant.product.name}}
       span(ng-if='item.variant.product.hasVariants()')
         | &nbsp;{{item.variant.options_text}}
 
