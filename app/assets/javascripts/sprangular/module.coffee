@@ -65,7 +65,6 @@ Sprangular.run (
   Account,
   Cart,
   Flash,
-  $translate,
   $cacheFactory
 ) ->
   Sprangular.startupData = {}

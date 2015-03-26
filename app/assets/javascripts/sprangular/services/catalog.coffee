@@ -13,7 +13,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     taxonomies: ->
       $http.get("/api/taxonomies", {cache: true})
         .then (response) ->
-          response.data
+          response.data.taxonomies
 
     taxonsByName: (name) ->
       @taxonomies().then (response)->
@@ -29,21 +29,23 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
     taxon: (path) ->
       $http.get("/api/taxons/#{path}")
         .then (response) ->
-          response.data
+          response.data.taxon
 
     find: (id) ->
       $http.get("/api/products/#{id}", class: Sprangular.Product)
+        .then (response) ->
+          Status.cacheProduct(response)
+          response
 
     getPaged: (page=1, params={}) ->
       $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
-          list.isLastPage = (data.count < service.pageSize) || (page == data.pages)
-          list.totalCount = data.total_count
-          list.totalPages = data.pages
-          list.page = data.current_page
-          Status.cacheProducts(list)
+          list.isLastPage = (data.meta.count < service.pageSize) || (page == data.pages)
+          list.totalCount = data.meta.total_count
+          list.totalPages = data.meta.pages
+          list.page = data.meta.current_page
           list
 
   service

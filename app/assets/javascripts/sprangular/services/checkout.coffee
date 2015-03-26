@@ -34,13 +34,10 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         goto: goto
         order:
           use_billing: order.shipToBillAddress
-          coupon_code: order.couponCode
           ship_address_attributes: order.actualShippingAddress().serialize()
           bill_address_attributes: order.billingAddress.serialize()
 
-      if order.shippingRate
-        params['order[shipments_attributes][][id]'] = order.shipment.id
-        params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
+      @_addShippingRate(params, order)
 
       @put(params)
 
@@ -52,8 +49,13 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
-        order: {}
+        order:
+          use_billing: order.shipToBillAddress
+          ship_address_attributes: order.actualShippingAddress().serialize()
+          bill_address_attributes: order.billingAddress.serialize()
         payment_source: {}
+
+      @_addShippingRate(params, order)
 
       if card.id
         params.order.existing_card = card.id
@@ -111,6 +113,11 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           Cart.load(response) unless response.error
         .error (response) ->
           Cart.errors(response.errors || response.exception)
+
+    _addShippingRate: (params, order) ->
+      if order.shippingRate
+        params['order[shipments_attributes][][id]'] = order.shipment.id
+        params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
     _findPaymentMethodId: ->
       paymentMethod = _.find Env.config.payment_methods, (method) -> method.name == 'Credit Card'
