@@ -4,7 +4,7 @@ Sprangular.directive 'shippingRateSelection', ->
   scope:
     order: '='
 
-  controller: ($scope, Checkout, Env) ->
+  controller: ($scope, Checkout, Env, _) ->
     $scope.loading = false
     $scope.address = {}
     $scope.currencySymbol = Env.currency.symbol
@@ -25,9 +25,10 @@ Sprangular.directive 'shippingRateSelection', ->
       $scope.address = $scope.order.actualShippingAddress()
     , true)
 
-    validateAddress = (address) ->
-      alert 'valid'
-      $scope.isValid = !!address.firstname && !!address.lastname && !!address.city && !!address.address1 && !!address.zipcode && !!address.country && !!address.state && !!address.phone
+    validateAddress = _.debounce(
+      (address) ->
+        $scope.isValid = !!address.firstname && !!address.lastname && !!address.city && !!address.address1 && !!address.zipcode && !!address.country && !!address.state && !!address.phone
+    , 3000)
 
     $scope.$watch('address', validateAddress, true)
 
