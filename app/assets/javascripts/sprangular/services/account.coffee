@@ -50,7 +50,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     guestLogin: (data) ->
       params =
-        'order[email]': data.email
+        'order[email]': data.email || null
       $http.post('/api/cart/guest_login.json', $.param(params))
         .success (data) ->
           service.populateGuestAccount(data)

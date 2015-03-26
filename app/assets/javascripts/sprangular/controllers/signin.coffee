@@ -20,7 +20,6 @@ Sprangular.controller 'SigninCtrl', (
 
   $scope.guestLogin = ->
     $scope.signingIn = true
-
     Account.guestLogin($scope.cart)
       .success (content) ->
         $scope.signingIn = false
