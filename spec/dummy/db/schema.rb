@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326173554) do
+ActiveRecord::Schema.define(version: 20150326180847) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -41,13 +41,14 @@ ActiveRecord::Schema.define(version: 20150326173554) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "spree_user_id"
+    t.integer  "user_id"
   end
 
   add_index "spree_addresses", ["country_id"], name: "index_spree_addresses_on_country_id"
   add_index "spree_addresses", ["firstname"], name: "index_addresses_on_firstname"
   add_index "spree_addresses", ["lastname"], name: "index_addresses_on_lastname"
   add_index "spree_addresses", ["state_id"], name: "index_spree_addresses_on_state_id"
+  add_index "spree_addresses", ["user_id"], name: "index_spree_addresses_on_user_id"
 
   create_table "spree_adjustments", force: true do |t|
     t.integer  "source_id"
