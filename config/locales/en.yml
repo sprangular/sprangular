@@ -80,7 +80,7 @@ en:
       empty_cart: Empty your Cart
     checkout:
       success_msg: "Your order <strong>{{order_number}}</strong> was successfully submitted, you'll receive an email receipt shortly."
-      confirm: Confirm
+      review: Review
       checkout: Checkout
       place_order: Place Order
       billing_address: Billing Address
@@ -122,6 +122,8 @@ en:
     orders:
       order_history: Order History
       no_orders_on_file: No orders on file
+      no_tracking: Not available
+      tracking: "Tracking #"
       number: Order Number
       state: Status
       ordered_on: Ordered On
@@ -141,3 +143,14 @@ en:
       refreshing: Refreshing Rates ...
       fill_required_info: "Provide a country, state & zipcode to view available rates."
       not_available: "Shipping not available to {{address.country.name}}."
+    validation:
+      required: "can't be blank"
+      greaterThan: "must be greater than {{arg}}"
+      greaterThanOrEqual: "must be greater than or equal to {{arg}}"
+      lessThan: "must be less than {{arg}}"
+      lessThanOrEqual: "must be less than or equal to {{arg}}"
+      regex: 'is invalid'
+      length: "length must be {{length}}"
+      lengthGreaterThan: "length must be greater than {{length}}"
+      lengthLessThan: "length must be less than {{length}}"
+      number: "must be a number"

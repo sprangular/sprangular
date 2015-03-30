@@ -71,20 +71,20 @@ Sprangular.config ($routeProvider) ->
         order: (Cart) ->
           Cart.reload().then -> Cart.current
 
-    .when '/checkout/confirm',
-      requires: {user: true, cart: true}
-      controller: 'CheckoutConfirmCtrl'
-      templateUrl: 'checkout/confirm.html'
-      resolve:
-        order: (Cart) ->
-          Cart.reload().then -> Cart.current
-
     .when '/checkout/complete',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
       resolve:
         order: (Cart) ->
           Cart.lastOrder
+
+    .when '/orders/:number',
+      requires: {user: true}
+      controller: 'OrderDetailCtrl'
+      templateUrl: 'orders/show.html'
+      resolve:
+        order: (Orders, $route) ->
+          Orders.find($route.current.params.number)
 
     .otherwise
       templateUrl: '404.html'

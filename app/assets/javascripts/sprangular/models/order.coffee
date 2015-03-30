@@ -39,6 +39,9 @@ class Sprangular.Order
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []
     @subscriptionInterval = data.subscription_interval
+    @completedAt = data.completed_at
+    @shipmentState = data.shipment_state
+    @shipments = data.shipments
 
     @loadRates(data)
 
@@ -100,10 +103,10 @@ class Sprangular.Order
 
   resetAddresses: (user) ->
     if @billingAddress.isEmpty() && user && user.addresses.length > 0
-      @billingAddress = user.addresses[0]
+      @billingAddress = user.billingAddress
 
     if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@shipToBillAddress
-      @shippingAddress = user.addresses[0]
+      @shippingAddress = user.shippingAddress
 
   resetCreditCard: (user) ->
     if user && user.creditCards.length > 0

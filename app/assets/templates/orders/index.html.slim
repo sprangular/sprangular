@@ -32,7 +32,7 @@ h2
       dd
         | {{order.shipment_state}}
 
-    a.btn.btn-primary.btn-small ng-click="showOrderDetails(order)"
+    a.btn.btn-primary.btn-small(ng-href="#!/orders/{{order.number}}")
       | {{:: 'orders.see_details' | translate }}
 
     hr
