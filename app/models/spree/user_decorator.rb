@@ -1,4 +1,8 @@
 module Sprangular::UserDecorator
+  def self.prepended(klass)
+    klass.has_many :addresses, class_name: 'Spree::Address'
+  end
+
   def past_bill_addresses
     past_addresses :bill_address
   end

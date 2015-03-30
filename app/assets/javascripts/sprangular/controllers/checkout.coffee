@@ -22,7 +22,7 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.billingValid = false
   Cart.lastOrder = null
 
-  if !Account.isGuestCheckout
+  if !Account.isGuest
     $scope.user = user = Account.user
     order.resetAddresses(user)
     order.resetCreditCard(user)
@@ -33,15 +33,14 @@ Sprangular.controller 'CheckoutCtrl', (
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
 
-  $scope.submit = ->
+  $scope.complete = ->
     $scope.processing = true
 
     if $scope.order.isInvalid()
       $scope.processing = false
       return
 
-    Checkout.update('payment')
+    Checkout.complete()
+      .error   -> $location.path('/checkout')
       .success ->
-        $location.path('/checkout/confirm')
-      .error ->
-        $scope.processing = false
+        $location.path('/checkout/complete')

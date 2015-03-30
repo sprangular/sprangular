@@ -2,10 +2,10 @@ ul.nav.navbar-nav.navbar-right
   li.my-account
     a(ng-click="goToMyAccount()") {{:: 'nav.my_account' | translate}}
 
-  li.log-out(ng-show="account.isLogged && !account.isGuestCheckout")
+  li.log-out(ng-show="account.isLogged && !account.isGuest")
     a(ng-click="logout()") {{:: 'nav.logout' | translate}}
 
-  li.sign-in(ng-hide="account.isLogged && !account.isGuestCheckout")
+  li.sign-in(ng-hide="account.isLogged && !account.isGuest")
     a(ng-click="login()") {{:: 'nav.login' | translate}}
 
   li.cart.hidden-xs

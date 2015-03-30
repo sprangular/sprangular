@@ -8,7 +8,7 @@ de:
       home: Home
       oh_snap: Hoppla!
       404: Die Seite konnte leider nicht gefunden werden.
-      must_be_logged_in: "Sorry, diese Seite ist nur verfügbar wenn Du ausgelogged bist."
+      must_be_logged_out: "Sorry, diese Seite ist nur verfügbar wenn Du ausgelogged bist."
       sign_in_or_register: Bitte melde dich an um fortzufahren.
       no_items_in_cart: "Dein Warenkorb ist leider leer"
       confirm_reset_password: "Ein Link zur wiederherstellung Deines Passworts wurde per Email geschickt"

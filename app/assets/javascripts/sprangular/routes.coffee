@@ -43,39 +43,31 @@ Sprangular.config ($routeProvider) ->
           Catalog.productsByTaxon($route.current.params.path)
 
     .when '/sign-in',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'SigninCtrl'
       templateUrl: 'account/signin.html'
 
     .when '/sign-up',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'SignupCtrl'
       templateUrl: 'account/signup.html'
 
     .when '/forgot-password',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'ForgotPasswordCtrl'
       templateUrl: 'account/forgot_password.html'
 
     .when '/reset-password/:token',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'ResetPasswordCtrl'
       templateUrl: 'account/reset_password.html'
 
     .when '/checkout',
-      requires: {user: true, cart: true}
+      requires: {guest: true, cart: true}
       controller: 'CheckoutCtrl'
       templateUrl: 'checkout/index.html'
       resolve:
         countries: (Geography) -> Geography.getCountryList()
-        order: (Cart) ->
-          Cart.reload().then -> Cart.current
-
-    .when '/checkout/confirm',
-      requires: {user: true, cart: true}
-      controller: 'CheckoutConfirmCtrl'
-      templateUrl: 'checkout/confirm.html'
-      resolve:
         order: (Cart) ->
           Cart.reload().then -> Cart.current
 
@@ -85,6 +77,14 @@ Sprangular.config ($routeProvider) ->
       resolve:
         order: (Cart) ->
           Cart.lastOrder
+
+    .when '/orders/:number',
+      requires: {user: true}
+      controller: 'OrderDetailCtrl'
+      templateUrl: 'orders/show.html'
+      resolve:
+        order: (Orders, $route) ->
+          Orders.find($route.current.params.number)
 
     .otherwise
       templateUrl: '404.html'

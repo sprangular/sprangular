@@ -65,7 +65,6 @@ Sprangular.run (
   Account,
   Cart,
   Flash,
-  $translate,
   $cacheFactory
 ) ->
   Sprangular.startupData = {}
@@ -81,19 +80,22 @@ Sprangular.run (
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath
       Flash.error('app.sign_in_or_register')
-
       $location.path('/sign-in')
       event.preventDefault()
 
-    else if requirements.guest && Account.isLogged
-      Flash.error('app.must_be_logged_in')
+    else if requirements.guest && !Account.isLogged && !Account.isGuest
+      Status.requestedPath = next.$$route.originalPath
+      Flash.error('app.sign_in_or_register')
+      $location.path('/sign-in')
+      event.preventDefault()
 
+    else if requirements.anonymous && Account.isLogged
+      Flash.error('app.must_be_logged_out')
       $location.path('/')
       event.preventDefault()
 
     else if requirements.cart && Cart.current.items.length == 0
       Flash.error('app.no_items_in_cart')
-
       $location.path('/')
       event.preventDefault()
 

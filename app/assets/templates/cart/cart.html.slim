@@ -67,7 +67,11 @@
 
             tr.shipping
               td(colspan=2)
-                | {{:: 'cart.shipping' | translate}} - {{cart.shippingRate.name}}
+                | {{:: 'cart.shipping' | translate }}
+
+                span(ng-if='cart.shippingRate.name')
+                  |&nbsp;- {{cart.shippingRate.name}}
+
               td.number(colspan=2 ng-bind='cart.shipTotal | currency : currencySymbol')
               td
 
