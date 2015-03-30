@@ -3,6 +3,7 @@ Sprangular.directive 'shippingRateSelection', ->
   templateUrl: 'shipping/rates.html'
   scope:
     order: '='
+    isValid: '='
 
   controller: ($scope, Checkout, Env, _) ->
     $scope.loading = false
@@ -27,17 +28,19 @@ Sprangular.directive 'shippingRateSelection', ->
 
     validateAddress = _.debounce(
       (address) ->
-        $scope.isValid = !!address.firstname && !!address.lastname && !!address.city && !!address.address1 && !!address.zipcode && !!address.country && !!address.state && !!address.phone
+        $scope.isValid = !!address.firstname && !!address.lastname && !!address.city && !!address.address1 && !!address.zipcode && !!address.country.id && !!address.state.id && !!address.phone
     , 3000)
-
-    $scope.$watch('address', validateAddress, true)
 
     # use $scope.$watchGroup when its released
     $scope.$watch 'isValid', (oldValue, newValue) ->
 
-      $scope.loading = true
+      if(newValue)
+        $scope.loading = true
 
-      Checkout.update('payment').then ->
-        $scope.loading = false
-
+        Checkout.update('payment').then ->
+          $scope.loading = false
+      else
+        $scope.order.shippingRates = []
     validateAddress($scope.address)
+
+    $scope.$watch('address', validateAddress, true)

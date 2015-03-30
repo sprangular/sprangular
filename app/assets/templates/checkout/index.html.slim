@@ -35,7 +35,7 @@
         h2
           | {{ :: 'checkout.delivery_options' | translate}}
 
-        shipping-rate-selection(order='order')
+        shipping-rate-selection(order='order' is-valid='shippingValid')
 
       section#credit-card
         h2

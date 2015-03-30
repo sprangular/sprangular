@@ -18,6 +18,8 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.processing = false
   $scope.secure = $location.protocol() == 'https'
   $scope.currencySymbol = Env.currency.symbol
+  $scope.shippingValid = false
+  $scope.billingValid = false
   Cart.lastOrder = null
 
   if !Account.isGuestCheckout
@@ -30,9 +32,6 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
-
-  $scope.checkAddress = ->
-    console.log 'Done'
 
   $scope.submit = ->
     $scope.processing = true
