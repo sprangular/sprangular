@@ -18,6 +18,8 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.processing = false
   $scope.secure = $location.protocol() == 'https'
   $scope.currencySymbol = Env.currency.symbol
+  $scope.shippingValid = false
+  $scope.billingValid = false
   Cart.lastOrder = null
 
   if !Account.isGuest

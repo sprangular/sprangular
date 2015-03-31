@@ -1,4 +1,4 @@
-form.address(novalidate)
+form.address(novalidate ng-model-options='{ updateOn: "blur" }')
   .row
     .col-md-12
       p.error(ng-if='address.errors && address.errors != {}') Please correct the errors below:
