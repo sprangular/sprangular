@@ -50,7 +50,6 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     guestLogin: (data) ->
       email = if data is undefined then null else data.email
-      debugger
       params =
         'order[email]': email
       $http.post('/api/cart/guest_login.json', $.param(params))
