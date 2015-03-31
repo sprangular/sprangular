@@ -28,6 +28,10 @@
 
         address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
 
+      button#getDelivery.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="sendAddresses()")
+        span
+          | Next step >
+
       section#delivery
         h2
           | {{ :: 'checkout.delivery_options' | translate}}

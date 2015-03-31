@@ -30,7 +30,9 @@ Sprangular.directive 'shippingRateSelection', ->
       $scope.isValid = !!address.firstname && !!address.lastname && !!address.city && !!address.address1 && !!address.zipcode && !!address.country.id && !!address.state.id && !!address.phone
 
     # use $scope.$watchGroup when its released
-    $scope.$watch 'isValid', (oldValue, newValue) ->
+    sendAddresses = ->
+
+      console.log $scope.address
 
       if($scope.isValid)
         $scope.loading = true
@@ -39,6 +41,5 @@ Sprangular.directive 'shippingRateSelection', ->
           $scope.loading = false
       else
         $scope.order.shippingRates = []
-    validateAddress($scope.address)
 
     $scope.$watch('address', validateAddress, true)

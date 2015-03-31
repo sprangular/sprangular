@@ -44,3 +44,9 @@ Sprangular.controller 'CheckoutCtrl', (
       .error   -> $location.path('/checkout')
       .success ->
         $location.path('/checkout/complete')
+
+
+  $scope.sendAddresses = ->
+    $scope.loading = true
+    Checkout.update('payment').then ->
+      $scope.loading = false
