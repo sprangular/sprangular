@@ -8,13 +8,49 @@
       img
         width: 100%
 
-    .thumb
-      @include span-columns(1 of 4)
+    .thumbs
+      padding-top: 20px
+
+      .thumb
+        @include span-columns(1 of 4)
+        cursor: pointer
 
   .details
     @include span-columns(8)
     @include omega()
 
+  .controls
+    .dib
+      margin-right: 10px
+
+    .options
+      position: relative
+
+      .button
+        width: 150px
+
   .properties
-    @include span-columns(12)
-    @include omega()
+    padding-top: 40px
+
+    h5
+      margin-bottom: 10px
+
+    ul
+      li
+        @include span-columns(2 of 8)
+        border-right: 1px solid $light-gray
+        color: $blue
+        font-weight: 800
+        line-height: 1.35em
+        padding: 10px 0.7em
+
+        &:nth-child(3n+1)
+          padding-left: 0
+
+        &:nth-child(3n+3)
+          border-right: 0
+
+        span
+          color: $dark-gray
+          display: block
+          font-weight: normal
