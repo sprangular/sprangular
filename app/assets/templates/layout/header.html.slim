@@ -39,7 +39,7 @@ header.navigation(role="navigation" ng-controller="HeaderCtrl")
                   .fa.fa-user.fa-stack-1x.fa-inverse
 
             li.cart
-              a.cart-link.button(data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
+              a.cart-link.button(ng-click="toggleCart()")
                 i.fa.fa-shopping-cart
                 | &nbsp;
                 span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
@@ -49,3 +49,5 @@ header.navigation(role="navigation" ng-controller="HeaderCtrl")
 
             li.log-out(ng-show="account.isLogged")
               a(ng-click="logout()") Log out
+
+  ng-include(src="'cart/cart.html'")

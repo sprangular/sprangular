@@ -12,6 +12,7 @@ Sprangular.controller "HeaderCtrl", (
 ) ->
 
   $scope.cart = Cart
+  $scope.cartIsVisible = false
   Catalog.taxonomies().then (taxonomies) ->
     $scope.taxonomies = taxonomies
   $scope.account = Account
@@ -49,3 +50,6 @@ Sprangular.controller "HeaderCtrl", (
     Catalog.products(search, 1, ignoreLoadingIndicator: true)
       .then (products) ->
         $scope.lastSearch = products
+
+  $scope.toggleCart = ->
+    if $scope.cartIsVisible then $scope.cartIsVisible = false else $scope.cartIsVisible = true
