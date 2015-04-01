@@ -4,28 +4,30 @@
       ng-include(src="'products/gallery.html'")
 
     section.details
-      h1(ng-bind="product.name")
+      .info
+        h1(ng-bind="product.name")
 
-      p.desc(ng-bind="product.description")
-
-      .options(ng-show='product.hasVariants')
-        variant-selection(product="product" variant="selected.variant" class="{'btn-group-lg': true}")
-
-      .add
-        quantity-input(quantity="selected.quantity" ng-if='!selected.variant || selected.variant.isAvailable()')
-
-        p.sold-out(ng-if="selected.variant && !selected.variant.isAvailable()")
-          span.fa.fa-exclamation-triangle
-          | &nbsp;{{:: 'products.sold_out_msg' | translate }}
+        p.desc(ng-bind="product.description")
 
 
-        add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"
+      .controls
+        .dib
+          .options(ng-show='product.hasVariants')
+            variant-selection(product="product" variant="selected.variant" class="{'btn-group-lg': true}")
+
+        .dib
+          quantity-input(quantity="selected.quantity" ng-if='!selected.variant || selected.variant.isAvailable()')
+
+        .dib
+          add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"
                            product="product"
                            variant="selected.variant"
                            quantity="selected.quantity"
                            class="{'btn-lg': true, 'btn-block': true, 'btn-primary': !hasVariant(), 'btn-default': hasVariant()}")
 
-      .in-cart(ng-show='hasVariant()')
-        checkout-button(user='user')
+        .dib
+          .in-cart(ng-show='hasVariant()')
+            checkout-button(user='user')
 
-    ng-include(src="'products/properties.html'")
+      .properties(ng-show="product.product_properties.length > 0")
+        ng-include(src="'products/properties.html'")
