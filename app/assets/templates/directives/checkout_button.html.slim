@@ -1,6 +1,6 @@
 .checkout-button
   .standard
-    a.btn.btn-success.btn-lg.btn-block(ng-click='checkout()' ng-disabled='processing')
+    a.button.is-green(ng-click='checkout()' ng-disabled='processing')
       span(ng-hide="processing")
         | {{:: 'checkout.checkout' | translate }}
         span.glyphicon.glyphicon-chevron-right
