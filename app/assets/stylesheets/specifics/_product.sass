@@ -1,12 +1,18 @@
 #product-details
+  padding: 100px 0
+
   .gallery
-    @include span-columns(3)
+    @include span-columns(4)
+
+    .image
+      img
+        width: 100%
 
     .thumb
-      @include span-columns(1 of 3)
+      @include span-columns(1 of 4)
 
   .details
-    @include span-columns(9)
+    @include span-columns(8)
     @include omega()
 
   .properties
