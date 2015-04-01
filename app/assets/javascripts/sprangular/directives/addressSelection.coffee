@@ -5,7 +5,7 @@ Sprangular.directive 'addressSelection', ->
     address: '='
     addresses: '='
     countries: '='
-    isValid: '='
+    shippingRates: '='
   controller: ($scope) ->
     $scope.existingAddress = false
 
@@ -25,4 +25,4 @@ Sprangular.directive 'addressSelection', ->
         $scope.address = $scope.addresses[0]
       else
         $scope.address = new Sprangular.Address()
-        $scope.isValid = false
+        $scope.shippingRates = []

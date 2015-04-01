@@ -16,7 +16,7 @@
         h2(ng-hide='order.shipToBillAddress')
           | {{ :: 'checkout.billing_address' | translate}}
 
-        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
+        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries' shipping-rates='order.shippingRates')
 
         label
           input(type='checkbox' ng-model='order.shipToBillAddress')
@@ -26,7 +26,7 @@
         h2
           | {{ :: 'checkout.shipping_address' | translate}}
 
-        address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
+        address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries' shipping-rates='order.shippingRates')
 
       button#getDelivery.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="sendAddresses()")
         span
