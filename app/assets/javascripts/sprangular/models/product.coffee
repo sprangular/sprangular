@@ -1,7 +1,6 @@
 class Sprangular.Product
   init: ->
-    images = @master.images
-    @images = images
+    @images = Sprangular.extend(@master.images, Sprangular.Image)
 
     @permalink = "#!/products/#{@slug}"
 
@@ -17,8 +16,9 @@ class Sprangular.Product
       @hasFlexi = true
 
     @image = @variants[0].images[0]
+
     if !@image?
-      @image = @master.images[0]
+      @image = @images[0]
 
     self = @
     @options = {}
