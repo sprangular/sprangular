@@ -4,6 +4,9 @@ html, body
 figure
   margin: 0
 
+a
+  cursor: pointer
+
 #wrap
   min-height: 100%
   margin-bottom: -91px
@@ -22,3 +25,10 @@ figure
 
 .badge
   @include badge
+
+// ----- Clearfix ----- //
+
+.clear::after
+  clear: both
+  content: ''
+  display: table
