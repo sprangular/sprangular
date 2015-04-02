@@ -42,7 +42,7 @@ header.navigation(role="navigation" ng-controller="HeaderCtrl")
               a.cart-link.button(ng-click="toggleCart()")
                 i.fa.fa-shopping-cart
                 | &nbsp;
-                span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
+                span.cart-qty(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
 
             li.sign-up(ng-hide="account.isLogged")
               a(ng-click="login()") Sign in
