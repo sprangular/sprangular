@@ -33,9 +33,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         goto: goto
         order:
-          use_billing: order.shipToBillAddress
-          ship_address_attributes: order.actualShippingAddress().serialize()
-          bill_address_attributes: order.billingAddress.serialize()
+          ship_address_attributes: order.actualBillingAddress().serialize()
+          bill_address_attributes: order.shippingAddress.serialize()
 
       @_addShippingRate(params, order)
 
@@ -50,9 +49,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         order:
-          use_billing: order.shipToBillAddress
-          ship_address_attributes: order.actualShippingAddress().serialize()
-          bill_address_attributes: order.billingAddress.serialize()
+          ship_address_attributes: order.shippingAddress.serialize()
+          bill_address_attributes: order.actualBillingAddress().serialize()
         payment_source: {}
 
       @_addShippingRate(params, order)
