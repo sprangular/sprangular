@@ -69,7 +69,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         params.payment_source[paymentMethodId] = sourceParams
 
       @put(params)
-        .success (data) ->
+        .then (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
           service.trackOrder(Cart.lastOrder)
@@ -106,11 +106,23 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       Cart.current.errors = null
 
+      deferred = $q.defer()
+
       $http.put(url, $.param(params), config)
         .success (response) ->
           Cart.load(response) unless response.error
+          deferred.resolve(Cart.current)
+
         .error (response) ->
-          Cart.errors(response.errors || response.exception)
+          errors = response.errors || response.exception
+
+          if errors
+            Cart.errors(root: errors)
+            deferred.resolve(Cart.current)
+          else
+            deferred.reject()
+
+      deferred.promise
 
     _addShippingRate: (params, order) ->
       if order.shippingRate

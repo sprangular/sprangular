@@ -8,6 +8,10 @@
         span.fa.fa-lock(ng-if='secure')
         | &nbsp;{{:: 'checkout.secure_transaction' | translate}}
 
+  .row(ng-show='order.errors')
+    .col-md-12
+      p.error(ng-if='order.errors.root' ng-bind='order.errors.root')
+
   .row
     .col-md-8.col-xs-12
       section#shipping-address
