@@ -3,3 +3,16 @@
   @include transform(translateY(-50%))
   position: $position
   top: 50%
+
+// ----- Badges ----- //
+@mixin badge($color: $medium-gray)
+  @include border-top-radius(5px)
+  @include border-bottom-radius(5px)
+  background-color: $color
+  border-radius: $b-font-size * 5
+  color: darken($color, 60%)
+  display: inline-block
+  font-size: $b-font-size
+  font-weight: 600
+  line-height: 1
+  padding: 0.4em 1.2em
