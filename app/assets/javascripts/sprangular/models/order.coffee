@@ -11,7 +11,7 @@ class Sprangular.Order
     @items = []
     @billingAddress = new Sprangular.Address
     @shippingAddress = new Sprangular.Address
-    @shipToBillAddress = true
+    @billToShipAddress = true
     @itemTotal = 0
     @taxTotal = 0
     @shipTotal = 0
@@ -35,7 +35,7 @@ class Sprangular.Order
     @adjustmentTotal = Number(data.adjustment_total)
     @total = Number(data.total)
     @token = data.token
-    @shipToBillAddress = data.use_billing
+    @billToShipAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []
     @completedAt = data.completed_at
@@ -74,11 +74,11 @@ class Sprangular.Order
     @items.length == 0
 
   isValid: ->
-    @billingAddress.validate()
-    @actualShippingAddress().validate()
+    @shippingAddress.validate()
+    @actualBillingAddress().validate()
     @creditCard.validate()
 
-    @billingAddress.isValid() && @actualShippingAddress().isValid() && (@creditCard.id || @creditCard.isValid())
+    @actualBillingAddress().isValid() && @shippingAddress.isValid() && (@creditCard.id || @creditCard.isValid())
 
   isInvalid: ->
     !@isValid()
@@ -99,17 +99,17 @@ class Sprangular.Order
   updateTotals: ->
     @total = @itemTotal + @adjustmentTotal + @taxTotal + @shipTotal
 
-  actualShippingAddress: ->
-    if @shipToBillAddress
-      @billingAddress
-    else
+  actualBillingAddress: ->
+    if @billToShipAddress
       @shippingAddress
+    else
+      @billingAddress
 
   resetAddresses: (user) ->
     if @billingAddress.isEmpty() && user && user.addresses.length > 0
       @billingAddress = user.billingAddress
 
-    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@shipToBillAddress
+    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@billToShipAddress
       @shippingAddress = user.shippingAddress
 
   resetCreditCard: (user) ->
