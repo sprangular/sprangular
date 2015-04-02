@@ -1,19 +1,20 @@
-section#promo-selection
-  .add(ng-show='!showPromoEntry')
-    a(ng-click='showPromoEntry = true')
-      | {{:: 'promo.add' | translate }}
+.add(ng-show='!showPromoEntry')
+  a(ng-click='showPromoEntry = true')
+    | {{:: 'promo.add' | translate }}
 
-  section#promo-entry(ng-show='showPromoEntry')
-    form.form-inline(role='form' name="PromoForm" ng-submit='save()')
-      .form-group
-        label.control-label(for='promo-code')
-          | {{:: 'promo.code' | translate }}
-        input.form-control(name='promo-code' ng-model='promoCode')
+#promo-entry(ng-show='showPromoEntry')
+  form.form-inline(role='form' name="PromoForm" ng-submit='save()')
+    label.control-label(for='promo-code')
+      | {{:: 'promo.code' | translate }}
 
-      button.btn.btn-primary(type='submit')
-        | {{:: 'crud.save' | translate }}
+    input.form-control(name='promo-code' ng-model='promoCode' type='text')
 
-      a.btn.btn-link(ng-click='reset()')
-        | {{:: 'crud.cancel' | translate }}
+    button.btn.btn-primary(type='submit')
+      | {{:: 'crud.save' | translate }}
 
-    p.error(ng-bind='error' ng-show='error')
+    .clear
+
+    a.btn.btn-link(ng-click='reset()')
+      | {{:: 'crud.cancel' | translate }}
+
+  p.error(ng-bind='error' ng-show='error')
