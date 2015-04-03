@@ -17,7 +17,6 @@ class Sprangular.Order
     @shipTotal = 0
     @adjustmentTotal = 0
     @total = 0
-    @errors = null
     @state = null
     @shipmentState = null
     @shippingRates = []
