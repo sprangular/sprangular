@@ -84,9 +84,9 @@ de:
       checkout: Kasse
       place_order: Jetzt Bestellen
       billing_address: Rechnungsadresse
-      billing_and_shipping_address: Rechnungs- und Lieferadresse
+      shipping_and_billing_address: Shipping and Billing Address
       shipping_address: Lieferadresse
-      ship_to_billing_address: An Rechnungsadresse versenden
+      bill_to_shipping_address: Bill to Shipping Address
       delivery_options: Versandoptionen
       credit_card: Kreditkarte
       payment: Bezahlung

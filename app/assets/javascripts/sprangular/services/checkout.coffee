@@ -33,9 +33,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         goto: goto
         order:
-          use_billing: order.shipToBillAddress
-          ship_address_attributes: order.actualShippingAddress().serialize()
-          bill_address_attributes: order.billingAddress.serialize()
+          ship_address_attributes: order.actualBillingAddress().serialize()
+          bill_address_attributes: order.shippingAddress.serialize()
 
       @_addShippingRate(params, order)
 
@@ -50,9 +49,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         order:
-          use_billing: order.shipToBillAddress
-          ship_address_attributes: order.actualShippingAddress().serialize()
-          bill_address_attributes: order.billingAddress.serialize()
+          ship_address_attributes: order.shippingAddress.serialize()
+          bill_address_attributes: order.actualBillingAddress().serialize()
         payment_source: {}
 
       @_addShippingRate(params, order)
@@ -71,7 +69,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         params.payment_source[paymentMethodId] = sourceParams
 
       @put(params)
-        .success (data) ->
+        .then (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
           service.trackOrder(Cart.lastOrder)
@@ -108,11 +106,23 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       Cart.current.errors = null
 
+      deferred = $q.defer()
+
       $http.put(url, $.param(params), config)
         .success (response) ->
           Cart.load(response) unless response.error
+          deferred.resolve(Cart.current)
+
         .error (response) ->
-          Cart.errors(response.errors || response.exception)
+          errors = response.errors || response.exception
+
+          if errors
+            Cart.errors(base: errors)
+            deferred.resolve(Cart.current)
+          else
+            deferred.reject()
+
+      deferred.promise
 
     _addShippingRate: (params, order) ->
       if order.shippingRate

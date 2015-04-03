@@ -22,8 +22,8 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
-    $scope.$watch('order.actualShippingAddress()', ->
-      $scope.address = $scope.order.actualShippingAddress()
+    $scope.$watch('order.shippingAddress', ->
+      $scope.address = $scope.order.shippingAddress
     , true)
 
     $scope.$watch('address', ->

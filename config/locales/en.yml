@@ -85,9 +85,9 @@ en:
       checkout: Checkout
       place_order: Place Order
       billing_address: Billing Address
-      billing_and_shipping_address: Billing And Shipping Address
+      shipping_and_billing_address: Shipping And Billing Address
       shipping_address: Shipping Address
-      ship_to_billing_address: Ship to Billing Address
+      bill_to_shipping_address: Bill to Shipping Address
       delivery_options: Delivery Options
       credit_card: Credit Card
       payment: Payment
