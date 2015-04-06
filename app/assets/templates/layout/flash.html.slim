@@ -1,6 +1,5 @@
-#flash-messages.container
-  .message.row(ng-repeat="message in flash.messages")
-    .col-lg-8.col-lg-offset-2.col-sm-10.col-sm-offset-1.col-xs-10.col-xs-offset-1.alert(class="alert-{{message.type}}" role="alert")
-      button.close(data-dismiss="alert") ×
-
-      span.text(ng-bind="message.text")
+.flash(ng-repeat="message in flash.messages" class="flash-{{message.type}}")
+  .b-gridContainer
+    span(ng-bind="message.text")
+  .close(ng-click="flash.remove(flash)")
+    i.fa.fa-times.fa-lg
