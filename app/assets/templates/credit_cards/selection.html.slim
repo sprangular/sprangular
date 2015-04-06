@@ -1,6 +1,7 @@
 section.credit-card
   section.existing-credit-card(ng-show='existingCreditCard')
-    select(ng-options='cc as cc.label() for cc in creditCards' ng-model='creditCard')
+    .form-group
+      select(ng-options='cc as cc.label() for cc in creditCards' ng-model='creditCard')
 
     p
       a.new-credit-card(ng-click='toggleExistingCreditCard()')
