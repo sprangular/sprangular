@@ -1,18 +1,10 @@
-#checkout-details.container
-  .row
-    .col-md-6.col-md-offset-3.col-xs-12
-      checkout-nav(step='details')
-  .row
-    .col-md-12
-      h1
-        | {{:: 'checkout.checkout' | translate}}
+#checkout-details
+  checkout-nav(step='details')
+  .c-grid-container
+    h1
+      | {{:: 'checkout.checkout' | translate}}
 
-      p.secure(ng-if='secure')
-        span.fa.fa-lock(ng-if='secure')
-        | &nbsp;{{:: 'checkout.secure_transaction' | translate}}
-
-  .row
-    .col-md-8.col-xs-12
+    .c-grid-third
       section#billing-address
         h2(ng-show='order.shipToBillAddress')
           | {{ :: 'checkout.billing_and_shipping_address' | translate}}
@@ -21,9 +13,10 @@
 
         address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
 
-        label
-          input(type='checkbox' ng-model='order.shipToBillAddress')
-          | &nbsp;{{ :: 'checkout.ship_to_billing_address' | translate}}
+        .form-group
+          label
+            input(type='checkbox' ng-model='order.shipToBillAddress')
+            | &nbsp;{{ :: 'checkout.ship_to_billing_address' | translate}}
 
       section#shipping-address(ng-hide='order.shipToBillAddress')
         h2
@@ -31,6 +24,7 @@
 
         address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
 
+    .c-grid-third
       section#delivery
         h2
           | {{ :: 'checkout.delivery_options' | translate}}
@@ -43,49 +37,53 @@
 
         credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
-      button#confirm.btn.btn-primary.btn-block.btn-lg(ng-click='submit()' ng-disabled='processing')
-        span(ng-if='!processing')
-          span.caption
-            | {{ :: 'checkout.confirm' | translate}}
-          | &nbsp;
-          span.glyphicon.glyphicon-chevron-right
-        span(ng-if='processing')
-          span.fa.fa-refresh.fa-spin
-          | &nbsp;
-          span.caption
-            | {{ :: 'loading' | translate}}
+    .c-grid-third
+      h2
+        | {{ :: 'checkout.summary' | translate}}
 
-    .col-md-4.hidden-xs
-      .well
-        h2
-          | {{ :: 'checkout.summary' | translate}}
+      dl.dl-horizontal
+        dt
+          | {{ :: 'checkout.sub_total' | translate}}
+        dd
+          | {{order.itemTotal | currency : currencySymbol}}
 
-        dl.dl-horizontal
-          dt
-            | {{ :: 'checkout.sub_total' | translate}}
-          dd
-            | {{order.itemTotal | currency : currencySymbol}}
+        dt(ng-repeat-start="adjustment in order.adjustments")
+          a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+            span.glyphicon.glyphicon-remove
+          | {{adjustment.label}}
+        dd(ng-repeat-end)
+          | {{adjustment.amount | currency : currencySymbol}}
 
-          dt(ng-repeat-start="adjustment in order.adjustments")
-            a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
-              span.glyphicon.glyphicon-remove
-            | {{adjustment.label}}
-          dd(ng-repeat-end)
-            | {{adjustment.amount | currency : currencySymbol}}
+        dt
+          | {{ :: 'checkout.shipping' | translate}}
+        dd
+          | {{order.shipTotal | currency : currencySymbol}}
 
-          dt
-            | {{ :: 'checkout.shipping' | translate}}
-          dd
-            | {{order.shipTotal | currency : currencySymbol}}
+        dt
+          | {{ :: 'checkout.tax' | translate}}
+        dd
+          | {{order.taxTotal | currency : currencySymbol}}
 
-          dt
-            | {{ :: 'checkout.tax' | translate}}
-          dd
-            | {{order.taxTotal | currency : currencySymbol}}
-
-          dt
-            | {{ :: 'checkout.total' | translate}}
-          dd
-            | {{order.total | currency : currencySymbol}}
+        dt
+          | {{ :: 'checkout.total' | translate}}
+        dd
+          | {{order.total | currency : currencySymbol}}
 
         promo-form(order='order')
+
+        button#confirm(ng-click='submit()' ng-disabled='processing')
+          span(ng-if='!processing')
+            span.caption
+              | {{ :: 'checkout.confirm' | translate}}
+            | &nbsp;
+            span.glyphicon.glyphicon-chevron-right
+          span(ng-if='processing')
+            span.fa.fa-refresh.fa-spin
+            | &nbsp;
+            span.caption
+              | {{ :: 'loading' | translate}}
+
+  div
+    p.secure(ng-if='secure')
+      span.fa.fa-lock(ng-if='secure')
+      | &nbsp;{{:: 'checkout.secure_transaction' | translate}}
