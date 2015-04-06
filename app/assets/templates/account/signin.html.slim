@@ -1,29 +1,30 @@
 #signin
-  .c-grid-container
-    .s-auth-wrapper
-      h1
-        | {{ :: 'nav.login' | translate }}
-      form(name='signinForm' role="form" ng-submit="login()" novalidate)
-        .form-group
-          label(for="email")
-            | {{ :: 'account.email' | translate }}
-          input.form-control(name="email" ng-model="user.email" type="email" autofocus)
+  .s-auth-wrapper
+    .c-grid-container
+      .c-grid-third
+        h1
+          | {{ :: 'nav.login' | translate }}
+        form(name='signinForm' role="form" ng-submit="login()" novalidate)
+          .form-group
+            label(for="email")
+              | {{ :: 'account.email' | translate }}
+            input.form-control(name="email" ng-model="user.email" type="email" autofocus)
 
-        .form-group
-          label(for="password")
-            | {{ :: 'account.password' | translate }}
-          input.form-control(name="password" ng-model="user.password" type="password")
+          .form-group
+            label(for="password")
+              | {{ :: 'account.password' | translate }}
+            input.form-control(name="password" ng-model="user.password" type="password")
 
-        .form-group.clear
-          button.fl(type='submit' ng-disabled="signingIn")
-            span(ng-hide="signingIn")
-              | {{ :: 'nav.login' | translate }}
-            span(ng-show="signingIn")
-              | {{ :: 'loading' | translate }}
+          .form-group.clear
+            button.fl(type='submit' ng-disabled="signingIn")
+              span(ng-hide="signingIn")
+                | {{ :: 'nav.login' | translate }}
+              span(ng-show="signingIn")
+                | {{ :: 'loading' | translate }}
 
-          a.button.is-transparent.fr(ng-href="/#!/sign-up")
-            | {{ :: 'account.create_account' | translate }}
+            a.button.is-transparent.fr(ng-href="/#!/sign-up")
+              | {{ :: 'account.create_account' | translate }}
 
-      p
-        a(ng-href="/#!/forgot-password")
-          | {{ :: 'account.forgot_password' | translate }}?
+        p
+          a(ng-href="/#!/forgot-password")
+            | {{ :: 'account.forgot_password' | translate }}?

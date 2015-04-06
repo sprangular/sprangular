@@ -1,31 +1,32 @@
 #account
-  .c-grid-container
-    .s-auth-wrapper
-      h1
-        | {{ :: 'nav.my_account' | translate }}
+  .s-auth-wrapper
+    .c-grid-container
+      .c-grid-third
+        h1
+          | {{ :: 'nav.my_account' | translate }}
 
-      .form-group
-        div ng-hide="editing"
-          dl
-            dt
-              | {{ :: 'account.email' | translate }}
-            dd
-              | {{user.email}}
+        .form-group
+          div ng-hide="editing"
+            dl
+              dt
+                | {{ :: 'account.email' | translate }}
+              dd
+                | {{user.email}}
 
-            dt
-              | {{ :: 'account.password' | translate }}
-            dd •••••••
+              dt
+                | {{ :: 'account.password' | translate }}
+              dd •••••••
 
-          a.button(ng-click="edit()")
-            i.fa.fa-edit
-            | &nbsp;
-            | {{ :: 'crud.edit' | translate }}
+            a.button(ng-click="edit()")
+              i.fa.fa-edit
+              | &nbsp;
+              | {{ :: 'crud.edit' | translate }}
 
-        div ng-show="editing"
-          div ng-include="'account/edit.html'"
+          div ng-show="editing"
+            div ng-include="'account/edit.html'"
 
-      .clear ng-include="'credit_cards/index.html'" ng-controller="CreditCardListCtrl"
+        .clear ng-include="'credit_cards/index.html'" ng-controller="CreditCardListCtrl"
 
-      .clear ng-include="'addresses/index.html'" ng-controller="AddressListCtrl"
+        .clear ng-include="'addresses/index.html'" ng-controller="AddressListCtrl"
 
-      .clear ng-include="'orders/index.html'" ng-controller="OrderListCtrl"
+        .clear ng-include="'orders/index.html'" ng-controller="OrderListCtrl"
