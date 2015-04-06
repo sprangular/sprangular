@@ -1,6 +1,7 @@
 section.address
   section.existing-address(ng-show='existingAddress')
-    select(ng-options='addr as addr.shortAddress() for addr in addresses' ng-model='address')
+    .form-group
+      select(ng-options='addr as addr.shortAddress() for addr in addresses' ng-model='address')
 
     p
       a.new-address(ng-click='toggleExistingAddress()')
