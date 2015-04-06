@@ -16,3 +16,21 @@
   font-weight: 600
   line-height: 1
   padding: 0.4em 1.2em
+
+// ----- Flashes ----- //
+@mixin flash($color)
+  background-color: $color
+  color: darken($color, 60%)
+  display: block
+  font-weight: 600
+  margin-bottom: $b-space / 2
+  padding: $b-space / 2
+  text-align: center
+
+  a
+    color: darken($color, 70%)
+    text-decoration: underline
+
+    &:focus,
+    &:hover
+      color: darken($color, 90%)
