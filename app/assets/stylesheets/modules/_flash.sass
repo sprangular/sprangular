@@ -4,13 +4,15 @@
 .flash-success
   margin-bottom: 0
 
-.flash-alert
-  @extend %flash-alert
+  .jumbotron &
+    text-align: left
 
-.flash-error
+.flash-error,
+.flash-danger
   @extend %flash-error
 
-.flash-notice
+.flash-notice,
+.flash-info
   @extend %flash-notice
 
 .flash-success
