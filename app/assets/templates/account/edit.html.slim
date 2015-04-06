@@ -2,7 +2,7 @@ form(name='accountForm' ng-submit="save()" novalidate)
   .form-group
     label(for='email')
       | {{:: 'account.email' | translate}}
-    input.form-control(name="email" ng-model="user.email" required)
+    input.form-control(name="email" ng-model="user.email" type="email" required)
     p.error(ng-bind="user.errors.email[0]")
 
   .form-group
@@ -19,13 +19,11 @@ form(name='accountForm' ng-submit="save()" novalidate)
     input.form-control(name="password_confirmation" ng-model="user.password_confirmation" type='password')
     p.error(ng-bind="user.errors.password_confirmation[0]")
 
-  .clearfix
-    .pull-left
-      a.btn.btn-link(ng-click="stopEdit()")
-        | {{ :: 'crud.cancel' | translate }}
+  .form-group.clear
+    button.is-green.fl(type='submit')
+      i.fa.fa-check-square-o
+      | &nbsp;
+      | {{ :: 'crud.update' | translate }}
 
-    .pull-right
-      button.btn.btn-primary.btn-lg(type='submit')
-        span.glyphicon.glyphicon-floppy-disk
-        | &nbsp;
-        | {{ :: 'crud.update' | translate }}
+    a.button.is-transparent.fr(ng-click="stopEdit()")
+      | {{ :: 'crud.cancel' | translate }}
