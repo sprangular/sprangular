@@ -6,9 +6,9 @@
 
     .c-grid-third
       section#billing-address
-        h2(ng-show='order.shipToBillAddress')
+        h4(ng-show='order.shipToBillAddress')
           | {{ :: 'checkout.billing_and_shipping_address' | translate}}
-        h2(ng-hide='order.shipToBillAddress')
+        h4(ng-hide='order.shipToBillAddress')
           | {{ :: 'checkout.billing_address' | translate}}
 
         address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
@@ -19,26 +19,26 @@
             | &nbsp;{{ :: 'checkout.ship_to_billing_address' | translate}}
 
       section#shipping-address(ng-hide='order.shipToBillAddress')
-        h2
+        h4
           | {{ :: 'checkout.shipping_address' | translate}}
 
         address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
 
     .c-grid-third
       section#delivery
-        h2
+        h4
           | {{ :: 'checkout.delivery_options' | translate}}
 
         shipping-rate-selection(order='order')
 
       section#credit-card
-        h2
+        h4
           | {{ :: 'checkout.credit_card' | translate}}
 
         credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
     .c-grid-third
-      h2
+      h4
         | {{ :: 'checkout.summary' | translate}}
 
       dl.dl-horizontal
