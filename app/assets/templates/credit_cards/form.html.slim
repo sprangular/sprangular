@@ -1,36 +1,37 @@
 form.credit-card(novalidate)
-  .form-group(ng-class="{'has-error': creditCard.errors.number}")
-    label(for='number')
-      | {{ :: 'credit_cards.number' | translate}}
-    .input-group
-      input.form-control(type='text' name='number' ng-model='creditCard.number')
-      .input-group-addon
-        i.fa.fa-credit-card(ng-show="!creditCard.type")
-        i.fa.fa-cc-visa(ng-show="creditCard.type == 'visa'")
-        i.fa.fa-cc-mastercard(ng-show="creditCard.type == 'master'")
-        i.fa.fa-cc-amex(ng-show="creditCard.type == 'amex'")
-        i.fa.fa-cc-discover(ng-show="creditCard.type == 'discover'")
+  fieldset(ng-disabled='disabled')
+    .form-group(ng-class="{'has-error': creditCard.errors.number}")
+      label(for='number')
+        | {{ :: 'credit_cards.number' | translate}}
+      .input-group
+        input.form-control(type='text' name='number' ng-model='creditCard.number')
+        .input-group-addon
+          i.fa.fa-credit-card(ng-show="!creditCard.type")
+          i.fa.fa-cc-visa(ng-show="creditCard.type == 'visa'")
+          i.fa.fa-cc-mastercard(ng-show="creditCard.type == 'master'")
+          i.fa.fa-cc-amex(ng-show="creditCard.type == 'amex'")
+          i.fa.fa-cc-discover(ng-show="creditCard.type == 'discover'")
 
-    p.error(ng-bind='creditCard.errors.number')
+      p.error(ng-bind='creditCard.errors.number')
 
-  .row
-    .col-md-4
-      .form-group(ng-class="{'has-error': creditCard.errors.month}")
-        label.control-label.control-label(for='month')
-          | {{ :: 'credit_cards.month' | translate}}
-        select.form-control(name='month' ng-options='m.index as (m.index + " - " + m.name) for m in months' ng-model='creditCard.month')
-        p.error(ng-bind='creditCard.errors.month')
+    .row
+      .col-md-4
+        .form-group(ng-class="{'has-error': creditCard.errors.month}")
+          label.control-label.control-label(for='month')
+            | {{ :: 'credit_cards.month' | translate}}
+          select.form-control(name='month' ng-options='m.index as (m.index + " - " + m.name) for m in months' ng-model='creditCard.month')
+          p.error(ng-bind='creditCard.errors.month')
 
-    .col-md-4
-      .form-group(ng-class="{'has-error': creditCard.errors.year}")
-        label.control-label(for='year')
-          | {{ :: 'credit_cards.year' | translate}}
-        select.form-control(name='year' ng-options='year for year in years' ng-model='creditCard.year')
-        p.error(ng-bind='creditCard.errors.year')
+      .col-md-4
+        .form-group(ng-class="{'has-error': creditCard.errors.year}")
+          label.control-label(for='year')
+            | {{ :: 'credit_cards.year' | translate}}
+          select.form-control(name='year' ng-options='year for year in years' ng-model='creditCard.year')
+          p.error(ng-bind='creditCard.errors.year')
 
-    .col-md-4
-      .form-group(ng-class="{'has-error': creditCard.errors.cvc}")
-        label.control-label(for='cvc')
-          | {{ :: 'credit_cards.verification' | translate}} <a ng-href="http://en.wikipedia.org/wiki/Card_security_code" target="_blank">{{ 'credit_cards.whats_this' | translate}}</a>
-        input.form-control(type='number' name='cvc' min=1 max=9999 ng-model='creditCard.cvc')
-        p.error(ng-bind='creditCard.errors.cvc')
+      .col-md-4
+        .form-group(ng-class="{'has-error': creditCard.errors.cvc}")
+          label.control-label(for='cvc')
+            | {{ :: 'credit_cards.verification' | translate}} <a ng-href="http://en.wikipedia.org/wiki/Card_security_code" target="_blank">{{ 'credit_cards.whats_this' | translate}}</a>
+          input.form-control(type='number' name='cvc' min=1 max=9999 ng-model='creditCard.cvc')
+          p.error(ng-bind='creditCard.errors.cvc')

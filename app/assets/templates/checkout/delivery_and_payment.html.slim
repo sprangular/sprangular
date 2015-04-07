@@ -3,13 +3,13 @@ section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl'
     h2
       | {{ :: 'checkout.delivery_options' | translate}}
 
-    shipping-rate-selection(order='order')
+    shipping-rate-selection(order='order' disabled='!active')
 
   section#credit-card
     h2
       | {{ :: 'checkout.credit_card' | translate}}
 
-    credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
+    credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards' disabled='!active')
 
   button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
     span(ng-if='!processing')
