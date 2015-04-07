@@ -15,10 +15,7 @@ Sprangular.controller 'CheckoutCtrl', (
 
   user = Account.user
 
-  $scope.countries = countries
   $scope.order = order
-  $scope.processing = false
-  $scope.user = user
   $scope.secure = $location.protocol() == 'https'
   $scope.currencySymbol = Env.currency.symbol
 
