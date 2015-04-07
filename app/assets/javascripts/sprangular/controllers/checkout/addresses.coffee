@@ -10,6 +10,9 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
     $scope.done = _.contains(['confirm', 'payment', 'delivery'], state)
     $scope.active = _.contains(['cart', 'address'], state)
 
+  $scope.edit = ->
+    $scope.order.state = 'address'
+
   $scope.advance = ->
     order = $scope.order
     return if order.shippingAddress.isInvalid() || (!order.billToShipAddress && order.billingAddress.isInvalid())

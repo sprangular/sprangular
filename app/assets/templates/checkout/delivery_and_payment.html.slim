@@ -1,4 +1,7 @@
 section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl' ng-class="{active: active, done: done}")
+  .edit(ng-show='done' ng-click='edit()')
+    span.fa.fa-pencil
+
   section#delivery
     h2
       | {{ :: 'checkout.delivery_options' | translate}}

@@ -1,4 +1,7 @@
 section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: active, done: done}")
+  .edit(ng-show='done' ng-click='edit()')
+    span.fa.fa-pencil
+
   section#shipping-address
     h2(ng-show='order.billToShipAddress')
       | {{ :: 'checkout.shipping_and_billing_address' | translate}}

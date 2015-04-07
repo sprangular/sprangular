@@ -205,10 +205,27 @@ section.gallery {
 
 #checkout-details {
   .step {
-    opacity: 0.5;
+    .edit {
+      position: absolute;
+      z-index: 3;
+      background: rgba(255,255,255, 0.4);
+      height: calc(100%);
+      width: calc(100%);
 
-    &.active, &.review {
-      opacity: 1;
+      span.fa {
+        font-size: 4em;
+        position: relative;
+        left: -1em;
+        color: rgba(0,0,0,0.4);
+      }
+
+      &:hover {
+        background: rgba(255,255,255, 0.3);
+
+        span.fa {
+          color: rgba(0,0,0,0.8);
+        }
+      }
     }
   }
 }
