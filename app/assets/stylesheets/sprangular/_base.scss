@@ -205,6 +205,12 @@ section.gallery {
 
 #checkout-details {
   .step {
+    opacity: 0.6;
+
+    &.active, &.review {
+      opacity: 1;
+    }
+
     .edit {
       position: absolute;
       z-index: 3;
@@ -213,7 +219,7 @@ section.gallery {
       width: calc(100%);
 
       span.fa {
-        font-size: 4em;
+        font-size: 3em;
         position: relative;
         left: -1em;
         color: rgba(0,0,0,0.4);
