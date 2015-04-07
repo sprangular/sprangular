@@ -27,19 +27,3 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
-
-  $scope.placeOrder = ->
-    $scope.processing = true
-
-    if $scope.order.isInvalid()
-      $scope.processing = false
-      return
-
-    Checkout.confirm()
-      .then (order) ->
-          if order.errors && Object.keys(orders.errors).length > 0
-            $scope.processing = false
-          else
-            $location.path('/checkout/complete')
-        , ->
-          $scope.processing = false
