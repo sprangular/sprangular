@@ -207,7 +207,7 @@ section.gallery {
   .step {
     opacity: 0.5;
 
-    &.active {
+    &.active, &.review {
       opacity: 1;
     }
   }
