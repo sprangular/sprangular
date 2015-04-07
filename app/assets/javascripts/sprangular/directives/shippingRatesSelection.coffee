@@ -36,7 +36,7 @@ Sprangular.directive 'shippingRateSelection', ->
 
       $scope.loading = true
 
-      Checkout.update('payment').then ->
+      Checkout.setDelivery().then ->
         $scope.loading = false
 
     validateAddress($scope.address)
