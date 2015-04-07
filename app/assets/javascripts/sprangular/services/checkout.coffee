@@ -40,7 +40,14 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put(params)
 
-    complete: ->
+
+    setAddress: ->
+
+    setDelivery: ->
+
+    setPayment: ->
+
+    confirm: ->
       order = Cart.current
       card  = order.creditCard
       paymentMethodId = @_findPaymentMethodId()
