@@ -21,14 +21,3 @@
 
     .col-md-4.col-xs-12
       ng-include(src="'checkout/review.html'")
-
-  .row
-    .col-md-12
-      button#complete.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
-        span(ng-if='!processing')
-          | {{ :: 'checkout.place_order' | translate }}
-        span(ng-if='processing')
-          span.fa.fa-refresh.fa-spin
-          | &nbsp;
-          span.caption
-            | {{ :: 'checkout.processing' | translate }}
