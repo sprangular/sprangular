@@ -14,6 +14,8 @@ section#delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl')
   button.next.btn.btn-primary.btn-lg.btn-block(ng-disabled='false' ng-click="advance()")
     span(ng-if='!processing')
       | {{ :: 'checkout.next' | translate }}
+      | &nbsp;
+      span.glyphicon.glyphicon-chevron-right
     span(ng-if='processing')
       span.fa.fa-refresh.fa-spin
       | &nbsp;
