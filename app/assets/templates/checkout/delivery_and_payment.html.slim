@@ -10,3 +10,12 @@ section#delivery-and-payment
       | {{ :: 'checkout.credit_card' | translate}}
 
     credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
+
+  button.next.btn.btn-primary.btn-lg.btn-block(ng-disabled='false' ng-click="advance()")
+    span(ng-if='!processing')
+      | {{ :: 'checkout.next' | translate }}
+    span(ng-if='processing')
+      span.fa.fa-refresh.fa-spin
+      | &nbsp;
+      span.caption
+        | {{ :: 'checkout.processing' | translate }}
