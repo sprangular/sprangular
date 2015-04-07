@@ -1,0 +1,18 @@
+section#addresses
+  section#shipping-address
+    h2(ng-show='order.billToShipAddress')
+      | {{ :: 'checkout.shipping_and_billing_address' | translate}}
+    h2(ng-hide='order.billToShipAddress')
+      | {{ :: 'checkout.shipping_address' | translate}}
+
+    address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
+
+    label
+      input(type='checkbox' ng-model='order.billToShipAddress')
+      | &nbsp;{{ :: 'checkout.bill_to_shipping_address' | translate}}
+
+  section#billing-address(ng-hide='order.billToShipAddress')
+    h2
+      | {{ :: 'checkout.billing_address' | translate}}
+
+    address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')

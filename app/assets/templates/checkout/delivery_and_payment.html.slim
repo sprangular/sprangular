@@ -1,0 +1,12 @@
+section#delivery-and-payment
+  section#delivery
+    h2
+      | {{ :: 'checkout.delivery_options' | translate}}
+
+    shipping-rate-selection(order='order')
+
+  section#credit-card
+    h2
+      | {{ :: 'checkout.credit_card' | translate}}
+
+    credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
