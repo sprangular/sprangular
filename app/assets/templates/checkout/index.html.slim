@@ -38,60 +38,61 @@
         credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
     .c-grid-third
-      h4
-        | {{ :: 'checkout.summary' | translate}}
+      section#summary
+        h4
+          | {{ :: 'checkout.summary' | translate}}
 
-      dl
-        dt.fl
-          | {{ :: 'checkout.sub_total' | translate}}
-        dd.fr
-          | {{order.itemTotal | currency : currencySymbol}}
+        dl
+          dt.fl
+            | {{ :: 'checkout.sub_total' | translate}}
+          dd.fr
+            | {{order.itemTotal | currency : currencySymbol}}
 
-        .clear
+          .clear
 
-        dt.fl(ng-repeat-start="adjustment in order.adjustments")
-          a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
-            span.glyphicon.glyphicon-remove
-          | {{adjustment.label}}
-        dd.fr(ng-repeat-end)
-          | {{adjustment.amount | currency : currencySymbol}}
+          dt.fl(ng-repeat-start="adjustment in order.adjustments")
+            a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+              span.glyphicon.glyphicon-remove
+            | {{adjustment.label}}
+          dd.fr(ng-repeat-end)
+            | {{adjustment.amount | currency : currencySymbol}}
 
-        .clear
+          .clear
 
-        dt.fl
-          | {{ :: 'checkout.shipping' | translate}}
-        dd.fr
-          | {{order.shipTotal | currency : currencySymbol}}
+          dt.fl
+            | {{ :: 'checkout.shipping' | translate}}
+          dd.fr
+            | {{order.shipTotal | currency : currencySymbol}}
 
-        .clear
+          .clear
 
-        dt.fl
-          | {{ :: 'checkout.tax' | translate}}
-        dd.fr
-          | {{order.taxTotal | currency : currencySymbol}}
+          dt.fl
+            | {{ :: 'checkout.tax' | translate}}
+          dd.fr
+            | {{order.taxTotal | currency : currencySymbol}}
 
-        .clear
+          .clear
 
-        dt.fl
-          | {{ :: 'checkout.total' | translate}}
-        dd.fr
-          | {{order.total | currency : currencySymbol}}
+          dt.fl
+            | {{ :: 'checkout.total' | translate}}
+          dd.fr
+            | {{order.total | currency : currencySymbol}}
 
-        .clear
+          .clear
 
-        promo-form(order='order')
+      promo-form(order='order')
 
-        button#confirm(ng-click='submit()' ng-disabled='processing')
-          span(ng-if='!processing')
-            span.caption
-              | {{ :: 'checkout.confirm' | translate}}
-            | &nbsp;
-            span.glyphicon.glyphicon-chevron-right
-          span(ng-if='processing')
-            span.fa.fa-refresh.fa-spin
-            | &nbsp;
-            span.caption
-              | {{ :: 'loading' | translate}}
+      button#confirm.is-green.fr(ng-click='submit()' ng-disabled='processing')
+        span(ng-if='!processing')
+          span.caption
+            | {{ :: 'checkout.confirm' | translate}}
+          | &nbsp;
+          span.fa.fa-angle-right
+        span(ng-if='processing')
+          span.fa.fa-refresh.fa-spin
+          | &nbsp;
+          span.caption
+            | {{ :: 'loading' | translate}}
 
   div
     p.secure(ng-if='secure')
