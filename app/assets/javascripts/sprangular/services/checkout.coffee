@@ -47,8 +47,12 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
     setPayment: ->
       order  = Cart.current
+      paymentMethodId = @_findPaymentMethodId()
+
       params =
-        state: 'payment'
+        'order[payments_attributes][][payment_method_id]': paymentMethodId
+        'order[existing_card]': ''
+        'state': 'payment'
 
       @put(params)
 
