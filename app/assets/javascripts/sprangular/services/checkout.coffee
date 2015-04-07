@@ -26,25 +26,31 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       deferred.promise
 
-    update: (goto) ->
-      order = Cart.current
-      card  = order.creditCard
-
+    setAddresses: ->
+      order  = Cart.current
       params =
-        goto: goto
         order:
           ship_address_attributes: order.actualBillingAddress().serialize()
           bill_address_attributes: order.shippingAddress.serialize()
-
-      @_addShippingRate(params, order)
+        state: 'address'
 
       @put(params)
 
-    setAddresses: ->
-
     setDelivery: ->
+      order  = Cart.current
+      params =
+        'order[shipments_attributes][][id]': order.shipment.id
+        'order[shipments_attributes][][selected_shipping_rate_id]': order.shippingRate.id
+        state: 'delivery'
+
+      @put(params)
 
     setPayment: ->
+      order  = Cart.current
+      params =
+        state: 'payment'
+
+      @put(params)
 
     confirm: ->
       order = Cart.current
@@ -52,14 +58,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       paymentMethodId = @_findPaymentMethodId()
 
       params =
-        goto: 'complete'
         'order[payments_attributes][][payment_method_id]': paymentMethodId
-        order:
-          ship_address_attributes: order.shippingAddress.serialize()
-          bill_address_attributes: order.actualBillingAddress().serialize()
         payment_source: {}
-
-      @_addShippingRate(params, order)
 
       if card.id
         params.order.existing_card = card.id
@@ -103,7 +103,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       ga "ecommerce:send"
 
     put: (params) ->
-      url = "/api/checkouts/#{Cart.current.number}/quick_update"
+      url = "/spree/api/checkouts/#{Cart.current.number}"
       params = params ||= {}
 
       config =
@@ -129,11 +129,6 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
             deferred.reject()
 
       deferred.promise
-
-    _addShippingRate: (params, order) ->
-      if order.shippingRate
-        params['order[shipments_attributes][][id]'] = order.shipment.id
-        params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
     _findPaymentMethodId: ->
       paymentMethod = _.find Env.config.payment_methods, (method) -> method.name == 'Credit Card'
