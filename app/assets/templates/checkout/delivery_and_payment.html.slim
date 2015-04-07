@@ -1,4 +1,4 @@
-section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl' ng-class="{active: (order.state == 'delivery' || order.state == 'payment'), done: order.state == 'confirm'}")
+section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl' ng-class="{active: active, done: done}")
   section#delivery
     h2
       | {{ :: 'checkout.delivery_options' | translate}}
@@ -11,7 +11,7 @@ section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl'
 
     credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
 
-  button.next.btn.btn-primary.btn-lg.btn-block(ng-show="order.state == 'payment' || order.state == 'delivery'" ng-disabled='processing' ng-click="advance()")
+  button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
     span(ng-if='!processing')
       | {{ :: 'checkout.next' | translate }}
       | &nbsp;
