@@ -58,7 +58,7 @@
 
   .row
     .col-md-12
-      button.complete.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="placeOrder()")
+      button.complete.btn.btn-primary.btn-lg.btn-block(ng-show="order.state == 'confirm'" ng-disabled='processing' ng-click="placeOrder()")
         span(ng-if='!processing')
           | {{ :: 'checkout.place_order' | translate }}
         span(ng-if='processing')
