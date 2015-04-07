@@ -203,72 +203,13 @@ section.gallery {
   }
 }
 
-.checkout-nav {
-  .stripe {
-    background: $gray-lighter;
-    height: 6px;
-    position: absolute;
-    margin-top: 17px;
-    width: 90%;
-    z-index: -1;
-  }
+#checkout-details {
+  .step {
+    opacity: 0.5;
 
-  nav {
-    a {
-      text-decoration: none;
-      display: inline-block;
-      width: 33%;
-      text-align: center;
-
-      &:first-child {
-        text-align: left;
-      }
-
-      &:last-child {
-        text-align: right;
-      }
+    &.active {
+      opacity: 1;
     }
-
-    &.details a.details, &.confirm a.confirm, &.done a.done {
-      .number {
-        background: $brand-info;
-        color: $body-bg;
-      }
-      .caption {
-        color: $brand-info;
-      }
-    }
-
-    &.confirm {
-      a.details .number {
-        background: $brand-success;
-        color: $body-bg;
-      }
-    }
-
-    &.done {
-      a.details, a.confirm {
-        .number {
-          background: $brand-success;
-          color: $body-bg;
-        }
-      }
-    }
-  }
-
-  span.caption {
-    display: block;
-    margin: 0px auto;
-    color: $gray;
-  }
-
-  span.number {
-    display: inline-block;
-    color: $gray-light;
-    background: $gray-lighter;
-    padding: 10px 16px;
-    border-radius: 50%;
-    width: auto;
   }
 }
 
