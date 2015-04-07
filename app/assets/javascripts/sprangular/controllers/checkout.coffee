@@ -20,7 +20,7 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.processing = false
   $scope.user = user
   $scope.secure = $location.protocol() == 'https'
-  $scope.currencySymbol = Env.config.currency.symbol
+  $scope.currencySymbol = Env.currency.symbol
 
   Cart.lastOrder = null
 
@@ -31,15 +31,18 @@ Sprangular.controller 'CheckoutCtrl', (
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
 
-  $scope.submit = ->
+  $scope.complete = ->
     $scope.processing = true
 
     if $scope.order.isInvalid()
       $scope.processing = false
       return
 
-    Checkout.update('payment')
-      .success ->
-        $location.path('/checkout/confirm')
-      .error ->
-        $scope.processing = false
+    Checkout.complete()
+      .then (order) ->
+          if order.errors && Object.keys(orders.errors).length > 0
+            $scope.processing = false
+          else
+            $location.path('/checkout/complete')
+        , ->
+          $scope.processing = false

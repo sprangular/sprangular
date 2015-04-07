@@ -1,4 +1,8 @@
 module Sprangular::OrderCheckoutDecorator
+  def self.prepended(klass)
+    klass.state_machine.after_transition to: :complete, do: :persist_addresses
+  end
+
   def update_from_params(params, permitted_params, request_env = {})
     success = false
     @updating_params = params
@@ -61,6 +65,24 @@ module Sprangular::OrderCheckoutDecorator
   # override the default method here to prevent invalid payments from being created
   def assign_default_credit_card
     true
+  end
+
+protected
+
+  def persist_addresses
+    return unless user
+
+    persist_address(:bill_address)
+    persist_address(:ship_address)
+  end
+
+  def persist_address(address_type)
+    address = self.send(address_type).dup
+    address.user = user
+
+    already_exists = user.addresses.reload.any?(&address.method(:same_as?))
+
+    address.save unless already_exists
   end
 end
 

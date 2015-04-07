@@ -11,13 +11,12 @@ class Sprangular.Order
     @items = []
     @billingAddress = new Sprangular.Address
     @shippingAddress = new Sprangular.Address
-    @shipToBillAddress = true
+    @billToShipAddress = true
     @itemTotal = 0
     @taxTotal = 0
     @shipTotal = 0
     @adjustmentTotal = 0
     @total = 0
-    @errors = null
     @state = null
     @shipmentState = null
     @shippingRates = []
@@ -35,9 +34,12 @@ class Sprangular.Order
     @adjustmentTotal = Number(data.adjustment_total)
     @total = Number(data.total)
     @token = data.token
-    @shipToBillAddress = data.use_billing
+    @billToShipAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
     @shippingRates = []
+    @completedAt = data.completed_at
+    @shipmentState = data.shipment_state
+    @shipments = data.shipments
 
     @loadRates(data)
 
@@ -54,7 +56,7 @@ class Sprangular.Order
         variant = product.findVariant(item.variant_id)
         break if variant
 
-      @items.push(variant: variant, quantity: item.quantity, price: item.price)
+      @items.push(variant: variant, flexi_variants: item.flexi_variants, quantity: item.quantity, price: item.price)
 
     @
 
@@ -71,11 +73,11 @@ class Sprangular.Order
     @items.length == 0
 
   isValid: ->
-    @billingAddress.validate()
-    @actualShippingAddress().validate()
+    @shippingAddress.validate()
+    @actualBillingAddress().validate()
     @creditCard.validate()
 
-    @billingAddress.isValid() && @actualShippingAddress().isValid() && (@creditCard.id || @creditCard.isValid())
+    @actualBillingAddress().isValid() && @shippingAddress.isValid() && (@creditCard.id || @creditCard.isValid())
 
   isInvalid: ->
     !@isValid()
@@ -96,18 +98,18 @@ class Sprangular.Order
   updateTotals: ->
     @total = @itemTotal + @adjustmentTotal + @taxTotal + @shipTotal
 
-  actualShippingAddress: ->
-    if @shipToBillAddress
-      @billingAddress
-    else
+  actualBillingAddress: ->
+    if @billToShipAddress
       @shippingAddress
+    else
+      @billingAddress
 
   resetAddresses: (user) ->
     if @billingAddress.isEmpty() && user && user.addresses.length > 0
-      @billingAddress = user.addresses[0]
+      @billingAddress = user.billingAddress
 
-    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@shipToBillAddress
-      @shippingAddress = user.addresses[0]
+    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@billToShipAddress
+      @shippingAddress = user.shippingAddress
 
   resetCreditCard: (user) ->
     if user && user.creditCards.length > 0

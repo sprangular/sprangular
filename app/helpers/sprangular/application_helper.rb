@@ -10,35 +10,48 @@ module Sprangular
     end
 
     def js_environment
-      config = ::Spree::Config
-      store = Spree::Store.current
-      templates = Hash[
-        Rails.application.assets.each_logical_path.
-        select { |file| file.end_with?('html') }.
-        map do |file|
-          path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
-
-          [file, path]
-        end
-      ]
-
       {
         env: Rails.env,
-        config: {
+        config: js_config,
+        locale: I18n.locale,
+        currency: Money::Currency.table[current_currency.downcase.to_sym],
+        translations: current_translations,
+        templates: template_paths
+      }
+    end
+
+    def js_config
+      Rails.cache.fetch('js_config') do
+        config = ::Spree::Config
+        store = Spree::Store.current
+
+        {
           site_name: store.seo_title || store.name,
           logo: asset_path(config.logo),
-          locale: I18n.locale,
-          currency: Money::Currency.table[current_currency.downcase.to_sym],
           supported_locales: supported_locales,
           default_country_id: config.default_country_id,
           payment_methods: payment_methods,
           image_sizes:
             Spree::Image.attachment_definitions[:attachment][:styles].keys,
           product_page_size: Spree::Config.products_per_page
-        },
-        translations: current_translations,
-        templates: templates
-      }
+        }
+      end
+    end
+
+    def template_paths
+      Rails.cache.fetch('template_paths') do
+        Hash[
+          Rails
+            .application
+            .assets.each_logical_path
+            .select { |file| file.end_with?('html') }
+            .map do |file|
+              path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
+
+              [file, path]
+            end
+        ]
+      end
     end
 
     def supported_locales
@@ -53,15 +66,17 @@ module Sprangular
     # Get relevant translations for front end. For both a simple, and
     # "Chainable" i18n Backend, which is used by spree i18n.
     def current_translations
-      if I18n.backend.class == I18n::Backend::Simple
-        I18n.backend.load_translations
+      Rails.cache.fetch("current_translations.#{I18n.locale}") do
+        if I18n.backend.class == I18n::Backend::Simple
+          I18n.backend.load_translations
 
-        @translations ||= I18n.backend.send(:translations)
-      else
-        @translations ||= I18n.backend.backends.last.send(:translations)
+          @translations ||= I18n.backend.send(:translations)
+        else
+          @translations ||= I18n.backend.backends.last.send(:translations)
+        end
+        # Return only sprangular keys for js environment
+        @translations[I18n.locale][:sprangular]
       end
-      # Return only sprangular keys for js environment
-      @translations[I18n.locale][:sprangular]
     end
 
     def cached_templates

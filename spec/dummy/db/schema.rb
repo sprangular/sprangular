@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203183817) do
+ActiveRecord::Schema.define(version: 20150326180847) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20141203183817) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "spree_activators", force: true do |t|
+    t.string   "description"
+    t.datetime "expires_at"
+    t.datetime "starts_at"
+    t.string   "name"
+    t.string   "event_name"
+    t.string   "type"
+    t.integer  "usage_limit"
+    t.string   "match_policy", default: "all"
+    t.string   "code"
+    t.boolean  "advertise",    default: false
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spree_addresses", force: true do |t|
     t.string   "firstname"
@@ -41,12 +57,14 @@ ActiveRecord::Schema.define(version: 20141203183817) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "spree_addresses", ["country_id"], name: "index_spree_addresses_on_country_id"
   add_index "spree_addresses", ["firstname"], name: "index_addresses_on_firstname"
   add_index "spree_addresses", ["lastname"], name: "index_addresses_on_lastname"
   add_index "spree_addresses", ["state_id"], name: "index_spree_addresses_on_state_id"
+  add_index "spree_addresses", ["user_id"], name: "index_spree_addresses_on_user_id"
 
   create_table "spree_adjustments", force: true do |t|
     t.integer  "source_id"
@@ -224,6 +242,13 @@ ActiveRecord::Schema.define(version: 20141203183817) do
   end
 
   add_index "spree_log_entries", ["source_id", "source_type"], name: "index_spree_log_entries_on_source_id_and_source_type"
+
+  create_table "spree_mail_methods", force: true do |t|
+    t.string   "environment"
+    t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spree_option_types", force: true do |t|
     t.string   "name",         limit: 100

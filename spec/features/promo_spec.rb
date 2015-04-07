@@ -14,7 +14,7 @@ describe "Promo", js: true do
     calculator = Spree::Calculator::FlatRate.new
     calculator.preferred_amount = 10
 
-    action = Spree::Promotion::Actions::CreateItemAdjustments.create(calculator: calculator)
+    action = Spree::Promotion::Actions::CreateAdjustment.create(calculator: calculator)
     promotion.actions << action
     promotion.reload # so that promotion.actions is available
   end
@@ -60,5 +60,17 @@ describe "Promo", js: true do
     add_coupon("ALL-FREE")
 
     expect(page).to have_content("The coupon code you entered doesn't exist")
+  end
+
+  scenario "remove a coupon code" do
+    add_coupon("10off")
+
+    total = page.find(:css, '.total .number')
+    expect(total.text).to eq('$9.99')
+
+    page.find(:css, '.adjustment .remove').click
+
+    total = page.find(:css, '.total .number')
+    expect(total.text).to eq('$19.99')
   end
 end

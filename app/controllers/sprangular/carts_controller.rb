@@ -1,12 +1,12 @@
 class Sprangular::CartsController < Sprangular::BaseController
 
   def show
-    @order = current_order
-    if @order
-      render 'spree/api/orders/show'
-    else
-      not_found
-    end
+    return not_found unless @order = current_order
+
+    render json: @order,
+           scope: current_spree_user,
+           serializer: Sprangular::OrderSerializer,
+           root: false
   end
 
   # Adds a new item to the order (creating a new order if none already exists)

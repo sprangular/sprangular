@@ -58,6 +58,13 @@ if ENV['WEBDRIVER'] == 'selenium'
   Capybara.register_driver :selenium do |app|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
+elsif ENV['WEBDRIVER'] == 'firefox'  || ENV['CI'] == true # Last part is a hack to have PR use firefox
+  require 'selenium-webdriver'
+  Capybara.default_driver = :selenium
+
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :firefox)
+  end
 else
   require 'capybara/poltergeist'
 
@@ -128,7 +135,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
 
   config.include Capybara::Angular::DSL
-  config.include RouteChange, type: :feature
+  config.include AngularHelpers, type: :feature
 
   config.fail_fast = ENV['FAIL_FAST'] || false
 end

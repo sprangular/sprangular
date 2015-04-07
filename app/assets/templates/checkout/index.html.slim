@@ -1,5 +1,4 @@
 #checkout-details
-  checkout-nav(step='details')
   .c-grid-container
     h1
       | {{:: 'checkout.checkout' | translate}}
@@ -11,7 +10,7 @@
         h4(ng-hide='order.shipToBillAddress')
           | {{ :: 'checkout.billing_address' | translate}}
 
-        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
+        address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
 
         .form-group
           label
@@ -22,7 +21,7 @@
         h4
           | {{ :: 'checkout.shipping_address' | translate}}
 
-        address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
+        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
 
     .c-grid-third
       section#delivery
