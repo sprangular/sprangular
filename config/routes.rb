@@ -22,6 +22,4 @@ Sprangular::Engine.routes.draw do
       resources :orders, only: :show
     end
   end
-
-  put 'api/checkouts/:id/quick_update', to: 'spree/api/checkouts#quick_update'
 end
