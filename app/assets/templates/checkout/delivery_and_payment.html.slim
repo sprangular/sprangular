@@ -1,4 +1,4 @@
-section.step#delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl' ng-class="{active: (order.state == 'delivery' || order.state == 'payment')}")
+section.step#delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl' ng-class="{active: (order.state == 'delivery' || order.state == 'payment'), done: order.state == 'confirm'}")
   section#delivery
     h2
       | {{ :: 'checkout.delivery_options' | translate}}
