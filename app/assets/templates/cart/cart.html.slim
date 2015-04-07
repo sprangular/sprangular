@@ -83,7 +83,7 @@ aside#cart-aside(role="dialog" tabindex="-1" ng-controller='CartCtrl' ng-show='c
               | {{:: 'cart.total' | translate}}
           td.number(colspan=2 ng-bind='cart.total | currency : currencySymbol')
 
-      .promo-form
+      .promo-form.clear
         promo-form(order='cart')
 
   footer(ng-hide='isEmpty()')

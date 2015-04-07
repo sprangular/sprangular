@@ -5,7 +5,7 @@
 
   .entry(ng-show='showPromoEntry')
     form(role='form' name="PromoForm" ng-submit='save()')
-      .form-group
+      .form-group.clear
         label.control-label(for='promo-code')
           | {{:: 'promo.code' | translate }}
         input.form-control(name='promo-code' ng-model='promoCode' type='text')
