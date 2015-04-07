@@ -12,7 +12,7 @@ Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, 
 
   $scope.advance = ->
     order = $scope.order
-    return if order.shippingAddress.isInvalid() || (!order.billToShipAddress && order.billingAddress.isInvalid())
+    return if order.creditCard.isInvalid()
 
     $scope.processing = true
 
