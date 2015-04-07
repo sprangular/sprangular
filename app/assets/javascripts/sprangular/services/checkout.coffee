@@ -62,6 +62,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       paymentMethodId = @_findPaymentMethodId()
 
       params =
+        order: {}
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         payment_source: {}
 
