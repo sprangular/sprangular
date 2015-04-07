@@ -1,6 +1,9 @@
 Sprangular.controller 'CheckoutReviewCtrl', ($scope, $location, Cart, Checkout) ->
   $scope.order = Cart.current
 
+  $scope.$watch 'order.state', (state) ->
+    $scope.active = (state == 'confirm')
+
   $scope.placeOrder = ->
     $scope.processing = true
 
