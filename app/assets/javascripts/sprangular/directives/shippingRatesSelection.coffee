@@ -21,22 +21,8 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
+      Checkout.setDelivery()
+
     $scope.$watch('order.shippingAddress', ->
       $scope.address = $scope.order.shippingAddress
     , true)
-
-    validateAddress = (address) ->
-      $scope.isValid = address.firstname && address.lastname && address.city && address.address1 && address.zipcode && address.country && address.state && address.phone
-
-    $scope.$watch('address', validateAddress, true)
-
-    # use $scope.$watchGroup when its released
-    $scope.$watch 'address.country.id + address.state.id + address.zipcode + isValid', (oldValue, newValue) ->
-      return if $scope.loading || oldValue == newValue || !$scope.isValid
-
-      $scope.loading = true
-
-      Checkout.setDelivery().then ->
-        $scope.loading = false
-
-    validateAddress($scope.address)
