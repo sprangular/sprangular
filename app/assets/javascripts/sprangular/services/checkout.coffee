@@ -107,13 +107,11 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       ga "ecommerce:send"
 
-    put: (params) ->
+    put: (params={}, config={}) ->
       url = "/spree/api/checkouts/#{Cart.current.number}"
-      params = params ||= {}
 
-      config =
-        headers:
-          'X-Spree-Order-Token': Cart.current.token
+      config.headers =
+        'X-Spree-Order-Token': Cart.current.token
 
       Cart.current.errors = null
 
