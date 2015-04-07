@@ -1,4 +1,4 @@
-section.step#addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: order.state == 'cart' || order.state == 'address', done: (order.state == 'confirm' || order.state == 'payment' || order.state == 'delivery')}")
+section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: order.state == 'cart' || order.state == 'address', done: (order.state == 'confirm' || order.state == 'payment' || order.state == 'delivery')}")
   section#shipping-address
     h2(ng-show='order.billToShipAddress')
       | {{ :: 'checkout.shipping_and_billing_address' | translate}}
