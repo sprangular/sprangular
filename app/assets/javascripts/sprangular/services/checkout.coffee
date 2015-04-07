@@ -40,8 +40,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put(params)
 
-
-    setAddress: ->
+    setAddresses: ->
 
     setDelivery: ->
 
