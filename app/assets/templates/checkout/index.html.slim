@@ -41,33 +41,43 @@
       h4
         | {{ :: 'checkout.summary' | translate}}
 
-      dl.dl-horizontal
-        dt
+      dl
+        dt.fl
           | {{ :: 'checkout.sub_total' | translate}}
-        dd
+        dd.fr
           | {{order.itemTotal | currency : currencySymbol}}
 
-        dt(ng-repeat-start="adjustment in order.adjustments")
+        .clear
+
+        dt.fl(ng-repeat-start="adjustment in order.adjustments")
           a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
             span.glyphicon.glyphicon-remove
           | {{adjustment.label}}
-        dd(ng-repeat-end)
+        dd.fr(ng-repeat-end)
           | {{adjustment.amount | currency : currencySymbol}}
 
-        dt
+        .clear
+
+        dt.fl
           | {{ :: 'checkout.shipping' | translate}}
-        dd
+        dd.fr
           | {{order.shipTotal | currency : currencySymbol}}
 
-        dt
+        .clear
+
+        dt.fl
           | {{ :: 'checkout.tax' | translate}}
-        dd
+        dd.fr
           | {{order.taxTotal | currency : currencySymbol}}
 
-        dt
+        .clear
+
+        dt.fl
           | {{ :: 'checkout.total' | translate}}
-        dd
+        dd.fr
           | {{order.total | currency : currencySymbol}}
+
+        .clear
 
         promo-form(order='order')
 
