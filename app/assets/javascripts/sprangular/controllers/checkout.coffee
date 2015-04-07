@@ -39,6 +39,10 @@ Sprangular.controller 'CheckoutCtrl', (
       return
 
     Checkout.complete()
-      .error   -> $location.path('/checkout')
-      .success ->
-        $location.path('/checkout/complete')
+      .then (order) ->
+          if order.errors && Object.keys(orders.errors).length > 0
+            $scope.processing = false
+          else
+            $location.path('/checkout/complete')
+        , ->
+          $scope.processing = false
