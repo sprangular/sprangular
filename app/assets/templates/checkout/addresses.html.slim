@@ -1,4 +1,4 @@
-section#addresses
+section#addresses(ng-controller='CheckoutAddressesCtrl')
   section#shipping-address
     h2(ng-show='order.billToShipAddress')
       | {{ :: 'checkout.shipping_and_billing_address' | translate}}
