@@ -4,6 +4,7 @@ Sprangular.directive 'addressForm', ->
   scope:
     address: '='
     countries: '='
+    disabled: '='
   controller: ($scope) ->
     $scope.selectedCountry = null
 
@@ -23,3 +24,6 @@ Sprangular.directive 'addressForm', ->
       return unless newStateId
       state = _.find($scope.selectedCountry.states, (state) -> state.id == newStateId)
       $scope.address.state = state
+
+  link: (element, attrs) ->
+    attrs.disabled = false unless attrs.disabled?
