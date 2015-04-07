@@ -80,7 +80,7 @@ protected
     address = self.send(address_type).dup
     address.user = user
 
-    already_exists = user.addresses.any?(&address.method(:same_as?))
+    already_exists = user.addresses.reload.any?(&address.method(:same_as?))
 
     address.save unless already_exists
   end

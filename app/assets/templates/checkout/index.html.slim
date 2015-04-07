@@ -8,25 +8,29 @@
         span.fa.fa-lock(ng-if='secure')
         | &nbsp;{{:: 'checkout.secure_transaction' | translate}}
 
+  .row(ng-show='order.errors')
+    .col-md-12
+      p.error(ng-if='order.errors.base' ng-bind='order.errors.base')
+
   .row
     .col-md-8.col-xs-12
-      section#billing-address
-        h2(ng-show='order.shipToBillAddress')
-          | {{ :: 'checkout.billing_and_shipping_address' | translate}}
-        h2(ng-hide='order.shipToBillAddress')
-          | {{ :: 'checkout.billing_address' | translate}}
-
-        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
-
-        label
-          input(type='checkbox' ng-model='order.shipToBillAddress')
-          | &nbsp;{{ :: 'checkout.ship_to_billing_address' | translate}}
-
-      section#shipping-address(ng-hide='order.shipToBillAddress')
+      section#shipping-address
         h2
           | {{ :: 'checkout.shipping_address' | translate}}
 
         address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
+
+        label
+          input(type='checkbox' ng-model='order.billToShipAddress')
+          | &nbsp;{{ :: 'checkout.bill_to_shipping_address' | translate}}
+
+      section#billing-address(ng-hide='order.billToShipAddress')
+        h2(ng-show='order.billToShipAddress')
+          | {{ :: 'checkout.shipping_and_billing_address' | translate}}
+        h2(ng-hide='order.billToShipAddress')
+          | {{ :: 'checkout.shipping_address' | translate}}
+
+        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
 
       section#delivery
         h2
