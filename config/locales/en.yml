@@ -108,9 +108,8 @@ en:
       number: Number
       month: Month
       year: Year
-      verification: verification number
+      verification: CVC
       expiration: Expiration
-      whats_this: what's this?
       use_new: Use new card
       use_existing: Use existing card
       credit_cards: Credit Cards
