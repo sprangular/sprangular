@@ -8,7 +8,7 @@ Sprangular.directive 'addressForm', ->
   controller: ($scope) ->
     $scope.selectedCountry = null
 
-    $scope.$watch (-> $scope.address.countryId), (newCountryId) ->
+    $scope.$watch 'address.countryId', (newCountryId) ->
       return unless newCountryId
 
       address = $scope.address
