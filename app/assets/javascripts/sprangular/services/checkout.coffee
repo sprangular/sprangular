@@ -49,24 +49,15 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       @put(params, ignoreLoadingIndicator: true)
 
     setPayment: ->
-      order  = Cart.current
+      order = Cart.current
+      card  = order.creditCard
       paymentMethodId = @_findPaymentMethodId()
 
       params =
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         'order[existing_card]': ''
         'state': 'payment'
-
-      @put(params, ignoreLoadingIndicator: true)
-
-    complete: ->
-      order = Cart.current
-      card  = order.creditCard
-      paymentMethodId = @_findPaymentMethodId()
-
-      params =
         order: {}
-        'order[payments_attributes][][payment_method_id]': paymentMethodId
         payment_source: {}
 
       if card.id
@@ -82,7 +73,12 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
         params.payment_source[paymentMethodId] = sourceParams
 
-      @put(params)
+      @put(params, ignoreLoadingIndicator: true)
+
+    complete: ->
+      order = Cart.current
+
+      @put()
         .then (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
