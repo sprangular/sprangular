@@ -13,6 +13,20 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
     $scope.done = _.contains(['confirm', 'payment', 'delivery'], state)
     $scope.active = _.contains(['cart', 'address'], state)
 
+  createMergedAddressList = ->
+    addresses = $scope.user.addresses
+    order = $scope.order
+
+    _.each $scope.shippingAddresses, (address, index) ->
+      if address.same(order.shippingAddress)
+        $scope.shippingAddresses[index] = order.shippingAddress
+
+    _.each $scope.billingAddresses, (address, index) ->
+      if address.same(order.billingAddress)
+        $scope.billingAddresses[index] = order.billingAddress
+
+  createMergedAddressList()
+
   $scope.edit = ->
     $scope.order.state = 'address'
 
@@ -24,6 +38,7 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
 
     Checkout.setAddresses()
       .then ->
+          createMergedAddressList()
           $scope.processing = false
         , ->
           $scope.processing = false
