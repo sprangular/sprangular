@@ -9,7 +9,11 @@ Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, 
     $scope.active = _.contains(['delivery', 'payment'], state)
 
   $scope.edit = ->
-    $scope.order.state = 'delivery'
+    order = $scope.order
+    creditCard = order.creditCard
+
+    order.creditCard = new Sprangular.CreditCard unless creditCard.id?
+    order.state = 'delivery'
 
   $scope.advance = ->
     order = $scope.order
