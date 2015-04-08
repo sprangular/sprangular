@@ -8,7 +8,7 @@ en:
       home: Home
       oh_snap: Oh SNAP!
       404: The page you've requested was not found
-      must_be_logged_in: "Sorry, that page is only available when you're signed out."
+      must_be_logged_out: "Sorry, that page is only available when you're signed out."
       sign_in_or_register: Please sign in or register to continue.
       no_items_in_cart: "Sorry, there are no items in your cart."
       confirm_reset_password: "We've sent you an email with a link to reset your password."
@@ -40,6 +40,7 @@ en:
       products: Products
       next: Next
       previous: Previous
+      continue: Continue
     account:
       email: Email
       password: Password

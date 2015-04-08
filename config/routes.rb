@@ -9,6 +9,7 @@ Sprangular::Engine.routes.draw do
       resources :products, only: %i(index show)
       resource :cart do
         post :add_variant
+        post :guest_login
         put :update_variant
         put :change_variant
         put :remove_adjustment

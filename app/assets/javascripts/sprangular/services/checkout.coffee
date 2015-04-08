@@ -88,8 +88,11 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
           service.trackOrder(Cart.lastOrder)
 
-          Account.reload().then ->
+          if Account.isGuest
             Cart.init()
+          else
+            Account.reload().then ->
+              Cart.init()
 
     trackOrder: (order) ->
       return if typeof(ga) is 'undefined'

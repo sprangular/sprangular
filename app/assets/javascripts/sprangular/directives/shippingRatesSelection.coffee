@@ -5,7 +5,7 @@ Sprangular.directive 'shippingRateSelection', ->
     order: '='
     disabled: '='
 
-  controller: ($scope, Checkout, Env) ->
+  controller: ($scope, Checkout, Env, _) ->
     $scope.loading = false
     $scope.address = {}
     $scope.currencySymbol = Env.currency.symbol
