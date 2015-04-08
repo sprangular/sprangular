@@ -29,6 +29,8 @@ Sprangular.service "Cart", ($http) ->
             order.shippingAddress.errors[attr] = attrErrors
           when 'bill_address'
             order.billingAddress.errors[attr] = attrErrors
+          when 'payments'
+            order.errors.base = attrErrors[0]
           else
             order.errors[key] = attrErrors
 
