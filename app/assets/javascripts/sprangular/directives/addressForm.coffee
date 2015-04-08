@@ -5,11 +5,17 @@ Sprangular.directive 'addressForm', ->
     address: '='
     countries: '='
     disabled: '='
+    submitted: '='
   controller: ($scope) ->
     $scope.selectedCountry = null
     $scope.hasErrors = false
 
-    $scope.$watch 'address.errors', (errors) ->
+    $scope.$watchGroup ['address.firstname', 'address.lastname', 'address.address1', 'address.address2', 'address.city', 'address.stateId', 'address.countryId', 'address.zipcode', 'address.phone'], ->
+      return unless $scope.submitted
+
+      address = $scope.address
+      address.validate()
+      errors = address.errors
       $scope.hasErrors = errors && Object.keys(errors).length > 0
 
     $scope.$watch 'address.countryId', (newCountryId) ->
