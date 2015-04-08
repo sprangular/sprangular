@@ -1,4 +1,4 @@
-section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: active, done: done}")
+section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: active, done: done, loading: processing}")
   .edit(ng-show='done' ng-click='edit()')
     span.fa.fa-pencil
 
