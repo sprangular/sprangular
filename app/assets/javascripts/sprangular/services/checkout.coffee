@@ -5,7 +5,10 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         coupon_code: code
 
+      Cart.current.loading = true
+
       config =
+        ignoreLoadingIndicator: true
         headers:
           'X-Spree-Order-Token': Cart.current.token
 
@@ -34,7 +37,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           bill_address_attributes: order.shippingAddress.serialize()
         state: 'address'
 
-      @put(params)
+      @put(params, ignoreLoadingIndicator: true)
 
     setDelivery: ->
       order  = Cart.current
@@ -43,7 +46,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         'order[shipments_attributes][][selected_shipping_rate_id]': order.shippingRate.id
         state: 'delivery'
 
-      @put(params)
+      @put(params, ignoreLoadingIndicator: true)
 
     setPayment: ->
       order  = Cart.current
@@ -54,7 +57,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         'order[existing_card]': ''
         'state': 'payment'
 
-      @put(params)
+      @put(params, ignoreLoadingIndicator: true)
 
     confirm: ->
       order = Cart.current
@@ -108,12 +111,14 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       ga "ecommerce:send"
 
     put: (params={}, config={}) ->
-      url = "/spree/api/checkouts/#{Cart.current.number}"
+      order = Cart.current
+      url = "/spree/api/checkouts/#{order.number}"
 
       config.headers =
-        'X-Spree-Order-Token': Cart.current.token
+        'X-Spree-Order-Token': order.token
 
-      Cart.current.errors = null
+      order.errors = null
+      order.loading = true
 
       deferred = $q.defer()
 
