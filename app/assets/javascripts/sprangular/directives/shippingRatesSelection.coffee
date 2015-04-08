@@ -11,7 +11,7 @@ Sprangular.directive 'shippingRateSelection', ->
     $scope.currencySymbol = Env.currency.symbol
 
     $scope.$watch 'order.shippingRate', (rate, oldRate) ->
-      return if !oldRate || rate.id == oldRate.id
+      return if !oldRate || (rate.shippingMethodId == oldRate.shippingMethodId && rate.cost == oldRate.cost)
 
       order = $scope.order
 
