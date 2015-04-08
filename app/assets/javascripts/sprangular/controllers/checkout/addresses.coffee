@@ -5,6 +5,7 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
   $scope.order = Cart.current
   $scope.processing = false
   $scope.user = Account.user
+  $scope.submitted = false
 
   $scope.shippingAddresses = $scope.user.addresses.slice()
   $scope.billingAddresses = $scope.user.addresses.slice()
@@ -32,6 +33,8 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
 
   $scope.advance = ->
     order = $scope.order
+    $scope.submitted = true
+
     return if order.shippingAddress.isInvalid() || (!order.billToShipAddress && order.billingAddress.isInvalid())
 
     $scope.processing = true
@@ -40,5 +43,6 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
       .then ->
           createMergedAddressList()
           $scope.processing = false
+          $scope.submitted = false
         , ->
           $scope.processing = false

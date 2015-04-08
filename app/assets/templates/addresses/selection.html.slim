@@ -7,7 +7,7 @@ section.address
         | {{:: 'address.use_new' | translate}}
 
   section.new-address(ng-hide='existingAddress')
-    address-form(address='address' countries='countries' disabled='disabled')
+    address-form(address='address' countries='countries' submitted='submitted' disabled='disabled')
 
     p(ng-hide='disabled')
       a.existing-address(ng-if='addresses.length > 0' ng-click='toggleExistingAddress()')

@@ -6,6 +6,7 @@ Sprangular.directive 'addressSelection', ->
     addresses: '='
     countries: '='
     disabled: '='
+    submitted: '='
   controller: ($scope) ->
     $scope.existingAddress = false
 
