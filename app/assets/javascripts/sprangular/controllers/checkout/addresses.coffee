@@ -6,6 +6,9 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
   $scope.processing = false
   $scope.user = Account.user
 
+  $scope.shippingAddresses = $scope.user.addresses.slice()
+  $scope.billingAddresses = $scope.user.addresses.slice()
+
   $scope.$watch 'order.state', (state) ->
     $scope.done = _.contains(['confirm', 'payment', 'delivery'], state)
     $scope.active = _.contains(['cart', 'address'], state)
