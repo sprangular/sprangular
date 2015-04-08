@@ -7,6 +7,10 @@ Sprangular.directive 'addressForm', ->
     disabled: '='
   controller: ($scope) ->
     $scope.selectedCountry = null
+    $scope.hasErrors = false
+
+    $scope.$watch 'address.errors', (errors) ->
+      $scope.hasErrors = errors && Object.keys(errors).length > 0
 
     $scope.$watch 'address.countryId', (newCountryId) ->
       return unless newCountryId

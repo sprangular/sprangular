@@ -2,7 +2,7 @@ form.address(novalidate)
   fieldset(ng-disabled='disabled')
     .row
       .col-md-12
-        p.error(ng-if='address.errors && address.errors != {}') Please correct the errors below:
+        p.error(ng-if='hasErrors') Please correct the errors below:
 
     .row
       .col-md-6
