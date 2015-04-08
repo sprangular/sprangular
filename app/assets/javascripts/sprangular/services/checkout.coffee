@@ -59,7 +59,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put(params, ignoreLoadingIndicator: true)
 
-    confirm: ->
+    complete: ->
       order = Cart.current
       card  = order.creditCard
       paymentMethodId = @_findPaymentMethodId()

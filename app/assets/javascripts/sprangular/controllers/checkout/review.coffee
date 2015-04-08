@@ -11,7 +11,7 @@ Sprangular.controller 'CheckoutReviewCtrl', ($scope, $location, Cart, Checkout) 
       $scope.processing = false
       return
 
-    Checkout.confirm()
+    Checkout.complete()
       .then (order) ->
           if order.errors && Object.keys(orders.errors).length > 0
             $scope.processing = false
