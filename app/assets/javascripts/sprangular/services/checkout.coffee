@@ -114,6 +114,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         'X-Spree-Order-Token': Cart.current.token
 
       Cart.current.errors = null
+      Cart.current.loading = true
 
       deferred = $q.defer()
 
