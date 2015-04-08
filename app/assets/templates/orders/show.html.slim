@@ -48,7 +48,7 @@ table.table.table-striped
     td.name
       a(ng-href="#!/products/{{item.variant.product.slug}}")
         | {{item.variant.product.name}}
-      span(ng-if='item.variant.product.hasVariants()')
+      span(ng-if='item.variant.product.hasVariants')
         | &nbsp;{{item.variant.options_text}}
 
     td.quantity.number(ng-bind='item.quantity')
