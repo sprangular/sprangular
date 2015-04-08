@@ -110,13 +110,14 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       ga "ecommerce:send"
 
     put: (params={}, config={}) ->
-      url = "/spree/api/checkouts/#{Cart.current.number}"
+      order = Cart.current
+      url = "/spree/api/checkouts/#{order.number}"
 
       config.headers =
-        'X-Spree-Order-Token': Cart.current.token
+        'X-Spree-Order-Token': order.token
 
-      Cart.current.errors = null
-      Cart.current.loading = true
+      order.errors = null
+      order.loading = true
 
       deferred = $q.defer()
 
