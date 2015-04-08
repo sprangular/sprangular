@@ -22,6 +22,7 @@ class Sprangular.Order
     @shippingRates = []
     @shippingRate = null
     @token = null
+    @loading = false
 
   load: (data) ->
     @clear()
