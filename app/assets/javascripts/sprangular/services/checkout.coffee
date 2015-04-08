@@ -5,6 +5,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         coupon_code: code
 
+      Cart.current.loading = true
+
       config =
         headers:
           'X-Spree-Order-Token': Cart.current.token
