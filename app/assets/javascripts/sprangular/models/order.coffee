@@ -41,6 +41,7 @@ class Sprangular.Order
     @completedAt = data.completed_at
     @shipmentState = data.shipment_state
     @shipments = data.shipments
+    @payments = data.payments
 
     @loadRates(data)
 
