@@ -13,47 +13,11 @@
       p.error(ng-if='order.errors.base' ng-bind='order.errors.base')
 
   .row
-    .col-md-8.col-xs-12
-      section#shipping-address
-        h2
-          | {{ :: 'checkout.shipping_address' | translate}}
+    .col-md-4.col-xs-12
+      ng-include(src="'checkout/addresses.html'")
 
-        address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries')
-
-        label
-          input(type='checkbox' ng-model='order.billToShipAddress')
-          | &nbsp;{{ :: 'checkout.bill_to_shipping_address' | translate}}
-
-      section#billing-address(ng-hide='order.billToShipAddress')
-        h2(ng-show='order.billToShipAddress')
-          | {{ :: 'checkout.shipping_and_billing_address' | translate}}
-        h2(ng-hide='order.billToShipAddress')
-          | {{ :: 'checkout.shipping_address' | translate}}
-
-        address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries')
-
-      section#delivery
-        h2
-          | {{ :: 'checkout.delivery_options' | translate}}
-
-        shipping-rate-selection(order='order')
-
-      section#credit-card
-        h2
-          | {{ :: 'checkout.credit_card' | translate}}
-
-        credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
+    .col-md-4.col-xs-12
+      ng-include(src="'checkout/delivery_and_payment.html'")
 
     .col-md-4.col-xs-12
       ng-include(src="'checkout/review.html'")
-
-  .row
-    .col-md-12
-      button#complete.btn.btn-primary.btn-lg.btn-block(ng-disabled='processing' ng-click="complete()")
-        span(ng-if='!processing')
-          | {{ :: 'checkout.place_order' | translate }}
-        span(ng-if='processing')
-          span.fa.fa-refresh.fa-spin
-          | &nbsp;
-          span.caption
-            | {{ :: 'checkout.processing' | translate }}

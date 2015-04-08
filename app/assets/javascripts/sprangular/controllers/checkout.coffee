@@ -16,10 +16,7 @@ Sprangular.controller 'CheckoutCtrl', (
 
   user = Account.user
 
-  $scope.countries = countries
   $scope.order = order
-  $scope.processing = false
-  $scope.user = user
   $scope.secure = $location.protocol() == 'https'
   $scope.currencySymbol = Env.currency.symbol
 
@@ -31,6 +28,7 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
     Cart.removeAdjustment(adjustment)
+#<<<<<<< HEAD
 
   $scope.complete = ->
     $scope.processing = true
@@ -48,3 +46,5 @@ Sprangular.controller 'CheckoutCtrl', (
             $location.path('/checkout/complete')
         , ->
           $scope.processing = false
+#=======
+#>>>>>>> master

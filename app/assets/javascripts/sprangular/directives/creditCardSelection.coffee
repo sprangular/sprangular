@@ -4,6 +4,7 @@ Sprangular.directive 'creditCardSelection', ->
   scope:
     creditCard: '='
     creditCards: '='
+    disabled: '='
   controller: ($scope) ->
     $scope.existingCreditCard = false
 
@@ -23,3 +24,6 @@ Sprangular.directive 'creditCardSelection', ->
         $scope.creditCard = $scope.creditCards[0]
       else
         $scope.creditCard = new Sprangular.CreditCard
+
+  link: (element, attrs) ->
+    attrs.disabled = false unless attrs.disabled?

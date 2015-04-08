@@ -1,4 +1,4 @@
-#checkout-confirm(ng-controller='CheckoutReviewCtrl')
+section.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active: active}")
   .row
     .col-md-12
       h2
@@ -55,3 +55,14 @@
           td.number(colspan=2 ng-bind='order.total | currency')
 
       promo-form(order='order')
+
+  .row
+    .col-md-12
+      button.complete.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="placeOrder()")
+        span(ng-if='!processing')
+          | {{ :: 'checkout.place_order' | translate }}
+        span(ng-if='processing')
+          span.fa.fa-refresh.fa-spin
+          | &nbsp;
+          span.caption
+            | {{ :: 'checkout.processing' | translate }}

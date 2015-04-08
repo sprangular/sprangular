@@ -5,6 +5,7 @@ Sprangular.directive 'addressSelection', ->
     address: '='
     addresses: '='
     countries: '='
+    disabled: '='
   controller: ($rootScope, $scope) ->
     $scope.existingAddress = false
 
@@ -17,10 +18,13 @@ Sprangular.directive 'addressSelection', ->
 
         $scope.toggleExistingAddress() if found
 
-    $scope.toggleExistingAddress = ->            
+    $scope.toggleExistingAddress = ->
       $scope.existingAddress = !$scope.existingAddress
-      
+
       if $scope.existingAddress
         $scope.address = $scope.addresses[0]
       else
         $scope.address = new Sprangular.Address()
+
+  link: (element, attrs) ->
+    attrs.disabled = false unless attrs.disabled?
