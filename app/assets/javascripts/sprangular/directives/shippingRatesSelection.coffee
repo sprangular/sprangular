@@ -3,7 +3,7 @@ Sprangular.directive 'shippingRateSelection', ->
   templateUrl: 'shipping/rates.html'
   scope:
     order: '='
-    isValid: '='
+    disabled: '='
 
   controller: ($scope, Checkout, Env, _) ->
     $scope.loading = false
@@ -22,10 +22,11 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
+      Checkout.setDelivery()
+
     $scope.$watch('order.shippingAddress', ->
       $scope.address = $scope.order.shippingAddress
     , true)
 
-    $scope.$watch('address', ->
-      $scope.order.shippingRates = [] unless $scope.isValid
-    , true)
+  link: (element, attrs) ->
+    attrs.disabled = false unless attrs.disabled?

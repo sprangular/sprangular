@@ -81,11 +81,12 @@ en:
       empty_cart: Empty your Cart
     checkout:
       success_msg: "Your order <strong>{{order_number}}</strong> was successfully submitted, you'll receive an email receipt shortly."
-      review: Review
+      review: Summary
       checkout: Checkout
+      next: Next
       place_order: Place Order
       billing_address: Billing Address
-      shipping_and_billing_address: Shipping And Billing Address
+      shipping_and_billing_address: Addresses
       shipping_address: Shipping Address
       bill_to_shipping_address: Bill to Shipping Address
       delivery_options: Delivery Options
@@ -108,9 +109,8 @@ en:
       number: Number
       month: Month
       year: Year
-      verification: verification number
+      verification: CVC
       expiration: Expiration
-      whats_this: what's this?
       use_new: Use new card
       use_existing: Use existing card
       credit_cards: Credit Cards

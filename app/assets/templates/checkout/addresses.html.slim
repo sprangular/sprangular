@@ -1,0 +1,32 @@
+section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: active, done: done}")
+  .edit(ng-show='done' ng-click='edit()')
+    span.fa.fa-pencil
+
+  section#shipping-address
+    h2(ng-show='order.billToShipAddress')
+      | {{ :: 'checkout.shipping_and_billing_address' | translate}}
+    h2(ng-hide='order.billToShipAddress')
+      | {{ :: 'checkout.shipping_address' | translate}}
+
+    address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries' disabled="!active")
+
+    label
+      input(type='checkbox' ng-model='order.billToShipAddress' ng-disabled='!active')
+      | &nbsp;{{ :: 'checkout.bill_to_shipping_address' | translate}}
+
+  section#billing-address(ng-hide='order.billToShipAddress')
+    h2
+      | {{ :: 'checkout.billing_address' | translate}}
+
+    address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries' disabled="!active")
+
+  button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
+    span(ng-if='!processing')
+      | {{ :: 'checkout.next' | translate }}
+      | &nbsp;
+      span.glyphicon.glyphicon-chevron-right
+    span(ng-if='processing')
+      span.fa.fa-refresh.fa-spin
+      | &nbsp;
+      span.caption
+        | {{ :: 'checkout.processing' | translate }}

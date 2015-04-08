@@ -5,7 +5,7 @@ Sprangular.directive 'addressSelection', ->
     address: '='
     addresses: '='
     countries: '='
-    shippingRates: '='
+    disabled: '='
   controller: ($scope) ->
     $scope.existingAddress = false
 
@@ -25,4 +25,6 @@ Sprangular.directive 'addressSelection', ->
         $scope.address = $scope.addresses[0]
       else
         $scope.address = new Sprangular.Address()
-        $scope.shippingRates = []
+
+  link: (element, attrs) ->
+    attrs.disabled = false unless attrs.disabled?
