@@ -5,6 +5,7 @@ Sprangular.directive 'creditCardSelection', ->
     creditCard: '='
     creditCards: '='
     disabled: '='
+    submitted: '='
   controller: ($scope) ->
     $scope.existingCreditCard = false
 
