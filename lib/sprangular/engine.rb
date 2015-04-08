@@ -2,7 +2,7 @@ module Sprangular
   class Engine < ::Rails::Engine
     config.autoload_paths += %W(#{config.root}/lib)
     config.paths['app/views'] << File.join(Gem.loaded_specs['spree_auth_devise'].full_gem_path, "lib/views/frontend")
-    config.cached_paths = %w(layout directives products home cart promos)
+    config.cached_paths = %w(layout directives products home cart promos checkout)
 
     initializer "sprangular.assets.configure" do
       assets = Rails.application.assets
