@@ -211,6 +211,10 @@ section.gallery {
       opacity: 1;
     }
 
+    &.loading {
+      opacity: 0.3;
+    }
+
     .edit {
       position: absolute;
       z-index: 3;
