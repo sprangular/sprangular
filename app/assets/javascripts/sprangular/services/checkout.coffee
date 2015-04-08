@@ -133,11 +133,9 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
         .error (response) ->
           errors = response.errors || response.exception
 
-          if errors
-            Cart.errors(base: errors)
-            deferred.resolve(Cart.current)
-          else
-            deferred.reject()
+          Cart.errors(base: errors) if errors
+
+          deferred.reject(Cart.current)
 
       deferred.promise
 
