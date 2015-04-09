@@ -101,6 +101,12 @@ class Sprangular.Order
     else
       @billingAddress
 
+  actualShippingAddress: ->
+    if @billToShipAddress
+      @billingAddress
+    else
+      @shippingAddress
+
   resetAddresses: (user) ->
     return unless user && user.addresses.length > 0
 
