@@ -5,6 +5,12 @@ html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
     meta(name="keywords" content="{{status.meta.keywords}}")
     meta(name="description" content="{{status.meta.description}}")
+    meta(property="og:type" content="Website")
+    meta(property="og:title" content="{{title}}")
+    meta(property="og:url" content="{{status.meta.active.siteUrl}}")
+    meta(property="og:image" content="{{status.meta.active.imageUrl}}")
+    link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"
+    link rel="icon" href="/favicon.ico" type="image/x-icon"
 
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
