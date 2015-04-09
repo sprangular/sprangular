@@ -4,7 +4,7 @@ Sprangular.controller "GlobalCtrl", ($scope, $location, Status, Env, Flash) ->
   $scope.status = Status
   $scope.env = Env
   $scope.location = $location
-  $scope.status.meta.active.imageUrl = ''
+  $scope.status.meta.imageUrl = ''
   $scope.status.meta.description = ''
   $scope.status.meta.keywords = ''
 
