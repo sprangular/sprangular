@@ -49,24 +49,15 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       @put(params, ignoreLoadingIndicator: true)
 
     setPayment: ->
-      order  = Cart.current
+      order = Cart.current
+      card  = order.creditCard
       paymentMethodId = @_findPaymentMethodId()
 
       params =
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         'order[existing_card]': ''
         'state': 'payment'
-
-      @put(params, ignoreLoadingIndicator: true)
-
-    confirm: ->
-      order = Cart.current
-      card  = order.creditCard
-      paymentMethodId = @_findPaymentMethodId()
-
-      params =
         order: {}
-        'order[payments_attributes][][payment_method_id]': paymentMethodId
         payment_source: {}
 
       if card.id
@@ -82,14 +73,22 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
         params.payment_source[paymentMethodId] = sourceParams
 
-      @put(params)
+      @put(params, ignoreLoadingIndicator: true)
+
+    complete: ->
+      order = Cart.current
+
+      @put()
         .then (data) ->
           Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
 
           service.trackOrder(Cart.lastOrder)
 
-          Account.reload().then ->
+          if Account.isGuest
             Cart.init()
+          else
+            Account.reload().then ->
+              Cart.init()
 
     trackOrder: (order) ->
       return if typeof(ga) is 'undefined'
@@ -128,13 +127,12 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           deferred.resolve(Cart.current)
 
         .error (response) ->
-          errors = response.errors || response.exception
+          if response.errors
+            Cart.errors(response.errors)
+          else if response.exception
+            Cart.errors(base: response.exception)
 
-          if errors
-            Cart.errors(base: errors)
-            deferred.resolve(Cart.current)
-          else
-            deferred.reject()
+          deferred.reject(Cart.current)
 
       deferred.promise
 

@@ -4,6 +4,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     fetched: false
     isLogged: false
+    isGuest: false
 
     init: ->
       @clear()
@@ -33,10 +34,12 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     populateAccount: (data) ->
       @user = Sprangular.extend(data, Sprangular.User)
-
       Cart.load(@user.current_order)
-
       @isLogged = true
+      @email = data.email
+
+    populateGuestAccount: (data) ->
+      @isGuest = true
       @email = data.email
 
     clear: ->
@@ -44,6 +47,17 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       @user = {}
       @isLogged = false
       @email = null
+
+    guestLogin: (data) ->
+      email = if data is undefined then null else data.email
+      params =
+        'order[email]': email
+      $http.post('/api/cart/guest_login.json', $.param(params))
+        .success (data) ->
+          service.populateGuestAccount(data)
+          Flash.success 'app.signed_in'
+        .error ->
+          Flash.error 'app.signin_failed'
 
     login: (data) ->
       params =

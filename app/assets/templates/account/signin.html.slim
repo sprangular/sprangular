@@ -21,6 +21,20 @@
             span(ng-show="signingIn")
               | {{ :: 'loading' | translate }}
 
+      - if Spree::Config[:allow_guest_checkout]
+        h1 Or continue as a guest
+        form(name="guestForm" role="form" ng-submit="guestLogin()" novalidate)
+          .form-group
+            label(for="email")
+              | {{ :: 'account.email' | translate }}
+            input.form-control(name="email" ng-model="cart.email" type="email" autofocus)
+          .pull-right
+            button.btn.btn-primary.btn-lg(type='submit')
+              span(ng-hide="signingIn")
+                | {{ :: 'nav.continue' | translate }}
+              span(ng-show="signingIn")
+                | {{ :: 'loading' | translate }}
+
       nav
         a(ng-href="/#!/forgot-password")
           | {{ :: 'account.forgot_password' | translate }}?

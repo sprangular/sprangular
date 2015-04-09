@@ -2,7 +2,7 @@ form.address(novalidate)
   fieldset(ng-disabled='disabled')
     .row
       .col-md-12
-        p.error(ng-if='address.errors && address.errors != {}') Please correct the errors below:
+        p.error(ng-if='hasErrors') Please correct the errors below:
 
     .row
       .col-md-6
@@ -31,27 +31,27 @@ form.address(novalidate)
       input.form-control(type='text' name='city' ng-model='address.city')
       p.error(ng-bind='address.errors.city')
 
-    .row
-      .col-md-5
-        .form-group(ng-class="{'has-error': address.errors.country}")
-          label.control-label(for='country')
-            | {{:: 'address.country' | translate}}
-          select.form-control(name='country' ng-options='c.id as c.name for c in countries' ng-model='address.countryId')
-          p.error(ng-bind='address.errors.country')
+    .form-group(ng-class="{'has-error': address.errors.country}")
+      label.control-label(for='country')
+        | {{:: 'address.country' | translate}}
+      select.form-control(name='country' ng-options='c.id as c.name for c in countries' ng-model='address.countryId')
+      p.error(ng-bind='address.errors.country')
 
-      .col-md-5
+    .row
+      .col-md-8
         .form-group(ng-class="{'has-error': address.errors.state}")
           label.control-label(for='state')
             | {{:: 'address.state' | translate}}
           select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId')
           p.error(ng-bind='address.errors.state')
 
-      .col-md-2
+      .col-md-4
         .form-group(ng-class="{'has-error': address.errors.zipcode}")
           label.control-label(for='zip')
             | {{:: 'address.zip' | translate}}
           input.form-control(type='text' name='zip' ng-model='address.zipcode' ng-model-options="{ debounce: {'default': 500, 'blur': 0} }")
           p.error(ng-bind='address.errors.zipcode')
+
 
     .form-group(ng-class="{'has-error': address.errors.phone}")
       label.control-label(for='phone')

@@ -26,9 +26,11 @@ Sprangular.service "Cart", ($http) ->
 
         switch object
           when 'ship_address'
-            order.shipingAddress.errors[attr] = attrErrors
+            order.shippingAddress.errors[attr] = attrErrors
           when 'bill_address'
             order.billingAddress.errors[attr] = attrErrors
+          when 'payments'
+            order.errors.base = attrErrors[0]
           else
             order.errors[key] = attrErrors
 

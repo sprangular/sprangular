@@ -1,4 +1,4 @@
-section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: active, done: done}")
+section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: active, done: done, loading: processing}")
   .edit(ng-show='done' ng-click='edit()')
     span.fa.fa-pencil
 
@@ -8,17 +8,17 @@ section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: 
     h2(ng-hide='order.billToShipAddress')
       | {{ :: 'checkout.shipping_address' | translate}}
 
-    address-selection(address='order.shippingAddress' addresses='user.addresses' countries='countries' disabled="!active")
+    address-selection(address='order.shippingAddress' addresses='shippingAddresses' countries='countries' disabled="!active || processing" submitted='submitted')
 
     label
-      input(type='checkbox' ng-model='order.billToShipAddress' ng-disabled='!active')
+      input(type='checkbox' ng-model='order.billToShipAddress' ng-disabled='!active || processing')
       | &nbsp;{{ :: 'checkout.bill_to_shipping_address' | translate}}
 
   section#billing-address(ng-hide='order.billToShipAddress')
     h2
       | {{ :: 'checkout.billing_address' | translate}}
 
-    address-selection(address='order.billingAddress' addresses='user.addresses' countries='countries' disabled="!active")
+    address-selection(address='order.billingAddress' addresses='billingAddresses' countries='countries' disabled="!active || processing" submitted='submitted')
 
   button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
     span(ng-if='!processing')
