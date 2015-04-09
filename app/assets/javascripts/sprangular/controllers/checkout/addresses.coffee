@@ -7,8 +7,9 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
   $scope.user = Account.user
   $scope.submitted = false
 
-  $scope.shippingAddresses = $scope.user.addresses.slice()
-  $scope.billingAddresses = $scope.user.addresses.slice()
+  unless Account.isGuest
+    $scope.shippingAddresses = $scope.user.addresses.slice()
+    $scope.billingAddresses = $scope.user.addresses.slice()
 
   $scope.$watch 'order.state', (state) ->
     $scope.done = _.contains(['confirm', 'payment', 'delivery'], state)
