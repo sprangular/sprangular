@@ -7,7 +7,7 @@ html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
     meta(name="description" content="{{status.meta.description}}")
     meta(property="og:type" content="Website")
     meta(property="og:title" content="{{title}}")
-    meta(property="og:url" content="{{status.meta.active.siteUrl}}")
+    meta(property="og:url" content="{{location.$$absUrl}}")
     meta(property="og:image" content="{{status.meta.active.imageUrl}}")
     link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"
     link rel="icon" href="/favicon.ico" type="image/x-icon"
