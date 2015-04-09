@@ -42,6 +42,9 @@ class Sprangular.Order
     @shipmentState = data.shipment_state
     @shipments = data.shipments
     @payments = data.payments
+    @creditApplied = data.total_applicable_store_credit
+    @totalAfterCredit = data.order_total_after_store_credit
+
 
     @loadRates(data)
 
