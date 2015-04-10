@@ -79,6 +79,7 @@ en:
       tax: Taxes
       total: Total
       empty_cart: Empty your Cart
+      out_of_stock: "{{name}} has gone out of stock"
     checkout:
       success_msg: "Your order <strong>{{order_number}}</strong> was successfully submitted, you'll receive an email receipt shortly."
       review: Summary

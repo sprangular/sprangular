@@ -99,6 +99,13 @@ Sprangular.service "Cart", ($http) ->
       $http.get('/api/shipping_rates', {params: params, ignoreLoadingIndicator: true})
         .success (data) -> order.loadRates(data)
 
+
+    unavailableItems: ->
+      _.filter @current.items, (item) ->
+        variant = item.variant
+
+        !variant.isAvailable() || (!variant.is_backorderable && variant.total_on_hand < item.quantity)
+
     clear:                   -> @current.clear()
     totalQuantity:           -> @current.totalQuantity()
     findVariant: (variantId) -> @current.findVariant(variantId)
