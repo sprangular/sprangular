@@ -5,7 +5,7 @@ form.credit-card(novalidate)
         | {{ :: 'credit_cards.number' | translate}}
       .input-group
         input.form-control(type='text' name='number' ng-model='creditCard.number' ng-if='!disabled')
-        input.form-control(ng-show='disabled' value='**** **** **** {{creditCard.lastDigits}}')
+        input.form-control(ng-show='disabled' value='{{creditCard.lastDigits ? "**** **** **** " + creditCard.lastDigits : ""}}')
 
         .input-group-addon
           i.fa.fa-credit-card(ng-show="!creditCard.type")
@@ -38,5 +38,5 @@ form.credit-card(novalidate)
           label.control-label(for='cvc')
             | {{ :: 'credit_cards.verification' | translate}}
           input.form-control(type='number' name='cvc' min=1 max=9999 ng-model='creditCard.cvc' ng-hide='disabled')
-          input.form-control(ng-show='disabled' value='***')
+          input.form-control(ng-show='disabled' value='{{creditCard.cvc ? "***" : ""}}')
           p.error(ng-bind='creditCard.errors.cvc')
