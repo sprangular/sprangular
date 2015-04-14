@@ -13,7 +13,7 @@ class Sprangular.CreditCard
     number: ['required', '_validateCardFormat']
     month: 'required'
     year: 'required'
-    cvc: ['required', length: {greaterThan: 2, lessThan: 5}]
+    cvc: [length: {greaterThan: 2, lessThan: 5}]
 
   constructor: ->
     @number = ''

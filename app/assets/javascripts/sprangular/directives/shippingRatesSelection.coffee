@@ -14,11 +14,7 @@ Sprangular.directive 'shippingRateSelection', ->
       return if !oldRate || !rate || (rate.shippingMethodId == oldRate.shippingMethodId && rate.cost == oldRate.cost)
 
       order = $scope.order
-
-      if rate
-        order.shipTotal = rate.cost
-      else
-        order.shipTotal = 0
+      order.shipTotal = rate.cost
 
       order.updateTotals()
 

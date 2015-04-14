@@ -7,6 +7,7 @@ Sprangular.controller 'CheckoutCtrl', (
   Account,
   Cart,
   Checkout,
+  Flash,
   Angularytics,
   Env,
   Flash,
@@ -25,6 +26,17 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.billingValid = false
   $scope.isValid = false
   Cart.lastOrder = null
+
+  removeUnavailableVariants = ->
+    _.each Cart.unavailableItems(), (item) ->
+      $translate('cart.out_of_stock', name: item.variant.product.name).then (message) ->
+        Flash.error(message)
+
+      Cart.removeItem(item).then ->
+        if Cart.isEmpty()
+          $location.path("/")
+
+  removeUnavailableVariants()
 
   if !Account.isGuest
     $scope.user = user = Account.user

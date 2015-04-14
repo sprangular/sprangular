@@ -30,7 +30,7 @@ Sprangular.directive 'addressForm', ->
         address.stateId = null
         address.state = null
 
-    $scope.$watch (-> $scope.address.stateId), (newStateId) ->
+    $scope.$watch 'address.stateId', (newStateId) ->
       return unless newStateId
       state = _.find($scope.selectedCountry.states, (state) -> state.id == newStateId)
       $scope.address.state = state
