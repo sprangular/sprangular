@@ -10,7 +10,6 @@ Sprangular.controller 'CheckoutCtrl', (
   Flash,
   Angularytics,
   Env,
-  Flash,
   $translate
 ) ->
   Status.setPageTitle('checkout.checkout')
