@@ -2,14 +2,11 @@
 
 class Sprangular.Address
   Validity.define @,
-    # firstname: 'required'
-    # lastname: 'required'
     address1: 'required'
     city: 'required'
     state: 'required'
     country: 'required'
     zipcode: 'required'
-    phone: 'required'
 
   init: ->
     @name = @fullName()
@@ -52,6 +49,7 @@ class Sprangular.Address
     zipcode: @zipcode
     state_id: @stateId
     country_id: @countryId
+    birthday: @birthday
 
   isEmpty: ->
     !@firstname &&
@@ -62,7 +60,8 @@ class Sprangular.Address
     !@phone &&
     !@zipcode &&
     !@countryId &&
-    !@stateId
+    !@stateId && 
+    !@birthday
 
   same: (other) ->
     @firstname == other.firstname &&
@@ -73,7 +72,8 @@ class Sprangular.Address
       @phone == other.phone &&
       @zipcode == other.zipcode &&
       @countryId == other.countryId &&
-      @stateId == other.stateId
+      @stateId == other.stateId && 
+      @birthday == other.birthday
 
   key: ->
     [@firstname,
@@ -84,4 +84,5 @@ class Sprangular.Address
      @phone,
      @zipcode,
      @countryId,
-     @stateId].join('')
+     @stateId,
+     @birthday].join('')
