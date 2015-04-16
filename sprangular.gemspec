@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'rack-rewrite'
   s.add_dependency 'geocoder'
-  s.add_dependency 'ngannotate-rails'
+  s.add_dependency 'ngannotate-rails', '0.15.4'
   s.add_dependency 'prerender_rails'
   s.add_dependency 'active_model_serializers', '~> 0.8.3'
   s.add_dependency 'font-awesome-rails', '~> 4.2'
