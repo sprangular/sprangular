@@ -33,8 +33,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       order  = Cart.current
       params =
         order:
-          ship_address_attributes: order.actualBillingAddress().serialize()
-          bill_address_attributes: order.shippingAddress.serialize()
+          bill_address_attributes: order.actualBillingAddress().serialize()
+          ship_address_attributes: order.shippingAddress.serialize()
         state: 'address'
 
       @put(params, ignoreLoadingIndicator: true)
