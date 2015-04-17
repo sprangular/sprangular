@@ -1,4 +1,4 @@
-section#summary.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active: active, loading: processing}")
+section.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active: active, loading: processing}")
   .row
     .col-md-12
       h2
@@ -76,5 +76,3 @@ section#summary.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active
           | &nbsp;
           span.caption
             | {{ :: 'checkout.processing' | translate }}
-
-
