@@ -18,8 +18,6 @@ Sprangular.directive 'shippingRateSelection', ->
 
       order.updateTotals()
 
-      Checkout.setDelivery()
-
     $scope.$watch('order.shippingAddress', ->
       $scope.address = $scope.order.shippingAddress
     , true)

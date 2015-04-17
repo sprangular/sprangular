@@ -3,10 +3,11 @@ class Sprangular::AccountsController < Sprangular::BaseController
 
   def create
     @user = Spree::User.create(spree_user_params)
+    @order = current_order
 
     if @user.persisted?
       sign_in(:spree_user, @user)
-      @order = current_order
+      @order.update(user: @user) if @order && !@order.user
 
       render 'show'
     else

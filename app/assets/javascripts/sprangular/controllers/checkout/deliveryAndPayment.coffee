@@ -23,7 +23,7 @@ Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, 
 
     $scope.processing = true
 
-    Checkout.setPayment()
+    Checkout.setDeliveryAndPayment()
       .then ->
           $scope.processing = false
           $scope.submitted = false

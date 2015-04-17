@@ -16,7 +16,7 @@ section.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active: active
         tr.item(ng-repeat='item in order.items')
           td.name
             | {{item.variant.product.name}}
-            span(ng-if='item.variant.product.hasVariants()')
+            span(ng-if='item.variant.product.hasVariants')
               | &nbsp;{{item.variant.options_text}}
 
           td.quantity.number(ng-bind='item.quantity')
@@ -49,10 +49,20 @@ section.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active: active
             | {{ :: 'checkout.tax' | translate }}
           td.number(colspan=2 ng-bind='order.taxTotal | currency')
 
-        tr.total
+        tr.credits(ng-show="order.creditApplied > 0")
+          td
+            | Credit Applied
+          td.number(colspan=2 ng-bind='order.creditApplied | currency')
+
+        tr.total(ng-hide="order.creditApplied > 0")
           td
             | {{ :: 'checkout.total' | translate }}
           td.number(colspan=2 ng-bind='order.total | currency')
+
+        tr.total(ng-show="order.creditApplied > 0")
+          td
+            | {{ :: 'checkout.total' | translate }}
+          td.number(colspan=2 ng-bind='order.totalAfterCredit | currency')
 
       promo-form(order='order')
 
