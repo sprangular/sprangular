@@ -106,5 +106,5 @@ Sprangular.run (
 
   $rootScope.$on '$routeChangeError', (event, current, previous, rejection) ->
     Status.routeChanging = false
-    alert "Error changing route. See console for details."
     $log.info "Error changing route", rejection
+    $location.path('/404')
