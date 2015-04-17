@@ -86,5 +86,16 @@ Sprangular.config ($routeProvider) ->
         order: (Orders, $route) ->
           Orders.find($route.current.params.number)
 
+    .when '/404',
+      templateUrl: '404.html'
+
+    .when '/:slug',
+      controller: 'PageShowCtrl'
+      templateUrl: 'pages/show.html'
+      resolve:
+        page: (StaticContent, $route)->
+          slug = $route.current.params.slug
+          StaticContent.find(slug)
+
     .otherwise
       templateUrl: '404.html'
