@@ -88,11 +88,12 @@ class Sprangular::CartsController < Sprangular::BaseController
   end
 
   def guest_login
-    order = current_order(create_order_if_necessary: true)
-    if params[:order][:email] =~ Devise.email_regexp && order.update_attribute(:email, params[:order][:email])
-      render json: { order: order, email: order.email }, status: 200
+    @order = current_order(create_order_if_necessary: true)
+
+    if params[:order][:email] =~ Devise.email_regexp && @order.update_attribute(:email, params[:order][:email])
+      render_order
     else
-      invalid_resource!(order)
+      invalid_resource!(@order)
     end
   end
 
