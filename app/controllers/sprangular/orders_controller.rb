@@ -6,6 +6,9 @@ class Sprangular::OrdersController < Sprangular::BaseController
 
     @order = Spree::Order.where(number: params[:id]).first!
 
-    render 'spree/api/orders/show'
+    render json: @order,
+           scope: current_spree_user,
+           serializer: Sprangular::OrderSerializer,
+           root: false
   end
 end
