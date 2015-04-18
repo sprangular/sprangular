@@ -1,3 +1,5 @@
+Sprangular.catchAllRoutes = []
+
 Sprangular.config ($routeProvider) ->
 
   $routeProvider
@@ -86,5 +88,13 @@ Sprangular.config ($routeProvider) ->
         order: (Orders, $route) ->
           Orders.find($route.current.params.number)
 
-    .otherwise
+    .when '/404',
       templateUrl: '404.html'
+
+  _.each Sprangular.catchAllRoutes, (route) ->
+    $routeProvider.when(route.path, route.options)
+
+  $routeProvider.otherwise(templateUrl: '404.html')
+
+Sprangular.defineCatchAllRoute = (path, options={}) ->
+  @catchAllRoutes.push(path: path, options: options)
