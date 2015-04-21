@@ -1,6 +1,10 @@
 class Sprangular::AccountsController < Sprangular::BaseController
   before_filter :check_authorization, except: :create
 
+  def serialization_scope
+    current_order
+  end
+
   def create
     @user = Spree::User.create(spree_user_params)
     @order = current_order
@@ -9,7 +13,7 @@ class Sprangular::AccountsController < Sprangular::BaseController
       sign_in(:spree_user, @user)
       @order.update(user: @user) if @order && !@order.user
 
-      render 'show'
+      render_user
     else
       invalid_resource!(@user)
     end
@@ -18,7 +22,10 @@ class Sprangular::AccountsController < Sprangular::BaseController
   def show
     authorize! :show, @user
     @order = current_order
+
+    render_user
   end
+
 
   def update
     authorize! :update, @user
@@ -27,7 +34,7 @@ class Sprangular::AccountsController < Sprangular::BaseController
     if @user.valid?
       @order = current_order
 
-      render 'show'
+      render_user
     else
       invalid_resource!(@user)
     end
@@ -37,5 +44,11 @@ private
 
   def spree_user_params
     params.require(:spree_user).permit(Spree::PermittedAttributes.user_attributes)
+  end
+
+  def render_user
+    render json: @user,
+           root: false,
+           serializer: Sprangular::UserSerializer
   end
 end
