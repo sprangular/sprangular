@@ -1,6 +1,10 @@
 class Sprangular::AccountsController < Sprangular::BaseController
   before_filter :check_authorization, except: :create
 
+  def serialization_scope
+    current_order
+  end
+
   def create
     @user = Spree::User.create(spree_user_params)
     @order = current_order
