@@ -34,7 +34,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     populateAccount: (data) ->
       @user = Sprangular.extend(data, Sprangular.User)
-      Cart.load(@user.current_order)
+      Cart.load(@user.current_order) if @user.current_order
       @isLogged = true
       @email = data.email
 
