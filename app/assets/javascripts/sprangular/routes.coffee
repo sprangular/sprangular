@@ -1,3 +1,5 @@
+Sprangular.catchAllRoutes = []
+
 Sprangular.config ($routeProvider) ->
 
   $routeProvider
@@ -89,13 +91,10 @@ Sprangular.config ($routeProvider) ->
     .when '/404',
       templateUrl: '404.html'
 
-    .when '/:slug',
-      controller: 'PageShowCtrl'
-      templateUrl: 'pages/show.html'
-      resolve:
-        page: (StaticContent, $route)->
-          slug = $route.current.params.slug
-          StaticContent.find(slug)
+  _.each Sprangular.catchAllRoutes, (route) ->
+    $routeProvider.when(route.path, route.options)
 
-    .otherwise
-      templateUrl: '404.html'
+  $routeProvider.otherwise(templateUrl: '404.html')
+
+Sprangular.defineCatchAllRoute = (path, options={}) ->
+  @catchAllRoutes.push(path: path, options: options)
