@@ -91,6 +91,50 @@ Sprangular.config ($routeProvider) ->
     .when '/404',
       templateUrl: '404.html'
 
+    .when '/terms',
+      templateUrl: 'static/terms.html'
+
+    .when '/privacy',
+      templateUrl: 'static/privacy.html'
+
+    .when '/collections',
+      controller: 'CollectionListCtrl'
+      templateUrl: 'collections/index.html'
+      resolve:
+          collections: (Collections, $route)->
+            Collections.list()
+
+    .when '/collections/:id',
+      controller: 'CollectionCtrl'
+      templateUrl: 'collections/show.html'
+      resolve:
+        collection: (Collections, $route)->
+          slug = $route.current.params.id
+          Collections.find(slug)
+
+    .when '/the-protagonist-podcast',
+      controller: 'PageShowCtrl'
+      templateUrl: 'static/podcasts.html'
+      resolve:
+        page: (StaticContent, $route)->
+          StaticContent.find('the-protagonist-podcast')
+
+    .when '/the-protagonist-podcast/:id',
+      controller: 'PageShowCtrl'
+      templateUrl: 'static/podcast.html'
+      resolve:
+        page: (StaticContent, $route)->
+          slug = $route.current.params.id
+          StaticContent.find(slug)
+
+    .when '/press',
+      controller: 'PressCtrl'
+      templateUrl: 'press/index.html'
+      resolve:
+        press_releases: (Press, $route)->
+          Press.list()
+
+
   _.each Sprangular.catchAllRoutes, (route) ->
     $routeProvider.when(route.path, route.options)
 
@@ -98,3 +142,4 @@ Sprangular.config ($routeProvider) ->
 
 Sprangular.defineCatchAllRoute = (path, options={}) ->
   @catchAllRoutes.push(path: path, options: options)
+
