@@ -1,3 +1,5 @@
+Sprangular.catchAllRoutes = []
+
 Sprangular.config ($routeProvider) ->
 
   $routeProvider
