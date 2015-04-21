@@ -4,7 +4,7 @@ class Sprangular.User
     @billingAddress  = @_extendAddress(@billing_address)
     @shippingAddress = @_extendAddress(@shipping_address)
 
-    @orders      = Sprangular.extend(@orders, Sprangular.Order)
+    @orders      = Sprangular.extend(@completed_orders, Sprangular.Order)
     @creditCards = Sprangular.extend(@payment_sources, Sprangular.CreditCard)
 
     @allowOneClick = @creditCards.length > 0 && @addresses.length > 0
