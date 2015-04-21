@@ -44,6 +44,7 @@ private
 
   def render_user
     render json: @user,
+           root: false,
            serializer: Sprangular::UserSerializer
   end
 end
