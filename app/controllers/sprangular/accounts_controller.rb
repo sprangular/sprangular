@@ -18,7 +18,10 @@ class Sprangular::AccountsController < Sprangular::BaseController
   def show
     authorize! :show, @user
     @order = current_order
+    render json: @user,
+           serializer: Sprangular::UserSerializer
   end
+
 
   def update
     authorize! :update, @user
