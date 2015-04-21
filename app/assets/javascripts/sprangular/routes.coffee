@@ -1,5 +1,3 @@
-Sprangular.catchAllRoutes = []
-
 Sprangular.config ($routeProvider) ->
 
   $routeProvider
@@ -142,4 +140,3 @@ Sprangular.config ($routeProvider) ->
 
 Sprangular.defineCatchAllRoute = (path, options={}) ->
   @catchAllRoutes.push(path: path, options: options)
-

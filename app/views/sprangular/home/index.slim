@@ -2,8 +2,8 @@ script Sprangular.constant('Env', #{ js_environment.to_json.html_safe })
 
 - if @user
   script
-    | Sprangular.startupData.User = #{render(template: 'sprangular/accounts/show', formats: [:json]).html_safe}
+    | Sprangular.startupData.User = #{serialize(@user, Sprangular::UserSerializer).html_safe}
 
 - if @order
   script
-    | Sprangular.startupData.Order = #{render(template: 'spree/api/orders/show', formats: [:json]).html_safe}
+    | Sprangular.startupData.Order = #{serialize(@order, Sprangular::OrderSerializer).html_safe}
