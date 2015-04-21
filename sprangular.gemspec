@@ -42,8 +42,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-underscore'
   s.add_dependency 'rails-assets-underscore.string'
   s.add_dependency 'rails-assets-angularytics'
-  s.add_dependency 'rails-assets-jasmine-sinon'
-  s.add_dependency 'rails-assets-sinon'
   s.add_dependency 'rails-assets-angular-translate'
   s.add_dependency 'rails-assets-angular-i18n'
 

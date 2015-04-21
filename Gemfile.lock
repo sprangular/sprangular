@@ -95,8 +95,6 @@ PATH
       rails-assets-angularytics
       rails-assets-bootstrap-additions
       rails-assets-bootstrap-sass-official
-      rails-assets-jasmine-sinon
-      rails-assets-sinon
       rails-assets-underscore
       rails-assets-underscore.string
       sass-rails

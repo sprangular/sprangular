@@ -6,8 +6,8 @@ Sprangular.directive 'addressForm', ->
     countries: '='
     disabled: '='
     submitted: '='
-    user: '='
-  controller: ($scope) ->
+  controller: ($scope, Account) ->
+    $scope.user = Account.user
     $scope.selectedCountry = null
     $scope.hasErrors = false
 
