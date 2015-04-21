@@ -86,5 +86,8 @@ Sprangular.config ($routeProvider) ->
         order: (Orders, $route) ->
           Orders.find($route.current.params.number)
 
+    .when '/404',
+      templateUrl: '404.html'
+
     .otherwise
       templateUrl: '404.html'
