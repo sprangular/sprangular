@@ -4,6 +4,11 @@ Sprangular.controller 'CheckoutReviewCtrl', ($scope, $location, Cart, Checkout) 
   $scope.$watch 'order.state', (state) ->
     $scope.active = (state == 'confirm')
 
+  $scope.hasPromo = ->
+    promotions = $scope.order.adjustments.filter (adjustment) ->
+      adjustment.isPromo() && adjustment.eligible
+    promotions.length > 0
+
   $scope.placeOrder = ->
     $scope.processing = true
 
