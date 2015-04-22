@@ -108,5 +108,9 @@ module Sprangular
         hash
       end
     end
+
+    def serialize(object, serializer)
+      serializer.new(object, root: false).to_json
+    end
   end
 end

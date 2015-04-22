@@ -88,18 +88,6 @@ Sprangular.service "Cart", ($http) ->
       $http.put '/api/cart/remove_adjustment', params
         .success(@load)
 
-    shippingRates: (options) ->
-      order = @current
-      params =
-        country_id: options.countryId
-        state_id: options.stateId
-        zipcode: options.zipcode
-        use_billing: @current.shipToBillAddress
-
-      $http.get('/api/shipping_rates', {params: params, ignoreLoadingIndicator: true})
-        .success (data) -> order.loadRates(data)
-
-
     unavailableItems: ->
       _.filter @current.items, (item) ->
         variant = item.variant
