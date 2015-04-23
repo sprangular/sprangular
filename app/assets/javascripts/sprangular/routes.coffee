@@ -70,6 +70,8 @@ Sprangular.config ($routeProvider) ->
         countries: (Geography) -> Geography.getCountryList()
         order: (Cart) ->
           Cart.reload().then -> Cart.current
+        user: (Account) ->
+          Account.reload('full').then -> Account.user
 
     .when '/checkout/complete',
       controller: 'CheckoutCompleteCtrl'
