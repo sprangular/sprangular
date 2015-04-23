@@ -51,6 +51,7 @@ private
 
     render json: @user,
            root: false,
+           scope: @user,
            serializer: serializer
   end
 end

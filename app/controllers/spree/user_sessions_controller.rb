@@ -31,6 +31,7 @@ class Spree::UserSessionsController < Devise::SessionsController
 
           render json: @user,
                  root: false,
+                 scope: @user,
                  serializer: Sprangular::LiteUserSerializer
         }
       end
