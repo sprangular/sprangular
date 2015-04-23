@@ -14,7 +14,7 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'account/show.html'
       resolve:
         user: (Account) ->
-          Account.reload().then -> Account.user
+          Account.reload('full').then -> Account.user
 
     .when '/products',
       controller: 'ProductListCtrl'
