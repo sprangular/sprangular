@@ -4,8 +4,8 @@ class Sprangular.User
     @billingAddress  = @findAddress(@bill_address_id) if @bill_address_id
     @shippingAddress = @findAddress(@ship_address_id) if @ship_address_id
 
-    @orders      = Sprangular.extend(@completed_orders, Sprangular.Order)
-    @creditCards = Sprangular.extend(@payment_sources, Sprangular.CreditCard)
+    @orders      = Sprangular.extend(@completed_orders || [], Sprangular.Order)
+    @creditCards = Sprangular.extend(@payment_sources || [], Sprangular.CreditCard)
 
   serialize: ->
     _.omit this, (value) ->
