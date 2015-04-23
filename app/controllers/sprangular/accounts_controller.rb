@@ -47,8 +47,10 @@ private
   end
 
   def render_user
+    serializer = params[:serializer] == 'full' ? Sprangular::UserSerializer : Sprangular::LiteUserSerializer
+
     render json: @user,
            root: false,
-           serializer: Sprangular::UserSerializer
+           serializer: serializer
   end
 end
