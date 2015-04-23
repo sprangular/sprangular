@@ -15,6 +15,8 @@ Sprangular.config ($routeProvider) ->
       resolve:
         user: (Account) ->
           Account.reload('full').then -> Account.user
+        orders: (Orders) ->
+          Orders.all()
 
     .when '/products',
       controller: 'ProductListCtrl'

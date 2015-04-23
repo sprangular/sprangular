@@ -1,11 +1,11 @@
 h2
   | {{:: 'orders.order_history' | translate }}
 #order-history
-  .not-found(ng-if='user.orders.length == 0')
+  .not-found(ng-if='orders.length == 0')
     p
       | {{:: 'orders.no_orders_on_file' | translate }}
 
-  .order(ng-repeat="order in user.orders")
+  .order(ng-repeat="order in orders")
     dl
       dt
         | {{:: 'orders.number' | translate }}
