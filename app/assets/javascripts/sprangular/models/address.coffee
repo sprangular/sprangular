@@ -53,6 +53,7 @@ class Sprangular.Address
     !@stateId
 
   same: (other) ->
+    return unless other
     @firstname == other.firstname &&
       @lastname == other.lastname &&
       @address1 == other.address1 &&
