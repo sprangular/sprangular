@@ -37,6 +37,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       Cart.load(@user.current_order) if @user.current_order
       @isLogged = true
       @email = data.email
+      @isGuest = false
 
     populateGuestAccount: (data) ->
       @isGuest = true
