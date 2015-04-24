@@ -4,7 +4,7 @@ Sprangular.directive 'addressForm', ->
   scope:
     address: '='
     countries: '='
-    disabled: '='
+    disabled: '=disabledFields'
     submitted: '='
   controller: ($scope, Account) ->
     $scope.user = Account.user
