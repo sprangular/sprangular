@@ -12,7 +12,7 @@ section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl'
     h2
       | {{ :: 'checkout.credit_card' | translate}}
 
-    credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards' disabled='!active || processing' submitted='submitted')
+    credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards' disabled-fields='!active || processing' submitted='submitted')
 
   button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
     span(ng-if='!processing')
