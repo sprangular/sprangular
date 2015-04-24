@@ -36,12 +36,11 @@ Sprangular.controller 'CheckoutCtrl', (
 
   removeUnavailableVariants()
 
+  $scope.user = user
+
   if !Account.isGuest
-    $scope.user = user
     order.resetAddresses(user)
     order.resetCreditCard(user)
-  else
-    $scope.user = user = {}
 
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
