@@ -4,7 +4,8 @@ Sprangular.controller 'AccountCtrl', (
   $routeParams,
   Status,
   Account,
-  user
+  user,
+  orders
 ) ->
   Status.setPageTitle('nav.my_account')
 
@@ -13,6 +14,7 @@ Sprangular.controller 'AccountCtrl', (
 
   $scope.editing = false
   $scope.user = user
+  $scope.orders = orders
 
   $scope.edit = ->
     $scope.editing = true

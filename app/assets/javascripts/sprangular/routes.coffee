@@ -16,7 +16,9 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'account/show.html'
       resolve:
         user: (Account) ->
-          Account.reload().then -> Account.user
+          Account.reload('full').then -> Account.user
+        orders: (Orders) ->
+          Orders.all()
 
     .when '/products',
       controller: 'ProductListCtrl'
@@ -72,6 +74,8 @@ Sprangular.config ($routeProvider) ->
         countries: (Geography) -> Geography.getCountryList()
         order: (Cart) ->
           Cart.reload().then -> Cart.current
+        user: (Account) ->
+          Account.reload('full').then -> Account.user
 
     .when '/checkout/complete',
       controller: 'CheckoutCompleteCtrl'

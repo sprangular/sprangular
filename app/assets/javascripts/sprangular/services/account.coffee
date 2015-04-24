@@ -23,9 +23,9 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
             service.isLogged = false
             service.fetched = true
 
-    reload: ->
+    reload: (serializer='lite') ->
       @fetched = false
-      $http.get('/api/account')
+      $http.get("/api/account?serializer=#{serializer}")
         .success (data) ->
           service.populateAccount(data)
           service.fetched = true
@@ -102,7 +102,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
     save: (data) ->
       params =
         spree_user: data.serialize()
-      $http.put('/api/account', $.param(params))
+      $http.put('/api/account?serializer=full', $.param(params))
         .success (data) ->
           service.populateAccount(data)
           Flash.success 'app.account_updated'

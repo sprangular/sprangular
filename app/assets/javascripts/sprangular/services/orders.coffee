@@ -4,7 +4,16 @@ Sprangular.service "Orders", ($http) ->
     find: (number) ->
       $http.get("/api/orders/#{number}")
         .then (response) ->
-          order = new Sprangular.Order
-          order.load(response.data)
+          service._loadOrder(response.data)
+
+    all: ->
+      $http.get("/api/orders")
+        .then (response) ->
+          _.map response.data, (record) ->
+            service._loadOrder(record)
+
+    _loadOrder: (data) ->
+      order = new Sprangular.Order
+      order.load(data)
 
   service
