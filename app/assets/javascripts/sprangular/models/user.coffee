@@ -2,8 +2,8 @@ class Sprangular.User
   init: ->
     @creditCards     = Sprangular.extend(@payment_sources || [], Sprangular.CreditCard)
     @addresses       = Sprangular.extend(@addresses || [], Sprangular.Address)
-    @billingAddress  = @findAddress(@bill_address_id) if @bill_address_id
-    @shippingAddress = @findAddress(@ship_address_id) if @ship_address_id
+    @billingAddress  = Sprangular.extend(@bill_address, Sprangular.Address) if @bill_address
+    @shippingAddress = Sprangular.extend(@ship_address, Sprangular.Address) if @ship_address
 
   serialize: ->
     _.omit this, (value) ->
