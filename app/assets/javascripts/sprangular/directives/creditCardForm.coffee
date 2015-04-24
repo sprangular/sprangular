@@ -3,7 +3,7 @@ Sprangular.directive 'creditCardForm', ->
   templateUrl: 'credit_cards/form.html'
   scope:
     creditCard: '='
-    disabled: '='
+    disabled: '=disabledFields'
     submitted: '='
   controller: ($scope, $locale) ->
     $scope.months = _.map $locale.DATETIME_FORMATS.MONTH, (month, index) ->

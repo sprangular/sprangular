@@ -8,7 +8,7 @@ section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: 
     h2(ng-hide='order.billToShipAddress')
       | {{ :: 'checkout.shipping_address' | translate}}
 
-    address-selection(address='order.shippingAddress' addresses='shippingAddresses' countries='countries' disabled="!active || processing" submitted='submitted')
+    address-selection(address='order.shippingAddress' addresses='shippingAddresses' countries='countries' disabled-fields="!active || processing" submitted='submitted')
 
     label
       input(type='checkbox' ng-model='order.billToShipAddress' ng-disabled='!active || processing')
@@ -18,7 +18,11 @@ section.step.addresses(ng-controller='CheckoutAddressesCtrl' ng-class="{active: 
     h2
       | {{ :: 'checkout.billing_address' | translate}}
 
-    address-selection(address='order.billingAddress' addresses='billingAddresses' countries='countries' disabled="!active || processing" submitted='submitted')
+    select(name="test" id="test")
+      option(value="1") a
+      option(value="2") b
+
+    address-selection(address='order.billingAddress' addresses='billingAddresses' countries='countries' disabled-fields="!active || processing" submitted='submitted')
 
   button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
     span(ng-if='!processing')

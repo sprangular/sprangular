@@ -3,6 +3,7 @@ Sprangular.controller 'CheckoutCtrl', (
   $location,
   countries,
   order,
+  user,
   Status,
   Account,
   Cart,
@@ -13,8 +14,6 @@ Sprangular.controller 'CheckoutCtrl', (
   $translate
 ) ->
   Status.setPageTitle('checkout.checkout')
-
-  user = Account.user
 
   $scope.order = order
   $scope.secure = $location.protocol() == 'https'
@@ -37,12 +36,11 @@ Sprangular.controller 'CheckoutCtrl', (
 
   removeUnavailableVariants()
 
+  $scope.user = user
+
   if !Account.isGuest
-    $scope.user = user = Account.user
     order.resetAddresses(user)
     order.resetCreditCard(user)
-  else
-    $scope.user = user = {}
 
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
