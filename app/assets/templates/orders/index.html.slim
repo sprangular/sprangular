@@ -20,7 +20,7 @@ h2
       dt
         | {{:: 'orders.ordered_on' | translate }}
       dd
-        | {{order.completed_at | date}}
+        | {{order.completedAt | date}}
 
       dt
         | {{:: 'orders.amount' | translate }}
@@ -30,7 +30,7 @@ h2
       dt
         | {{:: 'orders.shipping_state' | translate }}
       dd
-        | {{order.shipment_state}}
+        | {{order.shipmentState}}
 
     a.btn.btn-primary.btn-small(ng-href="#!/orders/{{order.number}}")
       | {{:: 'orders.see_details' | translate }}
