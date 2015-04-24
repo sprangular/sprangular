@@ -4,6 +4,8 @@ module Sprangular
 
     has_many :addresses,        serializer: Sprangular::AddressSerializer
     has_many :payment_sources,  serializer: Sprangular::PaymentSourceSerializer
+    has_one  :bill_address,     serializer: Sprangular::AddressSerializer
+    has_one  :ship_address,     serializer: Sprangular::AddressSerializer
 
     def payment_sources
       object.credit_cards
