@@ -98,12 +98,6 @@ Sprangular.config ($routeProvider) ->
     .when '/404',
       templateUrl: '404.html'
 
-    .when '/terms',
-      templateUrl: 'static/terms.html'
-
-    .when '/privacy',
-      templateUrl: 'static/privacy.html'
-
     .when '/collections',
       controller: 'CollectionListCtrl'
       templateUrl: 'collections/index.html'
