@@ -8,30 +8,24 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
   $scope.products = products
   $scope.taxonomies = Catalog.taxonomies()
   $scope.currentPage = 1
-  $scope.pageList = [1..products.totalPages]
+  $scope.page = 1
+  # $scope.pageList = [1..products.totalPages]
   $scope.loadingComplete = false
   $scope.fetching = false
   $scope.selectedVariants = {}
 
   $scope.loadNextPage = ->
-    $scope.loadPage($scope.currentPage + 1)
-
-  $scope.loadPreviousPage = ->
-    $scope.loadPage($scope.currentPage - 1) unless $scope.currentPage == 0
-
-  $scope.loadPage = (index) ->
     $scope.fetching = true
 
     load = if taxon
-      Catalog.productsByTaxon(taxon.permalink, index)
+      Catalog.productsByTaxon(taxon.permalink, $scope.page+1)
     else
-      Catalog.products($routeParams.search, index)
+      Catalog.products($routeParams.search, $scope.page+1)
 
     load.then (newPage) ->
-      $scope.currentPage = index
-      $scope.pageList = [1..products.totalPages]
+      $scope.page++
       $scope.fetching = false
-      $scope.products = newPage
+      $scope.products = $scope.products.concat(newPage)
       $scope.loadingComplete = newPage.isLastPage
 
   $scope.selectVariant = (variant) ->
