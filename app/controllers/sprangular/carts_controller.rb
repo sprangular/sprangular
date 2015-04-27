@@ -87,11 +87,6 @@ class Sprangular::CartsController < Sprangular::BaseController
     end
   end
 
-  def reset_guest_token
-    cookies.delete :guest_token
-    render nothing: true
-  end
-
   def guest_login
     @order = current_order(create_order_if_necessary: true)
 

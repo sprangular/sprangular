@@ -14,7 +14,6 @@ Sprangular::Engine.routes.draw do
         put :change_variant
         put :remove_adjustment
         delete :remove_variant
-        delete :reset_guest_token
       end
       resource :account
       resources :passwords
