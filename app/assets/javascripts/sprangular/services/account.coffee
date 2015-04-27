@@ -118,5 +118,13 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
           i = cards.indexOf card
           cards.splice(i, 1) unless i is -1
 
+    deleteAddress: (address) ->
+      address = @user.addresses
+
+      $http.delete("/api/addresses/#{address.id}")
+      .success (data) ->
+        i = addresses.indexOf address
+        addresses.splice(i, 1) unless i is -1
+
   service.init()
   service
