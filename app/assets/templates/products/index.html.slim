@@ -2,6 +2,7 @@ h1(ng-bind="pageTitle")
 
 ng-include(src="'products/list.html'"
   infinite-scroll='loadNextPage()'
+  infinite-scroll-immediate-check='false'
   infinite-scroll-disabled='loadingComplete || fetching')
 
 /nav
