@@ -29,7 +29,7 @@ class Sprangular.Address
       @address1
 
   usingFullName: ->
-    @name && @name.length > 0      
+    @name && @name.length > 0
 
   getFirstname: ->
     return @name.split(' ').slice(0, -1).join(' ') if @usingFullName()
@@ -37,11 +37,11 @@ class Sprangular.Address
 
   getLastname: ->
     return @name.split(' ').slice(-1).join(' ') if @usingFullName()
-    @lastname      
+    @lastname
 
   serialize: ->
     firstname: @getFirstname()
-    lastname: @getLastname()   
+    lastname: @getLastname()
     address1: @address1
     address2: @address2
     city: @city
@@ -49,7 +49,6 @@ class Sprangular.Address
     zipcode: @zipcode
     state_id: @stateId
     country_id: @countryId
-    birthday: @birthday
 
   isEmpty: ->
     !@firstname &&
@@ -60,8 +59,7 @@ class Sprangular.Address
     !@phone &&
     !@zipcode &&
     !@countryId &&
-    !@stateId && 
-    !@birthday
+    !@stateId
 
   same: (other) ->
     return unless other
@@ -73,8 +71,7 @@ class Sprangular.Address
       @phone == other.phone &&
       @zipcode == other.zipcode &&
       @countryId == other.countryId &&
-      @stateId == other.stateId && 
-      @birthday == other.birthday
+      @stateId == other.stateId
 
   key: ->
     [@firstname,
@@ -85,5 +82,4 @@ class Sprangular.Address
      @phone,
      @zipcode,
      @countryId,
-     @stateId,
-     @birthday].join('')
+     @stateId].join('')
