@@ -83,6 +83,7 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'checkout/complete.html'
       resolve:
         order: (Cart) ->
+          Cart.resetGuestToken
           Cart.lastOrder
 
     .when '/orders/:number',

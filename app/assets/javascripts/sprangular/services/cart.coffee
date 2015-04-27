@@ -44,6 +44,9 @@ Sprangular.service "Cart", ($http) ->
       $http.delete '/api/cart'
         .success(@load)
 
+    resetGuestToken: ->
+      $http.delete '/api/cart/reset_guest_token'
+
     addVariant: (variant, quantity, flexi=null) ->
       foundProducts = @findVariant(variant.id)
 
