@@ -39,6 +39,7 @@ class Sprangular.Address
     phone: @phone
     zipcode: @zipcode
     state_id: @stateId
+    state_name: @state_name
     country_id: @countryId
 
   isEmpty: ->
