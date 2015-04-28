@@ -42,7 +42,8 @@ form.address(novalidate)
         .form-group(ng-class="{'has-error': address.errors.state}")
           label.control-label(for='state')
             | {{:: 'address.state' | translate}}
-          select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId')
+          select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId' ng-if='!selectedCountry || selectedCountry.states.length > 0')
+          input.form-control(name='state' ng-model='address.state_name' ng-if='selectedCountry.states.length == 0')
           p.error(ng-bind='address.errors.state')
 
       .col-md-4
