@@ -5,7 +5,6 @@ window.Sprangular = angular.module('Sprangular', [
   'underscore'
   'ngSanitize'
   'mgcrea.ngStrap'
-  'infinite-scroll'
   'angularytics'
   'pascalprecht.translate'
 ]).run (Env) ->
