@@ -15,6 +15,8 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
   $scope.selectedVariants = {}
 
   $scope.loadNextPage = ->
+    return if $scope.loadingComplete || $scope.fetching
+
     $scope.fetching = true
 
     load = if taxon
