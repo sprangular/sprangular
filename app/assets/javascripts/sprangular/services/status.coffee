@@ -7,11 +7,12 @@ Sprangular.service "Status", ($rootScope, $translate) ->
     requestedPath: null
     httpLoading: false
     routeChanging: false
+    manuallyLoading: false
     cachedProducts: []
     meta: {}
 
     isLoading: ->
-      @httpLoading || @routeChanging
+      @manuallyLoading || @httpLoading || @routeChanging
 
     cacheProduct: (product) ->
       status.cachedProducts.push(product)
