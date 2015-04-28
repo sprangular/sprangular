@@ -34,7 +34,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angular-route'
   s.add_dependency 'rails-assets-angular-sanitize'
   s.add_dependency 'rails-assets-angular-animate'
-  s.add_dependency 'rails-assets-ngInfiniteScroll'
   s.add_dependency 'rails-assets-bootstrap-sass-official'
   s.add_dependency 'rails-assets-angular-strap'
   s.add_dependency 'rails-assets-angular-motion'
