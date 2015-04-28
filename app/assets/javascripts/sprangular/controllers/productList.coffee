@@ -9,7 +9,6 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
   $scope.taxonomies = Catalog.taxonomies()
   $scope.currentPage = 1
   $scope.page = 1
-  # $scope.pageList = [1..products.totalPages]
   $scope.loadingComplete = false
   $scope.fetching = false
   $scope.selectedVariants = {}
