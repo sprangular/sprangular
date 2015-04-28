@@ -6,7 +6,7 @@ class Sprangular.Address
     lastname: 'required'
     address1: 'required'
     city: 'required'
-    state: 'required'
+    state: ['_validateState']
     country: 'required'
     zipcode: 'required'
     phone: 'required'
@@ -74,3 +74,6 @@ class Sprangular.Address
      @zipcode,
      @countryId,
      @stateId].join('')
+
+  _validateState: ->
+    "can't be blank" unless @actualStateName()
