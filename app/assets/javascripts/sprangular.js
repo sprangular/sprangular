@@ -19,5 +19,4 @@
 //= require angular-route
 //= require angular-sanitize
 //= require angular-animate
-//= require ngInfiniteScroll/ng-infinite-scroll
 //= require sprangular/app
