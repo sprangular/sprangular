@@ -1,9 +1,6 @@
 h1(ng-bind="pageTitle")
 
-ng-include(src="'products/list.html'"
-  infinite-scroll='loadNextPage()'
-  infinite-scroll-immediate-check='false'
-  infinite-scroll-disabled='loadingComplete || fetching')
+ng-include(src="'products/list.html'" when-scrolled='loadNextPage()')
 
 /nav
 /  ul.pagination.pagination-lg(ng-if="products.length > 0")
