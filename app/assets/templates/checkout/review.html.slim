@@ -64,8 +64,6 @@ section.step.review(ng-controller='CheckoutReviewCtrl' ng-class="{active: active
             | {{ :: 'checkout.total' | translate }}
           td.number(colspan=2 ng-bind='order.totalAfterCredit | currency')
 
-      promo-form(order='order')
-
   .row
     .col-md-12
       button.complete.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="placeOrder()")
