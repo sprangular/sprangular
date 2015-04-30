@@ -7,6 +7,9 @@ class Sprangular::AddressesController < Sprangular::BaseController
     address = @user.addresses.find params[:id]
     address.destroy
 
-    respond_with address
+    render json: address,
+                scope: @user,
+                serializer: Sprangular::AddressSerializer,
+                root: false
   end
 end
