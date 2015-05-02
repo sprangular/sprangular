@@ -7,5 +7,5 @@ h2
       | {{:: 'address.no_addresses' | translate}}
 
   .found(ng-repeat="address in user.addresses")
-    address-view(address='address')
+    address-view(address='address' allow-delete='true')
     hr
