@@ -18,6 +18,7 @@ Sprangular::Engine.routes.draw do
       resource :account
       resources :passwords
       resources :credit_cards, only: :destroy
+      resources :addresses, only: :destroy
       resources :countries, only: :index
       resources :orders, only: %i(index show)
     end

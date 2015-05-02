@@ -30,3 +30,6 @@
     dt
       | {{:: 'address.phone' | translate }}
     dd(ng-bind='address.phone')
+
+    a.btn.btn-mini.btn-link(ng-if='allowDelete' ng-click="delete()" ng-confirm-click="Are you sure you want to permanently remove this address?")
+      span.glyphicon.glyphicon-remove
