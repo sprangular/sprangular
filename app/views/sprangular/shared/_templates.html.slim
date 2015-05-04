@@ -1,2 +1,3 @@
-- cached_templates.each do |path, html|
-  script(type="text/ng-template" id=path)= html
+- cached_templates.each do |full_path, html|
+  - relative_path = URI(full_path).path.gsub(%r{^/assets/}, '')
+  script(type="text/ng-template" id=asset_path(relative_path))= html
