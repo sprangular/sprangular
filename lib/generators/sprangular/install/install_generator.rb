@@ -30,6 +30,10 @@ class Sprangular::InstallGenerator < Rails::Generators::Base
     gsub_file 'app/assets/javascripts/application.js', %r{//= require_tree .\n}, ''
   end
 
+  def dissallow_html_assets_in_search_engine_index
+    append_file 'public/robots.txt', "Disallow: /assets/*.html$\n"
+  end
+
   def add_assets
     inject_into_file 'app/assets/stylesheets/application.css', " *= require sprangular\n", before: /\*\//, verbose: true
     append_file 'app/assets/javascripts/application.js', <<-eos

@@ -79,6 +79,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           service.trackOrder(Cart.lastOrder)
 
           if Account.isGuest
+            Account.isGuest = false
+            Account.email = null
             Cart.init()
           else
             Account.reload().then ->
