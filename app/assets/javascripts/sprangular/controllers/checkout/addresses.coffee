@@ -5,17 +5,15 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
   $scope.order = Cart.current
   $scope.processing = false
   $scope.user = Account.user
-  $scope.submitted = false 
+  $scope.submitted = false
+
   unless Account.isGuest
-    $scope.shippingAddresses = $scope.user.addresses.slice(1)
-    $scope.billingAddresses = $scope.user.addresses.slice(1)
+    $scope.shippingAddresses = $scope.user.addresses.slice()
+    $scope.billingAddresses = $scope.user.addresses.slice()
 
   $scope.$watch 'order.state', (state) ->
     $scope.done = _.contains(['confirm', 'payment', 'delivery'], state)
     $scope.active = _.contains(['cart', 'address'], state)
-
-  $scope.order.shippingAddress = new Sprangular.Address unless $scope.order.shippingAddress
-  $scope.order.billingAddress = new Sprangular.Address unless $scope.order.billingAddress
 
   createMergedAddressList = ->
     addresses = $scope.user.addresses
