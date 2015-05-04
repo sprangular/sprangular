@@ -2,7 +2,7 @@ h1(ng-bind="pageTitle")
 
 ng-include(src="'products/list.html'" when-scrolled='loadNextPage()')
 
-p.loading(ng-show='fetching')
-  | Loading...
-p.no-more(ng-show='products.length > 0 && loadingComplete')
+.products-loading(ng-show='fetching')
+
+.no-more(ng-show='products.length > 0 && loadingComplete')
   | {{:: 'products.loading_complete' | translate }}

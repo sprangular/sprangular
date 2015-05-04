@@ -42,6 +42,15 @@ body {
   }
 }
 
+.products-loading {
+  background: transparent url(loading.gif) center no-repeat;
+  height: 50px;
+}
+
+.no-more {
+  text-align: center;
+}
+
 .navbar-brand img {
   max-height: 25px;
 }
