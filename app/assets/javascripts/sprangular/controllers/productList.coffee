@@ -19,9 +19,9 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
     $scope.fetching = true
 
     load = if taxon
-      Catalog.productsByTaxon(taxon.permalink, $scope.page+1)
+      Catalog.productsByTaxon(taxon.permalink, $scope.page+1, ignoreLoadingIndicator: true)
     else
-      Catalog.products($routeParams.search, $scope.page+1)
+      Catalog.products($routeParams.search, $scope.page+1, ignoreLoadingIndicator: true)
 
     load.then (newPage) ->
       $scope.page++
