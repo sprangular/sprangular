@@ -141,6 +141,7 @@ en:
       sold_out: Sold Out
       specs: Specfications
       sold_out_msg: This item is sold out
+      loading_complete: No more products found.
     shipping:
       refreshing: Refreshing Rates ...
       fill_required_info: "Provide a country, state & zipcode to view available rates."
