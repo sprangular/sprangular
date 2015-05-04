@@ -1,3 +1,6 @@
 h1(ng-bind="pageTitle")
 
 ng-include(src="'products/list.html'" when-scrolled='loadNextPage()')
+
+p.loading(ng-show='fetching')
+  | Loading...
