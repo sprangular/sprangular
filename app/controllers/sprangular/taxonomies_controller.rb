@@ -1,4 +1,4 @@
-class Sprangular::TaxonomiesController < Sprangular::BaseController
+class Sprangular::TaxonomiesController < ApplicationController
   def index
     @taxonomies = Spree::Taxonomy.order('name').includes(root: :children)
 
