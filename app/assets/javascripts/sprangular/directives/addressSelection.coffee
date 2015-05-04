@@ -25,6 +25,8 @@ Sprangular.directive 'addressSelection', ->
       else
         $scope.address = new Sprangular.Address()
 
-  link: (element, attrs) ->
+  compile: (element, attrs) ->
+    attrs.existingAddress = 'false' if !attrs.exisitingAddress?
+
+  link: (scope, element, attrs) ->
     attrs.disabled = false unless attrs.disabled?
-    attrs.existingAddress = false unless attrs.existingAddress?
