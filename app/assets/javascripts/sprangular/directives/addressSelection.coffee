@@ -17,14 +17,23 @@ Sprangular.directive 'addressSelection', ->
 
       $scope.toggleExistingAddress() if found
 
+    $scope.$watch 'address.id', (addressId) ->
+      return unless addressId
+      $scope.lastAddressId = addressId
+
     $scope.toggleExistingAddress = ->
       $scope.existingAddress = !$scope.existingAddress
 
       if $scope.existingAddress
-        $scope.address = $scope.addresses[0]
+        if $scope.lastAddressId
+          $scope.address = _.find $scope.addresses, (addr) -> addr.id == $scope.lastAddressId
+
+        $scope.address = $scope.addresses[0] unless $scope.address
       else
         $scope.address = new Sprangular.Address()
 
-  link: (element, attrs) ->
+  compile: (element, attrs) ->
+    attrs.existingAddress = 'false' if !attrs.exisitingAddress?
+
+  link: (scope, element, attrs) ->
     attrs.disabled = false unless attrs.disabled?
-    attrs.existingAddress = false unless attrs.existingAddress?
