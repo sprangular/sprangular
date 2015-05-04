@@ -35,14 +35,14 @@ module Sprangular
 
     initializer "sprangular.add_middleware" do |app|
       app.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-        r301 '/products',          '/#!/products'
-        r301 %r{^/products/(.+)$}, '/#!/products/$1'
-        r301 %r{^/t/(.+)$},        '/#!/t/$1'
-        r301 '/sign_in',           '/#!/sign-in'
-        r301 '/cart',              '/#!/cart'
-        r301 '/account',           '/#!/account'
-        r301 '/spree/login',       '/#!/sign-in?redirect=y'
-        r301 '/admin',             '/spree/admin'
+        r301 %r{^/products/?$},      '/#!/products'
+        r301 %r{^/products/(.+)/?$}, '/#!/products/$1'
+        r301 %r{^/t/(.+)/?$},        '/#!/t/$1'
+        r301 %r{^/sign_in/?$},       '/#!/sign-in'
+        r301 %r{^/cart/?$},          '/#!/cart'
+        r301 %r{^/account/?$},       '/#!/account'
+        r301 %r{^/spree/login/?$},   '/#!/sign-in?redirect=y'
+        r301 %r{^/admin/?$},         '/spree/admin'
         r301 %r{/spree/user/spree_user/password/edit\?reset_password_token=(.+)}, '/#!/reset-password/$1'
       end
     end
