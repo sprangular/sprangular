@@ -7,10 +7,8 @@ Sprangular.directive 'addressSelection', ->
     countries: '='
     disabled: '=disabledFields'
     submitted: '='
-    user: '='
+    existingAddress: '='
   controller: ($scope) ->
-    $scope.existingAddress = false
-
     $scope.$watch 'addresses', (addresses) ->
       return unless addresses && addresses.length > 0
 
@@ -29,3 +27,4 @@ Sprangular.directive 'addressSelection', ->
 
   link: (element, attrs) ->
     attrs.disabled = false unless attrs.disabled?
+    attrs.existingAddress = false unless attrs.existingAddress?

@@ -14,7 +14,8 @@ Spree + Angular.js
 - New functions can be added in the host app or by creating a gem.
   Example: [sprangular_static_content](https://github.com/sprangular/sprangular_static_content)
 - Single page checkout
-- 1-click checkout
+- 1-page checkout
+- Infinite scrolling of products
 - Product search with auto-complete
 - Easy to override templates/controllers
 - Easy to add new routes/controllers/templates
