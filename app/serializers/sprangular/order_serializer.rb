@@ -27,6 +27,8 @@ module Sprangular
 
     has_many :products, serializer: Sprangular::ProductSerializer
 
+    has_many :line_item_adjustments, serializer: Sprangular::AdjustmentSerializer
+
     attribute :permissions
 
     def permissions
