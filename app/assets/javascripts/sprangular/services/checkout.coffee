@@ -18,14 +18,14 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
            .success (response) ->
              Cart.load(response.order)
 
-             if response.error
-               deferred.reject(response)
+             if response.meta.error
+               deferred.reject(response.meta)
              else
-               deferred.resolve(response)
+               deferred.resolve(response.meta)
 
            .error (response) ->
-             response.error ||= "Coupon code #{code} not found."
-             deferred.reject(response)
+             response.meta.error ||= "Coupon code #{code} not found."
+             deferred.reject(response.meta)
 
       deferred.promise
 
