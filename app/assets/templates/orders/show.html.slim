@@ -59,6 +59,14 @@ table.table.table-striped
       | {{ :: 'checkout.sub_total' | translate }}
     td.number(colspan=2 ng-bind='order.itemTotal | currency')
 
+  tr.adjustment(ng-repeat='adjustment in order.line_item_adjustments')
+    td(colspan=2)
+      | {{adjustment.label}}
+
+      a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+        span.glyphicon.glyphicon-remove
+    td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
+
   tr.adjustment(ng-repeat='adjustment in order.adjustments')
     td(colspan=2)
       | {{adjustment.label}}
