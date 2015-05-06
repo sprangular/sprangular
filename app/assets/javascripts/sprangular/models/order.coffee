@@ -37,6 +37,7 @@ class Sprangular.Order
     @token = data.token
     @billToShipAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
+    @line_item_adjustments = Sprangular.extend(data.line_item_adjustments, Sprangular.Adjustment)
     @shippingRates = []
     @completedAt = data.completed_at
     @shipmentState = data.shipment_state
