@@ -8,9 +8,11 @@ Sprangular.controller "CartCtrl", (
 ) ->
 
   $scope.user = Account.user
-  $scope.cart = Cart.current
   $scope.status = Status
   $scope.currencySymbol = Env.currency.symbol
+
+  $scope.$watch (-> Cart.current), (newOrder) ->
+    $scope.cart = newOrder
 
   $scope.removeAdjustment = (adjustment) ->
     Angularytics.trackEvent("Cart", "Coupon removed", adjustment.promoCode())
