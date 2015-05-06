@@ -6,6 +6,7 @@ class Sprangular::AddressesController < Sprangular::BaseController
 
     address = @user.addresses.find params[:id]
     address.destroy
+    @user.touch
 
     render json: address,
                 scope: @user,
