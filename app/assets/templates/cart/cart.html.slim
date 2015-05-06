@@ -57,6 +57,14 @@
               td.number(colspan=2 ng-bind='cart.itemTotal | currency : currencySymbol')
               td
 
+            tr.adjustment(ng-repeat='adjustment in cart.line_item_adjustments')
+              td(colspan=2 ng-bind='adjustment.label')
+              td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
+
+              td
+                a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+                  span.glyphicon.glyphicon-remove
+
             tr.adjustment(ng-repeat='adjustment in cart.adjustments')
               td(colspan=2 ng-bind='adjustment.label')
               td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
