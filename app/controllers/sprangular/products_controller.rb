@@ -29,6 +29,6 @@ class Sprangular::ProductsController < Sprangular::BaseController
   private
 
   def product_scope
-    Spree::Product.active.includes(:option_types, :taxons, master: [:images, :option_values, :prices], product_properties: [:property], variants: [:images, :option_values, :prices])
+    Spree::Product.active.includes(:option_types, :taxons, master: %i(images option_values prices), product_properties: [:property], variants: %i(images option_values prices))
   end
 end
