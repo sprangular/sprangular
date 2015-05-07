@@ -19,7 +19,7 @@ class Sprangular::ProductsController < Sprangular::BaseController
   end
 
   def show
-    @product = product_scope.where(slug: params[:id]).first!
+    @product = product_scope.find_by!(slug: params[:id])
 
     render json: @product, root: false,
            serializer: Sprangular::ProductSerializer
