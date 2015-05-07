@@ -1,5 +1,6 @@
 module Sprangular
-  class OrderSerializer < BaseSerializer
+  class OrderSerializer < ActiveModel::Serializer
+    extend Spree::Api::ApiHelpers
     attributes *order_attributes
     attributes | [:display_total, :display_item_total, :display_ship_total, :display_tax_total, :checkout_steps]
 
