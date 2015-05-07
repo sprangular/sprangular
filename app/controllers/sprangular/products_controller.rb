@@ -12,8 +12,8 @@ class Sprangular::ProductsController < Sprangular::BaseController
            meta: {
              count: @products.count,
              total_count: @products.total_count,
-             current_page: params[:page] ? params[:page].to_i : 1,
-             per_page: params[:per_page] || Kaminari.config.default_per_page,
+             current_page: (params[:page] || 1).to_i,
+             per_page: params[:per_page] || Spree::config.products_per_page,
              pages: @products.num_pages
            }
   end
