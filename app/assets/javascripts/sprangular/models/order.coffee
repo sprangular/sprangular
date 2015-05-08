@@ -114,8 +114,8 @@ class Sprangular.Order
   resetAddresses: (user) ->
     return unless user && user.addresses.length > 0
 
-    @shippingAddress = user.shippingAddress if @shippingAddress.isEmpty()
-    @billingAddress  = user.billingAddress  if @billingAddress.isEmpty()
+    @shippingAddress = user.shippingAddress || user.addresses[0] if @shippingAddress.isEmpty()
+    @billingAddress  = user.billingAddress  || user.addresses[0] if @billingAddress.isEmpty()
 
   resetCreditCard: (user) ->
     if user && user.creditCards.length > 0
