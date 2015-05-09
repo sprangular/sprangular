@@ -36,6 +36,10 @@ module Sprangular
       { can_update: current_ability.can?(:update, object) }
     end
 
+    def line_item_adjustments
+      object.line_item_promotion_adjustments
+    end
+
     attribute :use_billing
 
     def use_billing
