@@ -1,5 +1,9 @@
 class Sprangular::ProductsController < Sprangular::BaseController
   def index
+    if params[:taxon] && params[:taxon].to_i == 0
+      params[:taxon] = Spree::Taxon.find_by!(permalink: params[:taxon]).id
+    end
+
     searcher = Spree::Config.searcher_class.new(params)
 
     @products = searcher.retrieve_products
