@@ -39,11 +39,15 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
 
     getPaged: (page=1, params={}) ->
       queryParams =
-        per_page: @pageSize
-        page:     page
-        keywords: params.keywords
-        taxon:    params.taxon
-        sorting:  params.sorting
+        per_page:     params.pageSize || @pageSize
+        page:         page
+        keywords:     params.keywords
+        taxon:        params.taxon
+        taxons:       params.taxons
+        option_types: params.optonTypes
+        price_min:    params.price?.min
+        price_max:    params.price?.max
+        sorting:      params.sorting
 
       $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: queryParams)
         .then (response) ->
