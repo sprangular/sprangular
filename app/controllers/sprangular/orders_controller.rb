@@ -1,5 +1,5 @@
 class Sprangular::OrdersController < Sprangular::BaseController
-  before_filter :check_authorization
+  before_filter :check_authorization, only: :index
 
   def index
     authorize! :show, @user
@@ -13,9 +13,13 @@ class Sprangular::OrdersController < Sprangular::BaseController
   end
 
   def show
-    authorize! :show, @user
-
-    @order = Spree::Order.where(number: params[:id]).first!
+    token = request.headers['X-Spree-Order-Token']
+    if token.present?
+      @order = Spree::Order.find_by!(number: params[:id], guest_token: token)
+    else
+      authorize! :show, @user
+      @order = Spree::Order.find_by!(number: params[:id])
+    end
 
     render json: @order,
            scope: current_spree_user,
