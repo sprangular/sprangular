@@ -7,8 +7,8 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
       options.keywords = keywords
       @getPaged(page, options)
 
-    productsByTaxon: (path, page=1) ->
-      @getPaged(page, taxon: path)
+    productsByTaxon: (taxonId, page=1) ->
+      @getPaged(page, taxon: taxonId)
 
     taxonomies: ->
       $http.get("/api/taxonomies", cache: true)
