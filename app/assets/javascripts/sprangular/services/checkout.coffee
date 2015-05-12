@@ -74,9 +74,9 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put()
         .then (data) ->
-          Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
+          lastOrder = Sprangular.extend(data, Sprangular.Order)
 
-          service.trackOrder(Cart.lastOrder)
+          service.trackOrder(lastOrder)
 
           if Account.isGuest
             Account.isGuest = false
@@ -85,6 +85,8 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           else
             Account.reload().then ->
               Cart.init()
+
+          lastOrder
 
     trackOrder: (order) ->
       return if typeof(ga) is 'undefined'
