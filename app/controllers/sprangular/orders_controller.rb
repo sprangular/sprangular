@@ -14,11 +14,13 @@ class Sprangular::OrdersController < Sprangular::BaseController
 
   def show
     token = request.headers['X-Spree-Order-Token']
+
     if token.present?
       @order = Spree::Order.find_by!(number: params[:id], guest_token: token)
     else
+      check_authorization
       authorize! :show, @user
-      @order = Spree::Order.find_by!(number: params[:id])
+      @order = @user.orders.find_by!(number: params[:id])
     end
 
     render json: @order,
