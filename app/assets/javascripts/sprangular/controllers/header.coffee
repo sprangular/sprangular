@@ -46,6 +46,6 @@ Sprangular.controller "HeaderCtrl", (
 
   $scope.getProducts = (search) ->
     return [] unless search
-    Catalog.products(search, 1, ignoreLoadingIndicator: true)
+    Catalog.products(search, 1, pageSize: 3, ignoreLoadingIndicator: true)
       .then (products) ->
         $scope.lastSearch = products
