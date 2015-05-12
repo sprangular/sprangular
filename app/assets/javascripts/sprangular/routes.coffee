@@ -78,12 +78,13 @@ Sprangular.config ($routeProvider) ->
           else
             Account.reload('full').then -> Account.user
 
-    .when '/checkout/complete/:number',
+    .when '/checkout/complete/:number/:token?',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
       resolve:
         order: (Orders, $route) ->
-          Orders.find($route.current.params.number)
+          params = $route.current.params
+          Orders.find(params.number, params.token)
 
     .when '/orders/:number',
       requires: {user: true}
