@@ -16,6 +16,6 @@ Sprangular.controller 'CheckoutReviewCtrl', ($scope, $location, Cart, Checkout) 
           if order.errors && Object.keys(orders.errors).length > 0
             $scope.processing = false
           else
-            $location.path('/checkout/complete')
+            $location.path("/checkout/complete/#{order.number}")
         , ->
           $scope.processing = false
