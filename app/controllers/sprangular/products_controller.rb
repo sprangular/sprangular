@@ -20,7 +20,7 @@ class Sprangular::ProductsController < Sprangular::BaseController
              count: @products.count,
              total_count: @products.total_count,
              current_page: (params[:page] || 1).to_i,
-             per_page: params[:per_page] || Spree::config.products_per_page,
+             per_page: params[:per_page] || Spree::Config.products_per_page,
              pages: @products.num_pages
            }
   end
