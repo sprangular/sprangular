@@ -13,6 +13,16 @@ module Sprangular
       Rails.application.config.assets.precompile += %w( images/* bootstrap/* )
     end
 
+    initializer "sprangular.api_configure" do
+      Spree::AppConfiguration.class_eval do
+        preference :api_domain, :string, default: ''
+      end
+
+      Spree.config do |config|
+        config.api_domain = ENV['API_DOMAIN']
+      end
+    end
+
     initializer "sprangular.locales" do
       config  = Rails.application.config
 
