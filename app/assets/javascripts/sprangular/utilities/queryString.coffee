@@ -23,7 +23,7 @@ Sprangular.queryString =
       else
         queryString[key] = value
 
-    uri.replace new RegExp("([^?=&]+)(=([^&]*))?", "g"), (_, key, _, value) -> addValue(key, value)
+    uri.replace new RegExp("([^?=&]+)(=([^&]*))?", "g"), (_a, key, _b, value) -> addValue(key, value)
     queryString
 
   generate: (obj) ->
