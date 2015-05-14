@@ -8,6 +8,15 @@ html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
     meta(name="keywords" content="{{status.meta.keywords}}")
     meta(name="description" content="{{status.meta.description}}")
 
+    meta(property="og:type"  content="Website")
+    meta(property="og:title" content="{{title}}")
+    meta(property="og:url"   content="{{location.$$absUrl}}")
+    meta(property="og:image" content="{{status.meta.imageUrl}}")
+
+    link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
+    link(rel="icon" href="/favicon.ico" type="image/x-icon")
+    link(rel="canonical" href="{{location.$$absUrl}}")
+
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
 
