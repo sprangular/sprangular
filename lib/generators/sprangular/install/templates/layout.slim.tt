@@ -9,7 +9,7 @@ html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
     meta(name="description" content="{{status.meta.description}}")
 
     meta(property="og:type"  content="Website")
-    meta(property="og:title" content="{{title}}")
+    meta(property="og:title" content="{{status.meta.title || title}}")
     meta(property="og:url"   content="{{location.$$absUrl}}")
     meta(property="og:image" content="{{status.meta.imageUrl}}")
 
