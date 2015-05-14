@@ -49,6 +49,9 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
         price_max:    params.price?.max
         sorting:      params.sorting
 
+      for key, value of queryParams
+        delete queryParams[key] unless value
+
       $http.get("/api/products?#{$.param(queryParams)}", ignoreLoadingIndicator: params.ignoreLoadingIndicator)
         .then (response) ->
           data = response.data
