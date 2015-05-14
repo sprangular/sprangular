@@ -16,7 +16,7 @@ Sprangular.controller "HeaderCtrl", (
     $scope.taxonomies = taxonomies
   $scope.account = Account
   $scope.env = Env
-  $scope.search = {text: $location.search()['search']}
+  $scope.search = {text: $location.search()['keywords']}
 
   $scope.goToMyAccount = ->
     $location.path '/account'
@@ -41,7 +41,7 @@ Sprangular.controller "HeaderCtrl", (
     if product
       $location.path "/products/#{product.slug}"
     else
-      $location.search('search', $scope.search.text)
+      $location.search('keywords', $scope.search.text)
       $location.path "/products"
 
   $scope.getProducts = (search) ->
