@@ -1,5 +1,7 @@
 Sprangular.queryString =
   parse: (uri) ->
+    return {} unless uri
+
     queryString = {}
 
     addArrayValue = (key, value) ->
@@ -23,6 +25,8 @@ Sprangular.queryString =
     queryString
 
   generate: (obj) ->
+    return "" unless obj
+
     parts = []
 
     for key, value of obj
