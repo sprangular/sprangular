@@ -49,7 +49,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
         price_max:    params.price?.max
         sorting:      params.sorting
 
-      $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: queryParams)
+      $http.get("/api/products?#{$.param(queryParams)}", ignoreLoadingIndicator: params.ignoreLoadingIndicator)
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
