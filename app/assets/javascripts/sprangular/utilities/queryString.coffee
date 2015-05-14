@@ -2,6 +2,8 @@ Sprangular.queryString =
   parse: (uri) ->
     return {} unless uri
 
+    uri = decodeURIComponent(uri)
+
     queryString = {}
 
     addArrayValue = (key, value) ->
