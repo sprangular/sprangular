@@ -14,7 +14,7 @@ Sprangular.run (
 
   paymentMethods = Env.config.payment_methods
   if paymentMethods.length == 0
-    alert 'Gateway is not configured in Spree...'
+    console.error('Gateway is not configured in Spree...')
 
   $cacheFactory.get('$http').removeAll()
 
