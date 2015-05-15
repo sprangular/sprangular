@@ -14,7 +14,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       deferred = $q.defer()
 
-      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params), config)
+      $http.put("/spree/api/orders/#{Cart.current.number}/apply_coupon_code", $.param(params), config, useApiDomain: true)
            .success (response) ->
              Cart.load(response.order)
 
@@ -119,7 +119,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       deferred = $q.defer()
 
-      $http.put(url, $.param(params), config)
+      $http.put(url, $.param(params), config, useApiDomain: true)
         .success (response) ->
           Cart.load(response) unless response.error
           deferred.resolve(Cart.current)

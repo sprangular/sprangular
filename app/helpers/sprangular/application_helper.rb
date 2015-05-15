@@ -17,7 +17,7 @@ module Sprangular
         currency: Money::Currency.table[current_currency.downcase.to_sym],
         translations: current_translations,
         templates: template_paths,
-        api_domain: Spree::Config.api_domain || ''
+        api_domain: Spree::Config.api_domain.empty? ? request.base_url : Spree::Config.api_domain
       }
     end
 
