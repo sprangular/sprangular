@@ -12,7 +12,8 @@ Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, 
     order = $scope.order
     creditCard = order.creditCard
 
-    order.creditCard = new Sprangular.CreditCard unless creditCard.id?
+    # no need to create new credit card if we also have a valid one
+    order.creditCard = new Sprangular.CreditCard unless creditCard.id? || order.creditCard.isValid()
     order.state = 'delivery'
 
   $scope.advance = ->
