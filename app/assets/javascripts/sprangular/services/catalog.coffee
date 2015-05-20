@@ -7,8 +7,9 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
       options.search = search
       @getPaged(page, options)
 
-    productsByTaxon: (path, page=1) ->
-      @getPaged(page, taxon: path)
+    productsByTaxon: (path, page=1, options) ->
+      options ||= {}
+      @getPaged(page, taxon: path, options)
 
     taxonomies: ->
       $http.get("/api/taxonomies", cache: true)
@@ -37,8 +38,9 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
           Status.cacheProduct(response)
           response
 
-    getPaged: (page=1, params={}) ->
-      $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
+    getPaged: (page=1, params={}, options) ->
+      ignoreLoading = if options then options.ignoreLoadingIndicator else false
+      $http.get("/api/products", ignoreLoadingIndicator: ignoreLoading, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
