@@ -9,7 +9,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
 
     productsByTaxon: (path, page=1, options) ->
       options ||= {}
-      @getPaged(page, taxon: path)
+      @getPaged(page, taxon: path, options)
 
     taxonomies: ->
       $http.get("/api/taxonomies", cache: true)
