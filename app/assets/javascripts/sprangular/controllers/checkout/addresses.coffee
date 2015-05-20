@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout, Geography) ->
+Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout, Geography, Flash) ->
   Geography.getCountryList().then (countries) ->
     $scope.countries = countries
 
@@ -45,5 +45,7 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
           createMergedAddressList()
           $scope.processing = false
           $scope.submitted = false
-        , ->
+        , (resp) ->
+          Cart.current.loading = false
           $scope.processing = false
+          Flash.error('There has been an error validating your address, please ensure you have a valid address.')
