@@ -18,5 +18,6 @@ Sprangular.directive 'promoForm', ->
           $scope.reset()
 
         , (response) ->
+          Cart.current.loading = false
           $scope.promoCode = ''
           $scope.error = response.error
