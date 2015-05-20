@@ -39,7 +39,8 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
           response
 
     getPaged: (page=1, params={}, options) ->
-      $http.get("/api/products", ignoreLoadingIndicator: options.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
+      ignoreLoading = if options then options.ignoreLoadingIndicator else false
+      $http.get("/api/products", ignoreLoadingIndicator: ignoreLoading, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
