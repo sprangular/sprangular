@@ -29,4 +29,7 @@ Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, 
           $scope.processing = false
           $scope.submitted = false
         , ->
+          Cart.current.loading = false
           $scope.processing = false
+          Flash.error('There has been an error processing your payment, please double check your credit card information.')
+
