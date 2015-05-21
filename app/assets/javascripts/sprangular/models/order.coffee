@@ -45,6 +45,7 @@ class Sprangular.Order
     @payments = data.payments
     @creditApplied = data.total_applicable_store_credit
     @totalAfterCredit = data.order_total_after_store_credit
+    @subscriptionInterval = data.subscription_interval
 
     # we need to set the creditCard.id else its going to create a new credit card everytime the order is updated resulting in duplicate credit cards
     @creditCard.id = data.credit_card_id_if_available if data.credit_card_id_if_available && !@creditCard.id?
