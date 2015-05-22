@@ -137,7 +137,7 @@ en:
       code: Code
     products:
       select_option: Select option
-      no_products:
+      no_products: No matching products were found.
       sold_out: Sold Out
       specs: Specfications
       sold_out_msg: This item is sold out
