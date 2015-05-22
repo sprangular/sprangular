@@ -1,4 +1,4 @@
-Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, products, Catalog, Cart) ->
+Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, products, Catalog, Cart, $location) ->
   if taxon
     Status.pageTitle = taxon.pretty_name
     $scope.taxon = taxon
@@ -7,21 +7,42 @@ Sprangular.controller 'ProductListCtrl', ($scope, $routeParams, Status, taxon, p
 
   $scope.products = products
   $scope.taxonomies = Catalog.taxonomies()
-  $scope.currentPage = 1
   $scope.page = 1
   $scope.loadingComplete = false
   $scope.fetching = false
   $scope.selectedVariants = {}
+  $scope.filters = {}
+
+  $scope.$watch 'filters', (newFilters, oldFilters)->
+    return unless oldFilters
+    $scope.page = 1
+
+  $scope.$watch (-> $location.$$url), (url) ->
+    query = url.split("?")[1]
+    filters = Sprangular.queryString.parse(query)
+
+    if filters.taxons?
+      for k, v of filters.taxons
+        filters.taxons[k] = v.split(",")
+
+    if filters.optionTypes?
+      for k, v of filters.optionTypes
+        filters.optionTypes[k] = v.split(",")
+
+    $scope.filters = filters
 
   $scope.loadNextPage = ->
     return if $scope.loadingComplete || $scope.fetching
 
+    params = angular.copy($scope.filters)
+    params.ignoreLoadingIndicator = true
+
     $scope.fetching = true
 
     load = if taxon
-      Catalog.productsByTaxon(taxon.id, $scope.page+1, ignoreLoadingIndicator: true)
+      Catalog.productsByTaxon(taxon.id, $scope.page+1, params)
     else
-      Catalog.products($routeParams.search, $scope.page+1, ignoreLoadingIndicator: true)
+      Catalog.products($scope.filters.keywords, $scope.page+1, params)
 
     load.then (newPage) ->
       $scope.page++
