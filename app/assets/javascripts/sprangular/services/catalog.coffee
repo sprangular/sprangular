@@ -44,7 +44,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
         keywords:     params.keywords
         taxon:        params.taxon
         taxons:       params.taxons
-        option_types: params.optonTypes
+        option_types: params.optionTypes
         price_min:    params.price?.min
         price_max:    params.price?.max
         sorting:      params.sorting
