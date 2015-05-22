@@ -42,10 +42,11 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
-          list.isLastPage = (data.meta.count < service.pageSize) || (page == data.pages)
-          list.totalCount = data.meta.total_count
-          list.totalPages = data.meta.pages
-          list.page = data.meta.current_page
+          if data.meta?
+            list.isLastPage = (data.meta.count < service.pageSize) || (page == data.pages)
+            list.totalCount = data.meta.total_count
+            list.totalPages = data.meta.pages
+            list.page = data.meta.current_page
           list
 
   service
