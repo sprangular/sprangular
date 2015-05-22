@@ -1,9 +1,7 @@
 class Sprangular::ProductsController < Sprangular::BaseController
-  def index
-    if params[:taxon] && params[:taxon].to_i == 0
-      params[:taxon] = Spree::Taxon.find_by!(permalink: params[:taxon]).id
-    end
+  before_filter :find_taxon_id, only: :index
 
+  def index
     searcher = Spree::Config.searcher_class.new(params)
 
     @products = searcher.retrieve_products
@@ -37,5 +35,11 @@ class Sprangular::ProductsController < Sprangular::BaseController
 
   def product_scope
     Spree::Product.active.includes(:option_types, :taxons, master: %i(images option_values prices), product_properties: [:property], variants: %i(images option_values prices))
+  end
+
+  def find_taxon_id
+    if params[:taxon] && params[:taxon].to_i == 0
+      params[:taxon] = Spree::Taxon.find_by!(permalink: params[:taxon]).id
+    end
   end
 end
