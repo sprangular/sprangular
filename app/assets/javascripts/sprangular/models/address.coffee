@@ -2,6 +2,7 @@
 
 class Sprangular.Address
   Validity.define @,
+    name: 'required'
     address1: 'required'
     city: 'required'
     state: ['_validateState']
