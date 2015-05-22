@@ -9,7 +9,7 @@ class Sprangular::ProductsController < Sprangular::BaseController
     @cache_key = [I18n.locale,
                   @current_user_roles.include?('admin'),
                   current_currency,
-                  params.slice(:keywords, :search, :taxon, :browse_mode, :sorting, :per_page, :page).to_s]
+                  params.slice(:keywords, :search, :taxon, :taxons, :option_types, :browse_mode, :price_min, :price_max, :properties, :sorting, :per_page, :page).to_s]
 
     render json: @products,
            each_serializer: Sprangular::ProductSerializer,
