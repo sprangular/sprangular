@@ -6,6 +6,7 @@ Sprangular.directive 'creditCardSelection', ->
     creditCards: '='
     disabled: '=disabledFields'
     submitted: '='
+    existingCreditCard: '='
   controller: ($scope) ->
     $scope.existingCreditCard = false
 
@@ -28,3 +29,7 @@ Sprangular.directive 'creditCardSelection', ->
 
   link: (element, attrs) ->
     attrs.disabled = false unless attrs.disabled?
+
+  compile: (element, attrs) ->
+    attrs.existingCreditCard = 'false' if attrs.existingCreditCard is undefined
+    attrs.disabled = 'false' if attrs.disabled is undefined

@@ -55,5 +55,13 @@ class Sprangular.CreditCard
   same: (other) ->
     @id == other.id
 
+  serialize: ->
+    number: @number
+    cc_type: @type
+    verification_value: @cvc
+    month: @month
+    year: @year
+    name: @name
+
   _validateCardFormat: ->
     'invalid card number' unless Sprangular.Luhn.isValid(@number)
