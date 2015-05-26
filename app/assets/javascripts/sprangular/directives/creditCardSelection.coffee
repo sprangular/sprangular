@@ -8,8 +8,6 @@ Sprangular.directive 'creditCardSelection', ->
     submitted: '='
     existingCreditCard: '='
   controller: ($scope) ->
-    $scope.existingCreditCard = false
-
     $scope.$watch 'creditCards', (creditCards) ->
       return unless creditCards
 
@@ -19,13 +17,20 @@ Sprangular.directive 'creditCardSelection', ->
 
         $scope.toggleExistingCreditCard() if found
 
+    $scope.$watch 'creditCard.id', (creditCardId) ->
+      return unless creditCardId
+      $scope.lastCreditCardId = creditCardId
+
     $scope.toggleExistingCreditCard = ->
       $scope.existingCreditCard = !$scope.existingCreditCard
 
       if $scope.existingCreditCard
-        $scope.creditCard = $scope.creditCards[0]
+        if $scope.creditCardId
+          $scope.creditCard = _.find $scope.creditCards, (creditCard) -> creditCard.id == $scope.lastCreditCardId
+
+        $scope.creditCard = $scope.creditCards[0] unless $scope.creditCard
       else
-        $scope.creditCard = new Sprangular.CreditCard
+        $scope.creditCard = new Sprangular.CreditCard()
 
   link: (element, attrs) ->
     attrs.disabled = false unless attrs.disabled?
