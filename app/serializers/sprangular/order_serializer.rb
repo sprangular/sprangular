@@ -26,7 +26,7 @@ module Sprangular
 
     has_many :adjustments, serializer: Sprangular::AdjustmentSerializer
 
-    has_many :products, serializer: Sprangular::ProductSerializer
+    # has_many :products, serializer: Sprangular::ProductSerializer
 
     has_many :line_item_adjustments, serializer: Sprangular::AdjustmentSerializer
 
