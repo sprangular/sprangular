@@ -104,4 +104,4 @@ Sprangular.config ($routeProvider) ->
       templateUrl: '404.html'
 
     .otherwise
-      templateUrl: '404.html'
+      redirectTo: "/404"
