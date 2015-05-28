@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, Checkout) ->
+Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, Checkout, Flash) ->
   $scope.order = Cart.current
   $scope.processing = false
   $scope.user = Account.user
