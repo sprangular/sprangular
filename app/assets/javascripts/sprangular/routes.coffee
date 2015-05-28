@@ -101,7 +101,9 @@ Sprangular.config ($routeProvider) ->
           Orders.find($route.current.params.number)
 
     .when '/404',
-      templateUrl: '404.html'
+      template: ""
+      controller: ($window) ->
+        $window.location.href = "/not-found"
 
     .otherwise
       redirectTo: "/404"
