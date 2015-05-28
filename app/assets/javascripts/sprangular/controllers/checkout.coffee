@@ -34,7 +34,7 @@ Sprangular.controller 'CheckoutCtrl', (
         if Cart.isEmpty()
           $location.path("/")
 
-  removeUnavailableVariants()
+  # removeUnavailableVariants()
 
   $scope.user = user
 
