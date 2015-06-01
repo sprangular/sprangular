@@ -98,7 +98,7 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       for item in order.items
         ga "ecommerce:addItem",
           id:       order.number
-          name:     item.variant.name
+          name:     item.variant.product.name
           sku:      item.variant.sku
           price:    item.price
           quantity: item.quantity
