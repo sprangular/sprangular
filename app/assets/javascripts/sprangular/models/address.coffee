@@ -77,4 +77,4 @@ class Sprangular.Address
      @stateId].join('')
 
   _validateState: ->
-    "can't be blank" unless @actualStateName()
+    "can't be blank" if (@country && @country.states_required) && !@actualStateName()
