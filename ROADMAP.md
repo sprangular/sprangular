@@ -1,5 +1,10 @@
 # Roadmap
 
-- Support extensions i.e. gems named sprangular_*
+- Angular2 + Tests
+- Convert .coffee to .es6
+- Extract service layer to bower component
+
+## Possible Additions
+
 - Example themes
-- Ionic for native ios/android feel
+- Ionic for native ios/android feel [Demo Project](https://github.com/joshnuss/sprionic-demo)
