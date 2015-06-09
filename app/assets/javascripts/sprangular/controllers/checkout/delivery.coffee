@@ -20,11 +20,13 @@ CheckoutDeliveryCtrl = ($scope, Account, Cart, Checkout) ->
     $scope.submitted = true
     $scope.processing = true
 
-    Checkout.setDelivery()
-      .then ->
-        $scope.processing = false
-        $scope.submitted = false
-      , ->
-        $scope.processing = false
+    success = ->
+      $scope.processing = false
+      $scope.submitted = false
+
+    failure = ->
+      $scope.processing = false
+
+    Checkout.setDelivery().then(success, failure)
 
 Sprangular.controller 'CheckoutDeliveryCtrl', CheckoutDeliveryCtrl

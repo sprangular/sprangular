@@ -23,11 +23,13 @@ CheckoutPaymentCtrl = ($scope, Account, Cart, Checkout) ->
 
     $scope.processing = true
 
-    Checkout.setPayment()
-      .then ->
-        $scope.processing = false
-        $scope.submitted = false
-      , ->
-        $scope.processing = false
+    success = ->
+      $scope.processing = false
+      $scope.submitted = false
+
+    failure = ->
+      $scope.processing = false
+
+    Checkout.setPayment().then(success, failure)
 
 Sprangular.controller 'CheckoutPaymentCtrl', CheckoutPaymentCtrl
