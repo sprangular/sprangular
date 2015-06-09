@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutPaymentCtrl', ($scope, Account, Cart, Checkout) ->
+CheckoutPaymentCtrl = ($scope, Account, Cart, Checkout) ->
   $scope.order = Cart.current
   $scope.processing = false
   $scope.user = Account.user
@@ -25,8 +25,9 @@ Sprangular.controller 'CheckoutPaymentCtrl', ($scope, Account, Cart, Checkout) -
 
     Checkout.setPayment()
       .then ->
-          $scope.processing = false
-          $scope.submitted = false
-        , ->
-          $scope.processing = false
+        $scope.processing = false
+        $scope.submitted = false
+      , ->
+        $scope.processing = false
 
+Sprangular.controller 'CheckoutPaymentCtrl', CheckoutPaymentCtrl

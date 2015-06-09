@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutDeliveryCtrl', ($scope, Account, Cart, Checkout) ->
+CheckoutDeliveryCtrl = ($scope, Account, Cart, Checkout) ->
   $scope.order = Cart.current
   $scope.processing = false
   $scope.user = Account.user
@@ -22,7 +22,9 @@ Sprangular.controller 'CheckoutDeliveryCtrl', ($scope, Account, Cart, Checkout) 
 
     Checkout.setDelivery()
       .then ->
-          $scope.processing = false
-          $scope.submitted = false
-        , ->
-          $scope.processing = false
+        $scope.processing = false
+        $scope.submitted = false
+      , ->
+        $scope.processing = false
+
+Sprangular.controller 'CheckoutDeliveryCtrl', CheckoutDeliveryCtrl
