@@ -14,6 +14,6 @@
     ul.list-unstyled(ng-show='order.shippingRates.length > 0')
       li(ng-repeat='shippingRate in order.shippingRates')
         label
-          input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate' ng-disabled='disabled')
+          input(type='radio' ng-model='order.shippingRate' ng-value='shippingRate' ng-disabled='disabled' ng-click='onSelection()')
           span
             | &nbsp;{{shippingRate.name}} {{shippingRate.cost | currency : currencySymbol}}

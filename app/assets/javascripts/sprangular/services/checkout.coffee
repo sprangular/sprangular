@@ -40,14 +40,22 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       @put(params, ignoreLoadingIndicator: true)
 
-    setDeliveryAndPayment: ->
+    setDelivery: ->
+      order = Cart.current
+
+      params =
+        'order[shipments_attributes][][id]': order.shipment.id
+        'order[shipments_attributes][][selected_shipping_rate_id]': order.shippingRate.id
+        'state': 'delivery'
+
+      @put(params, ignoreLoadingIndicator: true)
+
+    setPayment: ->
       order = Cart.current
       card  = order.creditCard
       paymentMethodId = @_findPaymentMethodId()
 
       params =
-        'order[shipments_attributes][][id]': order.shipment.id
-        'order[shipments_attributes][][selected_shipping_rate_id]': order.shippingRate.id
         'order[payments_attributes][][payment_method_id]': paymentMethodId
         'order[existing_card]': ''
         'state': 'payment'
