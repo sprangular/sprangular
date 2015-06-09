@@ -1,19 +1,19 @@
-Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, Checkout) ->
+Sprangular.controller 'CheckoutPaymentCtrl', ($scope, Account, Cart, Checkout) ->
   $scope.order = Cart.current
   $scope.processing = false
   $scope.user = Account.user
   $scope.submitted = false
 
   $scope.$watch 'order.state', (state) ->
-    $scope.done = state == 'confirm'
-    $scope.active = _.contains(['delivery', 'payment'], state)
+    $scope.done = state is 'confirm'
+    $scope.active = state is 'payment'
 
   $scope.edit = ->
     order = $scope.order
     creditCard = order.creditCard
 
     order.creditCard = new Sprangular.CreditCard unless creditCard.id?
-    order.state = 'delivery'
+    order.state = 'payment'
 
   $scope.advance = ->
     order = $scope.order
@@ -23,9 +23,10 @@ Sprangular.controller 'CheckoutDeliveryAndPaymentCtrl', ($scope, Account, Cart, 
 
     $scope.processing = true
 
-    Checkout.setDeliveryAndPayment()
+    Checkout.setPayment()
       .then ->
           $scope.processing = false
           $scope.submitted = false
         , ->
           $scope.processing = false
+
