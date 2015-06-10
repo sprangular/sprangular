@@ -34,7 +34,7 @@ class Sprangular.Product
         if type
           option = self.options[type.id]
 
-          option.values[value.position] = {value: value, variants: []} unless option.values[value.id]
+          option.values[value.position] = {value: value, variants: []} unless option.values[value.position]
           option.values[value.position].variants.push(variant)
 
   variantForValues: (selectedValues) ->
