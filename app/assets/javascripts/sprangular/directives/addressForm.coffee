@@ -4,10 +4,22 @@ Sprangular.directive 'addressForm', ->
   scope:
     address: '='
     countries: '='
-  controller: ($scope) ->
+    disabled: '=disabledFields'
+    submitted: '='
+  controller: ($scope, Account) ->
+    $scope.user = Account.user
     $scope.selectedCountry = null
+    $scope.hasErrors = false
 
-    $scope.$watch (-> $scope.address.countryId), (newCountryId) ->
+    $scope.$watchGroup ['address.firstname', 'address.lastname', 'address.address1', 'address.address2', 'address.city', 'address.stateId', 'address.countryId', 'address.zipcode', 'address.phone'], ->
+      return unless $scope.submitted
+
+      address = $scope.address
+      address.validate()
+      errors = address.errors
+      $scope.hasErrors = errors && Object.keys(errors).length > 0
+
+    $scope.$watch 'address.countryId', (newCountryId) ->
       return unless newCountryId
 
       address = $scope.address
@@ -19,7 +31,10 @@ Sprangular.directive 'addressForm', ->
         address.stateId = null
         address.state = null
 
-    $scope.$watch (-> $scope.address.stateId), (newStateId) ->
+    $scope.$watch 'address.stateId', (newStateId) ->
       return unless newStateId
       state = _.find($scope.selectedCountry.states, (state) -> state.id == newStateId)
       $scope.address.state = state
+
+  link: (element, attrs) ->
+    attrs.disabled = false unless attrs.disabled?

@@ -6,7 +6,7 @@ class Sprangular.Address
     lastname: 'required'
     address1: 'required'
     city: 'required'
-    state: 'required'
+    state: ['_validateState']
     country: 'required'
     zipcode: 'required'
     phone: 'required'
@@ -19,7 +19,7 @@ class Sprangular.Address
     "#{@firstname} #{@lastname}"
 
   shortAddress: ->
-    "#{@fullName()}, #{@addressLine()}, #{@city} #{@actualStateName()}, #{@zipcode}"
+    "#{@fullName()}, #{@addressLine()}"
 
   actualStateName: ->
     @state?.abbr || @state_name
@@ -39,6 +39,7 @@ class Sprangular.Address
     phone: @phone
     zipcode: @zipcode
     state_id: @stateId
+    state_name: @state_name
     country_id: @countryId
 
   isEmpty: ->
@@ -53,6 +54,7 @@ class Sprangular.Address
     !@stateId
 
   same: (other) ->
+    return unless other
     @firstname == other.firstname &&
       @lastname == other.lastname &&
       @address1 == other.address1 &&
@@ -73,3 +75,6 @@ class Sprangular.Address
      @zipcode,
      @countryId,
      @stateId].join('')
+
+  _validateState: ->
+    "can't be blank" if (@country && @country.states_required) && !@actualStateName()

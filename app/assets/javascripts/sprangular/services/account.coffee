@@ -4,6 +4,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     fetched: false
     isLogged: false
+    isGuest: false
 
     init: ->
       @clear()
@@ -22,9 +23,9 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
             service.isLogged = false
             service.fetched = true
 
-    reload: ->
+    reload: (serializer='lite') ->
       @fetched = false
-      $http.get('/api/account')
+      $http.get("/api/account?serializer=#{serializer}")
         .success (data) ->
           service.populateAccount(data)
           service.fetched = true
@@ -33,10 +34,13 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     populateAccount: (data) ->
       @user = Sprangular.extend(data, Sprangular.User)
-
-      Cart.load(@user.current_order)
-
+      Cart.load(@user.current_order) if @user.current_order
       @isLogged = true
+      @email = data.email
+      @isGuest = false
+
+    populateGuestAccount: (data) ->
+      @isGuest = true
       @email = data.email
 
     clear: ->
@@ -44,6 +48,17 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       @user = {}
       @isLogged = false
       @email = null
+
+    guestLogin: (data) ->
+      email = if data is undefined then null else data.email
+      params =
+        'order[email]': email
+      $http.post('/api/cart/guest_login.json', $.param(params))
+        .success (data) ->
+          service.populateGuestAccount(data)
+          Flash.success 'app.signed_in'
+        .error ->
+          Flash.error 'app.signin_failed'
 
     login: (data) ->
       params =
@@ -88,7 +103,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
     save: (data) ->
       params =
         spree_user: data.serialize()
-      $http.put('/api/account', $.param(params))
+      $http.put('/api/account?serializer=full', $.param(params))
         .success (data) ->
           service.populateAccount(data)
           Flash.success 'app.account_updated'
@@ -102,6 +117,14 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
         .success (data) ->
           i = cards.indexOf card
           cards.splice(i, 1) unless i is -1
+
+    deleteAddress: (address) ->
+      adds = @user.addresses
+
+      $http.delete("/api/addresses/#{address.id}")
+      .success (data) ->
+        i = adds.indexOf address
+        adds.splice(i, 1) unless i is -1
 
   service.init()
   service

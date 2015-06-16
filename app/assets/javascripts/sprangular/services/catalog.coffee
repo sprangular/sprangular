@@ -2,16 +2,16 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
   service =
     pageSize: Env.config.product_page_size
 
-    products: (search=null, page=1, options) ->
+    products: (keywords=null, page=1, options) ->
       options ||= {}
-      options.search = search
+      options.keywords = keywords
       @getPaged(page, options)
 
-    productsByTaxon: (path, page=1) ->
-      @getPaged(page, taxon: path)
+    productsByTaxon: (taxonId, page=1) ->
+      @getPaged(page, taxon: taxonId)
 
     taxonomies: ->
-      $http.get("/api/taxonomies", {cache: true})
+      $http.get("/api/taxonomies", cache: true)
         .then (response) ->
           response.data.taxonomies
 
@@ -38,7 +38,21 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
           response
 
     getPaged: (page=1, params={}) ->
-      $http.get("/api/products", ignoreLoadingIndicator: params.ignoreLoadingIndicator, params: {per_page: @pageSize, page: page, "q[name_or_description_cont]": params.search, "q[taxons_permalink_eq]": params.taxon})
+      queryParams =
+        per_page:     params.pageSize || @pageSize
+        page:         page
+        keywords:     params.keywords
+        taxon:        params.taxon
+        taxons:       params.taxons
+        option_types: params.optionTypes
+        price_min:    params.price?.min
+        price_max:    params.price?.max
+        sorting:      params.sorting
+
+      for key, value of queryParams
+        delete queryParams[key] unless value
+
+      $http.get("/api/products?#{$.param(queryParams)}", ignoreLoadingIndicator: params.ignoreLoadingIndicator)
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)

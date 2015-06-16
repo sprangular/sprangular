@@ -9,6 +9,7 @@ Sprangular::Engine.routes.draw do
       resources :products, only: %i(index show)
       resource :cart do
         post :add_variant
+        post :guest_login
         put :update_variant
         put :change_variant
         put :remove_adjustment
@@ -17,11 +18,9 @@ Sprangular::Engine.routes.draw do
       resource :account
       resources :passwords
       resources :credit_cards, only: :destroy
+      resources :addresses, only: :destroy
       resources :countries, only: :index
-      resources :shipping_rates, only: :index
-      resources :orders, only: :show
+      resources :orders, only: %i(index show)
     end
   end
-
-  put 'api/checkouts/:id/quick_update', to: 'spree/api/checkouts#quick_update'
 end

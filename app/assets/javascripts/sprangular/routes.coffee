@@ -14,15 +14,20 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'account/show.html'
       resolve:
         user: (Account) ->
-          Account.reload().then -> Account.user
+          Account.reload('full').then -> Account.user
+        orders: (Orders) ->
+          Orders.all()
 
     .when '/products',
       controller: 'ProductListCtrl'
       templateUrl: 'products/index.html'
       resolve:
         taxon: -> null
-        products: (Catalog, $route) ->
-          Catalog.products($route.current.params.search, 1)
+        products: (Catalog, $route, $location) ->
+          query = $location.$$url.split("?")[1]
+          filters = Sprangular.queryString.parse(query)
+
+          Catalog.products($route.current.params.keywords, 1, filters)
 
     .when '/products/:id',
       controller: 'ProductCtrl'
@@ -39,44 +44,53 @@ Sprangular.config ($routeProvider) ->
       resolve:
         taxon: (Catalog, $route) ->
           Catalog.taxon($route.current.params.path)
-        products: (Catalog, $route) ->
-          Catalog.productsByTaxon($route.current.params.path)
+        products: (Catalog, $route, $location) ->
+          query = $location.$$url.split("?")[1]
+          filters = Sprangular.queryString.parse(query)
+
+          Catalog.productsByTaxon($route.current.params.path, 1, filters)
 
     .when '/sign-in',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'SigninCtrl'
       templateUrl: 'account/signin.html'
 
     .when '/sign-up',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'SignupCtrl'
       templateUrl: 'account/signup.html'
 
     .when '/forgot-password',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'ForgotPasswordCtrl'
       templateUrl: 'account/forgot_password.html'
 
     .when '/reset-password/:token',
-      requires: {guest: true}
+      requires: {anonymous: true}
       controller: 'ResetPasswordCtrl'
       templateUrl: 'account/reset_password.html'
 
     .when '/checkout',
-      requires: {user: true, cart: true}
+      requires: {guest: true, cart: true}
       controller: 'CheckoutCtrl'
       templateUrl: 'checkout/index.html'
       resolve:
         countries: (Geography) -> Geography.getCountryList()
         order: (Cart) ->
           Cart.reload().then -> Cart.current
+        user: (Account) ->
+          if Account.isGuest
+            {}
+          else
+            Account.reload('full').then -> Account.user
 
-    .when '/checkout/complete',
+    .when '/checkout/complete/:number/:token?',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
       resolve:
-        order: (Cart) ->
-          Cart.lastOrder
+        order: (Orders, $route) ->
+          params = $route.current.params
+          Orders.find(params.number, params.token)
 
     .when '/orders/:number',
       requires: {user: true}
@@ -86,5 +100,10 @@ Sprangular.config ($routeProvider) ->
         order: (Orders, $route) ->
           Orders.find($route.current.params.number)
 
+    .when '/404',
+      template: ""
+      controller: ($window) ->
+        $window.location.href = "/not-found"
+
     .otherwise
-      templateUrl: '404.html'
+      redirectTo: "/404"

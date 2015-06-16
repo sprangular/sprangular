@@ -36,9 +36,10 @@ form.address(novalidate)
   .form-group(ng-class="{'has-error': address.errors.state}")
     label.control-label(for='state')
       | {{:: 'address.state' | translate}}
-    select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId')
+    select.form-control(name='state' ng-options='s.id as s.name for s in selectedCountry.states' ng-model='address.stateId' ng-if='!selectedCountry || selectedCountry.states.length > 0')
       option(style="display:none" value="")
         | Choose your state or province
+    input.form-control(type='text' name='state' ng-model='address.state_name' ng-if='selectedCountry.states.length == 0')
     p.error(ng-bind='address.errors.state')
 
   .form-group(ng-class="{'has-error': address.errors.zipcode}")

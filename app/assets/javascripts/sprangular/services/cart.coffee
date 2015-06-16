@@ -26,9 +26,11 @@ Sprangular.service "Cart", ($http) ->
 
         switch object
           when 'ship_address'
-            order.shipingAddress.errors[attr] = attrErrors
+            order.shippingAddress.errors[attr] = attrErrors
           when 'bill_address'
             order.billingAddress.errors[attr] = attrErrors
+          when 'payments'
+            order.errors.base = attrErrors[0]
           else
             order.errors[key] = attrErrors
 
@@ -86,16 +88,11 @@ Sprangular.service "Cart", ($http) ->
       $http.put '/api/cart/remove_adjustment', params
         .success(@load)
 
-    shippingRates: (options) ->
-      order = @current
-      params =
-        country_id: options.countryId
-        state_id: options.stateId
-        zipcode: options.zipcode
-        use_billing: @current.shipToBillAddress
+    unavailableItems: ->
+      _.filter @current.items, (item) ->
+        variant = item.variant
 
-      $http.get('/api/shipping_rates', {params: params, ignoreLoadingIndicator: true})
-        .success (data) -> order.loadRates(data)
+        !variant.isAvailable() || (!variant.is_backorderable && variant.total_on_hand < item.quantity)
 
     clear:                   -> @current.clear()
     totalQuantity:           -> @current.totalQuantity()

@@ -1,5 +1,6 @@
 module Sprangular
-  class OrderSerializer < BaseSerializer
+  class OrderSerializer < ActiveModel::Serializer
+    extend Spree::Api::ApiHelpers
     attributes *order_attributes
     attributes | [:display_total, :display_item_total, :display_ship_total, :display_tax_total, :checkout_steps]
 
@@ -27,10 +28,16 @@ module Sprangular
 
     has_many :products, serializer: Sprangular::ProductSerializer
 
+    has_many :line_item_adjustments, serializer: Sprangular::AdjustmentSerializer
+
     attribute :permissions
 
     def permissions
       { can_update: current_ability.can?(:update, object) }
+    end
+
+    def line_item_adjustments
+      object.line_item_promotion_adjustments
     end
 
     attribute :use_billing

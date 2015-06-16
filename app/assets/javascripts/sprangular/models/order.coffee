@@ -22,6 +22,7 @@ class Sprangular.Order
     @shippingRates = []
     @shippingRate = null
     @token = null
+    @loading = false
 
   load: (data) ->
     @clear()
@@ -36,10 +37,15 @@ class Sprangular.Order
     @token = data.token
     @billToShipAddress = data.use_billing
     @adjustments = Sprangular.extend(data.adjustments, Sprangular.Adjustment)
+    @line_item_adjustments = Sprangular.extend(data.line_item_adjustments, Sprangular.Adjustment)
     @shippingRates = []
     @completedAt = data.completed_at
     @shipmentState = data.shipment_state
     @shipments = data.shipments
+    @payments = data.payments
+    @creditApplied = data.total_applicable_store_credit
+    @totalAfterCredit = data.order_total_after_store_credit
+
 
     @loadRates(data)
 
@@ -51,12 +57,13 @@ class Sprangular.Order
 
     products = Sprangular.extend(data.products, Sprangular.Product)
 
-    for item in data.line_items
-      for product in products
-        variant = product.findVariant(item.variant_id)
-        break if variant
+    if data.line_items
+      for item in data.line_items
+        for product in products
+          variant = product.findVariant(item.variant_id)
+          break if variant
 
-      @items.push(variant: variant, flexi_variants: item.flexi_variants, quantity: item.quantity, price: item.price)
+        @items.push(variant: variant, flexi_variant_message: item.flexi_variant_message, quantity: item.quantity, price: item.price)
 
     @
 
@@ -105,11 +112,10 @@ class Sprangular.Order
       @billingAddress
 
   resetAddresses: (user) ->
-    if @billingAddress.isEmpty() && user && user.addresses.length > 0
-      @billingAddress = user.billingAddress
+    return unless user && user.addresses.length > 0
 
-    if @shippingAddress.isEmpty() && user && user.addresses.length > 0 && !@billToShipAddress
-      @shippingAddress = user.shippingAddress
+    @shippingAddress = user.shippingAddress || user.addresses[0] if @shippingAddress.isEmpty()
+    @billingAddress  = user.billingAddress  || user.addresses[0] if @billingAddress.isEmpty()
 
   resetCreditCard: (user) ->
     if user && user.creditCards.length > 0

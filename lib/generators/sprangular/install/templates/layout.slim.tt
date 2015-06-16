@@ -1,10 +1,21 @@
 html(ng-app="<%= module_name %>" ng-controller="GlobalCtrl")
   head
-    title(ng-bind="title")
+    title(ng-bind="status.meta.title || title")
+
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
     meta(name="fragment" content="!")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
     meta(name="keywords" content="{{status.meta.keywords}}")
     meta(name="description" content="{{status.meta.description}}")
+
+    meta(property="og:type"  content="Website")
+    meta(property="og:title" content="{{status.meta.title || title}}")
+    meta(property="og:url"   content="{{location.$$absUrl}}")
+    meta(property="og:image" content="{{status.meta.imageUrl}}")
+
+    link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
+    link(rel="icon" href="/favicon.ico" type="image/x-icon")
+    link(rel="canonical" href="{{location.$$absUrl}}")
 
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"

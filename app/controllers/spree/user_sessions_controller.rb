@@ -29,7 +29,10 @@ class Spree::UserSessionsController < Devise::SessionsController
           @order = current_order
           @current_user_roles = @user.spree_roles
 
-          render '/sprangular/accounts/show', layout: false
+          render json: @user,
+                 root: false,
+                 scope: @user,
+                 serializer: Sprangular::LiteUserSerializer
         }
       end
     else

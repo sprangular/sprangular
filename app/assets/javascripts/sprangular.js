@@ -4,7 +4,6 @@
 
 //= require underscore
 //= require underscore.string
-//= require jquery
 //= require angular
 //= require angularytics
 //= require validity

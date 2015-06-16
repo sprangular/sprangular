@@ -5,7 +5,10 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
       params =
         coupon_code: code
 
+      Cart.current.loading = true
+
       config =
+        ignoreLoadingIndicator: true
         headers:
           'X-Spree-Order-Token': Cart.current.token
 
@@ -15,45 +18,41 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
            .success (response) ->
              Cart.load(response.order)
 
-             if response.error
-               deferred.reject(response)
+             if response.meta.error
+               deferred.reject(response.meta)
              else
-               deferred.resolve(response)
+               deferred.resolve(response.meta)
 
            .error (response) ->
-             response.error ||= "Coupon code #{code} not found."
-             deferred.reject(response)
+             response.meta.error ||= "Coupon code #{code} not found."
+             deferred.reject(response.meta)
 
       deferred.promise
 
-    update: (goto) ->
-      order = Cart.current
-      card  = order.creditCard
-
+    setAddresses: ->
+      order  = Cart.current
       params =
-        goto: goto
         order:
-          ship_address_attributes: order.actualBillingAddress().serialize()
-          bill_address_attributes: order.shippingAddress.serialize()
+          email: Account.email
+          bill_address_attributes: order.actualBillingAddress().serialize()
+          ship_address_attributes: order.shippingAddress.serialize()
+        state: 'address'
 
-      @_addShippingRate(params, order)
+      @put(params, ignoreLoadingIndicator: true)
 
-      @put(params)
-
-    complete: ->
+    setDeliveryAndPayment: ->
       order = Cart.current
       card  = order.creditCard
       paymentMethodId = @_findPaymentMethodId()
 
       params =
-        goto: 'complete'
+        'order[shipments_attributes][][id]': order.shipment.id
+        'order[shipments_attributes][][selected_shipping_rate_id]': order.shippingRate.id
         'order[payments_attributes][][payment_method_id]': paymentMethodId
-        order:
-          ship_address_attributes: order.shippingAddress.serialize()
-          bill_address_attributes: order.actualBillingAddress().serialize()
+        'order[existing_card]': ''
+        'state': 'payment'
+        order: {}
         payment_source: {}
-
-      @_addShippingRate(params, order)
 
       if card.id
         params.order.existing_card = card.id
@@ -68,14 +67,26 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
         params.payment_source[paymentMethodId] = sourceParams
 
-      @put(params)
+      @put(params, ignoreLoadingIndicator: true)
+
+    complete: ->
+      order = Cart.current
+
+      @put()
         .then (data) ->
-          Cart.lastOrder = Sprangular.extend(data, Sprangular.Order)
+          lastOrder = Sprangular.extend(data, Sprangular.Order)
 
-          service.trackOrder(Cart.lastOrder)
+          service.trackOrder(lastOrder)
 
-          Account.reload().then ->
+          if Account.isGuest
+            Account.isGuest = false
+            Account.email = null
             Cart.init()
+          else
+            Account.reload().then ->
+              Cart.init()
+
+          lastOrder
 
     trackOrder: (order) ->
       return if typeof(ga) is 'undefined'
@@ -96,15 +107,15 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
 
       ga "ecommerce:send"
 
-    put: (params) ->
-      url = "/api/checkouts/#{Cart.current.number}/quick_update"
-      params = params ||= {}
+    put: (params={}, config={}) ->
+      order = Cart.current
+      url = "/spree/api/checkouts/#{order.number}"
 
-      config =
-        headers:
-          'X-Spree-Order-Token': Cart.current.token
+      config.headers =
+        'X-Spree-Order-Token': order.token
 
-      Cart.current.errors = null
+      order.errors = null
+      order.loading = true
 
       deferred = $q.defer()
 
@@ -114,20 +125,14 @@ Sprangular.service "Checkout", ($http, $q, _, Env, Account, Cart) ->
           deferred.resolve(Cart.current)
 
         .error (response) ->
-          errors = response.errors || response.exception
+          if response.errors
+            Cart.errors(response.errors)
+          else if response.exception
+            Cart.errors(base: response.exception)
 
-          if errors
-            Cart.errors(base: errors)
-            deferred.resolve(Cart.current)
-          else
-            deferred.reject()
+          deferred.reject(Cart.current)
 
       deferred.promise
-
-    _addShippingRate: (params, order) ->
-      if order.shippingRate
-        params['order[shipments_attributes][][id]'] = order.shipment.id
-        params['order[shipments_attributes][][selected_shipping_rate_id]'] = order.shippingRate.id
 
     _findPaymentMethodId: ->
       paymentMethod = _.find Env.config.payment_methods, (method) -> method.name == 'Credit Card'

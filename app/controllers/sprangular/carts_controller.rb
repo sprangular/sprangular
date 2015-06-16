@@ -3,10 +3,7 @@ class Sprangular::CartsController < Sprangular::BaseController
   def show
     return not_found unless @order = current_order
 
-    render json: @order,
-           scope: current_spree_user,
-           serializer: Sprangular::OrderSerializer,
-           root: false
+    render_order
   end
 
   # Adds a new item to the order (creating a new order if none already exists)
@@ -20,7 +17,7 @@ class Sprangular::CartsController < Sprangular::BaseController
         order.contents.add(variant, quantity)
         order.ensure_updated_shipments
         @order = order.reload
-        render 'spree/api/orders/show'
+        render_order
       rescue ActiveRecord::RecordInvalid => e
         invalid_resource!(e.record)
       end
@@ -42,7 +39,7 @@ class Sprangular::CartsController < Sprangular::BaseController
     data.merge!(id: line_item.id) if line_item
     @order.contents.update_cart(line_items_attributes: { '0' => data })
 
-    render 'spree/api/orders/show'
+    render_order
   end
 
   def change_variant
@@ -63,7 +60,7 @@ class Sprangular::CartsController < Sprangular::BaseController
 
     @order.reload
 
-    render 'spree/api/orders/show'
+    render_order
   end
 
   def remove_adjustment
@@ -75,7 +72,7 @@ class Sprangular::CartsController < Sprangular::BaseController
 
     @order.update_totals
 
-    render 'spree/api/orders/show'
+    render_order
   end
 
   def destroy
@@ -83,9 +80,28 @@ class Sprangular::CartsController < Sprangular::BaseController
       @order.empty!
       @order.state ='cart'
       @order.save!
-      render 'spree/api/orders/show'
+
+      render_order
     else
       not_found
     end
+  end
+
+  def guest_login
+    @order = current_order(create_order_if_necessary: true)
+
+    if params[:order][:email] =~ Devise.email_regexp && @order.update_attribute(:email, params[:order][:email])
+      render_order
+    else
+      invalid_resource!(@order)
+    end
+  end
+
+private
+  def render_order
+    render json: @order,
+           scope: current_spree_user,
+           serializer: Sprangular::OrderSerializer,
+           root: false
   end
 end

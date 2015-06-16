@@ -34,7 +34,8 @@
         h4
           | {{ :: 'checkout.credit_card' | translate}}
 
-        credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards')
+    .col-md-4.col-xs-12
+      ng-include(src="'checkout/delivery_and_payment.html'")
 
     .c-grid-third
       section#summary

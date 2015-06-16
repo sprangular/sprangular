@@ -75,24 +75,29 @@ Sprangular.run (
     requirements = next.requires || {}
     Status.routeChanging = true
     Status.meta = {}
+    redirectPath = null
 
     if requirements.user && !Account.isLogged
       Status.requestedPath = next.$$route.originalPath
       Flash.error('app.sign_in_or_register')
+      redirectPath = '/sign-in'
 
-      $location.path('/sign-in')
-      event.preventDefault()
+    else if requirements.guest && !Account.isLogged && !Account.isGuest
+      Status.requestedPath = next.$$route.originalPath
+      Flash.error('app.sign_in_or_register')
+      redirectPath = '/sign-in'
 
-    else if requirements.guest && Account.isLogged
-      Flash.error('app.must_be_logged_in')
-
-      $location.path('/')
-      event.preventDefault()
+    else if requirements.anonymous && Account.isLogged
+      Flash.error('app.must_be_logged_out')
+      redirectPath = '/'
 
     else if requirements.cart && Cart.current.items.length == 0
       Flash.error('app.no_items_in_cart')
+      redirectPath = '/'
 
-      $location.path('/')
+    if redirectPath
+      $location.path(redirectPath)
+      Status.routeChanging = false
       event.preventDefault()
 
   $rootScope.$on '$routeChangeSuccess', ->

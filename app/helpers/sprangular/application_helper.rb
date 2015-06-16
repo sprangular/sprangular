@@ -46,9 +46,9 @@ module Sprangular
             .assets.each_logical_path
             .select { |file| file.end_with?('html') }
             .map do |file|
-              path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : asset_path(file)
+              path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : file
 
-              [file, path]
+              [file, asset_path(path)]
             end
         ]
       end
@@ -107,6 +107,10 @@ module Sprangular
         hash[asset_path] = Rails.application.assets.find_asset(sprockets_path).body.html_safe
         hash
       end
+    end
+
+    def serialize(object, serializer)
+      serializer.new(object, root: false).to_json
     end
   end
 end
