@@ -1,8 +1,12 @@
 Sprangular.service "Orders", ($http) ->
 
   service =
-    find: (number) ->
-      $http.get("/api/orders/#{number}")
+    find: (number, token) ->
+      config =
+        headers:
+          'X-Spree-Order-Token': token
+
+      $http.get("/api/orders/#{number}", config)
         .then (response) ->
           service._loadOrder(response.data)
 

@@ -9,6 +9,7 @@ Sprangular.controller 'ProductCtrl', ($scope, Status, product, Account, Cart) ->
     variant: null
 
   Status.pageTitle        = $scope.product.name
+  Status.meta.title       = $scope.product.meta_title
   Status.meta.description = $scope.product.meta_description
   Status.meta.keywords    = $scope.product.meta_keywords
 

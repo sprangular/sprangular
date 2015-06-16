@@ -23,7 +23,6 @@ Sprangular.controller 'CheckoutCtrl', (
   $scope.shippingValid = false
   $scope.billingValid = false
   $scope.isValid = false
-  Cart.lastOrder = null
 
   removeUnavailableVariants = ->
     _.each Cart.unavailableItems(), (item) ->

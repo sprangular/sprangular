@@ -101,6 +101,7 @@ PATH
       spree_api (>= 2.4)
       spree_auth_devise
       spree_core (>= 2.4)
+      sprockets-rails (~> 2.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -319,14 +320,14 @@ GEM
       rails-assets-angular (= 1.3.9)
     rails-assets-angular-strap (2.2.1)
       rails-assets-angular (>= 1.2.21, < 2)
-    rails-assets-angular-translate (2.6.1)
+    rails-assets-angular-translate (2.7.0)
       rails-assets-angular (>= 1.2.26, <= 1.4)
     rails-assets-angularytics (0.4.0)
       rails-assets-angular
     rails-assets-bootstrap-additions (0.2.3)
     rails-assets-bootstrap-sass-official (3.3.4)
       rails-assets-jquery (>= 1.9.0)
-    rails-assets-jquery (2.1.3)
+    rails-assets-jquery (2.1.4)
     rails-assets-underscore (1.8.3)
     rails-assets-underscore.string (3.0.3)
     railties (4.1.9)

@@ -35,6 +35,10 @@ child :shipments => :shipments do
   extends "spree/api/shipments/small"
 end
 
+child :line_item_promotion_adjustments => :line_item_adjustments do
+  extends "spree/api/adjustments/show"
+end
+
 child :adjustments => :adjustments do
   extends "spree/api/adjustments/show"
 end

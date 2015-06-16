@@ -23,8 +23,11 @@ Sprangular.config ($routeProvider) ->
       templateUrl: 'products/index.html'
       resolve:
         taxon: -> null
-        products: (Catalog, $route) ->
-          Catalog.products($route.current.params.search, 1)
+        products: (Catalog, $route, $location) ->
+          query = $location.$$url.split("?")[1]
+          filters = Sprangular.queryString.parse(query)
+
+          Catalog.products($route.current.params.keywords, 1, filters)
 
     .when '/products/:id',
       controller: 'ProductCtrl'
@@ -41,8 +44,11 @@ Sprangular.config ($routeProvider) ->
       resolve:
         taxon: (Catalog, $route) ->
           Catalog.taxon($route.current.params.path)
-        products: (Catalog, $route) ->
-          Catalog.productsByTaxon($route.current.params.path)
+        products: (Catalog, $route, $location) ->
+          query = $location.$$url.split("?")[1]
+          filters = Sprangular.queryString.parse(query)
+
+          Catalog.productsByTaxon($route.current.params.path, 1, filters)
 
     .when '/sign-in',
       requires: {anonymous: true}
@@ -78,12 +84,13 @@ Sprangular.config ($routeProvider) ->
           else
             Account.reload('full').then -> Account.user
 
-    .when '/checkout/complete',
+    .when '/checkout/complete/:number/:token?',
       controller: 'CheckoutCompleteCtrl'
       templateUrl: 'checkout/complete.html'
       resolve:
-        order: (Cart) ->
-          Cart.lastOrder
+        order: (Orders, $route) ->
+          params = $route.current.params
+          Orders.find(params.number, params.token)
 
     .when '/orders/:number',
       requires: {user: true}
@@ -94,7 +101,9 @@ Sprangular.config ($routeProvider) ->
           Orders.find($route.current.params.number)
 
     .when '/404',
-      templateUrl: '404.html'
+      template: ""
+      controller: ($window) ->
+        $window.location.href = "/not-found"
 
     .otherwise
-      templateUrl: '404.html'
+      redirectTo: "/404"

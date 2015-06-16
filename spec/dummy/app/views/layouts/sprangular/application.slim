@@ -1,6 +1,6 @@
 html(ng-app="DummyApp" ng-controller="GlobalCtrl")
   head
-    title(ng-bind="title")
+    title(ng-bind="status.meta.title || title")
 
     meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
     meta(name="fragment" content="!")
