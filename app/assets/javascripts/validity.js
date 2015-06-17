@@ -30,12 +30,15 @@
     RULES: {
       required: function(object, attr) {
         if (!object[attr]) {
-          return formatMessage('required');
+          return formatMessage('required', {
+            field: attr
+          });
         }
       },
       greaterThan: function(object, attr, arg) {
         if (!(Number(object[attr]) > arg)) {
           return formatMessage('greaterThan', {
+            field: attr,
             arg: arg
           });
         }
@@ -43,6 +46,7 @@
       greaterThanOrEqual: function(object, attr, arg) {
         if (!(Number(object[attr]) >= arg)) {
           return formatMessage('greaterThanOrEqual', {
+            field: attr,
             arg: arg
           });
         }
@@ -50,6 +54,7 @@
       lessThan: function(object, attr, arg) {
         if (!(Number(object[attr]) < arg)) {
           return formatMessage('lessThan', {
+            field: attr,
             arg: arg
           });
         }
@@ -57,13 +62,16 @@
       lessThanOrEqual: function(object, attr, arg) {
         if (!(Number(object[attr]) <= arg)) {
           return formatMessage('lessThanOrEqual', {
+            field: attr,
             arg: arg
           });
         }
       },
       regex: function(object, attr, arg) {
         if (!String(object[attr]).match(arg)) {
-          return formatMessage('regex');
+          return formatMessage('regex', {
+            field: attr
+          });
         }
       },
       length: function(object, attr, arg) {
@@ -72,6 +80,7 @@
         if (typeof arg === 'number') {
           if (value.length !== arg) {
             return formatMessage('length', {
+              field: attr,
               length: arg
             });
           }
@@ -79,6 +88,7 @@
           if (length = arg['greaterThan']) {
             if (value.length < length) {
               return formatMessage('lengthGreaterThan', {
+                field: attr,
                 length: length
               });
             }
@@ -86,6 +96,7 @@
           if (length = arg['lessThan']) {
             if (value.length > length) {
               return formatMessage('lengthLessThan', {
+                field: attr,
                 length: length
               });
             }
@@ -94,7 +105,9 @@
       },
       number: function(object, attr) {
         if (typeof object[attr] !== 'number') {
-          return formatMessage('number');
+          return formatMessage('number', {
+            field: attr
+          });
         }
       }
     },
