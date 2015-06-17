@@ -16,7 +16,8 @@ module Sprangular
         locale: I18n.locale,
         currency: Money::Currency.table[current_currency.downcase.to_sym],
         translations: current_translations,
-        templates: template_paths
+        templates: template_paths,
+        asset_host: compute_asset_host
       }
     end
 
@@ -40,17 +41,9 @@ module Sprangular
 
     def template_paths
       Rails.cache.fetch('template_paths') do
-        Hash[
-          Rails
-            .application
-            .assets.each_logical_path
-            .select { |file| file.end_with?('html') }
-            .map do |file|
-              path = digest_assets? ? File.join('/assets', Rails.application.assets[file].digest_path) : file
+        logical_paths = assets.each_logical_path("*.html")
 
-              [file, asset_path(path)]
-            end
-        ]
+        Hash[logical_paths.map { |file| [file, asset_path(file)] }]
       end
     end
 
@@ -86,31 +79,26 @@ module Sprangular
     end
 
     def cached_templates_for_dir(files, dir)
-      root = Sprangular::Engine.root
+      logical_paths = templates.each_logical_path("#{dir}/**")
 
-      files = Dir[root + "app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
-        asset_path = asset_path path.gsub(root.to_s + "/app/assets/templates/", "")
-        local_path = "app/assets/templates/" + asset_path
-
-        hash[asset_path.gsub(/.slim$/, '')] = Tilt.new(path).render.html_safe if !File.exists?(local_path)
-
-        hash
-      end
-
-      Dir["app/assets/templates/#{dir}/**"].inject(files) do |hash, path|
-        sprockets_path = path.gsub("app/assets/templates/", "")
-
-        asset_path = asset_path(sprockets_path).
-          gsub(/^\/app\/assets\/templates/, '/assets').
-          gsub(/.slim$/, '')
-
-        hash[asset_path] = Rails.application.assets.find_asset(sprockets_path).body.html_safe
+      logical_paths.inject(files) do |hash, path|
+        hash[asset_path(path)] = assets[path].body.html_safe
         hash
       end
     end
 
     def serialize(object, serializer)
       serializer.new(object, root: false).to_json
+    end
+
+    private
+
+    def templates
+      @_templates ||= Sprockets::Environment.new.tap do |env|
+        [Rails.root, Sprangular::Engine.root].each do |root|
+          env.append_path root.join("app/assets/templates/")
+        end
+      end
     end
   end
 end
