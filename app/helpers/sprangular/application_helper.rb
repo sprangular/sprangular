@@ -40,7 +40,7 @@ module Sprangular
 
     def template_paths
       Rails.cache.fetch('template_paths') do
-        logical_paths = assets_environment.each_logical_path("*.html")
+        logical_paths = assets.each_logical_path("*.html")
 
         Hash[logical_paths.map { |file| [file, asset_path(file)] }]
       end
@@ -78,10 +78,10 @@ module Sprangular
     end
 
     def cached_templates_for_dir(files, dir)
-      logical_paths = templates_environment.each_logical_path("#{dir}/**")
+      logical_paths = templates.each_logical_path("#{dir}/**")
 
       logical_paths.inject(files) do |hash, path|
-        hash[asset_path(path)] = assets_environment[path].body.html_safe
+        hash[asset_path(path)] = assets[path].body.html_safe
         hash
       end
     end
@@ -92,8 +92,8 @@ module Sprangular
 
     private
 
-    def templates_environment
-      @_templates_environment ||= Sprockets::Environment.new.tap do |env|
+    def templates
+      @_templates ||= Sprockets::Environment.new.tap do |env|
         [Rails.root, Sprangular::Engine.root].each do |root|
           env.append_path root.join("app/assets/templates/")
         end
