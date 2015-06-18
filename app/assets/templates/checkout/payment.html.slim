@@ -1,12 +1,6 @@
-section.step.delivery-and-payment(ng-controller='CheckoutDeliveryAndPaymentCtrl' ng-class="{active: active, done: done, loading: processing}")
+section.step.payment(ng-controller='CheckoutPaymentCtrl' ng-class="{active: active, done: done, loading: processing}")
   .edit(ng-show='done' ng-click='edit()')
     span.fa.fa-pencil
-
-  section#delivery
-    h2
-      | {{ :: 'checkout.delivery_options' | translate}}
-
-    shipping-rate-selection(order='order' disabled='!active || processing')
 
   section#credit-card
     h2
