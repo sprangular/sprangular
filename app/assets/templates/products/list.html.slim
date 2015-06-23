@@ -12,7 +12,7 @@
           | {{(selectedVariants[product.id] || product).price | currency : currencySymbol }}
 
         .with-variants(ng-show="product.hasVariants")
-          variant-selection(product="product" variant="selectedVariants[product.id]" class="{'btn-group-xs': true}")
+          variant-selection(product="product" variant="selectedVariants[product.id]")
 
           p.sold-out(ng-if="selectedVariants[product.id] && !selectedVariants[product.id].isAvailable()") Sold out
 

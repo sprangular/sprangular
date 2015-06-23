@@ -1,5 +1,5 @@
-a.add-to-cart(ng-class="class" ng-show='variant || !product.hasVariants')
-  .button(ng-click="addToCart()" ng-disabled="adding || !variant")
+.add-to-cart(ng-class="class" ng-show='variant || !product.hasVariants')
+  button.is-green(ng-click="addToCart()" ng-disabled="adding || !variant")
     span(ng-show="adding")
       | {{:: 'directives.adding' | translate }} &nbsp;
       i.fa.fa-refresh.fa-spin
