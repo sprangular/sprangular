@@ -1,0 +1,50 @@
+.selector
+  position: relative
+
+  button
+    background: $medium-gray
+    height: 35px
+
+    span
+      display: inline-block
+      margin-right: 5px
+
+      &.value
+        @include border-top-radius(5px)
+        @include border-bottom-radius(5px)
+        background: $medium-gray
+        color: white
+        display: inline-block
+        height: 20px
+        line-height: 20px
+        margin: 0
+        padding: 0 5px
+
+  .dropdown
+    background: white
+    position: absolute
+    left: 0
+    top: 35px
+    width: 100%
+
+    .type
+      background: $light-gray
+      padding: 0 1em
+      line-height: 35px
+
+    .values
+      padding: 1em
+
+      li
+        display: inline-block
+        margin-right: 5px
+
+        a
+          @include border-top-radius(5px)
+          @include border-bottom-radius(5px)
+          display: block
+          padding: $b-space / 4
+
+          &.is-selected
+            background: $blue
+            color: white

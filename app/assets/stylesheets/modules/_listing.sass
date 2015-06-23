@@ -21,7 +21,7 @@
       text-align: right
 
     .add-to-cart,
-    .select-variant
+    .selector
       width: 100%
 
     .title
@@ -37,31 +37,34 @@
       margin-bottom: .5em
 
     .add-to-cart,
-    .select-variant
+    .selector
       float: left
 
-      .button
+      button
         @include border-top-radius(0)
         @include border-bottom-radius(3px)
         width: 100%
 
     .add-to-cart
-      text-align: right
+      button
+        text-align: right
 
-      .button
-        background: $medium-green
-
-    .select-variant
-      &.is-selected
-        width: 50%
-
-        .button
-          border-bottom-right-radius: 0
+    .selector
+      button
+        text-align: left
 
     .with-variants
-      .add-to-cart
-        width: 50%
+      position: relative
+      z-index: $stratum-lowest
 
-        .button
-          border-bottom-left-radius: 0
+      .add-to-cart
+        position: absolute
+        right: 0
+        top: 0
+        width: 50%
+        z-index: $stratum-lowest
+
+        button
+          height: 35px
+
 
