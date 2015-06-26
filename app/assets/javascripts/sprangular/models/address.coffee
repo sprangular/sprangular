@@ -33,11 +33,12 @@ class Sprangular.Address
     @name && @name.length > 0
 
   getFirstname: ->
-    return @name.split(' ').slice(0, -1).join(' ') if @usingFullName()
+    return @name.split(' ')[0] if @usingFullName()
     @firstname
 
   getLastname: ->
-    return @name.split(' ').slice(-1).join(' ') if @usingFullName()
+    parts = @name.split(' ')
+    return parts.slice(1, parts.legnth).join(' ') if @usingFullName()
     @lastname
 
   serialize: ->
