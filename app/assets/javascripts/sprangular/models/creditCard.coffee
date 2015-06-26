@@ -5,6 +5,7 @@ class Sprangular.CreditCard
     master: 'MasterCard'
     visa: 'Visa'
     amex: 'American Express'
+    american_express: 'American Express'
     discover: 'Discover'
     dinersclub: 'Diners Club'
     jcb: 'JCB'
