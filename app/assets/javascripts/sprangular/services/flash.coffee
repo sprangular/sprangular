@@ -12,7 +12,7 @@ Sprangular.factory 'Flash', ($timeout, $translate) ->
 
   timeout: (flash) ->
     self = this
-    $timeout((-> self.remove(flash)), 2500)
+    $timeout((-> self.remove(flash)), 5000)
 
   success: (translate_key) -> @add('success', translate_key)
   info:    (translate_key) -> @add('info',    translate_key)

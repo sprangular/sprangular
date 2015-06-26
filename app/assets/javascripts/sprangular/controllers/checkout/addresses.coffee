@@ -45,7 +45,19 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
           createMergedAddressList()
           $scope.processing = false
           $scope.submitted = false
-        , (resp) ->
+        , ->
           Cart.current.loading = false
           $scope.processing = false
-          Flash.error('There has been an error validating your address, please ensure you have a valid address.')
+          
+          # show descriptive error
+          if Cart.current.errors.base
+            Flash.error(Cart.current.errors.base)
+          else
+            errors = []
+            for k, v of Cart.current.shippingAddress.errors
+              errors.push 'Shipping address ' + k + ' ' + v[0]
+            for k, v of Cart.current.billingAddress.errors
+              errors.push 'Billing address ' + k + ' ' + v[0]
+            
+            Flash.error(errors.join(' , '))
+
