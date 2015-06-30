@@ -57,6 +57,13 @@ Sprangular.config [
     $translateProvider.use(Env.locale)
 ]
 
+Sprangular.config ["$sceDelegateProvider", "Env", ($sceDelegateProvider, Env) ->
+  whitelist = ['self']
+  whitelist.push "#{Env.asset_host}/**" if Env.asset_host?
+
+  $sceDelegateProvider.resourceUrlWhitelist(whitelist)
+]
+
 Sprangular.run (
   $rootScope,
   $location,
