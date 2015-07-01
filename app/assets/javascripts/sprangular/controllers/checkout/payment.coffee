@@ -31,7 +31,11 @@ CheckoutPaymentCtrl = ($scope, Account, Cart, Checkout, Flash) ->
     failure = ->
       Cart.current.loading = false
       $scope.processing = false
-      Flash.error('There has been an error processing your payment, please double check your credit card information.')
+      if Cart.current.errors.base
+        prefixMsg = if Array.isArray(Cart.current.errors.base) then '' else 'Your card '
+        Flash.error(prefixMsg + Cart.current.errors.base) 
+      else
+        Flash.error('There has been an error processing your payment, please double check your credit card information.')
 
     Checkout.setPayment().then(success, failure)
 
