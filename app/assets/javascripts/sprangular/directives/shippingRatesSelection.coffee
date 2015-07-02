@@ -2,7 +2,6 @@ Sprangular.directive 'shippingRateSelection', ->
   restrict: 'E'
   templateUrl: 'shipping/rates.html'
   scope:
-    onSelection: '&'
     order: '='
     disabled: '='
 
