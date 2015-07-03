@@ -113,5 +113,5 @@ Sprangular.run (
 
   $rootScope.$on '$routeChangeError', (event, current, previous, rejection) ->
     Status.routeChanging = false
-    alert "Error changing route. See console for details."
+    alert "Oops! Sorry, there seems to have been an error. Please refresh the page and sign in again to continue. Thank you."
     $log.info "Error changing route", rejection
