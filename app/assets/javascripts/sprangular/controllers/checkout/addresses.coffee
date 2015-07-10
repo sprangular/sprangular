@@ -1,4 +1,4 @@
-Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout, Geography, Flash) ->
+Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout, Geography) ->
   Geography.getCountryList().then (countries) ->
     $scope.countries = countries
 
@@ -46,18 +46,4 @@ Sprangular.controller 'CheckoutAddressesCtrl', ($scope, Account, Cart, Checkout,
           $scope.processing = false
           $scope.submitted = false
         , ->
-          Cart.current.loading = false
           $scope.processing = false
-          
-          # show descriptive error
-          if Cart.current.errors.base
-            Flash.error(Cart.current.errors.base)
-          else
-            errors = []
-            for k, v of Cart.current.shippingAddress.errors
-              errors.push 'Shipping address ' + k + ' ' + v[0]
-            for k, v of Cart.current.billingAddress.errors
-              errors.push 'Billing address ' + k + ' ' + v[0]
-            
-            Flash.error(errors.join(' , '))
-
