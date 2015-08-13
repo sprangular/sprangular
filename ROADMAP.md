@@ -8,3 +8,7 @@
 
 - Example themes
 - Ionic for native ios/android feel [Demo Project](https://github.com/joshnuss/sprionic-demo)
+
+## Application Decoupling / Bower Componentization
+
+Start PR conversation surrounding the above.
