@@ -2,7 +2,9 @@
 # App specific
 # --> Everything related to the ng-app
 
-#= require ./module
+#= require ./config/module
+#= require ./config/config
+#= require ./config/run
 #= require ./routes
 #= require ./translations
 #= require_tree ./controllers

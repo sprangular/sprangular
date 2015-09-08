@@ -17,6 +17,7 @@ module Sprangular
         currency: Money::Currency.table[current_currency.downcase.to_sym],
         translations: current_translations,
         templates: template_paths,
+        api_domain: Spree::Config.api_domain.empty? ? request.base_url : Spree::Config.api_domain,
         asset_host: compute_asset_host
       }
     end
@@ -42,7 +43,6 @@ module Sprangular
     def template_paths
       Rails.cache.fetch('template_paths') do
         logical_paths = assets.each_logical_path("*.html")
-
         Hash[logical_paths.map { |file| [file, asset_path(file)] }]
       end
     end

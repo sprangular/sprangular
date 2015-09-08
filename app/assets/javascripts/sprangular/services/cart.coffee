@@ -7,7 +7,7 @@ Sprangular.service "Cart", ($http) ->
       @current = new Sprangular.Order
 
     reload: ->
-      $http.get '/api/cart.json'
+      $http.get '/api/cart.json', useApiDomain: true
         .success(@load)
 
     errors: (errors) ->
@@ -41,7 +41,7 @@ Sprangular.service "Cart", ($http) ->
         service.current.clear()
 
     empty: ->
-      $http.delete '/api/cart'
+      $http.delete '/api/cart', useApiDomain: true
         .success(@load)
 
     addVariant: (variant, quantity, flexi=null) ->
@@ -52,7 +52,7 @@ Sprangular.service "Cart", ($http) ->
       else
         params = $.param(variant_id: variant.id, quantity: quantity, flexi: flexi)
 
-        $http.post '/api/cart/add_variant', params, ignoreLoadingIndicator: true
+        $http.post '/api/cart/add_variant', params, ignoreLoadingIndicator: true, useApiDomain: true
           .success (response) ->
             service.load(response)
 
@@ -69,13 +69,13 @@ Sprangular.service "Cart", ($http) ->
     updateItemQuantity: (id, quantity, flexi=null) ->
       params = $.param(variant_id: id, quantity: quantity, flexi: flexi)
 
-      $http.put '/api/cart/update_variant', params, ignoreLoadingIndicator: true
+      $http.put '/api/cart/update_variant', params, ignoreLoadingIndicator: true, useApiDomain: true
         .success(@load)
 
     changeVariant: (oldVariant, newVariant) ->
       params = $.param(old_variant_id: oldVariant.id, new_variant_id: newVariant.id)
 
-      $http.put '/api/cart/change_variant', params
+      $http.put '/api/cart/change_variant', params, useApiDomain: true
         .success(@load)
 
     removeAdjustment: (adjustment) ->
@@ -85,7 +85,7 @@ Sprangular.service "Cart", ($http) ->
 
       params = $.param(adjustment_id: adjustment.id)
 
-      $http.put '/api/cart/remove_adjustment', params
+      $http.put '/api/cart/remove_adjustment', params, useApiDomain: true
         .success(@load)
 
     unavailableItems: ->
