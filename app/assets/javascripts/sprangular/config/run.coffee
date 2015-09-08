@@ -16,7 +16,9 @@ Sprangular.run (
   if paymentMethods.length == 0
     console.error('Gateway is not configured in Spree...')
 
-  $cacheFactory.get('$http').removeAll()
+  cache = $cacheFactory.get('$http')
+  if cache?
+    cache.removeAll()
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     requirements = next.requires || {}
