@@ -65,7 +65,7 @@ class Sprangular::CartsController < Sprangular::BaseController
 
   def remove_adjustment
     @order = current_order(create_order_if_necessary: true)
-    adjustment = @order.adjustments.where(id: params[:adjustment_id]).first!
+    adjustment = @order.all_adjustments.where(id: params[:adjustment_id]).first!
     promotion = @order.promotions.where('spree_promotions.id' => adjustment.source.promotion_id).first!
     @order.promotions.delete(promotion)
     adjustment.destroy
