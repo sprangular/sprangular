@@ -40,7 +40,6 @@ module Sprangular
         r301 %r{^/cart/?$},          '/#!/cart'
         r301 %r{^/account/?$},       '/#!/account'
         r301 %r{^/spree/login/?$},   '/#!/sign-in?redirect=y'
-        r301 %r{^/admin/?$},         '/spree/admin'
         r301 %r{/spree/user/spree_user/password/edit\?reset_password_token=(.+)}, '/#!/reset-password/$1'
       end
     end
