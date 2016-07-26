@@ -15,7 +15,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
         service.populateAccount(startupData.User)
         service.fetched = true
       else
-        $http.get('/api/account')
+        $http.get('api/account')
           .success (data) ->
             service.populateAccount(data)
             service.fetched = true
@@ -25,7 +25,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
 
     reload: (serializer='lite') ->
       @fetched = false
-      $http.get("/api/account?serializer=#{serializer}")
+      $http.get("api/account?serializer=#{serializer}")
         .success (data) ->
           service.populateAccount(data)
           service.fetched = true
@@ -53,7 +53,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       email = if data is undefined then null else data.email
       params =
         'order[email]': email
-      $http.post('/api/cart/guest_login.json', $.param(params))
+      $http.post('api/cart/guest_login.json', $.param(params))
         .success (data) ->
           service.populateGuestAccount(data)
           Flash.success 'app.signed_in'
@@ -82,28 +82,28 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       params =
         spree_user: data
 
-      $http.post('/api/account', $.param(params))
+      $http.post('api/account', $.param(params))
         .success (data) ->
           service.populateAccount(data)
 
     forgotPassword: (data) ->
       params =
         spree_user: data
-      $http.post('/api/passwords', $.param(params))
+      $http.post('api/passwords', $.param(params))
         .success (data) ->
           service.reload()
 
     resetPassword: (data) ->
       params =
         spree_user: data
-      $http.put('/api/passwords/'+data.reset_password_token, $.param(params))
+      $http.put('api/passwords/'+data.reset_password_token, $.param(params))
         .success (data) ->
           service.reload()
 
     save: (data) ->
       params =
         spree_user: data.serialize()
-      $http.put('/api/account?serializer=full', $.param(params))
+      $http.put('api/account?serializer=full', $.param(params))
         .success (data) ->
           service.populateAccount(data)
           Flash.success 'app.account_updated'
@@ -113,7 +113,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
     deleteCard: (card) ->
       cards = @user.creditCards
 
-      $http.delete("/api/credit_cards/#{card.id}")
+      $http.delete("api/credit_cards/#{card.id}")
         .success (data) ->
           i = cards.indexOf card
           cards.splice(i, 1) unless i is -1
@@ -121,7 +121,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
     deleteAddress: (address) ->
       adds = @user.addresses
 
-      $http.delete("/api/addresses/#{address.id}")
+      $http.delete("api/addresses/#{address.id}")
       .success (data) ->
         i = adds.indexOf address
         adds.splice(i, 1) unless i is -1

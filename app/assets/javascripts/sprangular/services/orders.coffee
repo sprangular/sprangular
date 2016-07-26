@@ -6,12 +6,12 @@ Sprangular.service "Orders", ($http) ->
         headers:
           'X-Spree-Order-Token': token
 
-      $http.get("/api/orders/#{number}", config)
+      $http.get("api/orders/#{number}", config)
         .then (response) ->
           service._loadOrder(response.data)
 
     all: ->
-      $http.get("/api/orders")
+      $http.get("api/orders")
         .then (response) ->
           _.map response.data, (record) ->
             service._loadOrder(record)

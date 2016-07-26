@@ -11,7 +11,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
       @getPaged(page, taxon: taxonId)
 
     taxonomies: ->
-      $http.get("/api/taxonomies", cache: true)
+      $http.get("api/taxonomies", cache: true)
         .then (response) ->
           response.data.taxonomies
 
@@ -27,12 +27,12 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
         return result
 
     taxon: (path) ->
-      $http.get("/api/taxons/#{path}")
+      $http.get("api/taxons/#{path}")
         .then (response) ->
           response.data.taxon
 
     find: (id) ->
-      $http.get("/api/products/#{id}", class: Sprangular.Product)
+      $http.get("api/products/#{id}", class: Sprangular.Product)
         .then (response) ->
           Status.cacheProduct(response)
           response
@@ -52,7 +52,7 @@ Sprangular.service 'Catalog', ($http, $q, _, Status, Env) ->
       for key, value of queryParams
         delete queryParams[key] unless value
 
-      $http.get("/api/products?#{$.param(queryParams)}", ignoreLoadingIndicator: params.ignoreLoadingIndicator)
+      $http.get("api/products?#{$.param(queryParams)}", ignoreLoadingIndicator: params.ignoreLoadingIndicator)
         .then (response) ->
           data = response.data
           list = Sprangular.extend(data.products || [], Sprangular.Product)
