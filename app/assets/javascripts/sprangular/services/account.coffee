@@ -72,11 +72,12 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
           Flash.error 'app.signin_failed'
 
     logout: ->
-      $http.get('/spree/logout')
+      $http.get('/logout')
         .success (data) ->
           service.isLogged = false
           service.clear()
           Cart.init()
+          window.location = '/'
 
     signup: (data) ->
       params =
