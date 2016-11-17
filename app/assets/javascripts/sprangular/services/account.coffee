@@ -64,7 +64,7 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
       params =
         'spree_user[email]': data.email,
         'spree_user[password]': data.password
-      $http.post('/spree/login.json', $.param(params))
+      $http.post('/login.json', $.param(params))
         .success (data) ->
           service.populateAccount(data)
           Flash.success 'app.signed_in'
@@ -72,11 +72,12 @@ Sprangular.service "Account", ($http, _, $q, Cart, Flash, $translate) ->
           Flash.error 'app.signin_failed'
 
     logout: ->
-      $http.get('/spree/logout')
+      $http.get('/logout')
         .success (data) ->
           service.isLogged = false
           service.clear()
           Cart.init()
+          window.location = '/'
 
     signup: (data) ->
       params =
