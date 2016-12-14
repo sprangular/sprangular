@@ -11,7 +11,7 @@ window.Sprangular = angular.module('Sprangular', [
     paymentMethods = Env.config.payment_methods
 
     if paymentMethods.length == 0
-      console.log 'Gateway is not configured in Spree...'
+      $log.info 'Gateway is not configured in Spree...'
 
 Sprangular.startupData = {}
 
@@ -113,5 +113,5 @@ Sprangular.run (
 
   $rootScope.$on '$routeChangeError', (event, current, previous, rejection) ->
     Status.routeChanging = false
-    console.log "Error changing route", rejection
+    $log.info "Error changing route", rejection
     $location.path "/404"
