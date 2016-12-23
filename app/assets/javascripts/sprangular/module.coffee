@@ -7,7 +7,7 @@ window.Sprangular = angular.module('Sprangular', [
   'mgcrea.ngStrap'
   'angularytics'
   'pascalprecht.translate'
-]).run (Env) ->
+]).run (Env, $log) ->
     paymentMethods = Env.config.payment_methods
 
     if paymentMethods.length == 0
