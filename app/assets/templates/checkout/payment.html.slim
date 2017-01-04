@@ -1,0 +1,20 @@
+section.step.payment(ng-controller='CheckoutPaymentCtrl' ng-class="{active: active, done: done, loading: processing}")
+  .edit(ng-show='done' ng-click='edit()')
+    span.fa.fa-pencil
+
+  section#credit-card
+    h2
+      | {{ :: 'checkout.credit_card' | translate}}
+
+    credit-card-selection(credit-card='order.creditCard' credit-cards='user.creditCards' disabled-fields='!active || processing' submitted='submitted')
+
+  button.next.btn.btn-primary.btn-lg.btn-block(ng-show="active" ng-disabled='processing' ng-click="advance()")
+    span(ng-if='!processing')
+      | {{ :: 'checkout.next' | translate }}
+      | &nbsp;
+      span.glyphicon.glyphicon-chevron-right
+    span(ng-if='processing')
+      span.fa.fa-refresh.fa-spin
+      | &nbsp;
+      span.caption
+        | {{ :: 'checkout.processing' | translate }}
