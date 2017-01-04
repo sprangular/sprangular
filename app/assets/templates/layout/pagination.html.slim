@@ -1,0 +1,14 @@
+nav.m-pagination
+  ul(ng-if="products.length > 0")
+    li.m-pagination-prev(ng-class="{disabled: currentPage == 1}")
+      a(ng-click='loadPreviousPage()')
+        | {{:: 'nav.previous' | translate }}
+
+    li
+      ul
+        li(ng-repeat='page in pageList' ng-class="{active: page==currentPage}")
+          a(ng-bind='page' ng-click='loadPage(page)')
+
+    li.m-pagination-next(ng-class="{disabled: loadingComplete}")
+      a(ng-click='loadNextPage()')
+        | {{:: 'nav.next' | translate }}

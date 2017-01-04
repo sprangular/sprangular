@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 20150326180847) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "spree_activators", force: true do |t|
+    t.string   "description"
+    t.datetime "expires_at"
+    t.datetime "starts_at"
+    t.string   "name"
+    t.string   "event_name"
+    t.string   "type"
+    t.integer  "usage_limit"
+    t.string   "match_policy", default: "all"
+    t.string   "code"
+    t.boolean  "advertise",    default: false
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "spree_addresses", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -226,6 +242,13 @@ ActiveRecord::Schema.define(version: 20150326180847) do
   end
 
   add_index "spree_log_entries", ["source_id", "source_type"], name: "index_spree_log_entries_on_source_id_and_source_type"
+
+  create_table "spree_mail_methods", force: true do |t|
+    t.string   "environment"
+    t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spree_option_types", force: true do |t|
     t.string   "name",         limit: 100

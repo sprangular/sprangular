@@ -1,19 +1,19 @@
-section#promo-selection
+#promo-entry
   .add(ng-show='!showPromoEntry')
-    a(ng-click='showPromoEntry = true')
+    a.button.is-transparent.fl(ng-click='showPromoEntry = true')
       | {{:: 'promo.add' | translate }}
 
-  section#promo-entry(ng-show='showPromoEntry')
-    form.form-inline(role='form' name="PromoForm" ng-submit='save()')
-      .form-group
+  .entry(ng-show='showPromoEntry')
+    form(role='form' name="PromoForm" ng-submit='save()')
+      .form-group.clear
         label.control-label(for='promo-code')
           | {{:: 'promo.code' | translate }}
-        input.form-control(name='promo-code' ng-model='promoCode')
+        input.form-control(name='promo-code' ng-model='promoCode' type='text')
+        p.error(ng-bind='error' ng-show='error')
 
-      button.btn.btn-primary(type='submit')
-        | {{:: 'crud.save' | translate }}
+      .form-group.clear
+        button.fl(type='submit')
+          | {{:: 'crud.save' | translate }}
 
-      a.btn.btn-link(ng-click='reset()')
-        | {{:: 'crud.cancel' | translate }}
-
-    p.error(ng-bind='error' ng-show='error')
+        a.button.is-transparent.fr(ng-click='reset()')
+          | {{:: 'crud.cancel' | translate }}

@@ -1,6 +1,8 @@
 section.address
   section.existing-address(ng-show='existingAddress')
-    select(ng-options='addr as addr.shortAddress() for addr in addresses track by addr.id' ng-model='address' ng-disabled='disabled')
+    .form-group
+      select(ng-options='addr as addr.shortAddress() for addr in addresses track by addr.id' ng-model='address' ng-disabled='disabled')
+        option(style="display:none" value="")
 
     p(ng-hide='disabled')
       a.new-address(ng-click='toggleExistingAddress()')

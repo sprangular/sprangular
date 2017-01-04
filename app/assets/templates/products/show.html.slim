@@ -1,34 +1,33 @@
-#product-details.container(ng-class="{'sold-out': !product.isAvailable() }")
-  .row
-    .col-sm-6.col-xs-12
-      section.gallery
-        ng-include(src="'products/gallery.html'")
+#product-details(ng-class="{'sold-out': !product.isAvailable() }")
+  .c-grid-container
+    section.gallery
+      ng-include(src="'products/gallery.html'")
 
-    .col-sm-6.col-xs-12
-      section.details
+    section.details
+      .info
         h1(ng-bind="product.name")
 
         p.desc(ng-bind="product.description")
 
-      section.options(ng-show='product.hasVariants')
-        variant-selection(product="product" variant="selected.variant" class="{'btn-group-lg': true}")
 
-      section.add.row
-        .col-sm-4
+      .controls
+        .dib
+          .options(ng-show='product.hasVariants')
+            variant-selection(product="product" variant="selected.variant" class="{'btn-group-lg': true}")
+
+        .dib
           quantity-input(quantity="selected.quantity" ng-if='!selected.variant || selected.variant.isAvailable()')
-        .col-sm-8
-          p.sold-out(ng-if="selected.variant && !selected.variant.isAvailable()")
-            span.fa.fa-exclamation-triangle
-            | &nbsp;{{:: 'products.sold_out_msg' | translate }}
 
+        .dib
           add-to-cart-button(ng-if="selected.variant.isAvailable() || product.master.isAvailable()"
-                             product="product"
-                             variant="selected.variant"
-                             quantity="selected.quantity"
-                             class="{'btn-lg': true, 'btn-block': true, 'btn-primary': !hasVariant(), 'btn-default': hasVariant()}")
+                           product="product"
+                           variant="selected.variant"
+                           quantity="selected.quantity"
+                           class="{'btn-lg': true, 'btn-block': true, 'btn-primary': !hasVariant(), 'btn-default': hasVariant()}")
 
-      section.in-cart.row(ng-show='hasVariant()')
-        .col-md-12
-          checkout-button(user='user')
+        .dib
+          .in-cart(ng-show='hasVariant()')
+            checkout-button(user='user')
 
-      ng-include(src="'products/properties.html'")
+      .properties(ng-show="product.product_properties.length > 0")
+        ng-include(src="'products/properties.html'")

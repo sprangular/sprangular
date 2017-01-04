@@ -1,106 +1,95 @@
-#cart-aside.aside(role="dialog" tabindex="-1" ng-controller='CartCtrl')
-  .aside-dialog
-    .aside-content
-      .aside-header
-        button.close(ng-click="$hide()" type="button") &times;
-        h4.aside-title
-          span.glyphicon.glyphicon-shopping-cart
-          | &nbsp;
-          | {{:: 'cart.my_cart' | translate}}
-          | &nbsp;
-          span.badge(ng-bind='cart.totalQuantity()' ng-hide='isEmpty()')
-      .aside-body
-        .empty(ng-show="isEmpty()")
-          p
-            | {{:: 'cart.my_empty_cart' | translate}}
-          a.btn.btn-lg.btn-primary(ng-href="#!/products" ng-click="$hide()")
-            | {{:: 'cart.start_shopping' | translate}}
+aside#cart-aside(role="dialog" tabindex="-1" ng-controller='CartCtrl' ng-show='cartIsVisible')
+  header
+    h4
+      | {{:: 'cart.my_cart' | translate}}
+      span.badge(ng-bind='cart.totalQuantity()' ng-hide='isEmpty()')
+    .close(ng-click="toggleCart()")
+      .fa-stack.fa-lg
+        .fa.fa-circle.fa-stack-2x
+        .fa.fa-times.fa-stack-1x.fa-inverse
 
-        .with-items(ng-hide="isEmpty()")
-          table.table.table-striped
-            tr
-              th(colspan=2 width="50%")
-                | {{:: 'cart.item' | translate}}
-              th(width="25%")
-                | {{:: 'cart.quantity' | translate}}
-              th
-                | {{:: 'cart.price' | translate}}
-              th
+  .aside-body
+    .empty(ng-show="isEmpty()")
+      p
+        | {{:: 'cart.my_empty_cart' | translate}}
+      a.button(ng-href="#!/products" ng-click="toggleCart()")
+        | {{:: 'cart.start_shopping' | translate}}
 
-            tr.item(ng-repeat='item in cart.items')
-              td.image
-                a(ng-href="#!/products/{{item.variant.product.slug}}")
-                  img(ng-src="{{item.variant.image.miniUrl}}")
+    .with-items(ng-hide="isEmpty()")
+      table.table.table-striped
+        tr
+          th(width="75%")
+            | {{:: 'cart.item' | translate}}
+          th(width="25%")
+            | {{:: 'cart.price' | translate}}
+        tr
+          td(colspan=2)
+            table.item(ng-repeat='item in cart.items')
+              tr(class="item-info")
+                td.image(width="20%")
+                  a(ng-href="#!/products/{{item.variant.product.slug}}")
+                    img(ng-src="{{item.variant.image.miniUrl}}")
 
-              td.name
-                p
+                td.name(width="55%")
                   a(ng-href="#!/products/{{item.variant.product.slug}}")
                     | {{item.variant.product.name}}
 
-                  section.options(ng-show='item.variant.product.hasVariants')
+                td.price.number(width="25%")
+                  span
+                    | {{item.price * item.quantity | currency : currencySymbol}}
+
+              tr(class="item-actions")
+                td(colspan=3)
+                  .options.dib(ng-if='item.variant.product.hasVariants')
                     variant-selection(product="item.variant.product" variant="item.variant" change="cart.changeVariant(oldVariant, newVariant)")
 
-              td.quantity
-                quantity-input(quantity="item.quantity" variant="item.variant" update-cart="true")
+                  .quantity.dib
+                    quantity-input(quantity="item.quantity" variant="item.variant" update-cart="true")
 
-              td.price.number
-                span
-                  | {{item.price * item.quantity | currency : currencySymbol}}
+                  a.remove.dib(ng-click="removeItem(item)")
+                    i.fa.fa-times
 
-              td.actions
-                a.remove(ng-click="removeItem(item)")
-                  span.glyphicon.glyphicon-remove
+        tr.item-total
+          td
+            b
+              | {{:: 'cart.sub_total' | translate}}
+          td.number(colspan=2 ng-bind='cart.itemTotal | currency : currencySymbol')
 
-            tr.item-total
-              td(colspan=2)
-                | {{:: 'cart.sub_total' | translate}}
-              td.number(colspan=2 ng-bind='cart.itemTotal | currency : currencySymbol')
-              td
+        tr.shipping
+          td
+            b
+              | {{:: 'cart.shipping' | translate}} - {{cart.shippingRate.name}}
+          td.number(colspan=2 ng-bind='cart.shipTotal | currency : currencySymbol')
 
-            tr.adjustment(ng-repeat='adjustment in cart.line_item_adjustments')
-              td(colspan=2 ng-bind='adjustment.label')
-              td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
+        tr.taxes
+          td
+            b
+              | {{:: 'cart.tax' | translate}}
+          td.number(colspan=2 ng-bind='cart.taxTotal | currency : currencySymbol')
 
-              td
-                a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
-                  span.glyphicon.glyphicon-remove
+        tr.adjustment(ng-repeat='adjustment in cart.adjustments')
+          td
+            b
+              | {{adjustment.label}}
+          td.number
+            | {{adjustment.amount | currency : currencySymbol}}
 
-            tr.adjustment(ng-repeat='adjustment in cart.adjustments')
-              td(colspan=2 ng-bind='adjustment.label')
-              td.number(colspan=2 ng-bind='adjustment.amount | currency : currencySymbol')
+            a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
+              i.fa.fa-times
 
-              td
-                a.remove(ng-click='removeAdjustment(adjustment)' ng-if='adjustment.isPromo()')
-                  span.glyphicon.glyphicon-remove
+        tr.total
+          td
+            b
+              | {{:: 'cart.total' | translate}}
+          td.number(colspan=2 ng-bind='cart.total | currency : currencySymbol')
 
-            tr.shipping
-              td(colspan=2)
-                | {{:: 'cart.shipping' | translate }}
+      .promo-form.clear
+        promo-form(order='cart')
 
-                span(ng-if='cart.shippingRate.name')
-                  |&nbsp;- {{cart.shippingRate.name}}
+  footer(ng-hide='isEmpty()')
+    .dib
+      checkout-button(user='user' ng-click='$hide()')
 
-              td.number(colspan=2 ng-bind='cart.shipTotal | currency : currencySymbol')
-              td
-
-            tr.taxes
-              td(colspan=2)
-                | {{:: 'cart.tax' | translate}}
-              td.number(colspan=2 ng-bind='cart.taxTotal | currency : currencySymbol')
-              td
-
-            tr.total
-              td(colspan=2)
-                | {{:: 'cart.total' | translate}}
-              td.number(colspan=2 ng-bind='cart.total | currency : currencySymbol')
-              td
-
-      .aside-footer.clearfix(ng-hide='isEmpty()')
-        .pull-left
-          a.empty.btn.btn-link(ng-click="empty()")
-            | {{:: 'cart.empty_cart' | translate}}
-
-          promo-form(order='cart')
-
-        .pull-right
-          checkout-button(user='user' ng-click='$hide()')
+    .dib
+      a.empty.button.is-red(ng-click="empty()")
+        | {{:: 'cart.empty_cart' | translate}}

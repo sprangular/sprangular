@@ -1,11 +1,16 @@
-.option.row(ng-repeat="option in product.options" class="{{option.type.name}}")
-  .col-lg-12
-    .values.btn-group(ng-class="class")
-      button.btn.btn-default.option-title(disabled)
-        b(ng-bind='option.type.presentation')
+.selector(ng-class="{'has-variants':isVariantSet}")
+  button(ng-click="toggleDropdown()")
+    span(ng-hide="variant")
+      | Choose your options
+    span(ng-show="variant" ng-repeat="value in variant.option_values")
+      span.value(ng-bind="value.presentation")
+    i.fa.fa-chevron-circle-down
+  .dropdown(ng-show="isDropdownOpen")
+    .option(ng-repeat="option in product.options" class="{{product.option_types[$index].name}}")
+      .type
+        span.presentation
+          b(ng-bind='product.option_types[$index].presentation')
 
-      button.btn.btn-default(ng-repeat="item in option.values"
-             ng-class="{'btn-success': isValueSelected(item.value)}"
-             ng-disabled="!isValueAvailable(item.value)"
-             ng-click="selectValue(item.value)"
-             ng-bind="item.value.presentation")
+      ul.values
+        li(ng-repeat="item in option.values")
+          a(data-option-value="{{item.value.presentation | lowercase}}" ng-class="{'is-selected': isValueSelected(item.value)}" ng-disabled="!isValueAvailable(item.value)" ng-click="selectValue(item.value)" ng-bind="item.value.presentation")

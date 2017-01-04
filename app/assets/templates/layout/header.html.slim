@@ -1,23 +1,53 @@
-header(ng-controller="HeaderCtrl")
-  nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
-    .container-fluid
-      .navbar-header
-        button.navbar-toggle(type="button" data-toggle="collapse" data-target="#navbar-collapse-1")
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
+header.navigation(role="navigation" ng-controller="HeaderCtrl")
+  .c-grid-container
+    .navigation-wrapper
+      a.logo(href="#!/")
+        img(ng-src="assets/logo.png")
+      a#js-mobile-menu.navigation-menu-button(href="javascript:void(0)") MENU
+      nav(role="navigation")
+        ul#js-navigation-menu.navigation-menu.show
+          li.nav-link.more
+            a(href="javascript:void(0)")
+              | Shop
+            ul.submenu
+              li.more(ng-repeat-start="taxonomy in taxonomies")
+                a(href="javascript:void(0)")
+                  | {{taxonomy.name}}
+                ul.submenu
+                  li(ng-repeat="taxon in taxonomy.root.taxons")
+                    a(href="/#!/t/{{taxon.permalink}}")
+                      | {{taxon.name}}
 
-        a#left-cart-link.cart-link.visible-xs(bs-aside data-template='cart/cart.html' data-container='body' data-placement='right' data-animation='am-slide-right')
-          span.glyphicon.glyphicon-shopping-cart
-          span.cart-qty.badge(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
+              li.divider(ng-repeat-end)
 
-        cart-popover.visible-xs(placement="bottom-right" target="#left-cart-link")
+              li
+                a(href="/#!/products") All Products
+      .navigation-tools
+        .search-bar
+          form(role="search" ng-submit="doSearch()")
+            input(type="search" placeholder="Search" ng-model="search.text" autofocus bs-typeahead
+          data-delay="500" data-min-length="3" data-template="products/typeahead.html"
+          ng-options="product.name as product.name for product in getProducts($viewValue)")
+            button(type="submit" ng-click="doSearch()")
+              img(alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png")
+        .dashboard
+          ul
+            li.my-account
+              a(ng-click="goToMyAccount()" ng-show="account.isLogged")
+                .fa-stack.fa-lg
+                  .fa.fa-circle.fa-stack-2x
+                  .fa.fa-user.fa-stack-1x.fa-inverse
 
-        a.navbar-brand(ng-href="#!/")
-          img(ng-src="{{env.config.logo}}")
+            li.cart
+              a.cart-link.button(ng-click="toggleCart()")
+                i.fa.fa-shopping-cart
+                | &nbsp;
+                span.cart-qty(ng-bind="cart.totalQuantity()" ng-show="cart.totalQuantity() > 0")
 
-      #navbar-collapse-1.collapse.navbar-collapse
-        ng-include(src="'layout/navbar_links.html'")
-        ng-include(src="'layout/navbar_search.html'")
-        ng-include(src="'layout/navbar_right.html'")
+            li.sign-up(ng-hide="account.isLogged")
+              a(ng-click="login()") Sign in
+
+            li.log-out(ng-show="account.isLogged")
+              a(ng-click="logout()") Log out
+
+  ng-include(src="'cart/cart.html'")

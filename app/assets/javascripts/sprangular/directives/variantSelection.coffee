@@ -6,13 +6,17 @@ Sprangular.directive 'variantSelection', ->
   scope:
     product: '='
     variant: '='
-    class: '='
     change: '&'
   controller: ($scope) ->
     $scope.values = {}
+    $scope.isVariantSet = false
+    $scope.isDropdownOpen = false
 
     $scope.$watch 'variant', (newVariant, oldVariant)->
-      $scope.change({oldVariant: oldVariant, newVariant: newVariant}) if newVariant != oldVariant
+      if newVariant != oldVariant
+        $scope.change({oldVariant: oldVariant, newVariant: newVariant})
+      if newVariant != oldVariant && $scope.variant
+        $scope.toggleDropdown()
 
     $scope.isValueSelected = (value) ->
       $scope.values[value.option_type_id]?.id == value.id
@@ -23,6 +27,11 @@ Sprangular.directive 'variantSelection', ->
     $scope.selectValue = (value) ->
       $scope.values[value.option_type_id] = value
       $scope.variant = $scope.product.variantForValues(_.values($scope.values))
+
+      if $scope.variant then $scope.isVariantSet = true
+
+    $scope.toggleDropdown = ->
+      $scope.isDropdownOpen = !$scope.isDropdownOpen
 
   link: (scope, element, attrs) ->
     scope.values = {}

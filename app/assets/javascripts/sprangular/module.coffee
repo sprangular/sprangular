@@ -4,7 +4,6 @@ window.Sprangular = angular.module('Sprangular', [
   'ngAnimate'
   'underscore'
   'ngSanitize'
-  'mgcrea.ngStrap'
   'angularytics'
   'pascalprecht.translate'
 ]).run (Env, $log) ->

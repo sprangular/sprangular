@@ -24,7 +24,7 @@ class Sprangular.Product
     @options = {}
 
     _.each @option_types, (type) ->
-      self.options[type.id] = {type: type, values: {}}
+      self.options[type.id] = angular.extend(type, values: {})
 
     _.each @variants, (variant) ->
       variant.product = self

@@ -1,0 +1,110 @@
+#cart-aside
+  @include transition(0.25s linear all)
+  @include transform(translateX(0))
+  box-shadow: 4px 0 10px rgba(black, 0.75)
+  position: fixed
+  top: 0
+  right: 0
+  background: white
+  height: 100%
+  overflow: auto
+  width: 300px
+  z-index: $stratum-higher
+
+  &:focus
+    outline: none
+
+  &.ng-hide
+    @include transform(translateX(100%))
+
+  header
+    background: $medium-green
+    min-height: 65px
+    padding: 1em
+
+    h4
+      color: white
+      float: left
+      line-height: 35px
+
+      .badge
+        background-color: $light-green
+        color: $dark-gray
+        margin-left: 20px
+
+    .close
+      float: right
+      height: 35px
+      cursor: pointer
+
+      &:hover
+        color: $medium-gray
+
+  .empty,
+  .with-items,
+  footer
+    padding: 0 1em
+
+  .with-items
+    table
+      margin-top: 0
+
+      td
+        border: none
+
+      tr th:last-child,
+      tr td:last-child
+        text-align: right
+
+      &.item
+        border-bottom: 1px solid $light-gray
+
+    .item-info
+      border-bottom: 1px solid $lighter-gray
+
+      .name
+        padding: 0.75em
+
+      .image
+        img
+          display: block
+
+    .item-actions
+      td:last-child
+        text-align: left
+
+        .dib
+          margin-left: 10px
+
+          &:first-child
+            margin-left: 0
+
+      .options
+        position: relative
+
+      .remove
+        float: right
+        margin-left: 0
+
+        .fa
+          line-height: 35px
+
+    .promo-form
+      border-bottom: 1px solid #b7b7b7
+      padding-bottom: 20px
+
+      input,
+      button
+        float: left
+        margin-right: 10px
+
+    .remove
+      cursor: pointer
+      margin-left: 5px
+
+  footer
+    padding: 20px 1em
+    background: none
+
+    .dib
+      margin-right: 10px

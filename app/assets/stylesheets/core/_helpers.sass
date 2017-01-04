@@ -1,0 +1,42 @@
+// ----- Vertical align ----- //
+@mixin vertical-align($position: relative)
+  @include transform(translateY(-50%))
+  position: $position
+  top: 50%
+
+// ----- Badges ----- //
+@mixin badge($color: $medium-gray)
+  @include border-top-radius(5px)
+  @include border-bottom-radius(5px)
+  background-color: $color
+  border-radius: $b-font-size * 5
+  color: darken($color, 60%)
+  display: inline-block
+  font-size: $b-font-size
+  font-weight: 600
+  line-height: 1
+  padding: 0.4em 1.2em
+
+// ----- Flashes ----- //
+@mixin flash($color)
+  background-color: $color
+  color: darken($color, 60%)
+  display: block
+  font-weight: 600
+  margin-bottom: $b-space / 2
+  padding: $b-space / 2
+  position: relative
+  text-align: center
+
+  a
+    color: darken($color, 70%)
+    text-decoration: underline
+
+    &:focus,
+    &:hover
+      color: darken($color, 90%)
+
+  .close
+    position: absolute
+    right: .75em
+    top: 1em

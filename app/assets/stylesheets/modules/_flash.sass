@@ -1,0 +1,20 @@
+.flash-alert,
+.flash-error,
+.flash-notice,
+.flash-success
+  margin-bottom: 0
+
+  .jumbotron &
+    text-align: left
+
+.flash-error,
+.flash-danger
+  @extend %flash-error
+
+.flash-notice,
+.flash-info
+  @extend %flash-notice
+
+.flash-success
+  @extend %flash-success
+

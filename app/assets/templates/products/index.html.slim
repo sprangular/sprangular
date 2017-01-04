@@ -2,6 +2,8 @@ h1(ng-bind="pageTitle")
 
 ng-include(src="'products/list.html'" when-scrolled='loadNextPage()' when-scrolled-distance='10')
 
+ng-include(src="'layout/pagination.html'")
+
 .products-loading(ng-show='fetching')
 
 .no-more(ng-show='products.length > 0 && loadingComplete')

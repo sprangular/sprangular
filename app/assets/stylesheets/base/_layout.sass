@@ -1,0 +1,37 @@
+html, body
+  height: 100%
+
+figure
+  margin: 0
+
+a
+  cursor: pointer
+
+#wrap
+  min-height: 100%
+  margin-bottom: -91px
+
+  &:after
+    content: ""
+    display: block
+    height: 91px
+
+.dib
+  display: inline-block
+  vertical-align: middle
+
+.badge
+  @include badge
+
+.fl
+  float: left
+
+.fr
+  float: right
+
+// ----- Clearfix ----- //
+
+.clear::after
+  clear: both
+  content: ''
+  display: table

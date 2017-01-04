@@ -1,0 +1,29 @@
+button, .button,
+input[type="submit"]
+  @extend %button
+  @include appearance(none)
+  border: none
+  cursor: pointer
+  user-select: none
+  vertical-align: middle
+  white-space: nowrap
+
+  &.is-green
+    background: $medium-green
+
+    &:hover
+      background: darken($medium-green, 10%)
+
+  &.is-red
+    background: red
+
+    &:hover
+      background: darken(red, 10%)
+
+  &.is-transparent
+    background: transparent
+    color: $blue
+    padding: 0
+
+    &:hover
+      background: transparent

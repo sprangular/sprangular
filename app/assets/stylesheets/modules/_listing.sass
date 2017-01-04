@@ -1,0 +1,70 @@
+.m-listing-wrapper
+  background: $lighter-gray
+  padding: 25px 0
+
+.m-listing
+  .m-listing-item
+    @include span-columns(3)
+    @include omega(4n)
+    @include border-top-radius(3px)
+    @include border-bottom-radius(3px)
+    background: white
+    border-top: 6px solid $light-gray
+    margin-bottom: $b-space
+    padding-top: $b-space
+    position: relative
+
+    .title, .image
+      padding: 0 $b-space
+
+    .price, .add-to-cart
+      text-align: right
+
+    .add-to-cart,
+    .selector
+      width: 100%
+
+    .title
+      min-height: 50px
+
+    .image
+      display: block
+      margin: $b-space 0
+      min-height: 205px
+
+    .price
+      padding: 0 1em
+      margin-bottom: .5em
+
+    .add-to-cart,
+    .selector
+      float: left
+
+      button
+        @include border-top-radius(0)
+        @include border-bottom-radius(3px)
+        width: 100%
+
+    .add-to-cart
+      button
+        text-align: right
+
+    .selector
+      button
+        text-align: left
+
+    .with-variants
+      position: relative
+      z-index: $stratum-lowest
+
+      .add-to-cart
+        position: absolute
+        right: 0
+        top: 0
+        width: 50%
+        z-index: $stratum-lowest
+
+        button
+          height: 35px
+
+

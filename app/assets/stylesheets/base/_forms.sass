@@ -1,0 +1,90 @@
+form
+  margin: 0
+
+fieldset
+  background: lighten($b-border-color, 10)
+  border: $b-border
+  margin: 0 0 ($b-space / 2) 0
+  padding: $b-space
+
+
+input,
+label,
+select
+  display: block
+  font-family: $b-font-family
+  font-size: $b-font-size
+
+
+label
+  font-weight: bold
+  margin-bottom: $b-space / 4
+
+  &.required:after
+    content: "*"
+
+
+  abbr
+    display: none
+
+textarea,
+#{$all-text-inputs},
+select[multiple=multiple]
+  @include box-sizing(border-box)
+  @include transition(border-color)
+  background-color: white
+  border: 1px solid $b-border-color
+  box-shadow: inset 0 1px 3px rgba(black,0.06)
+  font-family: $b-font-family
+  font-size: $b-font-size
+  padding: ($b-space / 3) ($b-space / 3)
+  width: 100%
+
+  &:hover
+    border-color: darken($b-border-color, 10%)
+
+
+  &:focus
+    outline: none
+
+#{$all-text-inputs}
+  height: 35px
+
+textarea
+  resize: vertical
+
+
+input[type="search"]
+  @include appearance(none)
+
+
+input[type="checkbox"],
+input[type="radio"]
+  display: inline
+  margin-right: $b-space / 4
+
+
+input[type="file"]
+  padding-bottom: $b-space / 2
+  width: 100%
+
+
+select
+  max-width: 100%
+  width: auto
+
+.form-group
+  margin-bottom: $b-space
+
+.input-group-addon
+  height: 35px
+  background: $blue
+  padding: 0 10px
+  color: white
+
+  .fa
+    line-height: 35px
+
+.error
+  color: darken($light-red, 60%)
+  margin-bottom: 0
